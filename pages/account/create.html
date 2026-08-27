@@ -128,8 +128,8 @@
                             <input type="tel" id="regTelefono" placeholder="999 999 999" required>
                         </div>
                         <div class="col-12 col-md-6 username">
-                            <label>Fecha de nacimiento</label>
-                            <input type="date" id="regFechaNac">
+                            <label>Fecha de nacimiento <span>*</span></label>
+                            <input type="date" id="regFechaNac" required>
                         </div>
                     </div>
 
@@ -143,15 +143,15 @@
 
                     <div class="row g-3">
                         <div class="col-12 col-md-6 username">
-                            <label>Contraseña <span>*</span></label>
+                            <label>Contraseña (mínimo 8 caracteres) <span>*</span></label>
                             <div class="input-relative">
-                                <input type="password" id="regPassword" placeholder="••••••••" required>
+                                <input type="password" id="regPassword" placeholder="••••••••" minlength="8" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6 username">
                             <label>Confirmar contraseña <span>*</span></label>
                             <div class="input-relative">
-                                <input type="password" id="regPasswordConfirm" placeholder="••••••••" required>
+                                <input type="password" id="regPasswordConfirm" placeholder="••••••••" minlength="8" required>
                             </div>
                         </div>
                     </div>
@@ -167,7 +167,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="checkTerminos" required>
                             <label class="form-check-label text-dark small" for="checkTerminos">
-                                Acepto los <a href="#" class="recordar p-0 d-inline text-decoration-underline">términos
+                                Acepto los <a href="../info/terminos.html" class="recordar p-0 d-inline text-decoration-underline">términos
                                     y condiciones</a> y la política de privacidad. <span>*</span>
                             </label>
                         </div>
@@ -190,7 +190,7 @@
         </div>
     </footer>
 
-            <!-- Panel Lateral del Carrito -->
+    <!-- Panel Lateral del Carrito -->
     <div class="offcanvas offcanvas-end bg-dark text-white border-start border-secondary border-opacity-25"
         tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
         <div class="offcanvas-header border-bottom border-secondary border-opacity-25 py-3">
