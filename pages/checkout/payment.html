@@ -30,18 +30,50 @@
         </div>
     </section>
 
-    <header id="header" class="navbar py-2 border-bottom border-secondary border-opacity-25">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center gap-3">
-                <a class="navbar-brand me-0" href="../../index.html" style="width: 130px;">
-                    <img src="../../assets/images/lacaleta.png" class="img-fluid" alt="Logo La Caleta">
-                </a>
-                <div class="d-none d-xl-block text-secondary fst-italic small">
-                    "El que come callado, come doble"
-                </div>
+<header id="header" class="navbar py-2 border-bottom border-secondary border-opacity-25">
+    <div class="container d-flex justify-content-between align-items-center">
+        
+        <!-- Lado Izquierdo: Logo y Frase -->
+        <div class="d-flex align-items-center gap-3">
+            <a class="navbar-brand me-0" href="../../index.html" style="width: 130px;">
+                <img src="../../assets/images/lacaleta.png" class="img-fluid" alt="Logo La Caleta">
+            </a>
+            <div class="d-none d-xl-block text-secondary fst-italic small">
+                "El que come callado, come doble"
             </div>
         </div>
-    </header>
+
+        <!-- Lado Derecho: Menú, Carrito e Inicio de Sesión juntos -->
+        <div class="d-flex align-items-center gap-3">
+            <!-- Enlaces de navegación (Escritorio) -->
+            <nav class="d-none d-lg-flex align-items-center gap-2 me-2">
+                <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" href="../shop/menu.html">Menú</a>
+                <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" href="../shop/promociones.html">Promociones</a>
+                <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" href="../shop/locales.html">Locales</a>
+            </nav>
+
+            <!-- Botón Carrito -->
+            <button type="button" class="nav-menu-link-shop px-3 py-2 fw-bold rounded-pill d-flex align-items-center gap-2 text-nowrap border-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="d-none d-sm-inline">S/ 0.00</span>
+            </button>
+
+            <!-- Contenedor Dinámico de Usuario / Sesión -->
+            <div id="navUserArea" class="d-flex align-items-center ms-lg-2">
+                <a class="d-flex align-items-center gap-2 text-white text-nowrap text-decoration-none" href="../account/login.html">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Iniciar sesión</span>
+                </a>
+            </div>
+
+            <!-- Botón Hamburguesa (Solo en móviles) -->
+            <button class="btn border-0 text-white p-1 d-lg-none shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu" aria-label="Abrir navegación">
+                <i class="fa-solid fa-bars fs-3"></i>
+            </button>
+        </div>
+        
+    </div>
+</header>
 
     <main>
         <section class="py-3 border-bottom border-secondary border-opacity-25">
