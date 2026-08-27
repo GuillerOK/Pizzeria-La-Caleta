@@ -114,12 +114,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     localStorage.setItem("sesion_activa", JSON.stringify(datos.usuario));
 
                     // Redirección dinámica basada en roles
-                    if (datos.usuario.rol.toUpperCase() === "ADMIN") {
+                    if (datos.usuario.rol === "ADMIN") {
                         alert(`Bienvenido Administrador: ${datos.usuario.nombre}`);
-                        window.location.href = "admin.html";
+                        window.location.href = "../../admin.html"; // Regresa a la raíz
                     } else {
                         alert(`Bienvenido ${datos.usuario.nombre}`);
-                        window.location.href = "index.html"; // O la ruta principal
+                        window.location.href = "../../index.html"; // Regresa a la raíz
                     }
                 } else {
                     alert(`Error: ${datos.error}`);
@@ -320,24 +320,29 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarCarrito();
 }); 
 
+
+// ==========================================
+// LÓGICA DEL CARRITO (Conectado a Render)
+// ==========================================
 async function agregarAlCarrito(productoVarianteId) {
-    // 1. Buscar el token guardado
+    // 1. Buscamos la "pulsera VIP" del usuario en el navegador
     const token = localStorage.getItem('token');
     
-    // 2. Control de acceso: Si no está logueado, redirigir
+    // 2. Si no tiene token (no está logueado), le bloqueamos el paso y lo mandamos a login
     if (!token) {
         alert("Debes iniciar sesión para añadir productos al carrito.");
-        window.location.href = "login.html"; 
-        return; // Detiene la ejecución aquí mismo
+        // Como los botones están en pages/shop/menu.html, subimos una carpeta y entramos a account
+        window.location.href = "../account/login.html"; 
+        return;
     }
 
-    // 3. Petición segura al servidor
+    // 3. Si está logueado, hacemos la petición a tu servidor en Render
     try {
-        const respuesta = await fetch('https://pizzeria-la-caleta.onrender.com/api/carrito/add', {
+        const response = await fetch('https://pizzeria-la-caleta.onrender.com/api/carrito/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token // ¡Crucial para tu middleware JWT!
+                'Authorization': 'Bearer ' + token // Tu Middleware exige esto
             },
             body: JSON.stringify({
                 productoVarianteId: productoVarianteId,
@@ -345,17 +350,15 @@ async function agregarAlCarrito(productoVarianteId) {
             })
         });
 
-        const datos = await respuesta.json();
+        const data = await response.json();
 
-        // 4. Manejar el resultado de la petición
-        if (respuesta.ok) {
-            alert("¡Producto añadido con éxito!");
-            // Tip: Aquí luego podrías llamar a una función para actualizar el contador del carrito en el nav
+        if (response.ok) {
+            alert(data.mensaje); // Mostrará "Producto añadido al carrito."
         } else {
-            alert(`Atención: ${datos.error || "No se pudo agregar al carrito."}`);
+            alert(data.error || "Ocurrió un error al intentar agregar el producto.");
         }
     } catch (error) {
-        console.error("Error al conectar con el servidor:", error);
-        alert("Error de red: No pudimos conectar con el servidor. Inténtalo de nuevo.");
+        console.error("Error:", error);
+        alert("Error de conexión con el servidor. Verifica tu internet o si el servidor está activo.");
     }
 }
