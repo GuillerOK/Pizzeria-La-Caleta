@@ -155,18 +155,25 @@ function verificarAccesoAdmin() {
         const sesion = JSON.parse(localStorage.getItem("sesion_activa"));
         if (!sesion || sesion.rol !== "ADMIN") {
             alert("Acceso no autorizado. Debe iniciar sesión como administrador.");
-            window.location.href = "login.html";
+            // Como admin.html está en pages/admin/, subimos una carpeta y entramos a account
+            window.location.href = "../account/login.html"; 
         }
     }
 }
 
 // Actualizar barra de navegación en todas las páginas según la sesión activa
+
 function actualizarNavbar() {
     const sesion = JSON.parse(localStorage.getItem("sesion_activa"));
     const navUserArea = document.getElementById("navUserArea");
     const navLinkMenu = document.getElementById("navLinkMenu");
 
     if (!navUserArea) return;
+
+    // ¡AQUÍ ESTÁ LA SOLUCIÓN! Calculamos la ruta dependiendo de dónde esté el usuario
+    const esSubcarpeta = window.location.pathname.includes('/pages/');
+    const rutaLogin = esSubcarpeta ? "../account/login.html" : "pages/account/login.html";
+    const rutaAdmin = esSubcarpeta ? "../admin/admin.html" : "pages/admin/admin.html";
 
     if (sesion) {
         // 1. Mostrar nombre y botón para cerrar sesión
@@ -187,15 +194,15 @@ function actualizarNavbar() {
                 const adminBtn = document.createElement("a");
                 adminBtn.id = "navAdminLink";
                 adminBtn.className = "nav-link px-3 py-1 fw-bold text-warning text-nowrap";
-                adminBtn.href = "admin.html";
+                adminBtn.href = rutaAdmin; // Usa la ruta correcta sin romper
                 adminBtn.innerHTML = '<i class="fa-solid fa-lock"></i> Administración';
                 navLinkMenu.after(adminBtn);
             }
         }
     } else {
-        // Si no hay sesión activa, mantener botón de inicio de sesión
+        // Si no hay sesión activa, inyectamos el botón con la ruta inteligente
         navUserArea.innerHTML = `
-            <a class="d-flex align-items-center gap-2 text-white text-nowrap" href="login.html">
+            <a class="d-flex align-items-center gap-2 text-white text-nowrap" href="${rutaLogin}">
                 <i class="fa-solid fa-user"></i>
                 <span>Iniciar sesión</span>
             </a>
