@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const respuesta = await fetch('http://localhost:3000/api/register', {
+                const respuesta = await fetch('https://pizzeria-la-caleta.onrender.com/api/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ nombre, apellido, email, telefono, password })
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             try {
                 // Petición real al servidor Node.js
-                const respuesta = await fetch('http://localhost:3000/api/login', {
+                const respuesta = await fetch('https://pizzeria-la-caleta.onrender.com/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -320,47 +320,42 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarCarrito();
 }); 
 
-async function agregarAlCarrito(productoVarianteId, cantidad = 1) {
+async function agregarAlCarrito(productoVarianteId) {
+    // 1. Buscar el token guardado
     const token = localStorage.getItem('token');
     
-    // Verificación en frontend si hay un JWT
+    // 2. Control de acceso: Si no está logueado, redirigir
     if (!token) {
-        alert("Debes iniciar sesión para añadir productos a tu carrito.");
+        alert("Debes iniciar sesión para añadir productos al carrito.");
         window.location.href = "login.html"; 
-        return;
+        return; // Detiene la ejecución aquí mismo
     }
 
+    // 3. Petición segura al servidor
     try {
-        const respuesta = await fetch('http://localhost:3000/api/carrito/add', {
+        const respuesta = await fetch('https://pizzeria-la-caleta.onrender.com/api/carrito/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` // Enviamos el JWT como Bearer token
+                'Authorization': 'Bearer ' + token // ¡Crucial para tu middleware JWT!
             },
             body: JSON.stringify({
                 productoVarianteId: productoVarianteId,
-                cantidad: cantidad
+                cantidad: 1
             })
         });
 
         const datos = await respuesta.json();
 
+        // 4. Manejar el resultado de la petición
         if (respuesta.ok) {
-            alert(datos.mensaje); 
-            // TODO: Si tienes una función para actualizar el contador del ícono del carrito, llámala aquí.
+            alert("¡Producto añadido con éxito!");
+            // Tip: Aquí luego podrías llamar a una función para actualizar el contador del carrito en el nav
         } else {
-            // Manejador de errores enviados desde el backend (ej. 401 sin autorización)
-            if(respuesta.status === 401 || respuesta.status === 403) {
-                 alert("Tu sesión ha expirado o no es válida. Inicia sesión nuevamente.");
-                 localStorage.removeItem('token');
-                 localStorage.removeItem('sesion_activa');
-                 window.location.href = "login.html";
-            } else {
-                 alert(`Atención: ${datos.error}`);
-            }
+            alert(`Atención: ${datos.error || "No se pudo agregar al carrito."}`);
         }
     } catch (error) {
-        console.error("Error de conexión:", error);
-        alert("Error de red: No se pudo añadir el producto.");
+        console.error("Error al conectar con el servidor:", error);
+        alert("Error de red: No pudimos conectar con el servidor. Inténtalo de nuevo.");
     }
 }
