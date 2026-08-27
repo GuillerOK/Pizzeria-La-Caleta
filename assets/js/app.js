@@ -116,10 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Redirección dinámica basada en roles
                     if (datos.usuario.rol === "ADMIN") {
                         alert(`Bienvenido Administrador: ${datos.usuario.nombre}`);
-                        window.location.href = "admin.html"; // Regresa a la raíz
+                        // Sube una carpeta (sale de account) y entra a admin
+                        window.location.href = "../admin/admin.html";
                     } else {
                         alert(`Bienvenido ${datos.usuario.nombre}`);
-                        window.location.href = "index.html"; // Regresa a la raíz
+                        // Sube dos carpetas (sale de account, sale de pages) y llega a la raíz
+                        window.location.href = "../../index.html";
                     }
                 } else {
                     alert(`Error: ${datos.error}`);
@@ -202,14 +204,21 @@ function actualizarNavbar() {
 }
 
 // Cerrar sesión y redireccionar
+
 function cerrarSesion() {
     localStorage.removeItem("sesion_activa");
     localStorage.removeItem("token");
-    window.location.href = "login.html";
+    
+    if (window.location.pathname.includes('/pages/')) {
+        window.location.href = "../account/login.html";
+    } else {
+        window.location.href = "pages/account/login.html";
+    }
 }
 
- // CARRITO DE COMPRAS DINÁMICO
 
+
+ // CARRITO DE COMPRAS DINÁMICO
 
 // 1. Inicializar o leer el carrito desde localStorage
 let carrito = JSON.parse(localStorage.getItem('carrito_caleta')) || [];
@@ -331,8 +340,13 @@ async function agregarAlCarrito(productoVarianteId) {
     // 2. Si no tiene token (no está logueado), le bloqueamos el paso y lo mandamos a login
     if (!token) {
         alert("Debes iniciar sesión para añadir productos al carrito.");
-        // Como los botones están en pages/shop/menu.html, subimos una carpeta y entramos a account
-        window.location.href = "../account/login.html"; 
+
+        // Ruta inteligente dependiendo de dónde esté el usuario
+        if (window.location.pathname.includes('/pages/')) {
+            window.location.href = "../account/login.html"; // Si está en el menú u otra subpágina
+        } else {
+            window.location.href = "pages/account/login.html"; // Si está en la pantalla principal (index)
+        }
         return;
     }
 
