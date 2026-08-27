@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Redirección dinámica basada en roles
                     if (datos.usuario.rol === "ADMIN") {
                         alert(`Bienvenido Administrador: ${datos.usuario.nombre}`);
-                        window.location.href = "pages\admin\admin.html"; // Regresa a la raíz
+                        window.location.href = "admin.html"; // Regresa a la raíz
                     } else {
                         alert(`Bienvenido ${datos.usuario.nombre}`);
                         window.location.href = "index.html"; // Regresa a la raíz
