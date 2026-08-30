@@ -46,10 +46,10 @@
 
                 <!-- Enlaces de navegación (Escritorio) -->
                 <nav class="d-none d-lg-flex align-items-center gap-2 me-2">
-                    <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap"
-                        href="menu.html">Menú</a>
+                    <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" href="menu.html">Menú</a>
                     <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" href="promociones.html">Promociones</a>
-                    <a class="nav-link px-3 py-1 fw-bold rounded-pill border nav-menu-link-active text-nowrap" href="locales.html">Locales</a>
+                    <a class="nav-link px-3 py-1 fw-bold rounded-pill border nav-menu-link-active text-nowrap"
+                        href="locales.html">Locales</a>
                 </nav>
 
                 <!-- Botón Carrito -->
@@ -61,11 +61,13 @@
                 </button>
 
                 <!-- Iniciar Sesión -->
-                <a class="d-flex align-items-center gap-2 text-white text-decoration-none small fw-semibold text-nowrap"
-                    href="../account/login.html">
-                    <i class="fa-solid fa-user"></i>
-                    <span class="d-none d-md-inline">Iniciar sesión</span>
-                </a>
+                <div id="navUserArea" class="d-flex align-items-center">
+                    <a class="d-flex align-items-center gap-2 text-white text-decoration-none small fw-semibold text-nowrap"
+                        href="../account/login.html">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="d-none d-md-inline">Iniciar sesión</span>
+                    </a>
+                </div>
 
                 <!-- Botón Hamburguesa (Solo en móviles) -->
                 <button class="btn border-0 text-white p-1 d-lg-none shadow-none" type="button"
@@ -297,13 +299,16 @@
                 <div class="col-6 col-md-3">
                     <h6 class="fw-bold mb-3">Ayuda & Términos</h6>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a class="text-secondary text-decoration-none" href="../info/faq.html">Preguntas
+                        <li class="mb-2"><a class="text-secondary text-decoration-none"
+                                href="../info/faq.html">Preguntas
                                 Frecuentes</a></li>
-                        <li class="mb-2"><a class="text-secondary text-decoration-none" href="../info/delivery.html">Políticas de
+                        <li class="mb-2"><a class="text-secondary text-decoration-none"
+                                href="../info/delivery.html">Políticas de
                                 Delivery</a></li>
-                        <li class="mb-2"><a class="text-secondary text-decoration-none" href="../info/terminos.html">Términos y
+                        <li class="mb-2"><a class="text-secondary text-decoration-none"
+                                href="../info/terminos.html">Términos y
                                 Condiciones</a></li>
-                                
+
                     </ul>
                 </div>
                 <div class="col-12 col-md-3">
@@ -333,7 +338,7 @@
         </div>
     </footer>
 
-        <!-- Panel Lateral del Carrito -->
+    <!-- Panel Lateral del Carrito -->
     <div class="offcanvas offcanvas-end bg-dark text-white border-start border-secondary border-opacity-25"
         tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
         <div class="offcanvas-header border-bottom border-secondary border-opacity-25 py-3">
@@ -396,7 +401,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link rounded-pill border nav-menu-link-active d-flex align-items-center gap-3" href="locales.html">
+                    <a class="nav-link rounded-pill border nav-menu-link-active d-flex align-items-center gap-3"
+                        href="locales.html">
                         Locales
                     </a>
                 </li>
@@ -416,6 +422,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/app.js"></script>
 </body>
 
 </html>
