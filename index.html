@@ -46,10 +46,11 @@
 
                 <!-- Enlaces de navegación (Escritorio) -->
                 <nav class="d-none d-lg-flex align-items-center gap-2 me-2">
+                    <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" href="pages/shop/menu.html">Menú</a>
                     <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap"
-                        href="pages/shop/menu.html">Menú</a>
-                    <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" href="pages/shop/promociones.html">Promociones</a>
-                    <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" href="pages/shop/locales.html">Locales</a>
+                        href="pages/shop/promociones.html">Promociones</a>
+                    <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap"
+                        href="pages/shop/locales.html">Locales</a>
                 </nav>
 
                 <!-- Botón Carrito -->
@@ -61,11 +62,13 @@
                 </button>
 
                 <!-- Iniciar Sesión -->
-                <a class="d-flex align-items-center gap-2 text-white text-decoration-none small fw-semibold text-nowrap"
-                    href="pages/account/login.html">
-                    <i class="fa-solid fa-user"></i>
-                    <span class="d-none d-md-inline">Iniciar sesión</span>
-                </a>
+                <div id="navUserArea" class="d-flex align-items-center">
+                    <a class="d-flex align-items-center gap-2 text-white text-decoration-none small fw-semibold text-nowrap"
+                        href="pages/account/login.html">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="d-none d-md-inline">Iniciar sesión</span>
+                    </a>
+                </div>
 
                 <!-- Botón Hamburguesa (Solo en móviles) -->
                 <button class="btn border-0 text-white p-1 d-lg-none shadow-none" type="button"
@@ -190,8 +193,8 @@
                         </div>
                     </div>
                     <div class="tarjeta-pizza card bg-white text-dark border-0 overflow-hidden flex-shrink-0">
-                        <img src="assets/images/producto_meat.jpg" class="card-img-top object-fit-cover" style="height: 160px;"
-                            alt="La Cofradía">
+                        <img src="assets/images/producto_meat.jpg" class="card-img-top object-fit-cover"
+                            style="height: 160px;" alt="La Cofradía">
                         <div class="card-body d-flex flex-column text-center p-3">
                             <h5 class="fw-bold fs-6 mb-1">La Cofradía</h5>
                             <p class="text-secondary small flex-grow-1 mb-3">Alianza contundente de pepperoni, carne
@@ -334,13 +337,13 @@
                 <div class="col-6 col-md-3">
                     <h6 class="fw-bold mb-3">Ayuda & Términos</h6>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a class="text-secondary text-decoration-none" href="#">Preguntas
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" href="pages/info/faq.html">Preguntas
                                 Frecuentes</a></li>
-                        <li class="mb-2"><a class="text-secondary text-decoration-none" href="#">Políticas de
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" href="pages/info/delivery.html">Políticas de
                                 Delivery</a></li>
-                        <li class="mb-2"><a class="text-secondary text-decoration-none" href="#">Términos y
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" href="pages/info/terminos.html">Términos y
                                 Condiciones</a></li>
-                        <li class="mb-2"><a class="text-secondary text-decoration-none" href="#">Nuestros Locales</a>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" href="pages/shop/locales.html">Nuestros Locales</a>
                         </li>
                     </ul>
                 </div>
@@ -429,7 +432,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3" href="pages/shop/promociones.html">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3"
+                        href="pages/shop/promociones.html">
                         Promociones
                     </a>
                 </li>

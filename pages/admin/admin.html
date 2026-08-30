@@ -1,26 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Caleta | Panel de Administración</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>La Caleta | Panel de Administración Prototipo</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Estilos de La Caleta -->
     <link rel="stylesheet" href="../../assets/style/styles.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .section-anchor {
+            scroll-margin-top: 90px;
+        }
+        .admin-sidebar-box {
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+        }
+        .admin-sidebar-box::-webkit-scrollbar {
+            width: 4px;
+        }
+        .admin-sidebar-box::-webkit-scrollbar-thumb {
+            background: #e0e0e0;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- TOPBAR -->
     <section id="topbar" class="py-2">
         <div class="container d-flex justify-content-between align-items-center">
-            <!-- Contactos (En móvil se oculta el correo para que no sature) -->
             <div class="d-flex align-items-center gap-3">
-                <a href="tel:+51999999999" class="text-nowrap"><i class="fa-solid fa-phone me-1"></i> (+51) 999 999
-                    999</a>
-                <a href="mailto:lacaleta@gmail.com" class="d-none d-sm-inline text-nowrap"><i
-                        class="fa-regular fa-envelope me-1"></i> lacaleta@gmail.com</a>
+                <a href="tel:+51999999999" class="text-nowrap"><i class="fa-solid fa-phone me-1"></i> (+51) 999 999 999</a>
+                <a href="mailto:lacaleta@gmail.com" class="d-none d-sm-inline text-nowrap"><i class="fa-regular fa-envelope me-1"></i> lacaleta@gmail.com</a>
             </div>
-            <!-- Redes Sociales -->
             <div class="d-flex align-items-center gap-3">
                 <a href="#"><i class="fa-brands fa-facebook"></i></a>
                 <a href="#"><i class="fa-brands fa-instagram"></i></a>
@@ -30,37 +54,27 @@
         </div>
     </section>
 
-    <!-- Encabezado / Navegación Responsive -->
-    <header id="header" class="navbar navbar-expand-lg py-2">
+    <!-- NAVBAR -->
+    <header id="header" class="navbar navbar-expand-lg py-2 sticky-top">
         <div class="container">
-            <!-- Logo -->
-            <a class="navbar-brand me-3" href="../../index.html" style="width: 130px;">
+            <a class="navbar-brand me-3" href="" style="width: 130px;">
                 <img src="../../assets/images/lacaleta.png" class="img-fluid" alt="Logo La Caleta">
             </a>
-            <!-- Frase (Visible solo en pantallas grandes) -->
             <div class="d-none d-xl-block text-secondary fst-italic small">
                 "El que come callado, come doble"
             </div>
-            <!-- Botón Hamburguesa (Aparece en tablets y móviles) -->
             <button class="navbar-toggler border-0 text-white shadow-none" type="button" data-bs-toggle="collapse"
                 data-bs-target="#menuNavegacion" aria-controls="menuNavegacion" aria-expanded="false"
                 aria-label="Abrir menú">
                 <i class="fa-solid fa-bars fs-3 text-white"></i>
             </button>
-            <!-- Enlaces colapsables -->
             <div class="collapse navbar-collapse justify-content-end" id="menuNavegacion">
-                <nav
-                    class="d-flex flex-column flex-lg-row align-items-end align-items-lg-center gap-3 gap-lg-2 p-3 p-lg-0 my-2 my-lg-0">
-
-                    <!-- Pestaña Exclusiva de Administración -->
-                    <a class="nav-link px-3 py-1 fw-bold rounded-pill border nav-menu-link-active text-nowrap"
-                        href="admin.html">Administración</a>
-
-                    <!-- Contenedor Dinámico de Usuario / Sesión -->
+                <nav class="d-flex flex-column flex-lg-row align-items-end align-items-lg-center gap-3 gap-lg-2 p-3 p-lg-0 my-2 my-lg-0">
+                    <a class="nav-link px-3 py-1 fw-bold rounded-pill border nav-menu-link-active text-nowrap" href="#sec-dashboard">Administrador</a>
                     <div id="navUserArea" class="d-flex align-items-center ms-lg-2">
                         <a class="d-flex align-items-center gap-2 text-white text-nowrap" href="../account/login.html">
                             <i class="fa-solid fa-user"></i>
-                            <span>Iniciar sesión</span>
+                            <span>Host</span>
                         </a>
                     </div>
                 </nav>
@@ -68,204 +82,1134 @@
         </div>
     </header>
 
-    <!-- Contenido Principal: Panel de Control del Administrador -->
-    <main class="py-5">
-        <div class="container">
-            <!-- Titulo -->
-            <div class="mb-4">
-                <h2 class="login-titulo text-start text-white mb-0">PANEL DE CONTROL INTERNO</h2>
-                <span class="text-secondary small">Vista general de operaciones, inventario y registros</span>
-            </div>
-
-            <!-- 1. Tarjetas de Resumen Rapido (3 Columnas) -->
-            <div class="row g-3 mb-4">
-                <!-- Ventas Totales -->
-                <div class="col-12 col-md-4">
-                    <div class="bg-white text-dark p-3 rounded shadow-sm h-100 d-flex flex-column justify-content-between">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div>
-                                <span class="beneficios-subtitulo text-muted mb-1 d-block">VENTAS DEL DÍA</span>
-                                <h4 class="fw-bold mb-0">S/ 2,850.00</h4>
-                            </div>
-                            <span class="p-2 rounded bg-light text-success"><i class="fa-solid fa-cash-register fs-5"></i></span>
-                        </div>
-                        <small class="text-success mt-2"><i class="fa-solid fa-arrow-trend-up me-1"></i>42 pedidos cobrados</small>
-                    </div>
-                </div>
-
-                <!-- Stock e Insumos -->
-                <div class="col-12 col-md-4">
-                    <div class="bg-white text-dark p-3 rounded shadow-sm h-100 d-flex flex-column justify-content-between">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div>
-                                <span class="beneficios-subtitulo text-muted mb-1 d-block">STOCK DE INSUMOS</span>
-                                <h4 class="fw-bold mb-0">24 Items</h4>
-                            </div>
-                            <span class="p-2 rounded bg-light text-primary"><i class="fa-solid fa-boxes-stacked fs-5"></i></span>
-                        </div>
-                        <small class="text-warning"><i class="fa-solid fa-triangle-exclamation me-1"></i>2 con stock bajo</small>
-                    </div>
-                </div>
-
-                <!-- Compras Insumos -->
-                <div class="col-12 col-md-4">
-                    <div class="bg-white text-dark p-3 rounded shadow-sm h-100 d-flex flex-column justify-content-between">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div>
-                                <span class="beneficios-subtitulo text-muted mb-1 d-block">COSTO INSUMOS</span>
-                                <h4 class="fw-bold mb-0">S/ 820.00</h4>
-                            </div>
-                            <span class="p-2 rounded bg-light text-warning"><i class="fa-solid fa-receipt fs-5"></i></span>
-                        </div>
-                        <small class="text-muted"><i class="fa-solid fa-clock-rotate-left me-1"></i>3 compras hoy</small>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2. Pestañas de Navegación del Panel -->
-            <ul class="nav nav-tabs border-secondary mb-3" id="adminTabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active text-white fw-bold bg-transparent border-0 border-bottom border-danger border-3" id="stock-tab" data-bs-toggle="tab" data-bs-target="#tab-stock" type="button" role="tab">
-                        <i class="fa-solid fa-warehouse me-1"></i> Inventario y Precios
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link text-secondary fw-bold bg-transparent border-0" id="historial-tab" data-bs-toggle="tab" data-bs-target="#tab-historial" type="button" role="tab">
-                        <i class="fa-solid fa-clipboard-list me-1"></i> Historial de Movimientos
-                    </button>
-                </li>
-            </ul>
-
-            <!-- 3. Contenido de las Pestañas -->
-            <div class="tab-content" id="adminTabsContent">
+    <!-- CONTENEDOR PRINCIPAL DEL DASHBOARD -->
+    <div class="admin-layout py-4">
+        <div class="container-fluid px-lg-4">
+            <div class="row g-4">
                 
-                <!-- Pestaña 1: Inventario y Precios -->
-                <div class="tab-pane fade show active" id="tab-stock" role="tabpanel">
-                    <div class="bg-white text-dark p-4 rounded shadow-sm">
-                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-3 gap-2">
-                            <div class="beneficios-subtitulo m-0 fs-5">Control de Stock e Insumos</div>
-                            <span class="text-muted small">Mostrando insumos principales en cocina</span>
+                <!-- SIDEBAR NAVEGACIÓN DIRECTA -->
+                <aside class="col-12 col-lg-3 col-xl-2">
+                    <div class="admin-sidebar-box sticky-top" style="top: 85px; z-index: 1000;">
+                        
+                        <div class="d-flex align-items-center gap-2 px-2 pb-3 mb-2 border-bottom">
+                            <div class="p-2 bg-danger-subtle rounded-circle text-ro">
+                                <i class="fa-solid fa-pizza-slice fs-5"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0 text-dark">La Caleta</h6>
+                            </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle mb-0">
-                                <thead class="table-light">
-                                    <tr class="small text-secondary">
-                                        <th>CÓDIGO</th>
-                                        <th>INSUMO / PRODUCTO</th>
-                                        <th>CATEGORÍA</th>
-                                        <th>PRECIO UNIT.</th>
-                                        <th>STOCK ACTUAL</th>
-                                        <th>ESTADO</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>#INS-01</strong></td>
-                                        <td>Queso Mozzarella en bloque</td>
-                                        <td>Lácteos</td>
-                                        <td>S/ 24.50 / Kg</td>
-                                        <td><strong>28.0 Kg</strong></td>
-                                        <td><span class="badge bg-success">Óptimo</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>#INS-02</strong></td>
-                                        <td>Pepperoni Americano laminado</td>
-                                        <td>Embutidos</td>
-                                        <td>S/ 32.00 / Kg</td>
-                                        <td><strong>4.2 Kg</strong></td>
-                                        <td><span class="badge bg-warning text-dark">Por agotarse</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>#INS-03</strong></td>
-                                        <td>Salsa de Tomate Especial</td>
-                                        <td>Salsas</td>
-                                        <td>S/ 12.00 / L</td>
-                                        <td><strong>15.0 L</strong></td>
-                                        <td><span class="badge bg-success">Óptimo</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>#INS-04</strong></td>
-                                        <td>Harina de Trigo Premium</td>
-                                        <td>Masas</td>
-                                        <td>S/ 4.50 / Kg</td>
-                                        <td><strong>45.0 Kg</strong></td>
-                                        <td><span class="badge bg-success">Óptimo</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>#INS-05</strong></td>
-                                        <td>Cajas Pizza Familiar La Caleta</td>
-                                        <td>Empaque</td>
-                                        <td>S/ 1.20 / Und</td>
-                                        <td><strong>18 Und</strong></td>
-                                        <td><span class="badge bg-danger">Crítico</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                        <!-- GENERAL -->
+                        <div class="sidebar-section-title">General</div>
+                        <a href="#sec-dashboard" class="sidebar-item-btn text-decoration-none">
+                            <span class="d-flex align-items-center gap-2"><i class="fa-solid fa-gauge-high fa-fw"></i> Dashboard Global</span>
+                        </a>
+
+                        <!-- OPERACIONES -->
+                        <div class="sidebar-section-title">Operaciones</div>
+                        <div>
+                            <button class="sidebar-item-btn" type="button" data-bs-toggle="collapse" data-bs-target="#menuPedidos" aria-expanded="true">
+                                <span class="d-flex align-items-center gap-2"><i class="fa-solid fa-bell-concierge fa-fw"></i> Pedidos</span>
+                                <i class="fa-solid fa-chevron-down sidebar-arrow"></i>
+                            </button>
+                            <div class="collapse show" id="menuPedidos">
+                                <ul class="sidebar-sublist">
+                                    <li><a href="#sec-pedidos-cocina" class="sidebar-sublink text-decoration-none"><i class="fa-regular fa-circle-dot fs-xs"></i> En Cocina / Horno</a></li>
+                                    <li><a href="#sec-pedidos-confirmar" class="sidebar-sublink text-decoration-none"><i class="fa-regular fa-circle fs-xs"></i> Por Confirmar</a></li>
+                                    <li><a href="#sec-pedidos-reparto" class="sidebar-sublink text-decoration-none"><i class="fa-regular fa-circle fs-xs"></i> En Reparto</a></li>
+                                    <li><a href="#sec-pedidos-historial" class="sidebar-sublink text-decoration-none"><i class="fa-regular fa-circle fs-xs"></i> Historial Entregados</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Ventas -->
+                        <div>
+                            <button class="sidebar-item-btn" type="button" data-bs-toggle="collapse" data-bs-target="#menuVentas" aria-expanded="true">
+                                <span class="d-flex align-items-center gap-2"><i class="fa-solid fa-sack-dollar fa-fw"></i> Ventas & Caja</span>
+                                <i class="fa-solid fa-chevron-down sidebar-arrow"></i>
+                            </button>
+                            <div class="collapse show" id="menuVentas">
+                                <ul class="sidebar-sublist">
+                                    <li><a href="#sec-ventas-dia" class="sidebar-sublink text-decoration-none"><i class="fa-regular fa-circle fs-xs"></i> Ventas del Día</a></li>
+                                    <li><a href="#sec-ventas-cierre" class="sidebar-sublink text-decoration-none"><i class="fa-regular fa-circle fs-xs"></i> Arqueo de Caja</a></li>
+                                    <li><a href="#sec-ventas-metodos" class="sidebar-sublink text-decoration-none"><i class="fa-regular fa-circle fs-xs"></i> Métodos de Pago</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Menu / Carta -->
+                        <div>
+                            <button class="sidebar-item-btn" type="button" data-bs-toggle="collapse" data-bs-target="#menuProductos" aria-expanded="true">
+                                <span class="d-flex align-items-center gap-2"><i class="fa-solid fa-utensils fa-fw"></i> Menú & Combos</span>
+                                <i class="fa-solid fa-chevron-down sidebar-arrow"></i>
+                            </button>
+                            <div class="collapse show" id="menuProductos">
+                                <ul class="sidebar-sublist">
+                                    <li><a href="#sec-menu-pizzas" class="sidebar-sublink text-decoration-none"><i class="fa-regular fa-circle fs-xs"></i> Lista de Pizzas</a></li>
+                                    <li><a href="#sec-menu-combos" class="sidebar-sublink text-decoration-none"><i class="fa-regular fa-circle fs-xs"></i> Combos Caleta</a></li>
+                                    <li><a href="#sec-menu-promos" class="sidebar-sublink text-decoration-none"><i class="fa-regular fa-circle fs-xs"></i> Promociones</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- STOCK e INVENTARIO -->
+                        <div class="sidebar-section-title">Gestión de Stock</div>
+                        <div>
+                            <button class="sidebar-item-btn" type="button" data-bs-toggle="collapse" data-bs-target="#menuInventario" aria-expanded="true">
+                                <span class="d-flex align-items-center gap-2"><i class="fa-solid fa-boxes-stacked fa-fw"></i> Inventario</span>
+                                <i class="fa-solid fa-chevron-down sidebar-arrow"></i>
+                            </button>
+                            <div class="collapse show" id="menuInventario">
+                                <ul class="sidebar-sublist">
+                                    <li><a href="#sec-stock-insumos" class="sidebar-sublink text-decoration-none"><i class="fa-regular fa-circle fs-xs"></i> Stock Insumos</a></li>
+                                    <li><a href="#sec-stock-insumos" class="sidebar-sublink text-decoration-none"><i class="fa-regular fa-circle fs-xs"></i> Cajas & Mermas</a></li>
+                                    <li><a href="#sec-stock-insumos" class="sidebar-sublink text-decoration-none"><i class="fa-regular fa-circle fs-xs"></i> Proveedores</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a href="#sec-repartidores" class="sidebar-item-btn text-decoration-none">
+                            <span class="d-flex align-items-center gap-2"><i class="fa-solid fa-motorcycle fa-fw"></i> Repartidores</span>
+                            <span class="badge bg-success rounded-pill" style="font-size: 10px;">1 Libre</span>
+                        </a>
+
+                        <!-- GESTIÓN y CONFIGURACIÓN -->
+                        <div class="sidebar-section-title">Administración</div>
+                        <a href="#sec-clientes-roles" class="sidebar-item-btn text-decoration-none">
+                            <span class="d-flex align-items-center gap-2"><i class="fa-solid fa-users-gear fa-fw"></i> Clientes & Roles</span>
+                        </a>
+                        <a href="#sec-reportes-analiticas" class="sidebar-item-btn text-decoration-none">
+                            <span class="d-flex align-items-center gap-2"><i class="fa-solid fa-chart-line fa-fw"></i> Reportes & Analíticas</span>
+                        </a>
+                    </div>
+                </aside>
+
+                <!-- ÁREA PRINCIPAL INTEGRADA -->
+                <main class="col-12 col-lg-9 col-xl-10">
+                    
+                    <!-- Barra superior de Búsqueda -->
+                    <div class="admin-card p-3 mb-4">
+                        <div class="row g-2 align-items-center">
+                            <div class="col-12 col-md-8">
+                                <div class="position-relative">
+                                    <input type="text" class="form-control ps-5 border" placeholder="Buscar pedido #, cliente, pizza, insumo..." style="border-radius: 20px; font-size: 13.5px;">
+                                    <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 d-flex justify-content-md-end align-items-center gap-3">
+                                <div class="dropdown">
+                                    <button class="btn btn-light border position-relative rounded-pill px-3 py-2 shadow-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-bell text-secondary fs-6"></i>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 10px;">
+                                            3
+                                            <span class="visually-hidden">notificaciones no leídas</span>
+                                        </span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" style="min-width: 290px; border-radius: 12px; z-index: 1050;">
+                                        <li class="p-2 border-bottom bg-light rounded-top">
+                                            <div class="d-flex justify-content-between align-items-center px-1">
+                                                <h6 class="fw-bold mb-0 text-dark small">Notificaciones</h6>
+                                                <span class="badge bg-danger text-white rounded-pill" style="font-size: 9px;">3 nuevas</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item py-2 px-3 small border-bottom" href="#sec-pedidos-cocina">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <div class="bg-warning-subtle text-warning p-2 rounded-circle"><i class="fa-solid fa-receipt"></i></div>
+                                                    <div>
+                                                        <div class="fw-bold text-dark">Nuevo pedido #ORD-1001</div>
+                                                        <small class="text-muted">La Cómplice • Hace 4m</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item py-2 px-3 small border-bottom" href="#sec-clientes-roles">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <div class="bg-success-subtle text-success p-2 rounded-circle"><i class="fa-solid fa-user-plus"></i></div>
+                                                    <div>
+                                                        <div class="fw-bold text-dark">Cliente activo en plataforma</div>
+                                                        <small class="text-muted">Carlos Mendoza • Hace 18m</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item py-2 px-3 small" href="#sec-stock-insumos">
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <div class="bg-info-subtle text-info p-2 rounded-circle"><i class="fa-solid fa-boxes-stacked"></i></div>
+                                                    <div>
+                                                        <div class="fw-bold text-dark">Stock inicial verificado</div>
+                                                        <small class="text-muted">Rango de stock controlado</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <span class="badge bg-danger-subtle text-ro py-2 px-3 border border-danger-subtle"><i class="fa-solid fa-circle-dot me-1 text-danger"></i> Modo Monitor</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Pestaña 2: Historial General -->
-                <div class="tab-pane fade" id="tab-historial" role="tabpanel">
-                    <div class="bg-white text-dark p-4 rounded shadow-sm">
-                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-3 gap-2">
-                            <div class="beneficios-subtitulo m-0 fs-5">Historial Completo de Movimientos</div>
-                            <span class="text-muted small">Últimas 24 horas</span>
+                    <!-- DASHBOARD GLOBAL y METRICAS INICIALES -->
+                    <section id="sec-dashboard" class="section-anchor mb-4">
+                        <div class="row g-3 mb-4">
+                            <div class="col-12 col-sm-6 col-xl-3">
+                                <div class="admin-card p-3 h-100 border border-ro-subtle shadow-sm">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div>
+                                            <span class="text-secondary small fw-bold text-uppercase d-block" id="kpiVentaLabel">Ventas del Día</span>
+                                            <h4 class="fw-bold mb-0 text-dark" id="kpiVentaMonto">S/ 202.90</h4>
+                                        </div>
+                                        <div class="kpi-icon-box bg-success-subtle text-success"><i class="fa-solid fa-cash-register"></i></div>
+                                    </div>
+                                    <div class="my-2">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text bg-white border-end-0 py-0"><i class="fa-regular fa-calendar text-muted"></i></span>
+                                            <input type="date" class="form-control border-start-0 py-1" id="filtroFechaVentas" value="2026-08-29" onchange="filtrarPorFecha(this.value)" style="font-size: 12px;">
+                                        </div>
+                                    </div>
+                                    <small class="text-success mt-1 d-block" id="kpiVentaSub"><i class="fa-solid fa-check me-1"></i>3 pedidos completados</small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-xl-3">
+                                <div class="admin-card p-3 h-100">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <span class="text-secondary small fw-bold text-uppercase d-block">Pedidos en Cola</span>
+                                            <h4 class="fw-bold mb-0 text-ro">2 Órdenes</h4>
+                                        </div>
+                                        <div class="kpi-icon-box bg-danger-subtle text-ro"><i class="fa-solid fa-fire-burner"></i></div>
+                                    </div>
+                                    <small class="text-secondary mt-2 d-block">1 en horno / 1 lista</small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-xl-3">
+                                <div class="admin-card p-3 h-100">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <span class="text-secondary small fw-bold text-uppercase d-block">Clientes Registrados</span>
+                                            <h4 class="fw-bold mb-0 text-dark">5</h4>
+                                        </div>
+                                        <div class="kpi-icon-box bg-primary-subtle text-primary"><i class="fa-solid fa-users"></i></div>
+                                    </div>
+                                    <small class="text-primary mt-2 d-block"><i class="fa-solid fa-user-check me-1"></i>Usuarios registrados</small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-xl-3">
+                                <div class="admin-card p-3 h-100">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <span class="text-secondary small fw-bold text-uppercase d-block">Estado Insumos</span>
+                                            <h4 class="fw-bold mb-0 text-success">Controlado</h4>
+                                        </div>
+                                        <div class="kpi-icon-box bg-success-subtle text-success"><i class="fa-solid fa-boxes-stacked"></i></div>
+                                    </div>
+                                    <small class="text-muted mt-2 d-block">Inventario en estado óptimo</small>
+                                </div>
+                            </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle mb-0">
-                                <thead class="table-light">
-                                    <tr class="small text-secondary">
-                                        <th>FECHA</th>
-                                        <th>OPERACIÓN</th>
-                                        <th>DETALLE / DESCRIPCIÓN</th>
-                                        <th>CANTIDAD</th>
-                                        <th>VALOR</th>
-                                        <th>ESTADO</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>24/08/2026 16:40</td>
-                                        <td><span class="badge bg-success">Venta #1042</span></td>
-                                        <td>Combo Dúo Clandestino + Gaseosa</td>
-                                        <td>1 Orden</td>
-                                        <td>S/ 65.00</td>
-                                        <td>Entregado</td>
-                                    </tr>
-                                    <tr>
-                                        <td>24/08/2026 14:15</td>
-                                        <td><span class="badge bg-primary">Compra Insumo</span></td>
-                                        <td>Queso Mozzarella en bloque</td>
-                                        <td>+10.0 Kg</td>
-                                        <td>S/ 245.00</td>
-                                        <td>Ingresado</td>
-                                    </tr>
-                                    <tr>
-                                        <td>24/08/2026 10:00</td>
-                                        <td><span class="badge bg-secondary">Ajuste Inventario</span></td>
-                                        <td>Cajas de Pizza Familiar</td>
-                                        <td>-2 Und</td>
-                                        <td>S/ 2.40</td>
-                                        <td>Actualizado</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                        <!-- Gráficos -->
+                        <div class="row g-3">
+                            <div class="col-12 col-lg-8">
+                                <div class="admin-card p-4 h-100">
+                                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-3">
+                                        <div>
+                                            <h5 class="fw-bold text-dark mb-0">Rendimiento de Ventas</h5>
+                                            <small class="text-muted" id="chartPeriodoLabel">Ingresos semanales de lanzamiento (S/)</small>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <select class="form-select form-select-sm border-secondary-subtle" id="selectorRendimiento" onchange="cambiarPeriodoRendimiento(this.value)" style="font-size: 12.5px; min-width: 140px;">
+                                                <option value="dia">Vista del Día</option>
+                                                <option value="semanal" selected>Semanal (L-D)</option>
+                                                <option value="mensual">Mensual (Agosto)</option>
+                                                <option value="anual">Anual (2026)</option>
+                                                <option value="general">Histórico General</option>
+                                            </select>
+                                            <span class="badge bg-ro text-nowrap" id="badgePeriodo">Semana Inicial</span>
+                                        </div>
+                                    </div>
+                                    <div style="height: 250px; position: relative;"><canvas id="chartVentas"></canvas></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div class="admin-card p-4 h-100">
+                                    <h5 class="fw-bold text-dark mb-1">Pizzas Más Pedidas</h5>
+                                    <small class="text-muted d-block mb-3">Distribución de demanda</small>
+                                    <div style="height: 250px; position: relative;"><canvas id="chartPizzas"></canvas></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- CATÁLOGO y PIZZAS DESTACADAS -->
+                    <section class="admin-card p-4 mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h5 class="fw-bold mb-0 text-dark">Pizzas Más Pedidas en Carta</h5>
+                                <small class="text-muted">Demanda y disponibilidad en tiempo real</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#modalNuevoProducto">
+                                <i class="fa-solid fa-plus me-1"></i> Nueva Pizza
+                            </button>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6 col-xl-3">
+                                <div class="border rounded p-2 d-flex align-items-center gap-3 bg-light">
+                                    <img src="../../assets/images/producto_pepperoni.jpg" class="img-thumb-pizza rounded" alt="Pepperoni">
+                                    <div>
+                                        <h6 class="fw-bold mb-0 text-dark small">La Cómplice (Pepperoni)</h6>
+                                        <small class="text-muted">S/ 45.00 • Familiar</small>
+                                        <div><span class="badge bg-success" style="font-size: 10px;">Stock: 25 un (5 vtas)</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-xl-3">
+                                <div class="border rounded p-2 d-flex align-items-center gap-3 bg-light">
+                                    <img src="../../assets/images/producto_hawaiana.jpg" class="img-thumb-pizza rounded" alt="Hawaiana">
+                                    <div>
+                                        <h6 class="fw-bold mb-0 text-dark small">El Pacto (Hawaiana)</h6>
+                                        <small class="text-muted">S/ 42.00 • Familiar</small>
+                                        <div><span class="badge bg-success" style="font-size: 10px;">Stock: 22 un (3 vtas)</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-xl-3">
+                                <div class="border rounded p-2 d-flex align-items-center gap-3 bg-light">
+                                    <img src="../../assets/images/producto_americana.jpg" class="img-thumb-pizza rounded" alt="Americana">
+                                    <div>
+                                        <h6 class="fw-bold mb-0 text-dark small">La Coartada (Americana)</h6>
+                                        <small class="text-muted">S/ 39.00 • Familiar</small>
+                                        <div><span class="badge bg-success" style="font-size: 10px;">Stock: 24 un (2 vtas)</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-xl-3">
+                                <div class="border rounded p-2 d-flex align-items-center gap-3 bg-light">
+                                    <img src="../../assets/images/producto_meat.jpg" class="img-thumb-pizza rounded" alt="Meat">
+                                    <div>
+                                        <h6 class="fw-bold mb-0 text-dark small">La Confesión (Meat)</h6>
+                                        <small class="text-muted">S/ 48.00 • Familiar</small>
+                                        <div><span class="badge bg-success" style="font-size: 10px;">Stock: 20 un (2 vtas)</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- MÓDULO OPERACIONAL DE PEDIDOS -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-xl-6 d-flex flex-column gap-4">
+                            <!-- Cocina -->
+                            <section id="sec-pedidos-cocina" class="admin-card p-4 section-anchor">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-fire-burner text-ro me-2"></i>En Cocina / Horno</h5>
+                                    <span class="badge bg-warning text-dark">2 en preparación</span>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light"><tr><th>PIZZA</th><th>ORDEN</th><th>CLIENTE</th><th>ESTADO</th><th>BOLETA</th></tr></thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><img src="../../assets/images/producto_pepperoni.jpg" class="img-thumb-pizza" alt="Pepperoni"></td>
+                                                <td><strong>#ORD-1001</strong><br><small class="text-muted">18:40</small></td>
+                                                <td>Carlos Mendoza</td>
+                                                <td><span class="badge bg-warning text-dark">En Horno</span></td>
+                                                <td><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalDetallePedido" onclick="mostrarBoleta('Carlos Mendoza', '+51 987 654 321', '#ORD-1001', '1x Pizza La Cómplice (Pepperoni) Familiar', 'S/ 45.00', '1x Gaseosa Inca Kola 1.5L', 'S/ 10.00', 'S/ 55.00', 'Yape BCP (Digital)')"><i class="fa-solid fa-file-invoice me-1"></i>Ver</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src="../../assets/images/producto_meat.jpg" class="img-thumb-pizza" alt="Meat"></td>
+                                                <td><strong>#ORD-1002</strong><br><small class="text-muted">18:50</small></td>
+                                                <td>Luciana Vega</td>
+                                                <td><span class="badge bg-success text-white">Listo</span></td>
+                                                <td><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalDetallePedido" onclick="mostrarBoleta('Luciana Vega', '+51 912 345 678', '#ORD-1002', '1x Pizza La Confesión (Meat Lovers)', 'S/ 48.00', '1x Pan al Ajo Especial', 'S/ 12.00', 'S/ 60.00', 'Tarjeta Visa (Digital)')"><i class="fa-solid fa-file-invoice me-1"></i>Ver</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+                            <!-- Confirmar -->
+                            <section id="sec-pedidos-confirmar" class="admin-card p-4 section-anchor">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-clipboard-check text-primary me-2"></i>Por Confirmar</h5>
+                                    <span class="badge bg-danger-subtle text-ro">1 por validar</span>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light"><tr><th>ID</th><th>CLIENTE</th><th>PAGO DIGITAL</th><th>TOTAL</th><th>ESTADO</th></tr></thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>#ORD-1004</strong></td>
+                                                <td>Jorge Prado</td>
+                                                <td><img src="../../assets/images/yape.jpg" class="img-thumb-pay" alt="Yape"> Plin/Yape</td>
+                                                <td><strong>S/ 42.00</strong></td>
+                                                <td><span class="badge bg-secondary text-white"><i class="fa-solid fa-hourglass-half me-1"></i>Validando Pago</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+                            <!-- Reparto -->
+                            <section id="sec-pedidos-reparto" class="admin-card p-4 section-anchor">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-motorcycle text-info me-2"></i>En Reparto</h5>
+                                    <span class="badge bg-info text-dark">1 en ruta</span>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light"><tr><th>PIZZA</th><th>ORDEN</th><th>DESTINO</th><th>REPARTIDOR</th><th>BOLETA</th></tr></thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><img src="../../assets/images/producto_hawaiana.jpg" class="img-thumb-pizza" alt="Hawaiana"></td>
+                                                <td><strong>#ORD-1003</strong></td>
+                                                <td>Av. Colonial 1420</td>
+                                                <td>Luis Ramos (Moto #1)</td>
+                                                <td><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalDetallePedido" onclick="mostrarBoleta('Carlos Mendoza', '+51 987 654 321', '#ORD-1003', '1x Pizza El Pacto (Hawaiana) Fam.', 'S/ 42.00', '1x Gaseosa Coca Cola 1.5L', 'S/ 10.00', 'S/ 52.00', 'Yape BCP (Digital)')"><i class="fa-solid fa-eye me-1"></i>Ver</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- Historial -->
+                        <div class="col-12 col-xl-6">
+                            <section id="sec-pedidos-historial" class="admin-card p-4 h-100 section-anchor">
+                                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-3">
+                                    <div>
+                                        <h5 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-clock-rotate-left text-success me-2"></i>Historial Entregados</h5>
+                                        <small class="text-muted">Registro consolidado de pedidos finalizados</small>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <select class="form-select form-select-sm border-secondary-subtle" id="selectorOrdenHistorial" onchange="ordenarHistorial(this.value)" style="font-size: 11.5px; min-width: 145px;">
+                                            <option value="id_desc">Orden: Recientes (#ORD)</option>
+                                            <option value="id_asc">Orden: Antiguos (#ORD)</option>
+                                            <option value="hora">Por Hora de Entrega</option>
+                                        </select>
+                                        <span class="badge bg-success text-nowrap">Completados</span>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0" id="tablaHistorial">
+                                        <thead class="table-light">
+                                            <tr class="small text-secondary">
+                                                <th>ORDEN</th>
+                                                <th>CLIENTE</th>
+                                                <th>HORA</th>
+                                                <th>HISTORIAL</th>
+                                                <th>TOTAL</th>
+                                                <th>PAGO</th>
+                                                <th>BOLETA</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-id="1001" data-hora="17:50">
+                                                <td><strong>#ORD-1001</strong></td>
+                                                <td>Jorge Prado</td>
+                                                <td><small class="text-muted">17:50</small></td>
+                                                <td><small class="text-dark">1x Combo Dúo</small><br><span class="badge bg-light text-secondary border" style="font-size: 9.5px;">1er Pedido</span></td>
+                                                <td><strong>S/ 79.90</strong></td>
+                                                <td><img src="../../assets/images/mastercard.jpg" class="img-thumb-pay" alt="Mastercard"></td>
+                                                <td><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalDetallePedido" onclick="mostrarBoleta('Jorge Prado', '+51 911 222 333', '#ORD-1001', '1x Combo Dúo Clandestino', 'S/ 79.90', '', '', 'S/ 79.90', 'Mastercard Web (Digital)')"><i class="fa-solid fa-file-invoice me-1"></i>Ver</button></td>
+                                            </tr>
+                                            <tr data-id="1000" data-hora="17:25">
+                                                <td><strong>#ORD-1000</strong></td>
+                                                <td>Carlos Mendoza</td>
+                                                <td><small class="text-muted">17:25</small></td>
+                                                <td><small class="text-dark">1x La Cómplice</small><br><span class="badge bg-light text-secondary border" style="font-size: 9.5px;">2do Pedido</span></td>
+                                                <td><strong>S/ 45.00</strong></td>
+                                                <td><img src="../../assets/images/yape.jpg" class="img-thumb-pay" alt="Yape"></td>
+                                                <td><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalDetallePedido" onclick="mostrarBoleta('Carlos Mendoza', '+51 987 654 321', '#ORD-1000', '1x Pizza La Cómplice (Pepperoni)', 'S/ 45.00', '', '', 'S/ 45.00', 'Yape BCP (Digital)')"><i class="fa-solid fa-file-invoice me-1"></i>Ver</button></td>
+                                            </tr>
+                                            <tr data-id="999" data-hora="16:40">
+                                                <td><strong>#ORD-0999</strong></td>
+                                                <td>Luciana Vega</td>
+                                                <td><small class="text-muted">16:40</small></td>
+                                                <td><small class="text-dark">1x La Confesión</small><br><span class="badge bg-light text-secondary border" style="font-size: 9.5px;">1er Pedido</span></td>
+                                                <td><strong>S/ 68.00</strong></td>
+                                                <td><img src="../../assets/images/visa.jpg" class="img-thumb-pay" alt="Visa"></td>
+                                                <td><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalDetallePedido" onclick="mostrarBoleta('Luciana Vega', '+51 912 345 678', '#ORD-0999', '1x Pizza La Confesión (Meat)', 'S/ 48.00', '1x Pan al Ajo Especial', 'S/ 20.00', 'S/ 68.00', 'Tarjeta Visa (Digital)')"><i class="fa-solid fa-file-invoice me-1"></i>Ver</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
                         </div>
                     </div>
-                </div>
 
+                    <!-- MÓDULO DE VENTAS y ARQUEO DE CAJA -->
+                    <section id="sec-ventas-dia" class="admin-card p-4 mb-4 section-anchor">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h5 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-sack-dollar text-ro me-2"></i>Ingresos & Ventas del Día de Hoy (Plataforma Virtual)</h5>
+                                <small class="text-muted">Caja operativa y transacciones 100% electrónicas registradas hoy</small>
+                            </div>
+                        </div>
+                        <div class="row g-3 mb-4" id="sec-ventas-cierre">
+                            <div class="col-md-4">
+                                <div class="p-3 bg-light rounded border">
+                                    <small class="text-muted fw-bold">Ventas Totales Hoy:</small>
+                                    <h5 class="fw-bold mb-0 text-dark">S/ 202.90</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 bg-light rounded border">
+                                    <small class="text-muted fw-bold">Pasarela Digital (Yape / Tarjetas):</small>
+                                    <h5 class="fw-bold mb-0 text-success">S/ 202.90</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 bg-danger-subtle rounded border border-danger-subtle">
+                                    <small class="text-danger fw-bold">Balance Neto Virtual:</small>
+                                    <h4 class="fw-bold text-ro mb-0">S/ 202.90</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-4" id="sec-ventas-metodos">
+                            <div class="col-12 col-lg-7">
+                                <h6 class="fw-bold text-dark mb-2">Transacciones Digitales de Hoy</h6>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light"><tr><th>ID VENTA</th><th>CLIENTE</th><th>MÉTODO DIGITAL</th><th>TOTAL</th><th>ESTADO</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>#VEN-1003</td><td>Carlos Mendoza</td><td><img src="../../assets/images/yape.jpg" class="img-thumb-pay" alt="Yape"> Yape BCP</td><td><strong>S/ 55.00</strong></td><td><span class="badge bg-success">Cobrado</span></td></tr>
+                                            <tr><td>#VEN-1002</td><td>Luciana Vega</td><td><img src="../../assets/images/visa.jpg" class="img-thumb-pay" alt="Visa"> Tarjeta Visa</td><td><strong>S/ 68.00</strong></td><td><span class="badge bg-success">Cobrado</span></td></tr>
+                                            <tr><td>#VEN-1001</td><td>Jorge Prado</td><td><img src="../../assets/images/mastercard.jpg" class="img-thumb-pay" alt="Mastercard"> Mastercard Web</td><td><strong>S/ 79.90</strong></td><td><span class="badge bg-success">Cobrado</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-5">
+                                <div class="border p-3 rounded bg-light">
+                                    <h6 class="fw-bold text-dark mb-2">Distribución de Pasarela de Pagos</h6>
+                                    <ul class="list-group list-group-flush small bg-transparent">
+                                        <li class="list-group-item bg-transparent d-flex justify-content-between align-items-center px-0"><span><img src="../../assets/images/yape.jpg" class="img-thumb-pay me-1" alt="Yape"> Yape / Plin</span> <strong>55% (S/ 111.60)</strong></li>
+                                        <li class="list-group-item bg-transparent d-flex justify-content-between align-items-center px-0"><span><img src="../../assets/images/visa.jpg" class="img-thumb-pay me-1" alt="Visa"> Tarjetas Débito/Crédito</span> <strong>45% (S/ 91.30)</strong></li>
+                                        <li class="list-group-item bg-transparent d-flex justify-content-between align-items-center px-0"><span><i class="fa-solid fa-globe text-primary me-2"></i> Pedidos Online Web</span> <strong>100% (S/ 202.90)</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- MÓDULO MENÚ y COMBOS -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-xl-6">
+                            <section id="sec-menu-pizzas" class="admin-card p-4 h-100 section-anchor">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-pizza-slice text-ro me-2"></i>Pizzas en Carta</h5>
+                                    <button class="btn btn-sm btn-cta" data-bs-toggle="modal" data-bs-target="#modalNuevoProducto"><i class="fa-solid fa-plus me-1"></i> Nueva Pizza</button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light"><tr><th>FOTO</th><th>PIZZA</th><th>CATEGORÍA</th><th>PRECIO</th><th>ESTADO</th></tr></thead>
+                                        <tbody>
+                                            <tr><td><img src="../../assets/images/producto_pepperoni.jpg" class="img-thumb-pizza" alt="Pepperoni"></td><td><strong>La Cómplice</strong></td><td>Clásicas</td><td>S/ 45.00</td><td><span class="badge bg-success">Disponible</span></td></tr>
+                                            <tr><td><img src="../../assets/images/producto_hawaiana.jpg" class="img-thumb-pizza" alt="Hawaiana"></td><td><strong>El Pacto</strong></td><td>Clásicas</td><td>S/ 42.00</td><td><span class="badge bg-success">Disponible</span></td></tr>
+                                            <tr><td><img src="../../assets/images/producto_americana.jpg" class="img-thumb-pizza" alt="Americana"></td><td><strong>La Coartada</strong></td><td>Clásicas</td><td>S/ 39.00</td><td><span class="badge bg-success">Disponible</span></td></tr>
+                                            <tr><td><img src="../../assets/images/producto_meat.jpg" class="img-thumb-pizza" alt="Meat"></td><td><strong>La Confesión</strong></td><td>Especiales</td><td>S/ 48.00</td><td><span class="badge bg-success">Disponible</span></td></tr>
+                                            <tr><td><img src="../../assets/images/producto_vegetariana.jpg" class="img-thumb-pizza" alt="Vegetariana"></td><td><strong>El Secreto Verde</strong></td><td>Especialidades</td><td>S/ 42.00</td><td><span class="badge bg-success">Disponible</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </div>
+
+                        <div class="col-12 col-xl-6">
+                            <section id="sec-menu-combos" class="admin-card p-4 h-100 section-anchor">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-box text-ro me-2"></i>Combos & Promos Caleta</h5>
+                                    <button class="btn btn-sm btn-cta" data-bs-toggle="modal" data-bs-target="#modalNuevaPromo"><i class="fa-solid fa-plus me-1"></i> Nueva Promo</button>
+                                </div>
+                                <div class="table-responsive mb-3">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light"><tr><th>FOTO</th><th>COMBO</th><th>PRECIO</th><th>ESTADO</th></tr></thead>
+                                        <tbody>
+                                            <tr><td><img src="../../assets/images/producto_combo1.jpg" class="img-thumb-pizza" alt="Combo"></td><td><strong>Combo Dúo Clandestino</strong><br><small class="text-muted">2 Pizzas Fam + Gaseosa 1.5L</small></td><td><strong>S/ 79.90</strong></td><td><span class="badge bg-success">Activo</span></td></tr>
+                                            <tr><td><img src="../../assets/images/producto_combo2.jpg" class="img-thumb-pizza" alt="Combo"></td><td><strong>Trío La Caleta</strong><br><small class="text-muted">3 Pizzas Med + Pan al Ajo</small></td><td><strong>S/ 89.90</strong></td><td><span class="badge bg-success">Activo</span></td></tr>
+                                            <tr><td><img src="../../assets/images/producto_combo3.jpg" class="img-thumb-pizza" alt="Combo"></td><td><strong>Banquete Nocturno</strong><br><small class="text-muted">1 Fam + 1 Med + 4 Bebidas</small></td><td><strong>S/ 69.90</strong></td><td><span class="badge bg-success">Activo</span></td></tr>
+                                            <tr><td><img src="../../assets/images/producto_combo4.jpg" class="img-thumb-pizza" alt="Combo"></td><td><strong>Combo Personal Cómplice</strong><br><small class="text-muted">1 Personal + Bebida + Galleta</small></td><td><strong>S/ 24.90</strong></td><td><span class="badge bg-success">Activo</span></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="sec-menu-promos" class="alert alert-info small mb-0 section-anchor">
+                                    <i class="fa-solid fa-ticket me-1"></i> Cupón activo: <strong>CALETA10</strong> (10% descuento primer pedido web).
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <!-- MÓDULO INVENTARIO y PROVEEDORES -->
+                    <section id="sec-stock-insumos" class="admin-card p-4 mb-4 section-anchor">
+                        <div class="mb-3">
+                            <h5 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-boxes-stacked text-ro me-2"></i>Gestión Integral de Inventario</h5>
+                            <small class="text-muted">Control de existencias de insumos, empaques, mermas y proveedores</small>
+                        </div>
+
+                        <div class="row g-4">
+                            <!-- Tabla de Inventario -->
+                            <div class="col-12 col-lg-7">
+                                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                                    <h6 class="fw-bold text-dark mb-0">Control de Existencias</h6>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="d-flex align-items-center gap-1">
+                                            <label class="small fw-bold text-muted"><i class="fa-solid fa-filter me-1"></i>Filtrar:</label>
+                                            <select class="form-select form-select-sm border-secondary-subtle" id="selectorCategoriaInventario" onchange="filtrarCategoriaInventario(this.value)" style="min-width: 155px; font-size: 12px;">
+                                                <option value="todos" selected>Ver Todo</option>
+                                                <option value="insumos">Insumos (Quesos/Carnes)</option>
+                                                <option value="empaques">Cajas & Empaques (Stock)</option>
+                                                <option value="mermas">Mermas y Ajustes</option>
+                                            </select>
+                                        </div>
+                                        <button class="btn btn-sm btn-cta text-nowrap" data-bs-toggle="modal" data-bs-target="#modalInsumo">
+                                            <i class="fa-solid fa-plus me-1"></i> Registrar Entrada
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0" id="tablaInventario">
+                                        <thead class="table-light"><tr><th>CÓDIGO</th><th>TIPO / DESCRIPCIÓN</th><th>STOCK / MERMA</th><th>MÍNIMO</th><th>ESTADO</th></tr></thead>
+                                        <tbody>
+                                            <tr class="item-inventario cat-insumos">
+                                                <td>#INS-01</td>
+                                                <td><strong>Queso Mozzarella en bloque</strong><br><small class="text-muted">Categoría: Lácteos</small></td>
+                                                <td><strong>24.0 Kg</strong></td>
+                                                <td>10.0 Kg</td>
+                                                <td><span class="badge bg-success">Óptimo</span></td>
+                                            </tr>
+                                            <tr class="item-inventario cat-insumos">
+                                                <td>#INS-02</td>
+                                                <td><strong>Pepperoni Americano laminado</strong><br><small class="text-muted">Categoría: Embutidos</small></td>
+                                                <td><strong>20.5 Kg</strong></td>
+                                                <td>8.0 Kg</td>
+                                                <td><span class="badge bg-success">Óptimo</span></td>
+                                            </tr>
+                                            <tr class="item-inventario cat-insumos">
+                                                <td>#INS-03</td>
+                                                <td><strong>Jamón Inglés seleccionado</strong><br><small class="text-muted">Categoría: Embutidos</small></td>
+                                                <td><strong>22.0 Kg</strong></td>
+                                                <td>8.0 Kg</td>
+                                                <td><span class="badge bg-success">Óptimo</span></td>
+                                            </tr>
+                                            <tr class="item-inventario cat-insumos">
+                                                <td>#INS-04</td>
+                                                <td><strong>Salsa Pomodoro La Caleta</strong><br><small class="text-muted">Categoría: Salsas & Bases</small></td>
+                                                <td><strong>25.0 L</strong></td>
+                                                <td>10.0 L</td>
+                                                <td><span class="badge bg-success">Óptimo</span></td>
+                                            </tr>
+                                            <tr class="item-inventario cat-empaques">
+                                                <td>#EMP-01</td>
+                                                <td><strong>Cajas Pizza Familiar La Caleta</strong><br><small class="text-muted">Categoría: Empaques</small></td>
+                                                <td><strong>25 Und</strong></td>
+                                                <td>15 Und</td>
+                                                <td><span class="badge bg-success">Disponible</span></td>
+                                            </tr>
+                                            <tr class="item-inventario cat-empaques">
+                                                <td>#EMP-02</td>
+                                                <td><strong>Cajas Pizza Mediana</strong><br><small class="text-muted">Categoría: Empaques</small></td>
+                                                <td><strong>22 Und</strong></td>
+                                                <td>12 Und</td>
+                                                <td><span class="badge bg-success">Disponible</span></td>
+                                            </tr>
+                                            <tr class="item-inventario cat-empaques">
+                                                <td>#EMP-03</td>
+                                                <td><strong>Bandejas Pan al Ajo Especial</strong><br><small class="text-muted">Categoría: Empaques</small></td>
+                                                <td><strong>21 Und</strong></td>
+                                                <td>10 Und</td>
+                                                <td><span class="badge bg-success">Disponible</span></td>
+                                            </tr>
+                                            <tr class="item-inventario cat-mermas">
+                                                <td>#MER-01</td>
+                                                <td><strong>1x Masa Mediana</strong><br><small class="text-danger">Motivo: Sobrefermentada en calibración</small></td>
+                                                <td><strong class="text-danger">-1 Und</strong></td>
+                                                <td>Ajuste</td>
+                                                <td><span class="badge bg-danger">Merma</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Proveedores Normalizado -->
+                            <div class="col-12 col-lg-5" id="sec-stock-proveedores">
+                                <div class="border p-3 rounded bg-light h-100">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-truck-field me-1"></i>Proveedores Registrados</h6>
+                                        <span class="badge bg-light text-secondary border">Directorio</span>
+                                    </div>
+                                    <ul class="list-group list-group-flush small bg-transparent" id="listaProveedores">
+                                        <li class="list-group-item bg-transparent d-flex justify-content-between px-0 py-2 border-bottom">
+                                            <div><strong>Lácteos del Valle S.A.C.</strong><br><span class="badge bg-primary-subtle text-primary" style="font-size: 9.5px;">Proveedor de Lácteos</span></div>
+                                            <span class="text-muted text-nowrap">(+51) 988 777 666</span>
+                                        </li>
+                                        <li class="list-group-item bg-transparent d-flex justify-content-between px-0 py-2 border-bottom">
+                                            <div><strong>Distribuidora Empaques Lima</strong><br><span class="badge bg-warning-subtle text-dark" style="font-size: 9.5px;">Proveedor de Cajas y Empaques</span></div>
+                                            <span class="text-muted text-nowrap">(+51) 955 444 333</span>
+                                        </li>
+                                        <li class="list-group-item bg-transparent d-flex justify-content-between px-0 py-2 border-bottom">
+                                            <div><strong>Embutidos San Antonio</strong><br><span class="badge bg-danger-subtle text-ro" style="font-size: 9.5px;">Proveedor de Embutidos</span></div>
+                                            <span class="text-muted text-nowrap">(+51) 944 222 111</span>
+                                        </li>
+                                        <li class="list-group-item bg-transparent d-flex justify-content-between px-0 py-2">
+                                            <div><strong>Molinos del Centro</strong><br><span class="badge bg-secondary-subtle text-dark" style="font-size: 9.5px;">Proveedor de Harinas y Masas</span></div>
+                                            <span class="text-muted text-nowrap">(+51) 911 333 555</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- REPARTIDORES, CLIENTES Y ANALÍTICAS AMPLIADAS -->
+                    <div class="row g-4 mb-4">
+                        
+                        <!-- Columna 1: Flota de Repartidores y Tiempos de Entrega -->
+                        <div class="col-12 col-xl-4">
+                            <section id="sec-repartidores" class="admin-card p-4 h-100 section-anchor">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-motorcycle text-ro me-2"></i>Repartidores</h5>
+                                    <span class="badge bg-light text-secondary border">Flota Activa</span>
+                                </div>
+
+                                <div class="border p-2 rounded mb-2 d-flex justify-content-between align-items-center bg-light">
+                                    <div>
+                                        <h6 class="fw-bold mb-0 small">Luis Ramos</h6>
+                                        <small class="text-muted"><i class="fa-solid fa-route me-1 text-primary"></i>Ruta: Colonial • Honda #1</small>
+                                    </div>
+                                    <span class="badge bg-success" style="font-size: 10px;">En Ruta (#ORD-1003)</span>
+                                </div>
+
+                                <div class="border p-2 rounded mb-2 d-flex justify-content-between align-items-center bg-light">
+                                    <div>
+                                        <h6 class="fw-bold mb-0 small">Pedro Gómez</h6>
+                                        <small class="text-muted"><i class="fa-solid fa-circle-check me-1 text-success"></i>Base Central • Honda #2</small>
+                                    </div>
+                                    <span class="badge bg-secondary" style="font-size: 10px;">En Base (Disponible)</span>
+                                </div>
+
+                                <div class="border p-2 rounded mb-3 d-flex justify-content-between align-items-center bg-light">
+                                    <div>
+                                        <h6 class="fw-bold mb-0 small">Jorge Silva</h6>
+                                        <small class="text-muted"><i class="fa-solid fa-wrench me-1 text-warning"></i>En Mantenimiento • Moto #3</small>
+                                    </div>
+                                    <span class="badge bg-warning-subtle text-dark" style="font-size: 10px;">Taller</span>
+                                </div>
+
+                                <div class="border-top pt-3">
+                                    <h6 class="small fw-bold text-dark mb-2"><i class="fa-solid fa-stopwatch me-1 text-primary"></i>Eficiencia de Despacho</h6>
+                                    <div class="d-flex justify-content-between small text-muted mb-1">
+                                        <span>Tiempo Promedio Entrega</span>
+                                        <strong class="text-dark">28 min</strong>
+                                    </div>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 82%;"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-between small text-muted mt-2">
+                                        <span>Entregas a Tiempo</span>
+                                        <span class="text-success fw-bold">96.5%</span>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- Columna 2: Clientes Recientes y Personal Activo -->
+                        <div class="col-12 col-xl-4">
+                            <section id="sec-clientes-roles" class="admin-card p-4 h-100 section-anchor">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-users text-ro me-2"></i>Clientes & Personal</h5>
+                                    <span class="badge bg-primary-subtle text-primary">5 Registrados</span>
+                                </div>
+
+                                <h6 class="small fw-bold text-secondary mb-2">Clientes Recientes</h6>
+                                <ul class="list-unstyled small mb-3 border-bottom pb-2">
+                                    <li class="d-flex justify-content-between align-items-center py-1">
+                                        <div>
+                                            <strong>Carlos Mendoza</strong>
+                                            <small class="text-muted d-block">carlos.m@gmail.com</small>
+                                        </div>
+                                        <span class="badge bg-ro align-self-center">Frecuente (2 peds)</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center py-1">
+                                        <div>
+                                            <strong>Luciana Vega</strong>
+                                            <small class="text-muted d-block">luciana.v@hotmail.com</small>
+                                        </div>
+                                        <span class="badge bg-success align-self-center">Nuevo (1 ped)</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center py-1">
+                                        <div>
+                                            <strong>Jorge Prado</strong>
+                                            <small class="text-muted d-block">jorge.p@gmail.com</small>
+                                        </div>
+                                        <span class="badge bg-success align-self-center">Nuevo (1 ped)</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center py-1">
+                                        <div>
+                                            <strong>Andrea Huamán</strong>
+                                            <small class="text-muted d-block">andrea.h@gmail.com</small>
+                                        </div>
+                                        <span class="badge bg-info text-dark align-self-center">App Móvil</span>
+                                    </li>
+                                </ul>
+
+                                <h6 class="small fw-bold text-secondary mb-2">Personal del Sistema</h6>
+                                <ul class="list-unstyled small mb-0">
+                                    <li class="d-flex justify-content-between align-items-center py-1">
+                                        <span><i class="fa-solid fa-shield-halved me-1 text-danger"></i>admin</span>
+                                        <span class="badge bg-danger">Admin Master</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center py-1">
+                                        <span><i class="fa-solid fa-utensils me-1 text-warning"></i>Marco</span>
+                                        <span class="badge bg-warning text-dark">Jefe de Cocina</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center py-1">
+                                        <span><i class="fa-solid fa-headset me-1 text-info"></i>Luis</span>
+                                        <span class="badge bg-info text-dark">Atención / Pedidos</span>
+                                    </li>
+                                </ul>
+                            </section>
+                        </div>
+
+                        <!-- Columna 3: Analíticas Web, Funnel y Rendimiento Digital -->
+                        <div class="col-12 col-xl-4">
+                            <section id="sec-reportes-analiticas" class="admin-card p-4 h-100 section-anchor">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-chart-line text-ro me-2"></i>Analíticas Web</h5>
+                                    <span class="badge bg-success-subtle text-success"><i class="fa-solid fa-bolt me-1"></i>En Vivo</span>
+                                </div>
+
+                                <div class="row g-2 text-center mb-3">
+                                    <div class="col-6">
+                                        <div class="p-2 bg-light rounded border">
+                                            <small class="text-muted d-block">Visitas Hoy</small>
+                                            <h5 class="fw-bold mb-0 text-dark">94</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-2 bg-light rounded border">
+                                            <small class="text-muted d-block">Carritos</small>
+                                            <h5 class="fw-bold text-warning mb-0">8</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-2 bg-light rounded border">
+                                            <small class="text-muted d-block">Abandonos</small>
+                                            <h5 class="fw-bold text-danger mb-0">3</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-2 bg-light rounded border">
+                                            <small class="text-muted d-block">Conversión</small>
+                                            <h5 class="fw-bold text-success mb-0">5.3%</h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-top pt-3">
+                                    <h6 class="small fw-bold text-dark mb-2">Canales de Tráfico</h6>
+                                    <div class="d-flex justify-content-between small text-muted mb-1">
+                                        <span><i class="fa-brands fa-instagram text-danger me-1"></i>Instagram / TikTok</span>
+                                        <strong>58%</strong>
+                                    </div>
+                                    <div class="progress mb-2" style="height: 5px;">
+                                        <div class="progress-bar bg-danger" style="width: 58%;"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-between small text-muted mb-1">
+                                        <span><i class="fa-solid fa-globe text-primary me-1"></i>Directo / Web</span>
+                                        <strong>42%</strong>
+                                    </div>
+                                    <div class="progress" style="height: 5px;">
+                                        <div class="progress-bar bg-primary" style="width: 42%;"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top small">
+                                        <span class="text-muted">Ticket Promedio Web:</span>
+                                        <strong class="text-dark">S/ 67.60</strong>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                    </div>
+                </main>
             </div>
         </div>
-    </main>
+    </div>
 
+    <!-- MODAL DETALLE DE PEDIDO y BOLETA -->
+    <div class="modal fade" id="modalDetallePedido" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold"><i class="fa-solid fa-receipt text-ro me-2"></i><span id="boletaOrdenTitle">Boleta Electrónica #ORD-1001</span></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4" id="boletaImprimible">
+                    <div class="text-center border-bottom pb-3 mb-3">
+                        <h5 class="fw-bold mb-0 text-dark">PIZZERÍA LA CALETA</h5>
+                        <small class="text-muted d-block">R.U.C. 20601234567 • Lima, Perú</small>
+                        <small class="text-muted" id="boletaNum">Boleta de Venta Electrónica: B001-0001001</small>
+                    </div>
+                    <p class="mb-1 text-muted small">Cliente:</p>
+                    <h6 class="fw-bold text-dark mb-2" id="boletaCliente">Carlos Mendoza (+51 987 654 321)</h6>
+                    <p class="mb-1 text-muted small">Dirección de Entrega:</p>
+                    <p class="text-dark mb-3 small">Av. Colonial 1420, Dpto 302, Lima</p>
+                    <p class="mb-1 text-muted small">Método de Pago:</p>
+                    <p class="text-dark mb-3 small" id="boletaMetodo"><strong>Yape / Digital</strong> (Cobrado)</p>
+                    <hr>
+                    <p class="mb-1 text-muted small">Detalle del Consumo:</p>
+                    <ul class="list-unstyled mb-3 small" id="boletaProductos">
+                        <li class="d-flex justify-content-between py-1"><span id="boletaProd1">1x Pizza La Cómplice (Pepperoni) Familiar</span> <strong id="boletaPrecio1">S/ 45.00</strong></li>
+                        <li class="d-flex justify-content-between py-1"><span id="boletaProd2">1x Gaseosa Inca Kola 1.5L</span> <strong id="boletaPrecio2">S/ 10.00</strong></li>
+                    </ul>
+                    <div class="d-flex justify-content-between border-top pt-2">
+                        <span class="fw-bold">Total a Pagar:</span>
+                        <h5 class="fw-bold text-ro" id="boletaTotal">S/ 55.00</h5>
+                    </div>
+                    <div class="text-center text-muted small mt-3">
+                        <small>¡Gracias por tu preferencia! El que come callado, come doble.</small>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button class="btn btn-sm btn-cta" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL REGISTRAR INSUMO -->
+    <div class="modal fade" id="modalInsumo" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold"><i class="fa-solid fa-boxes-stacked text-ro me-2"></i>Registrar Entrada de Insumo</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Insumo / Empaque</label>
+                        <input type="text" class="form-control form-control-sm" placeholder="Ej: Cajas Pizza Familiar / Harina Especial">
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6"><label class="form-label small fw-bold">Categoría</label><select class="form-select form-select-sm"><option>Insumos (Quesos/Carnes)</option><option>Cajas & Empaques</option><option>Masas</option></select></div>
+                        <div class="col-6"><label class="form-label small fw-bold">Cantidad</label><input type="number" class="form-control form-control-sm" placeholder="20.00"></div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-sm btn-cta fw-bold" data-bs-dismiss="modal">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NUEVA PROMO -->
+    <div class="modal fade" id="modalNuevaPromo" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold"><i class="fa-solid fa-box text-ro me-2"></i>Agregar Nueva Promo / Combo</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="mb-3"><label class="form-label small fw-bold">Nombre del Combo o Promoción</label><input type="text" class="form-control form-control-sm" placeholder="Ej: Combo Cuarteto Caleta"></div>
+                    <div class="mb-3"><label class="form-label small fw-bold">Descripción / Qué Incluye</label><input type="text" class="form-control form-control-sm" placeholder="Ej: 2 Familiares + Pan al Ajo + 2L Gaseosa"></div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6"><label class="form-label small fw-bold">Precio Promo (S/)</label><input type="number" class="form-control form-control-sm" placeholder="65.00"></div>
+                        <div class="col-6"><label class="form-label small fw-bold">Estado</label><select class="form-select form-select-sm"><option>Activo</option><option>Borrador</option></select></div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-sm btn-cta fw-bold" data-bs-dismiss="modal">Guardar Promoción</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NUEVA PIZZA -->
+    <div class="modal fade" id="modalNuevoProducto" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold"><i class="fa-solid fa-pizza-slice text-ro me-2"></i>Agregar Nueva Pizza</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="mb-3"><label class="form-label small fw-bold">Nombre</label><input type="text" class="form-control form-control-sm" placeholder="Ej: Pizza Cuatro Quesos"></div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6"><label class="form-label small fw-bold">Categoría</label><select class="form-select form-select-sm"><option>Clásicas</option><option>Especialidades</option></select></div>
+                        <div class="col-6"><label class="form-label small fw-bold">Precio (S/)</label><input type="number" class="form-control form-control-sm" placeholder="42.00"></div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-sm btn-cta fw-bold" data-bs-dismiss="modal">Guardar Pizza</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
     <footer class="py-4 text-center">
         <div class="container">
-            <p class="small text-white-50 mb-0">&copy; 2026 La Caleta. Todos los derechos reservados.</p>
+            <p class="small text-white-50 mb-0">&copy; 2026 La Caleta. Sistema de Gestión.</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Gráficos con Chart.js -->
+    <script>
+        function mostrarBoleta(cliente, tel, orden, prod1, precio1, prod2, precio2, total, metodo) {
+            document.getElementById('boletaOrdenTitle').innerText = 'Boleta Electrónica ' + orden;
+            document.getElementById('boletaNum').innerText = 'Boleta de Venta Electrónica: B001-' + orden.replace('#ORD-', '000');
+            document.getElementById('boletaCliente').innerText = cliente + ' (' + tel + ')';
+            document.getElementById('boletaMetodo').innerHTML = '<strong>' + metodo + '</strong> (Cobrado)';
+            document.getElementById('boletaProd1').innerText = prod1;
+            document.getElementById('boletaPrecio1').innerText = precio1;
+            document.getElementById('boletaProd2').innerText = prod2;
+            document.getElementById('boletaPrecio2').innerText = precio2;
+            document.getElementById('boletaTotal').innerText = total;
+        }
+
+        function ordenarHistorial(criterio) {
+            const tbody = document.querySelector('#tablaHistorial tbody');
+            const filas = Array.from(tbody.querySelectorAll('tr'));
+
+            filas.sort((a, b) => {
+                if (criterio === 'id_desc') {
+                    return parseInt(b.getAttribute('data-id')) - parseInt(a.getAttribute('data-id'));
+                } else if (criterio === 'id_asc') {
+                    return parseInt(a.getAttribute('data-id')) - parseInt(b.getAttribute('data-id'));
+                } else if (criterio === 'hora') {
+                    return b.getAttribute('data-hora').localeCompare(a.getAttribute('data-hora'));
+                }
+            });
+
+            filas.forEach(fila => tbody.appendChild(fila));
+        }
+
+        function filtrarPorFecha(fechaSeleccionada) {
+            const label = document.getElementById('kpiVentaLabel');
+            const monto = document.getElementById('kpiVentaMonto');
+            const sub = document.getElementById('kpiVentaSub');
+
+            if (fechaSeleccionada === '2026-08-29') {
+                label.innerText = 'Ventas del Día (Hoy)';
+                monto.innerText = 'S/ 202.90';
+                sub.innerHTML = "<i class='fa-solid fa-check me-1'></i>3 pedidos completados";
+            } else if (fechaSeleccionada === '2026-08-28') {
+                label.innerText = 'Ventas del Día (Ayer)';
+                monto.innerText = 'S/ 260.00';
+                sub.innerHTML = "<i class='fa-solid fa-arrow-trend-up me-1'></i>4 pedidos completados ayer";
+            } else {
+                label.innerText = 'Ventas de Fecha: ' + fechaSeleccionada;
+                monto.innerText = 'S/ 140.00';
+                sub.innerHTML = "<i class='fa-solid fa-calendar-day me-1'></i>2 pedidos registrados";
+            }
+        }
+
+        function filtrarCategoriaInventario(categoria) {
+            const filas = document.querySelectorAll('#tablaInventario tbody tr.item-inventario');
+            filas.forEach(fila => {
+                if (categoria === 'todos') {
+                    fila.style.display = '';
+                } else if (fila.classList.contains('cat-' + categoria)) {
+                    fila.style.display = '';
+                } else {
+                    fila.style.display = 'none';
+                }
+            });
+        }
+
+        const ctxVentas = document.getElementById('chartVentas').getContext('2d');
+        const chartVentasObj = new Chart(ctxVentas, {
+            type: 'line',
+            data: {
+                labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                datasets: [{
+                    label: 'Ventas (S/)',
+                    data: [85, 120, 95, 140, 210, 260, 202.90],
+                    borderColor: 'rgb(255, 69, 0)',
+                    backgroundColor: 'rgba(255, 69, 0, 0.1)',
+                    fill: true,
+                    tension: 0.35,
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { grid: { color: '#e9ecef' } }
+                }
+            }
+        });
+
+        function cambiarPeriodoRendimiento(periodo) {
+            const label = document.getElementById('chartPeriodoLabel');
+            const badge = document.getElementById('badgePeriodo');
+
+            if (periodo === 'dia') {
+                label.innerText = "Ingresos por franja horaria de hoy (S/)";
+                badge.innerText = "Hoy (29/08)";
+                chartVentasObj.data.labels = ['12:00', '14:00', '16:00', '18:00', '20:00', '22:00'];
+                chartVentasObj.data.datasets[0].data = [0, 0, 45, 68, 89.90, 0];
+            } else if (periodo === 'semanal') {
+                label.innerText = "Ingresos semanales de lanzamiento (S/)";
+                badge.innerText = "Semana Inicial";
+                chartVentasObj.data.labels = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+                chartVentasObj.data.datasets[0].data = [85, 120, 95, 140, 210, 260, 202.90];
+            } else if (periodo === 'mensual') {
+                label.innerText = "Ingresos del mes de apertura (S/)";
+                badge.innerText = "Agosto 2026";
+                chartVentasObj.data.labels = ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'];
+                chartVentasObj.data.datasets[0].data = [180, 240, 310, 377.90];
+            } else if (periodo === 'anual') {
+                label.innerText = "Proyección e ingresos anuales (S/)";
+                badge.innerText = "Año 2026";
+                chartVentasObj.data.labels = ['Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dic'];
+                chartVentasObj.data.datasets[0].data = [0, 1107.90, 1450, 1800, 2100, 2900];
+            } else if (periodo === 'general') {
+                label.innerText = "Histórico general acumulado (S/)";
+                badge.innerText = "Total Histórico";
+                chartVentasObj.data.labels = ['Semana 1', 'Semana 2'];
+                chartVentasObj.data.datasets[0].data = [450, 657.90];
+            }
+            chartVentasObj.update();
+        }
+
+        const ctxPizzas = document.getElementById('chartPizzas').getContext('2d');
+        new Chart(ctxPizzas, {
+            type: 'doughnut',
+            data: {
+                labels: ['La Cómplice', 'El Pacto', 'La Coartada', 'Combos'],
+                datasets: [{
+                    data: [5, 3, 2, 2],
+                    backgroundColor: ['#ff4500', '#bb1435', '#ff8c00', '#6c757d'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } }
+                }
+            }
+        });
+    </script>
     <script src="../../assets/js/app.js"></script>
 </body>
+
 </html>
