@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Locales</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <section id="topbar" class="py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a href="tel:+51999999999" class="text-nowrap"><i class="fa-solid fa-phone me-1"></i> (+51) 999 999
+                    999</a>
+                <a href="mailto:lacaleta@gmail.com" class="d-none d-sm-inline text-nowrap"><i
+                        class="fa-regular fa-envelope me-1"></i> lacaleta@gmail.com</a>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instragram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </section>
+    <header id="header" class="navbar py-2 border-bottom border-secondary border-opacity-25">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a class="navbar-brand me-0" th:href="@{/}" style="width: 130px;">
+                    <img th:src="@{/images/lacaleta.png}" class="img-fluid" alt="Logo La Caleta">
+                </a>
+                <div class="d-none d-xl-block text-secondary fst-italic small">
+                    "El que come callado, come doble"
+                </div>
+            </div>
+
+            <!-- Lado Derecho: Menú, Carrito e Inicio de Sesión juntos -->
+            <div class="d-flex align-items-center gap-3">
+
+                <!-- Enlaces de navegación (Escritorio) -->
+                <nav class="d-none d-lg-flex align-items-center gap-2 me-2">
+                    <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" th:href="@{/menu}">Menú</a>
+                    <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap"
+                        th:href="@{/promociones}">Promociones</a>
+                    <a class="nav-link px-3 py-1 fw-bold rounded-pill border nav-menu-link-active text-nowrap" th:href="@{/locales}">Locales</a>
+                </nav>
+
+                <!-- Botón Carrito -->
+                <button type="button"
+                    class="nav-menu-link-shop px-3 py-2 fw-bold rounded-pill d-flex align-items-center gap-2 text-nowrap border-0"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="d-none d-sm-inline">S/ 0.00</span>
+                </button>
+
+                <!-- Iniciar Sesión -->
+                <a class="d-flex align-items-center gap-2 text-white text-decoration-none small fw-semibold text-nowrap"
+                    th:href="@{/login}">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="d-none d-md-inline">Iniciar sesión</span>
+                </a>
+
+                <!-- Botón Hamburguesa (Solo en móviles) -->
+                <button class="btn border-0 text-white p-1 d-lg-none shadow-none" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu"
+                    aria-label="Abrir navegación">
+                    <i class="fa-solid fa-bars fs-3"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="buscar-local" class="py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6 text-center">
+                        <h2 class="fw-bold text-white mb-2">LOCALES LA CALETA</h2>
+                        <p class="text-secondary small mb-4">
+                            Encuentra tu refugio más cercano. Contamos con 3 puntos clave en Lima para consumir en
+                            salón, delivery o recojo en tienda.
+                        </p>
+                        <div class="position-relative mx-auto mb-4" style="max-width: 480px;">
+                            <input type="text" class="form-control buscador-input ps-4 pe-5 py-2"
+                                placeholder="Ingresa tu distrito o dirección...">
+                            <button
+                                class="btn btn-buscar position-absolute top-50 end-0 translate-middle-y me-2 border-0 bg-transparent text-secondary"
+                                type="button" aria-label="Buscar">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <a href="menu.html"
+                                class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small text-decoration-none">
+                                Ver Menú Secreto
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="locales" class="py-4">
+            <div class="container">
+                <div class="d-flex flex-column gap-3 mx-auto" style="max-width: 900px;" id="contenedor-locales">
+                    <div
+                        class="tarjeta-local card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-3 p-md-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12 col-md-6 border-end-md border-secondary border-opacity-25">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h5 class="fw-bold mb-0 text-white">Sede Miraflores</h5>
+                                </div>
+                                <p class="text-secondary small mb-3">
+                                    Av. José Larco 850, Miraflores, Lima
+                                </p>
+                                <a href="https://maps.google.com" target="_blank"
+                                    class="btn-cta px-3 py-1 fw-bold text-uppercase d-inline-block small text-decoration-none"
+                                    style="font-size: 12px;">
+                                    Ver Local
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h6 class="text-white-50 text-uppercase fw-semibold small mb-2">Disponibilidad</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-motorcycle text-warning"></i> Delivery
+                                    </span>
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-location-dot text-warning"></i> Retiro en Tienda
+                                    </span>
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-utensils text-warning"></i> Salón
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div
+                        class="tarjeta-local card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-3 p-md-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12 col-md-6 border-end-md border-secondary border-opacity-25">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h5 class="fw-bold mb-0 text-white">Sede Los Olivos</h5>
+                                </div>
+                                <p class="text-secondary small mb-3">
+                                    Av. Antúnez de Mayolo 1120, Los Olivos, Lima
+                                </p>
+                                <a href="https://maps.google.com" target="_blank"
+                                    class="btn-cta px-3 py-1 fw-bold text-uppercase d-inline-block small text-decoration-none"
+                                    style="font-size: 12px;">
+                                    Ver Local
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h6 class="text-white-50 text-uppercase fw-semibold small mb-2">Disponibilidad</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-motorcycle text-warning"></i> Delivery
+                                    </span>
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-location-dot text-warning"></i> Retiro en Tienda
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section id="pregunta-local" class="py-5 border-top border-secondary border-opacity-10">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold text-white mb-2">PREGUNTAS SOBRE LOS LOCALES</h2>
+                    <p class="text-secondary small">Todo lo que necesitas saber antes de visitarnos o pedir tu pizza.
+                    </p>
+                </div>
+                <div class="accordion accordion-flush mx-auto d-flex flex-column gap-3" style="max-width: 900px;"
+                    id="acordeonLocales">
+                    <div
+                        class="accordion-item tarjeta-local border border-secondary border-opacity-25 rounded-3 overflow-hidden">
+                        <h3 class="accordion-header" id="headingUno">
+                            <button
+                                class="accordion-button collapsed bg-transparent text-secondary shadow-none fw-semibold p-3 p-md-4"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseUno"
+                                aria-expanded="false" aria-controls="collapseUno">
+                                ¿Cuáles son los horarios de atención en tienda?
+                            </button>
+                        </h3>
+                        <div id="collapseUno" class="accordion-collapse collapse" aria-labelledby="headingUno"
+                            data-bs-parent="#acordeonLocales">
+                            <div class="accordion-body text-secondary small pt-0 pb-4 px-3 px-md-4">
+                                Atendemos de lunes a domingo desde las 12:00 p.m. hasta las 11:00 p.m. Los días viernes
+                                y sábados el horario se extiende hasta la medianoche en salón y recojo en tienda.
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="accordion-item tarjeta-local border border-secondary border-opacity-25 rounded-3 overflow-hidden">
+                        <h3 class="accordion-header" id="headingDos">
+                            <button
+                                class="accordion-button collapsed bg-transparent text-secondary shadow-none fw-semibold p-3 p-md-4"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseDos"
+                                aria-expanded="false" aria-controls="collapseDos">
+                                ¿Puedo hacer mi pedido online y retirarlo en cualquier local?
+                            </button>
+                        </h3>
+                        <div id="collapseDos" class="accordion-collapse collapse" aria-labelledby="headingDos"
+                            data-bs-parent="#acordeonLocales">
+                            <div class="accordion-body text-secondary small pt-0 pb-4 px-3 px-md-4">
+                                Sí, al realizar tu compra selecciona la opción "Retiro en Tienda" y elige la sede más
+                                cercana. Tu pedido estará listo y caliente en aproximadamente 20 a 30 minutos.
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="accordion-item tarjeta-local border border-secondary border-opacity-25 rounded-3 overflow-hidden">
+                        <h3 class="accordion-header" id="headingTres">
+                            <button
+                                class="accordion-button collapsed bg-transparent text-secondary shadow-none fw-semibold p-3 p-md-4"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseTres"
+                                aria-expanded="false" aria-controls="collapseTres">
+                                ¿Se necesita reserva previa para comer en salón?
+                            </button>
+                        </h3>
+                        <div id="collapseTres" class="accordion-collapse collapse" aria-labelledby="headingTres"
+                            data-bs-parent="#acordeonLocales">
+                            <div class="accordion-body text-secondary small pt-0 pb-4 px-3 px-md-4">
+                                La atención en salón es por orden de llegada. Para grupos mayores a 8 personas
+                                recomendamos contactarnos vía WhatsApp o teléfono con 24 horas de anticipación.
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="accordion-item tarjeta-local border border-secondary border-opacity-25 rounded-3 overflow-hidden">
+                        <h3 class="accordion-header" id="headingCuatro">
+                            <button
+                                class="accordion-button collapsed bg-transparent text-secondary shadow-none fw-semibold p-3 p-md-4"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseCuatro"
+                                aria-expanded="false" aria-controls="collapseCuatro">
+                                ¿Qué métodos de pago aceptan directamente en tienda?
+                            </button>
+                        </h3>
+                        <div id="collapseCuatro" class="accordion-collapse collapse" aria-labelledby="headingCuatro"
+                            data-bs-parent="#acordeonLocales">
+                            <div class="accordion-body text-secondary small pt-0 pb-4 px-3 px-md-4">
+                                Aceptamos efectivo, tarjetas de débito/crédito (Visa, Mastercard, American Express) y
+                                pagos móviles mediante Yape y Plin sin recargo adicional.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-5 text-start">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12 col-md-3">
+                    <img class="img-fluid mb-3" th:src="@{/images/lacaleta.png}" alt="La Caleta Logo"
+                        style="max-width: 140px;">
+                    <h6 class="fw-bold mb-2">Síguenos en</h6>
+                    <div class="d-flex gap-3 fs-5">
+                        <a href="https://www.facebook.com" class="text-white-50 text-decoration-none"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com" class="text-white-50 text-decoration-none"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com" class="text-white-50 text-decoration-none"><i
+                                class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com" class="text-white-50 text-decoration-none"><i
+                                class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h6 class="fw-bold mb-3">Nuestros Productos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a class="text-secondary text-decoration-none"
+                                th:href="@{/menu#pizzas-principales}">Pizzas Principales</a>
+                        </li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none"
+                                th:href="@{/menu#combos-secretos}">Combos Secretos</a>
+                        </li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none"
+                                th:href="@{/menu#acompanamientos}">Acompañamientos</a>
+                        </li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none"
+                                th:href="@{/menu#bebidas}">Bebidas</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h6 class="fw-bold mb-3">Ayuda & Términos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/faq}">Preguntas
+                                Frecuentes</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/delivery}">Políticas
+                                de
+                                Delivery</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/terminos}">Términos
+                                y
+                                Condiciones</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/locales}">Nuestros
+                                Locales</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-2">Métodos de Pago</h6>
+                        <div class="d-flex align-items-center gap-2">
+                            <img th:src="@{/images/visa.jpg}" alt="Visa" class="bg-white p-1"
+                                style="height: 30px; object-fit: contain;">
+                            <img th:src="@{/images/mastercard.jpg}" alt="Mastercard" class="bg-white p-1"
+                                style="height: 30px; object-fit: contain;">
+                            <img th:src="@{/images/yape.jpg}" alt="Yape" class="bg-white p-1"
+                                style="height: 30px; object-fit: contain;">
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-2">Libro de Reclamaciones</h6>
+                        <a href="#">
+                            <img th:src="@{/images/libro_reclamaciones.jpg}" alt="Libro de Reclamaciones"
+                                style="max-height: 45px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top border-secondary">
+                <p class="small text-secondary mb-0">&copy; 2026 La Caleta. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Panel Lateral del Carrito -->
+    <div class="offcanvas offcanvas-end bg-dark text-white border-start border-secondary border-opacity-25"
+        tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
+        <div class="offcanvas-header border-bottom border-secondary border-opacity-25 py-3">
+            <h5 class="offcanvas-title fw-bold text-white fs-6 mb-0 d-flex align-items-center gap-2"
+                id="offcanvasCarritoLabel">
+                CARRITO DE COMPRAS
+            </h5>
+            <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
+                aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-4">
+            <div class="text-center my-auto">
+                <div class="mb-3">
+                    <i class="fa-solid fa-basket-shopping fs-1 text-secondary opacity-50"></i>
+                </div>
+                <h6 class="fw-bold text-white mb-2">Tu carrito está vacío</h6>
+                <p class="text-secondary small mb-4">
+                    Tu producto ha sido eliminado del carrito y es necesario que realices tu compra
+                    nuevamente.
+                </p>
+                <a th:href="@{/menu}"
+                    class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small text-decoration-none">
+                    Explorar Menú
+                </a>
+            </div>
+            <div class="border-top border-secondary border-opacity-25 pt-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-secondary small">Total estimado:</span>
+                    <span class="fw-bold fs-5 text-white">S/ 0.00</span>
+                </div>
+                <button class="btn btn-secondary w-100 fw-bold py-2 text-uppercase small disabled"
+                    style="border-radius: 30px;">
+                    Continuar con el pedido
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Offcanvas Menú de Navegación Móvil -->
+    <div class="offcanvas offcanvas-start bg-dark text-white border-end border-secondary border-opacity-25"
+        tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+        <div class="offcanvas-header border-bottom border-secondary border-opacity-25 py-3">
+            <div class="d-flex align-items-center gap-2" id="offcanvasMenuLabel">
+                <img th:src="@{/images/lacaleta.png}" alt="Logo" style="max-width: 100px;">
+            </div>
+            <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
+                aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-4">
+            <ul class="nav flex-column gap-3 fs-5 fw-bold">
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3" th:href="@{/menu}">
+                        Menú
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3" th:href="@{/promociones}">
+                        Promociones
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3" th:href="@{/locales}">
+                        Locales
+                    </a>
+                </li>
+            </ul>
+            <div class="border-top border-secondary border-opacity-25 pt-3">
+                <p class="text-secondary small mb-2">Pedidos directos:</p>
+                <a href="tel:+51999999999" class="text-white fw-bold text-decoration-none small d-block mb-3">
+                    <i class="fa-solid fa-phone me-2 text-white"></i> (+51) 999 999 999
+                </a>
+                <div class="d-flex gap-3 fs-5">
+                    <a href="https://www.facebook.com" target="_blank" class="text-white-50"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com" target="_blank" class="text-white-50"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com" target="_blank" class="text-white-50"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>

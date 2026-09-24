@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Promociones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <section id="topbar" class="py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a href="tel:+51999999999" class="text-nowrap"><i class="fa-solid fa-phone me-1"></i> (+51) 999 999
+                    999</a>
+                <a href="mailto:lacaleta@gmail.com" class="d-none d-sm-inline text-nowrap"><i
+                        class="fa-regular fa-envelope me-1"></i> lacaleta@gmail.com</a>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instragram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </section>
+    <header id="header" class="navbar py-2 border-bottom border-secondary border-opacity-25">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a class="navbar-brand me-0" th:href="@{/}" style="width: 130px;">
+                    <img th:src="@{/images/lacaleta.png}" class="img-fluid" alt="Logo La Caleta">
+                </a>
+                <div class="d-none d-xl-block text-secondary fst-italic small">
+                    "El que come callado, come doble"
+                </div>
+            </div>
+
+            <!-- Lado Derecho: Menú, Carrito e Inicio de Sesión juntos -->
+            <div class="d-flex align-items-center gap-3">
+
+                <!-- Enlaces de navegación (Escritorio) -->
+                <nav class="d-none d-lg-flex align-items-center gap-2 me-2">
+                    <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" th:href="@{/menu}">Menú</a>
+                    <a class="nav-link px-3 py-1 fw-bold rounded-pill border nav-menu-link-active text-nowrap"
+                        th:href="@{/promociones}">Promociones</a>
+                    <a class="nav-link px-3 py-1 fw-bold text-white text-nowrap" th:href="@{/locales}">Locales</a>
+                </nav>
+
+                <!-- Botón Carrito -->
+                <button type="button"
+                    class="nav-menu-link-shop px-3 py-2 fw-bold rounded-pill d-flex align-items-center gap-2 text-nowrap border-0"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="d-none d-sm-inline">S/ 0.00</span>
+                </button>
+
+                <!-- Iniciar Sesión -->
+                <a class="d-flex align-items-center gap-2 text-white text-decoration-none small fw-semibold text-nowrap"
+                    th:href="@{/login}">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="d-none d-md-inline">Iniciar sesión</span>
+                </a>
+
+                <!-- Botón Hamburguesa (Solo en móviles) -->
+                <button class="btn border-0 text-white p-1 d-lg-none shadow-none" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu"
+                    aria-label="Abrir navegación">
+                    <i class="fa-solid fa-bars fs-3"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <nav id="categorias" class="sticky-top py-2 border-bottom">
+            <div class="container">
+                <div class="d-flex flex-nowrap overflow-x-auto gap-2 py-1 categorias-scroll">
+                    <a href="#promociones-individual" class="btn-categoria text-nowrap">
+                        <i class="fa-solid fa-user me-1"></i> 1 PERSONA
+                    </a>
+                    <a href="#promociones-duo" class="btn-categoria text-nowrap">
+                        <i class="fa-solid fa-user-group me-1"></i> 2 PERSONAS
+                    </a>
+                    <a href="#promociones-tricua" class="btn-categoria text-nowrap">
+                        <i class="fa-solid fa-users me-1"></i> 3-4 PERSONAS
+                    </a>
+                    <a href="#promociones-muchos" class="btn-categoria text-nowrap">
+                        <i class="fa-solid fa-people-group me-1"></i> 5 A MÁS
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <section id="promociones-individual" class="py-5">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-5 g-3">
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='La Cómplice Personal', precio='19.90', img='/images/producto_pepperoni.jpg', desc='Nuestra pizza leal personal con abundante pepperoni crocante', tipo='pizza')}">
+                                <img th:src="@{/images/producto_pepperoni.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="La Cómplice Personal">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='La Cómplice Personal', precio='19.90', img='/images/producto_pepperoni.jpg', desc='Nuestra pizza leal personal con abundante pepperoni crocante', tipo='pizza')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">La Cómplice Personal</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">Nuestra pizza leal personal con
+                                    abundante pepperoni crocante</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('La Cómplice Personal', 19.90, '/images/producto_pepperoni.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 19.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='El Pacto Personal', precio='17.90', img='/images/producto_americana.jpg', desc='Tocino crocante y jamón selecto bajo queso fundido personal', tipo='pizza')}">
+                                <img th:src="@{/images/producto_americana.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="El Pacto Personal">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='El Pacto Personal', precio='17.90', img='/images/producto_americana.jpg', desc='Tocino crocante y jamón selecto bajo queso fundido personal', tipo='pizza')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">El Pacto Personal</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">Tocino crocante y jamón selecto bajo
+                                    queso fundido personal</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('El Pacto Personal', 17.90, '/images/producto_americana.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 17.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='La Coartada Personal', precio='18.90', img='/images/producto_hawaiana.jpg', desc='Dulzura de piña caramelizada con jamón en porción individual', tipo='pizza')}">
+                                <img th:src="@{/images/producto_hawaiana.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="La Coartada Personal">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='La Coartada Personal', precio='18.90', img='/images/producto_hawaiana.jpg', desc='Dulzura de piña caramelizada con jamón en porción individual', tipo='pizza')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">La Coartada Personal</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">Dulzura de piña caramelizada con jamón
+                                    en porción individual</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('La Coartada Personal', 18.90, '/images/producto_hawaiana.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 18.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='La Confesión Personal', precio='18.90', img='/images/producto_vegetariana.jpg', desc='Pimientos asados, champiñones, aceitunas y albahaca fresca', tipo='pizza')}">
+                                <img th:src="@{/images/producto_vegetariana.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="La Confesión Personal">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='La Confesión Personal', precio='18.90', img='/images/producto_vegetariana.jpg', desc='Pimientos asados, champiñones, aceitunas y albahaca fresca', tipo='pizza')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">La Confesión Personal</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">Pimientos asados, champiñones,
+                                    aceitunas y albahaca fresca</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('La Confesión Personal', 18.90, '/images/producto_vegetariana.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 18.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='La Cofradía Personal', precio='21.90', img='/images/producto_meat.jpg', desc='Pepperoni, carne sazonada y tocino en versión personal', tipo='pizza')}">
+                                <img th:src="@{/images/producto_meat.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="La Cofradía Personal">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='La Cofradía Personal', precio='21.90', img='/images/producto_meat.jpg', desc='Pepperoni, carne sazonada y tocino en versión personal', tipo='pizza')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">La Cofradía Personal</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">Pepperoni, carne sazonada y tocino en
+                                    versión personal</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('La Cofradía Personal', 21.90, '/images/producto_meat.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 21.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="promociones-duo" class="py-5">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3">
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='Dúo Cómplice', precio='48.90', img='/images/producto_combo1.jpg', desc='2 Pizzas Medianas de Pepperoni crocante mas 2 Bebidas personales', tipo='combo')}">
+                                <img th:src="@{/images/producto_combo1.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="Dúo Cómplice">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='Dúo Cómplice', precio='48.90', img='/images/producto_combo1.jpg', desc='2 Pizzas Medianas de Pepperoni crocante mas 2 Bebidas personales', tipo='combo')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">Dúo Cómplice</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">2 Pizzas Medianas de Pepperoni crocante
+                                    + 2 Bebidas personales</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('Dúo Cómplice', 48.90, '/images/producto_combo1.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 48.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='Dúo Pacto Clásico', precio='46.90', img='/images/producto_americana.jpg', desc='2 Pizzas Medianas para compartir en pareja', tipo='combo')}">
+                                <img th:src="@{/images/producto_americana.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="Dúo Pacto Clásico">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='Dúo Pacto Clásico', precio='46.90', img='/images/producto_americana.jpg', desc='2 Pizzas Medianas para compartir en pareja', tipo='combo')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">Dúo Pacto Clásico</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">2 Pizzas Medianas (Americana +
+                                    Hawaiana) para compartir en pareja</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('Dúo Pacto Clásico', 46.90, '/images/producto_americana.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 46.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='Dúo Carnívoro', precio='52.90', img='/images/producto_meat.jpg', desc='2 Pizzas Medianas con extra queso', tipo='combo')}">
+                                <img th:src="@{/images/producto_meat.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="Dúo Carnívoro">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='Dúo Carnívoro', precio='52.90', img='/images/producto_meat.jpg', desc='2 Pizzas Medianas con extra queso', tipo='combo')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">Dúo Carnívoro</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">2 Pizzas Medianas (La Cofradía + La
+                                    Cómplice) con extra queso</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('Dúo Carnívoro', 52.90, '/images/producto_meat.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 52.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="promociones-tricua" class="py-5">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3">
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='Trilogía Caleta', precio='68.90', img='/images/producto_combo2.jpg', desc='3 Pizzas Medianas clasicas a eleccion para el grupo selecto', tipo='combo')}">
+                                <img th:src="@{/images/producto_combo2.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="Trilogía Caleta">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='Trilogía Caleta', precio='68.90', img='/images/producto_combo2.jpg', desc='3 Pizzas Medianas clasicas a eleccion para el grupo selecto', tipo='combo')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">Trilogía Caleta</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">3 Pizzas Medianas clásicas a elección
+                                    para el grupo selecto</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('Trilogía Caleta', 68.90, '/images/producto_combo2.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 68.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='Trío Cómplices', precio='72.90', img='/images/producto_pepperoni.jpg', desc='3 Pizzas Medianas con abundante pepperoni crocante', tipo='combo')}">
+                                <img th:src="@{/images/producto_pepperoni.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="Trío Cómplices">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='Trío Cómplices', precio='72.90', img='/images/producto_pepperoni.jpg', desc='3 Pizzas Medianas con abundante pepperoni crocante', tipo='combo')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">Trío Cómplices</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">3 Pizzas Medianas con abundante
+                                    pepperoni crocante y masa crocante</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('Trío Cómplices', 72.90, '/images/producto_pepperoni.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 72.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='Trío con Acompañamiento', precio='78.90', img='/images/producto_combo3.jpg', desc='3 Pizzas Medianas mas Porcion de Palitos de Ajo artesanales', tipo='combo')}">
+                                <img th:src="@{/images/producto_combo3.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="Trío con Acompañamiento">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='Trío con Acompañamiento', precio='78.90', img='/images/producto_combo3.jpg', desc='3 Pizzas Medianas mas Porcion de Palitos de Ajo artesanales', tipo='combo')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">Trío con Acompañamiento</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">3 Pizzas Medianas + Porción de Palitos
+                                    de Ajo artesanales</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('Trío con Acompañamiento', 78.90, '/images/producto_combo3.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 78.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="promociones-muchos" class="py-5">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-3">
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='Banquete Clandestino', precio='84.90', img='/images/producto_combo4.jpg', desc='2 Pizzas Familiares mas 1 Porcion de Alitas BBQ mas Gaseosa 1.5L', tipo='combo')}">
+                                <img th:src="@{/images/producto_combo4.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="Banquete Clandestino">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='Banquete Clandestino', precio='84.90', img='/images/producto_combo4.jpg', desc='2 Pizzas Familiares mas 1 Porcion de Alitas BBQ mas Gaseosa 1.5L', tipo='combo')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">Banquete Clandestino</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">2 Pizzas Familiares + 1 Porción de
+                                    Alitas BBQ + Gaseosa 1.5L</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('Banquete Clandestino', 84.90, '/images/producto_combo4.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 84.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='Fiesta en La Caleta', precio='109.90', img='/images/producto_combo1.jpg', desc='3 Pizzas Familiares a eleccion mas 2 Gaseosas de 1.5L', tipo='combo')}">
+                                <img th:src="@{/images/producto_combo1.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="Fiesta en La Caleta">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='Fiesta en La Caleta', precio='109.90', img='/images/producto_combo1.jpg', desc='3 Pizzas Familiares a eleccion mas 2 Gaseosas de 1.5L', tipo='combo')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">Fiesta en La Caleta</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">3 Pizzas Familiares a elección + 2
+                                    Gaseosas de 1.5L para grupos grandes</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('Fiesta en La Caleta', 109.90, '/images/producto_combo1.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 109.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 bg-white text-dark border-0 rounded-3 overflow-hidden shadow-sm">
+                            <a
+                                th:href="@{/detalles(nombre='Gran Cofradía Familiar', precio='89.90', img='/images/producto_meat.jpg', desc='2 Pizzas Familiares de carnes mas Tequenos mas Palitos de Ajo', tipo='combo')}">
+                                <img th:src="@{/images/producto_meat.jpg}" class="card-img-top object-fit-cover"
+                                    style="height: 160px;" alt="Gran Cofradía Familiar">
+                            </a>
+                            <div class="card-body d-flex flex-column text-center p-3">
+                                <a th:href="@{/detalles(nombre='Gran Cofradía Familiar', precio='89.90', img='/images/producto_meat.jpg', desc='2 Pizzas Familiares de carnes mas Tequenos mas Palitos de Ajo', tipo='combo')}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="fw-bold fs-6 mb-1">Gran Cofradía Familiar</h5>
+                                </a>
+                                <p class="text-secondary small flex-grow-1 mb-3">2 Pizzas Familiares de carnes +
+                                    Tequeños + Palitos de Ajo</p>
+                                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                                    <button
+                                        class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center"
+                                        onclick="agregarAlCarrito('Gran Cofradía Familiar', 89.90, '/images/producto_meat.jpg')">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <span class="fw-bold fs-6">S/ 89.90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-5 text-start">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12 col-md-3">
+                    <img class="img-fluid mb-3" th:src="@{/images/lacaleta.png}" alt="La Caleta Logo"
+                        style="max-width: 140px;">
+                    <h6 class="fw-bold mb-2">Síguenos en</h6>
+                    <div class="d-flex gap-3 fs-5">
+                        <a href="https://www.facebook.com" class="text-white-50 text-decoration-none"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com" class="text-white-50 text-decoration-none"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com" class="text-white-50 text-decoration-none"><i
+                                class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com" class="text-white-50 text-decoration-none"><i
+                                class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h6 class="fw-bold mb-3">Nuestros Productos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a class="text-secondary text-decoration-none"
+                                th:href="@{/menu#pizzas-principales}">Pizzas Principales</a>
+                        </li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none"
+                                th:href="@{/menu#combos-secretos}">Combos Secretos</a>
+                        </li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none"
+                                th:href="@{/menu#acompanamientos}">Acompañamientos</a>
+                        </li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none"
+                                th:href="@{/menu#bebidas}">Bebidas</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h6 class="fw-bold mb-3">Ayuda & Términos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/faq}">Preguntas
+                                Frecuentes</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/delivery}">Políticas
+                                de
+                                Delivery</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/terminos}">Términos
+                                y
+                                Condiciones</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/locales}">Nuestros
+                                Locales</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-2">Métodos de Pago</h6>
+                        <div class="d-flex align-items-center gap-2">
+                            <img th:src="@{/images/visa.jpg}" alt="Visa" class="bg-white p-1"
+                                style="height: 30px; object-fit: contain;">
+                            <img th:src="@{/images/mastercard.jpg}" alt="Mastercard" class="bg-white p-1"
+                                style="height: 30px; object-fit: contain;">
+                            <img th:src="@{/images/yape.jpg}" alt="Yape" class="bg-white p-1"
+                                style="height: 30px; object-fit: contain;">
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-2">Libro de Reclamaciones</h6>
+                        <a href="#">
+                            <img th:src="@{/images/libro_reclamaciones.jpg}" alt="Libro de Reclamaciones"
+                                style="max-height: 45px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top border-secondary">
+                <p class="small text-secondary mb-0">&copy; 2026 La Caleta. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Panel Lateral del Carrito -->
+    <div class="offcanvas offcanvas-end bg-dark text-white border-start border-secondary border-opacity-25"
+        tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
+        <div class="offcanvas-header border-bottom border-secondary border-opacity-25 py-3">
+            <h5 class="offcanvas-title fw-bold text-white fs-6 mb-0 d-flex align-items-center gap-2"
+                id="offcanvasCarritoLabel">
+                CARRITO DE COMPRAS
+            </h5>
+            <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
+                aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-4">
+            <div class="text-center my-auto">
+                <div class="mb-3">
+                    <i class="fa-solid fa-basket-shopping fs-1 text-secondary opacity-50"></i>
+                </div>
+                <h6 class="fw-bold text-white mb-2">Tu carrito está vacío</h6>
+                <p class="text-secondary small mb-4">
+                    Tu producto ha sido eliminado del carrito y es necesario que realices tu compra
+                    nuevamente.
+                </p>
+                <a th:href="@{/menu}"
+                    class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small text-decoration-none">
+                    Explorar Menú
+                </a>
+            </div>
+            <div class="border-top border-secondary border-opacity-25 pt-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-secondary small">Total estimado:</span>
+                    <span class="fw-bold fs-5 text-white">S/ 0.00</span>
+                </div>
+                <button class="btn btn-secondary w-100 fw-bold py-2 text-uppercase small disabled"
+                    style="border-radius: 30px;">
+                    Continuar con el pedido
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Offcanvas Menú de Navegación Móvil -->
+    <div class="offcanvas offcanvas-start bg-dark text-white border-end border-secondary border-opacity-25"
+        tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+        <div class="offcanvas-header border-bottom border-secondary border-opacity-25 py-3">
+            <div class="d-flex align-items-center gap-2" id="offcanvasMenuLabel">
+                <img th:src="@{/images/lacaleta.png}" alt="Logo" style="max-width: 100px;">
+            </div>
+            <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
+                aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-4">
+            <ul class="nav flex-column gap-3 fs-5 fw-bold">
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3" th:href="@{/menu}">
+                        Menú
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3" th:href="@{/promociones}">
+                        Promociones
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3" th:href="@{/locales}">
+                        Locales
+                    </a>
+                </li>
+            </ul>
+            <div class="border-top border-secondary border-opacity-25 pt-3">
+                <p class="text-secondary small mb-2">Pedidos directos:</p>
+                <a href="tel:+51999999999" class="text-white fw-bold text-decoration-none small d-block mb-3">
+                    <i class="fa-solid fa-phone me-2 text-white"></i> (+51) 999 999 999
+                </a>
+                <div class="d-flex gap-3 fs-5">
+                    <a href="https://www.facebook.com" target="_blank" class="text-white-50"><i
+                            class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com" target="_blank" class="text-white-50"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com" target="_blank" class="text-white-50"><i
+                            class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Flotante de Notificación -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+        <div id="toastCarrito"
+            class="toast align-items-center text-bg-dark border border-danger border-opacity-50 shadow-lg rounded-3"
+            role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex align-items-center">
+                <div class="toast-body d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-danger fs-5"></i>
+                    <span id="toastMensaje" class="small fw-semibold text-white"></span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Cerrar"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
