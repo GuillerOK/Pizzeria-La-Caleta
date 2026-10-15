@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <header th:fragment="header(paginaActiva)" class="w-100">
+        <section id="topbar" class="py-2">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <a href="tel:+51999999999" class="text-nowrap">
+                        <i class="fa-solid fa-phone me-1"></i> (+51) 999 999 999
+                    </a>
+                    <a href="mailto:lacaleta@gmail.com" class="d-none d-sm-inline text-nowrap">
+                        <i class="fa-regular fa-envelope me-1"></i> lacaleta@gmail.com
+                    </a>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <nav id="header" class="navbar py-2 border-bottom border-secondary border-opacity-25">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <a class="navbar-brand me-0" th:href="@{/}" style="width: 130px;">
+                        <img th:src="@{/images/lacaleta.png}" class="img-fluid" alt="Logo La Caleta">
+                    </a>
+                    <div class="d-none d-xl-block text-secondary fst-italic small">
+                        "El que come callado, come doble"
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
+                    <div id="navLinkMenu" class="d-none d-lg-flex align-items-center gap-2 me-2">
+                        <a class="nav-link nav-link-header px-3 py-1 fw-bold text-nowrap"
+                            th:classappend="${paginaActiva == 'menu'} ? 'active' : ''" th:href="@{/menu}">Menú</a>
+                        <a class="nav-link nav-link-header px-3 py-1 fw-bold text-nowrap"
+                            th:classappend="${paginaActiva == 'promociones'} ? 'active' : ''"
+                            th:href="@{/promociones}">Promociones</a>
+                        <a class="nav-link nav-link-header px-3 py-1 fw-bold text-nowrap"
+                            th:classappend="${paginaActiva == 'locales'} ? 'active' : ''"
+                            th:href="@{/locales}">Locales</a>
+                    </div>
+
+                    <button type="button"
+                        class="nav-menu-link-shop px-3 py-2 fw-bold rounded-pill d-flex align-items-center gap-2 text-nowrap border-0"
+                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="d-none d-sm-inline">S/ 0.00</span>
+                    </button>
+
+                    <div id="navUserArea">
+                        <a th:if="${usuario == null}"
+                            class="d-flex align-items-center gap-2 text-decoration-none small fw-semibold text-nowrap link-usuario"
+                            th:classappend="${paginaActiva == 'login'} ? 'active' : ''" th:href="@{/login}">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="d-none d-md-inline">Iniciar sesión</span>
+                        </a>
+
+                        <div th:if="${usuario != null}" class="dropdown">
+                            <button
+                                class="btn btn-dark text-white dropdown-toggle border-0 small fw-semibold d-flex align-items-center gap-2 shadow-none"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-circle-user text-ro fs-5"></i>
+                                <span th:text="${usuario.nombre}">Usuario</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end border-secondary shadow">
+                                <li th:if="${usuario.rol == 'ADMIN'}">
+                                    <a class="dropdown-item text-ro small fw-bold" th:href="@{/admin}">
+                                        <i class="fa-solid fa-gauge me-2"></i>Panel Admin
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-white small" th:href="@{/logout}">
+                                        <i class="fa-solid fa-right-from-bracket me-2 text-danger"></i>Cerrar sesión
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <button class="btn border-0 text-white p-1 d-lg-none shadow-none" type="button"
+                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu"
+                        aria-label="Abrir navegación">
+                        <i class="fa-solid fa-bars fs-3"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+</body>
+
+</html>

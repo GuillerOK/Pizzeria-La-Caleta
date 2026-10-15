@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Envío</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header-checkout :: headerCheckout}"></div>
+
+    <main>
+        <section class="py-3 border-bottom border-secondary border-opacity-25 bg-negro">
+            <div class="container">
+                <div class="d-flex align-items-center gap-3 gap-md-4 text-nowrap overflow-x-auto py-1 small">
+                    <a th:href="@{/carrito}"
+                        class="d-flex align-items-center gap-2 text-ro opacity-75 text-decoration-none">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">
+                            <i class="fa-solid fa-check fs-xs"></i>
+                        </span>
+                        <span>Mis productos</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </a>
+                    <div class="d-flex align-items-center gap-2 text-ro fw-bold">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">2</span>
+                        <span>Envío</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 text-secondary opacity-50">
+                        <span class="badge rounded-circle bg-secondary bg-opacity-25 text-secondary px-2 py-1">3</span>
+                        <span>Pago</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row g-4">
+
+                    <div class="col-12 col-lg-8">
+
+                        <div
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4">
+                            <h2 class="fw-bold fs-5 mb-3 text-white">¿Cómo deseas recibir tu pedido?</h2>
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <label
+                                        class="p-3 rounded-3 border border-secondary border-opacity-50 d-flex align-items-center gap-3 cursor-pointer tarjeta-opcion-pago w-100">
+                                        <input class="form-check-input mt-0" type="radio" name="tipoModalidad"
+                                            id="optRetiro" value="retiro" checked
+                                            onchange="cambiarModalidadEntrega('retiro')">
+                                        <div>
+                                            <span class="d-block text-white fw-bold small"><i
+                                                    class="fa-solid fa-store text-ro me-1"></i> Retiro en Sede</span>
+                                            <small class="text-secondary">Recoge sin costo en nuestro local</small>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <label
+                                        class="p-3 rounded-3 border border-secondary border-opacity-50 d-flex align-items-center gap-3 cursor-pointer tarjeta-opcion-pago w-100">
+                                        <input class="form-check-input mt-0" type="radio" name="tipoModalidad"
+                                            id="optDelivery" value="delivery"
+                                            onchange="cambiarModalidadEntrega('delivery')">
+                                        <div>
+                                            <span class="d-block text-white fw-bold small"><i
+                                                    class="fa-solid fa-motorcycle text-ro me-1"></i> Delivery
+                                                Caleta</span>
+                                            <small class="text-secondary">Directo a tu dirección (+ S/ 5.00)</small>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="seccion-invitado"
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h2 class="fw-bold fs-5 mb-0 text-white">Ingresa tu correo para continuar</h2>
+                                <a th:href="@{/login}" class="text-ro small text-decoration-none fw-semibold">
+                                    ¿Ya tienes cuenta? Inicia sesión
+                                </a>
+                            </div>
+                            <p class="text-secondary small mb-4">
+                                Te enviaremos el comprobante electrónico, el código de pedido y el estado de
+                                preparación.
+                            </p>
+
+                            <form id="form-invitado" onsubmit="procesarPasoEnvioInvitado(event)">
+                                <div class="mb-3">
+                                    <label for="inputCorreoInvitado"
+                                        class="form-label small text-secondary fw-semibold">Correo Electrónico *</label>
+                                    <input type="email" id="inputCorreoInvitado" class="form-control buscador-input"
+                                        placeholder="ejemplo@correo.com" required>
+                                </div>
+
+                                <div id="campos-delivery-invitado" class="row g-3 d-none mb-3">
+                                    <div class="col-12 col-md-8">
+                                        <label for="inputDireccionInvitado"
+                                            class="form-label small text-secondary fw-semibold">Dirección de entrega
+                                            *</label>
+                                        <input type="text" id="inputDireccionInvitado"
+                                            class="form-control buscador-input" placeholder="Av. / Calle y Número">
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <label for="inputReferenciaInvitado"
+                                            class="form-label small text-secondary fw-semibold">Referencia</label>
+                                        <input type="text" id="inputReferenciaInvitado"
+                                            class="form-control buscador-input" placeholder="Dpto, timbre, etc.">
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="my-4 p-3 rounded-3 bg-black bg-opacity-25 border border-secondary border-opacity-10">
+                                    <ul class="list-unstyled small text-secondary mb-0 d-flex flex-column gap-2">
+                                        <li class="d-flex align-items-center gap-2">
+                                            <i class="fa-solid fa-shield-halved text-ro"></i> Compra rápida sin
+                                            necesidad de contraseña previa.
+                                        </li>
+                                        <li class="d-flex align-items-center gap-2">
+                                            <i class="fa-solid fa-receipt text-ro"></i> Comprobante y notificaciones
+                                            directas a tu bandeja.
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <button type="submit"
+                                    class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small border-0">
+                                    Continuar al Pago <i class="fa-solid fa-arrow-right ms-1"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <div id="seccion-logueado"
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4 d-none">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h2 class="fw-bold fs-5 mb-0 text-white">Datos de Contacto y Entrega</h2>
+                                <span
+                                    class="badge bg-success bg-opacity-25 text-success small border border-success border-opacity-25">
+                                    <i class="fa-solid fa-user-check me-1"></i> Sesión iniciada
+                                </span>
+                            </div>
+                            <p class="text-secondary small mb-4">
+                                Estos son tus datos registrados. Puedes modificarlos si estás pidiendo para un amigo o a
+                                otra dirección.
+                            </p>
+
+                            <form id="form-logueado" onsubmit="procesarPasoEnvioLogueado(event)">
+                                <div class="row g-3">
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputNombreUser"
+                                            class="form-label small text-secondary fw-semibold">Nombre y Apellidos
+                                            *</label>
+                                        <input type="text" id="inputNombreUser" class="form-control buscador-input"
+                                            required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputCorreoUser"
+                                            class="form-label small text-secondary fw-semibold">Correo Electrónico
+                                            *</label>
+                                        <input type="email" id="inputCorreoUser" class="form-control buscador-input"
+                                            required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputTelefonoUser"
+                                            class="form-label small text-secondary fw-semibold">Teléfono / WhatsApp
+                                            *</label>
+                                        <input type="tel" id="inputTelefonoUser" class="form-control buscador-input"
+                                            placeholder="999 999 999" required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputDocumentoUser"
+                                            class="form-label small text-secondary fw-semibold">DNI o Documento
+                                            *</label>
+                                        <input type="text" id="inputDocumentoUser" class="form-control buscador-input"
+                                            placeholder="N° de Documento" required>
+                                    </div>
+
+                                    <div id="campos-delivery-user" class="col-12 d-none">
+                                        <hr class="border-secondary border-opacity-25 my-2">
+                                        <div class="row g-3">
+                                            <div class="col-12 col-md-8">
+                                                <label for="inputDireccionUser"
+                                                    class="form-label small text-secondary fw-semibold">Dirección de
+                                                    entrega *</label>
+                                                <input type="text" id="inputDireccionUser"
+                                                    class="form-control buscador-input"
+                                                    placeholder="Av. / Calle y Número">
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <label for="inputReferenciaUser"
+                                                    class="form-label small text-secondary fw-semibold">Referencia</label>
+                                                <input type="text" id="inputReferenciaUser"
+                                                    class="form-control buscador-input"
+                                                    placeholder="Dpto, timbre, frente a...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <button type="submit"
+                                        class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small border-0">
+                                        Guardar y Continuar al Pago <i class="fa-solid fa-arrow-right ms-1"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 col-lg-4">
+
+                        <div
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4">
+                            <h5
+                                class="fw-bold mb-3 text-white fs-6 text-uppercase pb-2 border-bottom border-secondary border-opacity-25">
+                                Resumen de compra
+                            </h5>
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="small text-secondary"><strong class="text-white"
+                                        id="shipping-cant-articulos">0</strong> producto(s)</span>
+                                <a th:href="@{/carrito}"
+                                    class="small text-decoration-none text-ro fw-semibold">Editar</a>
+                            </div>
+
+                            <div class="d-flex flex-column gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-25 overflow-y-auto"
+                                style="max-height: 240px;" id="shipping-lista-productos">
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-2 small text-secondary">
+                                <span>Subtotal</span>
+                                <span class="text-white fw-semibold" id="shipping-subtotal">S/ 0.00</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3 small text-secondary">
+                                <span>Costo de envío</span>
+                                <span class="text-success fw-semibold" id="shipping-costo-envio">Gratis (Retiro)</span>
+                            </div>
+
+                            <div class="border-top border-secondary border-opacity-25 pt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold text-white">Total pedido</span>
+                                    <span class="fw-bold fs-5 text-ro" id="shipping-total">S/ 0.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="card-sede-info"
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm">
+                            <h5 class="fw-bold fs-6 mb-2 text-white"><i class="fa-solid fa-store text-ro me-1"></i> Sede
+                                de Retiro:</h5>
+                            <h6 class="fw-bold text-white mb-1" id="retiro-nombre-local">Sede Miraflores</h6>
+                            <p class="text-secondary small mb-2" id="retiro-direccion-local">
+                                Av. José Larco 850, Miraflores, Lima
+                            </p>
+                            <a href="https://maps.google.com" target="_blank"
+                                class="text-ro small text-decoration-none d-inline-flex align-items-center gap-1 mb-3"
+                                style="font-size: 11px;">
+                                <i class="fa-solid fa-diamond-turn-right"></i> ¿Cómo llegar?
+                            </a>
+                            <div class="rounded-3 overflow-hidden border border-secondary border-opacity-25"
+                                style="height: 140px;">
+                                <iframe id="retiro-mapa-iframe"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.8659691890887!2d-77.0315!3d-12.1215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDA3JzE3LjQiUyA3N8KwMDEnNTMuNCJX!5e0!3m2!1ses!2spe!4v1600000000000!5m2!1ses!2spe"
+                                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                                </iframe>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/shipping.js}"></script>
+</body>
+
+</html>

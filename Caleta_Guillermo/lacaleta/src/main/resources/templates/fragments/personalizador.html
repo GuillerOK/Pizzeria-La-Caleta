@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <div th:fragment="bloqueTamano" class="bloque-personalizacion mb-3" id="seccion-tamano">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold text-white mb-0 fs-6">Elige el tamaño</h5>
+            <span class="text-ro small fw-semibold">(Obligatorio)</span>
+        </div>
+        <div class="alerta-requerido mb-2 p-2 rounded-2" id="alerta-tamano">
+            <i class="fa-solid fa-circle-info me-2 text-warning"></i>
+            <span class="fs-xs text-warning-emphasis">Por favor selecciona el mínimo requerido.</span>
+        </div>
+        <div class="card-acordeon-caleta p-3 rounded-3">
+            <div class="d-flex justify-content-between align-items-center cursor-pointer mb-2" onclick="alternarSeccion('cuerpo-tamano', 'resumen-box-tamano')">
+                <span class="small fw-semibold text-white-50">Selecciona 1 opción</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span id="badge-tamano" class="badge-contador">Selección 0/1</span>
+                    <i class="fa-solid fa-chevron-down text-secondary fs-xs icono-flecha"></i>
+                </div>
+            </div>
+            <div class="cuerpo-acordeon" id="cuerpo-tamano">
+                <input type="radio" class="btn-check" name="tamano" id="tam-mediana" th:value="${param.precio != null ? param.precio : '36.00'}" data-label="Mediana (8 cortes)" onchange="seleccionarYContraer('tamano', this, 'cuerpo-tamano', 'resumen-box-tamano', 'alerta-tamano', 'cuerpo-masa', 'resumen-box-masa')">
+                <label class="fila-opcion" for="tam-mediana">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Mediana</span>
+                        <span class="text-secondary fs-xs">8 cortes</span>
+                    </div>
+                    <span class="small text-white fw-semibold">Incluido</span>
+                </label>
+                <input type="radio" class="btn-check" name="tamano" id="tam-familiar" value="familiar" data-label="Familiar (12 cortes) +S/ 10.00" onchange="seleccionarYContraer('tamano', this, 'cuerpo-tamano', 'resumen-box-tamano', 'alerta-tamano', 'cuerpo-masa', 'resumen-box-masa')">
+                <label class="fila-opcion" for="tam-familiar">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Familiar</span>
+                        <span class="text-secondary fs-xs">12 cortes</span>
+                    </div>
+                    <span class="small text-ro fw-bold">+S/ 10.00</span>
+                </label>
+                <input type="radio" class="btn-check" name="tamano" id="tam-mega" value="mega" data-label="Mega Caleta (16 cortes) +S/ 20.00" onchange="seleccionarYContraer('tamano', this, 'cuerpo-tamano', 'resumen-box-tamano', 'alerta-tamano', 'cuerpo-masa', 'resumen-box-masa')">
+                <label class="fila-opcion" for="tam-mega">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Mega Caleta</span>
+                        <span class="text-secondary fs-xs">16 cortes</span>
+                    </div>
+                    <span class="small text-ro fw-bold">+S/ 20.00</span>
+                </label>
+            </div>
+            <div class="caja-seleccionada d-none" id="resumen-box-tamano" onclick="alternarSeccion('cuerpo-tamano', 'resumen-box-tamano')">
+                <span class="small fw-semibold text-white" id="texto-resumen-tamano"></span>
+                <i class="fa-solid fa-circle-dot text-success"></i>
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="bloqueMasa" class="bloque-personalizacion mb-3" id="seccion-masa">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold text-white mb-0 fs-6">Elige el tipo de masa</h5>
+            <span class="text-ro small fw-semibold">(Obligatorio)</span>
+        </div>
+        <div class="alerta-requerido mb-2 p-2 rounded-2 d-none" id="alerta-masa">
+            <i class="fa-solid fa-circle-info me-2 text-warning"></i>
+            <span class="fs-xs text-warning-emphasis">Por favor selecciona el mínimo requerido.</span>
+        </div>
+        <div class="card-acordeon-caleta p-3 rounded-3">
+            <div class="d-flex justify-content-between align-items-center cursor-pointer mb-2" onclick="alternarSeccion('cuerpo-masa', 'resumen-box-masa')">
+                <span class="small fw-semibold text-white-50">Selecciona 1 opción</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span id="badge-masa" class="badge-contador">Selección 0/1</span>
+                    <i class="fa-solid fa-chevron-down text-secondary fs-xs icono-flecha"></i>
+                </div>
+            </div>
+            <div class="cuerpo-acordeon d-none" id="cuerpo-masa">
+                <input type="radio" class="btn-check" name="masa" id="masa-tradicional" value="Masa Tradicional" onchange="seleccionarYContraer('masa', this, 'cuerpo-masa', 'resumen-box-masa', 'alerta-masa', 'cuerpo-cortesias', 'resumen-box-cortesias')">
+                <label class="fila-opcion" for="masa-tradicional">
+                    <span class="small fw-bold text-white">Masa Tradicional</span>
+                    <span class="small text-secondary">Estándar</span>
+                </label>
+                <input type="radio" class="btn-check" name="masa" id="masa-delgada" value="Delgada Crocante" onchange="seleccionarYContraer('masa', this, 'cuerpo-masa', 'resumen-box-masa', 'alerta-masa', 'cuerpo-cortesias', 'resumen-box-cortesias')">
+                <label class="fila-opcion" for="masa-delgada">
+                    <span class="small fw-bold text-white">Delgada Crocante</span>
+                    <span class="small text-secondary">Sin costo extra</span>
+                </label>
+            </div>
+            <div class="caja-seleccionada d-none" id="resumen-box-masa" onclick="alternarSeccion('cuerpo-masa', 'resumen-box-masa')">
+                <span class="small fw-semibold text-white" id="texto-resumen-masa"></span>
+                <i class="fa-solid fa-circle-dot text-success"></i>
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="bloqueCortesias" class="bloque-personalizacion mb-3" id="seccion-cortesias">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold text-white mb-0 fs-6">Cortesía de la casa</h5>
+            <span class="text-ro small fw-semibold">(Obligatorio)</span>
+        </div>
+        <div class="alerta-requerido mb-2 p-2 rounded-2 d-none" id="alerta-cortesias">
+            <i class="fa-solid fa-circle-info me-2 text-warning"></i>
+            <span class="fs-xs text-warning-emphasis">Por favor selecciona el mínimo requerido.</span>
+        </div>
+        <div class="card-acordeon-caleta p-3 rounded-3">
+            <div class="d-flex justify-content-between align-items-center cursor-pointer mb-2" onclick="alternarSeccion('cuerpo-cortesias', 'resumen-box-cortesias')">
+                <span class="small fw-semibold text-white-50">Selecciona 1 salsa de cortesía</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span id="badge-cortesias" class="badge-contador">Selección 0/1</span>
+                    <i class="fa-solid fa-chevron-down text-secondary fs-xs icono-flecha"></i>
+                </div>
+            </div>
+            <div class="cuerpo-acordeon d-none" id="cuerpo-cortesias">
+                <input type="radio" class="btn-check" name="cortesia" id="cort-ajo" value="Salsa de Ajo Especial (1 unid.)" onchange="seleccionarYContraer('cortesias', this, 'cuerpo-cortesias', 'resumen-box-cortesias', 'alerta-cortesias', null, null)">
+                <label class="fila-opcion" for="cort-ajo">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Salsa de Ajo Especial</span>
+                        <span class="text-secondary fs-xs">Receta artesanal Caleta</span>
+                    </div>
+                    <span class="small text-success fw-bold">Gratis</span>
+                </label>
+                <input type="radio" class="btn-check" name="cortesia" id="cort-pepperoncini" value="Pepperoncini Caleta" onchange="seleccionarYContraer('cortesias', this, 'cuerpo-cortesias', 'resumen-box-cortesias', 'alerta-cortesias', null, null)">
+                <label class="fila-opcion" for="cort-pepperoncini">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Pepperoncini Caleta</span>
+                        <span class="text-secondary fs-xs">Ají encurtido tradicional para el borde</span>
+                    </div>
+                    <span class="small text-success fw-bold">Gratis</span>
+                </label>
+                <input type="radio" class="btn-check" name="cortesia" id="cort-oregano" value="Sobre de Orégano y Ají Seco" onchange="seleccionarYContraer('cortesias', this, 'cuerpo-cortesias', 'resumen-box-cortesias', 'alerta-cortesias', null, null)">
+                <label class="fila-opcion" for="cort-oregano">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Sobre de Orégano y Ají Seco</span>
+                        <span class="text-secondary fs-xs">Condimento adicional</span>
+                    </div>
+                    <span class="small text-success fw-bold">Gratis</span>
+                </label>
+            </div>
+            <div class="caja-seleccionada d-none" id="resumen-box-cortesias" onclick="alternarSeccion('cuerpo-cortesias', 'resumen-box-cortesias')">
+                <span class="small fw-semibold text-white" id="texto-resumen-cortesias"></span>
+                <i class="fa-solid fa-circle-dot text-success"></i>
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="bloqueExtras">
+        <div class="bloque-personalizacion mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary border-opacity-10 pb-2">
+                <span class="fw-bold small text-uppercase text-white">Acompañamientos</span>
+                <span class="text-secondary fs-xs">Para compartir</span>
+            </div>
+            <div th:each="acomp : ${acompanamientos}" class="mb-2">
+                <label class="fila-opcion" th:for="${'extra-' + acomp.id}">
+                    <div>
+                        <span class="small fw-bold text-white d-block" th:text="${acomp.nombre}">Nombre</span>
+                        <span class="text-secondary fs-xs" th:text="${acomp.descripcion}">Descripción</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="small text-ro fw-bold text-nowrap" th:text="'S/ ' + ${#numbers.formatDecimal(acomp.precio, 1, 2)}">+S/ 0.00</span>
+                        <input class="form-check-input item-extra-producto m-0 cursor-pointer" type="checkbox" th:id="${'extra-' + acomp.id}" th:value="${acomp.precio}" th:data-nombre="${acomp.nombre}" th:data-img="${acomp.imagenUrl}">
+                    </div>
+                </label>
+            </div>
+            <div th:if="${#lists.isEmpty(acompanamientos)}" class="text-center py-2 text-secondary fs-xs">No hay acompañamientos disponibles por el momento.</div>
+        </div>
+
+        <div class="bloque-personalizacion">
+            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary border-opacity-10 pb-2">
+                <span class="fw-bold small text-uppercase text-white">Bebidas</span>
+                <span class="text-secondary fs-xs">Bien heladas</span>
+            </div>
+            <div th:each="beb : ${bebidas}" class="mb-2">
+                <label class="fila-opcion" th:for="${'extra-' + beb.id}">
+                    <div>
+                        <span class="small fw-bold text-white d-block" th:text="${beb.nombre}">Nombre</span>
+                        <span class="text-secondary fs-xs" th:text="${beb.descripcion}">Descripción</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="small text-ro fw-bold text-nowrap" th:text="'S/ ' + ${#numbers.formatDecimal(beb.precio, 1, 2)}">+S/ 0.00</span>
+                        <input class="form-check-input item-extra-producto m-0 cursor-pointer" type="checkbox" th:id="${'extra-' + beb.id}" th:value="${beb.precio}" th:data-nombre="${beb.nombre}" th:data-img="${beb.imagenUrl}">
+                    </div>
+                </label>
+            </div>
+            <div th:if="${#lists.isEmpty(bebidas)}" class="text-center py-2 text-secondary fs-xs">No hay bebidas disponibles por el momento.</div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,357 @@
+.contenedor-login {
+    width: 100%;
+    min-height: calc(100vh - 180px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 15px;
+    background-color: var(--bg-negro);
+}
+
+.login-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 900px;
+    background-color: #f7f7f7;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+    color: #1f2937;
+}
+
+.login-seccion {
+    padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-izq {
+    background-color: #ffffff;
+    border-right: 1px solid #e5e5e5;
+}
+
+.login-der {
+    justify-content: space-between;
+    background-color: #f7f7f7;
+}
+
+.login-titulo {
+    font-size: 22px;
+    font-weight: 900;
+    color: #111827;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.username {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.username label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.username label span {
+    color: var(--carmesi);
+}
+
+.input-relative {
+    position: relative;
+    width: 100%;
+}
+
+.username input,
+.username select {
+    width: 100%;
+    height: 42px;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #111827;
+    background-color: #fff;
+    outline: none;
+    transition: var(--t);
+}
+
+.username input:focus,
+.username select:focus {
+    border-color: var(--ro);
+}
+
+.username input::placeholder {
+    color: #9ca3af;
+}
+
+.icono-ojo {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    cursor: pointer;
+}
+
+.recordar {
+    font-size: 13px;
+    color: var(--carmesi);
+    font-weight: 600;
+    cursor: pointer;
+    margin: 4px 0 20px 0;
+    width: fit-content;
+}
+
+.recordar:hover {
+    color: var(--ro);
+    text-decoration: underline;
+}
+
+.btn-login,
+.btn-crear-cuenta {
+    width: 100%;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 800;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--t);
+}
+
+.btn-login {
+    background-color: var(--ro);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3);
+}
+
+.btn-login:hover {
+    background-color: rgb(255, 90, 20);
+    color: #ffffff;
+}
+
+.btn-crear-cuenta {
+    background-color: var(--bg-suave);
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.btn-crear-cuenta:hover {
+    background-color: var(--carmesi);
+    color: #ffffff;
+}
+
+.beneficios-subtitulo {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.beneficios-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.beneficios-lista li {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.3;
+    position: relative;
+    padding-left: 16px;
+}
+
+.beneficios-lista li::before {
+    content: "•";
+    color: var(--ro);
+    font-size: 18px;
+    position: absolute;
+    left: 0;
+    top: -3px;
+}
+
+.forgot-wrapper {
+    max-width: 540px;
+    width: 100%;
+    margin: 40px auto;
+    color: #1f2937;
+}
+
+.forgot-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-align: center;
+    color: #111827;
+    margin-bottom: 20px;
+}
+
+.forgot-description {
+    font-size: 0.95rem;
+    text-align: center;
+    color: #4b5563;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.recaptcha-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1973e8;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 10px 14px;
+    max-width: 250px;
+    font-size: 0.85rem;
+    margin: 15px 0 30px;
+}
+
+.forgot-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgot-back-link {
+    color: #374151;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.forgot-back-link:hover {
+    color: var(--carmesi);
+}
+
+.caleta-admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background: #f8fafc;
+    color: #1f2937;
+}
+
+.caleta-sidebar {
+    width: 260px;
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 14px;
+    flex-shrink: 0;
+}
+
+.caleta-menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: #4b5563;
+    font-size: 13.5px;
+    font-weight: 600;
+    background: transparent;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--t);
+}
+
+.caleta-menu-btn:hover {
+    background: #fff1ed;
+    color: var(--ro);
+}
+
+.caleta-menu-btn.activo {
+    background: var(--ro);
+    color: #ffffff !important;
+}
+
+.caleta-admin-main {
+    flex-grow: 1;
+    background-color: #f8fafc;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.caleta-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.caleta-kpi-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid var(--ro);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.caleta-panel {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 20px;
+}
+
+.table.caleta-table thead th {
+    background: #f9fafb;
+    color: var(--ro);
+    font-size: 11.5px;
+    text-transform: uppercase;
+}
+
+.caleta-badge.success { background: #dcfce7 !important; color: #15803d !important; }
+.caleta-badge.warning { background: #fef9c3 !important; color: #a16207 !important; }
+.caleta-badge.danger { background: #fee2e2 !important; color: #b91c1c !important; }
+
+.caleta-btn-primary {
+    background: var(--ro);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .login-grid {
+        grid-template-columns: 1fr;
+    }
+    .login-izq {
+        border-right: none;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .caleta-admin-wrapper {
+        flex-direction: column;
+    }
+    .caleta-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+    }
+}
