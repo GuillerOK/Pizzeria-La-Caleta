@@ -374,60 +374,59 @@
     </div>
 
     <!-- MODAL 1: REGISTRAR NUEVA PIZZA -->
-    <div class="modal fade" id="modalNuevaPizza" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content"
-                style="background-color: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
-                <div
-                    style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
-                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
+    <div class="modal fade" id="modalNuevaPizza" tabindex="-1" aria-labelledby="modalNuevaPizzaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white border border-secondary border-opacity-25"
+                style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
+                    <h5 class="modal-title fw-bold fs-5 mb-0" id="modalNuevaPizzaLabel" style="color: var(--color-rojo-naranja);">
                         <i class="bi bi-plus-circle me-2"></i>Registrar Pizza en Menú
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <form th:action="@{/admin/pizzas/guardar}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="stock" value="10">
-                    <div style="padding: 20px;">
-                        <div class="username mb-3">
-                            <label style="color: #d1d5db;">Nombre de la Pizza</label>
-                            <input type="text" name="nombre" class="form-control" placeholder="Ej. Americana Suprema"
-                                required>
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Nombre de la Pizza *</label>
+                            <input type="text" name="nombre" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. Americana Suprema" required>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row g-3 mb-3">
                             <div class="col-md-6">
-                                <label style="color: #d1d5db;">Categoría</label>
-                                <select name="codigoCategoria" class="form-select"
-                                    style="background:#222; color:#fff; border:1px solid #444;">
+                                <label class="form-label text-secondary small fw-semibold">Categoría</label>
+                                <select name="codigoCategoria" class="form-select text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;">
                                     <option th:each="cat : ${categorias}" th:value="${cat.codigo}" th:text="${cat.nombre}">Categoría Dinámica</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label style="color: #d1d5db;">Tamaño</label>
-                                <select name="tamano" class="form-select"
-                                    style="background:#222; color:#fff; border:1px solid #444;">
+                                <label class="form-label text-secondary small fw-semibold">Tamaño</label>
+                                <select name="tamano" class="form-select text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;">
                                     <option value="Personal">Personal</option>
                                     <option value="Mediana">Mediana</option>
                                     <option value="Familiar" selected>Familiar</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="username mb-3">
-                            <label style="color: #d1d5db;">Precio de Venta (S/)</label>
-                            <input type="number" step="0.50" name="precio" class="form-control" placeholder="Ej. 42.00"
-                                required>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Precio de Venta (S/) *</label>
+                            <input type="number" step="0.50" min="1" name="precio" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. 42.00" required>
                         </div>
-                        <div class="username mb-3">
-                            <label style="color: #d1d5db;">Subir Archivo de Imagen (PNG/JPG)</label>
-                            <input type="file" name="imagenArchivo" class="form-control" accept="image/png, image/jpeg">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Subir Archivo de Imagen (PNG/JPG)</label>
+                            <input type="file" name="imagenArchivo" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" accept="image/png, image/jpeg">
                         </div>
-                        <div class="username mb-3">
-                            <label style="color: #d1d5db;">O usar URL externa / estática</label>
-                            <input type="text" name="imagenUrl" class="form-control"
-                                placeholder="/images/producto_americana.jpg">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">O usar URL externa / estática</label>
+                            <input type="text" name="imagenUrl" class="form-control text-white"
+                                style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="/images/producto_americana.jpg">
                         </div>
                     </div>
-                    <div
-                        style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: flex-end; gap: 10px;">
+                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3">
                         <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cerrar</button>
                         <button type="submit" class="caleta-btn-primary">Guardar Pizza</button>
                     </div>
@@ -437,44 +436,42 @@
     </div>
 
     <!-- MODAL NUEVO INSUMO -->
-    <div class="modal fade" id="modalNuevoInsumo" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content"
-                style="background-color: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
-                <div
-                    style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
-                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
+    <div class="modal fade" id="modalNuevoInsumo" tabindex="-1" aria-labelledby="modalNuevoInsumoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white border border-secondary border-opacity-25"
+                style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
+                    <h5 class="modal-title fw-bold fs-5 mb-0" id="modalNuevoInsumoLabel" style="color: var(--color-rojo-naranja);">
                         <i class="bi bi-box-seam me-2"></i>Registrar Nuevo Insumo
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <form th:action="@{/admin/insumos/guardar}" method="post">
-                    <div style="padding: 20px;">
-                        <div class="username mb-3">
-                            <label style="color: #d1d5db;">Nombre del Insumo</label>
-                            <input type="text" name="nombre" class="form-control" placeholder="Ej. Aceitunas Rodajas"
-                                required>
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Nombre del Insumo *</label>
+                            <input type="text" name="nombre" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. Aceitunas Rodajas" required>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row g-3 mb-3">
                             <div class="col-md-6">
-                                <label style="color: #d1d5db;">Stock Actual</label>
-                                <input type="number" step="0.1" name="stockActual" class="form-control"
-                                    placeholder="Ej. 10.0" required>
+                                <label class="form-label text-secondary small fw-semibold">Stock Actual *</label>
+                                <input type="number" step="0.1" min="0" name="stockActual" class="form-control text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. 10.0" required>
                             </div>
                             <div class="col-md-6">
-                                <label style="color: #d1d5db;">Unidad de Medida</label>
-                                <input type="text" name="unidadMedida" class="form-control"
-                                    placeholder="Ej. kg, Litros, und" required>
+                                <label class="form-label text-secondary small fw-semibold">Unidad de Medida *</label>
+                                <input type="text" name="unidadMedida" class="form-control text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. kg, Litros, und" required>
                             </div>
                         </div>
-                        <div class="username mb-3">
-                            <label style="color: #d1d5db;">Stock Mínimo (Alerta Crítica)</label>
-                            <input type="number" step="0.1" name="stockMinimo" class="form-control" value="5.0"
-                                required>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Stock Mínimo (Alerta Crítica) *</label>
+                            <input type="number" step="0.1" min="0" name="stockMinimo" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" value="5.0" required>
                         </div>
                     </div>
-                    <div
-                        style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: flex-end; gap: 10px;">
+                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3">
                         <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cancelar</button>
                         <button type="submit" class="caleta-btn-primary">Guardar Insumo</button>
                     </div>
@@ -484,44 +481,43 @@
     </div>
 
     <!-- MODAL EDITAR INSUMO -->
-    <div class="modal fade" id="modalEditarInsumo" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content"
-                style="background-color: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
-                <div
-                    style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
-                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
+    <div class="modal fade" id="modalEditarInsumo" tabindex="-1" aria-labelledby="modalEditarInsumoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white border border-secondary border-opacity-25"
+                style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
+                    <h5 class="modal-title fw-bold fs-5 mb-0" id="modalEditarInsumoLabel" style="color: var(--color-rojo-naranja);">
                         <i class="bi bi-pencil-square me-2"></i>Modificar Insumo
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <form th:action="@{/admin/insumos/guardar}" method="post">
                     <input type="hidden" id="edit-insumo-id" name="id">
-                    <div style="padding: 20px;">
-                        <div class="username mb-3">
-                            <label style="color: #d1d5db;">Nombre del Insumo</label>
-                            <input type="text" id="edit-insumo-nombre" name="nombre" class="form-control" required>
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Nombre del Insumo *</label>
+                            <input type="text" id="edit-insumo-nombre" name="nombre" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" required>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row g-3 mb-3">
                             <div class="col-md-6">
-                                <label style="color: #d1d5db;">Stock Actual</label>
-                                <input type="number" step="0.1" id="edit-insumo-stock" name="stockActual"
-                                    class="form-control" required>
+                                <label class="form-label text-secondary small fw-semibold">Stock Actual *</label>
+                                <input type="number" step="0.1" min="0" id="edit-insumo-stock" name="stockActual"
+                                    class="form-control text-white" style="background-color: #1b1b1b; border: 1px solid #444;" required>
                             </div>
                             <div class="col-md-6">
-                                <label style="color: #d1d5db;">Unidad de Medida</label>
-                                <input type="text" id="edit-insumo-unidad" name="unidadMedida" class="form-control"
-                                    required>
+                                <label class="form-label text-secondary small fw-semibold">Unidad de Medida *</label>
+                                <input type="text" id="edit-insumo-unidad" name="unidadMedida" class="form-control text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;" required>
                             </div>
                         </div>
-                        <div class="username mb-3">
-                            <label style="color: #d1d5db;">Stock Mínimo</label>
-                            <input type="number" step="0.1" id="edit-insumo-minimo" name="stockMinimo"
-                                class="form-control" required>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Stock Mínimo *</label>
+                            <input type="number" step="0.1" min="0" id="edit-insumo-minimo" name="stockMinimo"
+                                class="form-control text-white" style="background-color: #1b1b1b; border: 1px solid #444;" required>
                         </div>
                     </div>
-                    <div
-                        style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: flex-end; gap: 10px;">
+                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3">
                         <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cancelar</button>
                         <button type="submit" class="caleta-btn-primary">Actualizar Insumo</button>
                     </div>
@@ -531,38 +527,38 @@
     </div>
 
     <!-- MODAL 2: MODIFICAR / INHABILITAR PIZZA -->
-    <div class="modal fade" id="modalEditarPizza" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content"
-                style="background-color: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
-                <div
-                    style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
-                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
+    <div class="modal fade" id="modalEditarPizza" tabindex="-1" aria-labelledby="modalEditarPizzaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white border border-secondary border-opacity-25"
+                style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
+                    <h5 class="modal-title fw-bold fs-5 mb-0" id="modalEditarPizzaLabel" style="color: var(--color-rojo-naranja);">
                         <i class="bi bi-pencil-square me-2"></i>Modificar / Inhabilitar Pizza
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <form th:action="@{/admin/pizzas/editar}" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="edit-id" name="id">
                     <input type="hidden" id="edit-stock" name="stock" value="10">
 
-                    <div style="padding: 20px;">
-                        <div class="username mb-3">
-                            <label style="color: #d1d5db;">Nombre de la Pizza</label>
-                            <input type="text" id="edit-nombre" name="nombre" class="form-control" required>
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Nombre de la Pizza *</label>
+                            <input type="text" id="edit-nombre" name="nombre" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" required>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row g-3 mb-3">
                             <div class="col-md-6">
-                                <label style="color: #d1d5db;">Categoría</label>
-                                <select id="edit-categoria" name="codigoCategoria" class="form-select"
-                                    style="background:#222; color:#fff; border:1px solid #444;">
+                                <label class="form-label text-secondary small fw-semibold">Categoría</label>
+                                <select id="edit-categoria" name="codigoCategoria" class="form-select text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;">
                                     <option th:each="cat : ${categorias}" th:value="${cat.codigo}" th:text="${cat.nombre}">Categoría Dinámica</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label style="color: #d1d5db;">Tamaño</label>
-                                <select id="edit-tamano" name="tamano" class="form-select"
-                                    style="background:#222; color:#fff; border:1px solid #444;">
+                                <label class="form-label text-secondary small fw-semibold">Tamaño</label>
+                                <select id="edit-tamano" name="tamano" class="form-select text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;">
                                     <option value="Personal">Personal</option>
                                     <option value="Mediana">Mediana</option>
                                     <option value="Familiar">Familiar</option>
@@ -571,31 +567,32 @@
                         </div>
 
                         <!-- CONTROL DE DISPONIBILIDAD -->
-                        <div class="username mb-3">
-                            <label style="color: #d1d5db;">Estado en Menú Web</label>
-                            <select id="edit-disponible" name="disponible" class="form-select"
-                                style="background:#222; color:#fff; border:1px solid #444;">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Estado en Menú Web</label>
+                            <select id="edit-disponible" name="disponible" class="form-select text-white"
+                                style="background-color: #1b1b1b; border: 1px solid #444;">
                                 <option value="true">Disponible (Visible para clientes)</option>
                                 <option value="false">Agotado / Inhabilitada (Oculta del menú)</option>
                             </select>
                         </div>
 
-                        <div class="username mb-3">
-                            <label style="color: #d1d5db;">Precio (S/)</label>
-                            <input type="number" step="0.50" id="edit-precio" name="precio" class="form-control"
-                                required>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Precio (S/) *</label>
+                            <input type="number" step="0.50" min="1" id="edit-precio" name="precio" class="form-control text-white"
+                                style="background-color: #1b1b1b; border: 1px solid #444;" required>
                         </div>
-                        <div class="username mb-3">
-                            <label style="color: #d1d5db;">Subir Nuevo Archivo (PNG/JPG)</label>
-                            <input type="file" name="imagenArchivo" class="form-control" accept="image/png, image/jpeg">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Subir Nuevo Archivo (PNG/JPG)</label>
+                            <input type="file" name="imagenArchivo" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" accept="image/png, image/jpeg">
                         </div>
-                        <div class="username mb-3">
-                            <label style="color: #d1d5db;">O cambiar URL externa / estática</label>
-                            <input type="text" id="edit-img" name="imagenUrl" class="form-control">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">O cambiar URL externa / estática</label>
+                            <input type="text" id="edit-img" name="imagenUrl" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;">
                         </div>
                     </div>
-                    <div
-                        style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: flex-end; gap: 10px;">
+                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3">
                         <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cancelar</button>
                         <button type="submit" class="caleta-btn-primary">Actualizar Cambios</button>
                     </div>
@@ -603,6 +600,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Global de Notificaciones -->
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
 
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
