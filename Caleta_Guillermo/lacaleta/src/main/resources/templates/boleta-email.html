@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Boleta de compra</title></head>
+<body style="margin:0;background:#f4f4f4;color:#222;font-family:Arial,sans-serif">
+<table role="presentation" style="width:100%;max-width:600px;margin:24px auto;background:white;padding:24px">
+<tr><td>
+<h1 style="color:#c43c25">La Caleta</h1>
+<h2>Boleta de compra — Pedido #<span th:text="${pedido.id}"></span></h2>
+<p>Hola, <span th:text="${pedido.usuario.nombre}"></span>. Gracias por tu compra.</p>
+<p>Fecha (Lima): <span th:text="${fecha}"></span></p>
+<table style="width:100%;border-collapse:collapse;text-align:left" cellpadding="8">
+<thead><tr style="background:#eee"><th>Producto</th><th>Cant.</th><th>Precio</th><th>Subtotal</th></tr></thead>
+<tbody><tr th:each="item : ${items}">
+<td><span th:text="${item.producto.nombre}"></span> <span th:text="${item.producto.tamano}"></span></td>
+<td th:text="${item.cantidad}"></td>
+<td style="white-space:nowrap" th:text="${'S/ ' + #numbers.formatDecimal(item.precioUnitario,1,2)}"></td>
+<td style="white-space:nowrap" th:text="${'S/ ' + #numbers.formatDecimal(item.subtotal,1,2)}"></td>
+</tr></tbody></table>
+<p style="text-align:right">Subtotal: <span th:text="${'S/ ' + #numbers.formatDecimal(subtotal,1,2)}"></span></p>
+<p style="text-align:right">Envío: <span th:text="${'S/ ' + #numbers.formatDecimal(envio,1,2)}"></span></p>
+<p style="text-align:right;font-size:20px"><strong>Total: <span th:text="${'S/ ' + #numbers.formatDecimal(pedido.total,1,2)}"></span></strong></p>
+<p>Puedes consultar tu pedido en tu perfil de La Caleta.</p>
+</td></tr></table></body></html>

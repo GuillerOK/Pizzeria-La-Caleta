@@ -7,13 +7,14 @@ function guardarCarrito(carrito) {
     actualizarVistasCarrito();
 }
 
-function agregarAlCarrito(nombre, precio, imagenUrl, descripcion = "") {
+function agregarAlCarrito(nombre, precio, imagenUrl, descripcion = "", productoId = null) {
     const carrito = obtenerCarrito();
-    const itemExistente = carrito.find(item => item.nombre === nombre);
+    const itemExistente = carrito.find(item => item.nombre === nombre && item.productoId === productoId);
     if (itemExistente) {
         itemExistente.cantidad += 1;
     } else {
         carrito.push({
+            productoId: productoId,
             nombre: nombre,
             precio: parseFloat(precio),
             cantidad: 1,
@@ -294,3 +295,52 @@ function editarProductoCarrito(indice) {
 
     window.location.href = `/detalles?${params.toString()}`;
 }
+
+
+// El servidor valida la sesión, el stock y los precios; nunca se envían importes.
+document.addEventListener('DOMContentLoaded', () => {
+    const boton = document.getElementById('btnComprar');
+    if (!boton) return;
+    let procesando = false;
+    boton.addEventListener('click', async () => {
+        if (procesando) return;
+        procesando = true;
+        boton.disabled = true;
+        boton.textContent = 'Procesando pago...';
+        let completado = false;
+        try {
+            const carrito = obtenerCarrito();
+            if (!boton.dataset.email) throw new Error('Inicia sesión para comprar.');
+            if (!Array.isArray(carrito) || !carrito.length) throw new Error('Tu carrito está vacío.');
+            if (carrito.some(item => !Number.isInteger(item.productoId) || item.productoId <= 0)) {
+                throw new Error('Hay productos de un carrito anterior. Elimínalos y agrégalos nuevamente desde el menú.');
+            }
+            const respuesta = await fetch('/api/checkout', {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: boton.dataset.email,
+                    items: carrito.map(item => ({ productoId: item.productoId, cantidad: item.cantidad }))
+                })
+            });
+            const datos = await respuesta.json().catch(() => ({}));
+            if (!respuesta.ok) throw new Error(datos.error || 'No se pudo procesar el pedido.');
+            completado = true;
+            vaciarCarrito();
+            mostrarModalMensaje('¡Compra Exitosa!', 'Tu pedido ha sido procesado y hemos enviado la boleta a tu correo.', () => {
+                window.location.href = '/perfil';
+            });
+        } catch (error) {
+            mostrarModalMensaje('Error de compra', error instanceof TypeError
+                ? 'No se pudo confirmar la respuesta. Revisa tu historial antes de volver a comprar.'
+                : error.message);
+        } finally {
+            if (!completado) {
+                procesando = false;
+                boton.disabled = false;
+                boton.textContent = 'Comprar';
+            }
+        }
+    });
+});

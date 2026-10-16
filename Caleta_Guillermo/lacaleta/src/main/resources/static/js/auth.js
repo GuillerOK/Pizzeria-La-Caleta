@@ -112,9 +112,61 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. REGISTRO DE USUARIO (formRegistro)
     // -------------------------------------------------------------------------
     const formRegistro = document.getElementById("formRegistro");
+    const modalCuentaEl = document.getElementById('modalVerificacionCuenta');
+    const formVerificacionCuenta = document.getElementById('formVerificacionCuenta');
+    let emailCuentaPendiente = '';
+    let registrando = false;
+    let verificandoCuenta = false;
+
+    if (modalCuentaEl && formVerificacionCuenta) {
+        const otpInput = document.getElementById('otpVerificacionCuenta');
+        const errorCuenta = document.getElementById('errorVerificacionCuenta');
+        modalCuentaEl.addEventListener('shown.bs.modal', () => otpInput.focus());
+        modalCuentaEl.addEventListener('hide.bs.modal', (event) => {
+            if (verificandoCuenta) event.preventDefault();
+        });
+        formVerificacionCuenta.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (verificandoCuenta || !formVerificacionCuenta.reportValidity()) return;
+            const btn = formVerificacionCuenta.querySelector('button[type="submit"]');
+            verificandoCuenta = true;
+            btn.disabled = true;
+            btn.textContent = 'Verificando...';
+            errorCuenta.classList.add('d-none');
+            try {
+                const response = await fetch('/api/auth/verify-account', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: emailCuentaPendiente, otp: otpInput.value.trim() })
+                });
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok) {
+                    errorCuenta.textContent = data.error || 'No se pudo verificar el código. Inténtalo de nuevo.';
+                    errorCuenta.classList.remove('d-none');
+                    return;
+                }
+                verificandoCuenta = false;
+                modalCuentaEl.addEventListener('hidden.bs.modal', () => {
+                    mostrarModalMensaje('¡Bienvenido!', data.mensaje || 'Tu cuenta está verificada.', () => {
+                        redirigirA('login.html');
+                    });
+                }, { once: true });
+                bootstrap.Modal.getOrCreateInstance(modalCuentaEl).hide();
+            } catch (error) {
+                errorCuenta.textContent = 'No se pudo conectar con el servidor. Vuelve a intentarlo.';
+                errorCuenta.classList.remove('d-none');
+            } finally {
+                verificandoCuenta = false;
+                btn.disabled = false;
+                btn.textContent = 'Verificar cuenta';
+            }
+        });
+    }
+
     if (formRegistro) {
         formRegistro.addEventListener("submit", async (e) => {
             e.preventDefault();
+            if (registrando) return;
             
             const btnSubmit = formRegistro.querySelector("button[type='submit']") || formRegistro.querySelector("input[type='submit']");
             const btnOriginalText = btnSubmit ? (btnSubmit.innerText || btnSubmit.value) : "CREAR CUENTA";
@@ -201,15 +253,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (hayError) {
-                if (errorAlert) {
-                    errorAlert.innerText = 'Por favor corrige los campos marcados en rojo antes de continuar.';
-                    errorAlert.classList.remove('d-none');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
+                mostrarModalMensaje('Error', 'Por favor corrige los campos marcados en rojo antes de continuar.');
                 return;
             }
             
             try {
+                registrando = true;
                 if (btnSubmit) {
                     btnSubmit.disabled = true;
                     if (btnSubmit.tagName === 'INPUT') btnSubmit.value = "REGISTRANDO...";
@@ -226,18 +275,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     })
                 });
                 
-                const data = await response.json();
+                const data = await response.json().catch(() => ({}));
                 
                 if (response.ok) {
-                    mostrarModalMensaje("Éxito", data.mensaje || "Registro completado con éxito.", () => {
-                        window.location.href = "/login";
-                    });
+                    emailCuentaPendiente = data.email || email.toLowerCase();
+                    document.getElementById('correoVerificacionCuenta').textContent = emailCuentaPendiente;
+                    formVerificacionCuenta.reset();
+                    document.getElementById('errorVerificacionCuenta').classList.add('d-none');
+                    bootstrap.Modal.getOrCreateInstance(modalCuentaEl).show();
                 } else {
                     mostrarModalMensaje("Error", data.error || "Ocurrió un error en el registro.");
                 }
             } catch (error) {
                 mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
             } finally {
+                registrando = false;
                 if (btnSubmit) {
                     btnSubmit.disabled = false;
                     if (btnSubmit.tagName === 'INPUT') btnSubmit.value = btnOriginalText;
@@ -337,7 +389,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // -------------------------------------------------------------------------
-    // 4. FLUJO: OLVIDÉ MI CONTRASEÑA (SIMULACIÓN 100% LOCAL / FRONTEND)
+    // 4. RECUPERACIÓN DE CONTRASEÑA MEDIANTE LA API Y CORREO SMTP
     // -------------------------------------------------------------------------
 
     // Función auxiliar para redirigir compatible tanto en archivos estáticos (.html) como en servidor (/ruta)
@@ -351,107 +403,152 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Flujo 1: Solicitar Código (formForgotPassword)
+    // Solo se conserva en esta pestaña el correo y el código introducido por el usuario.
+    // La API comprueba siempre el OTP; el navegador nunca genera ni decide su validez.
+    async function solicitarRecuperacion(form, ruta, payload, texto, alCompletar) {
+        if (form.dataset.enviando === 'true') return;
+        const boton = form.querySelector('[type="submit"]');
+        const original = boton?.tagName === 'INPUT' ? boton.value : boton?.textContent;
+        form.dataset.enviando = 'true';
+        if (boton) {
+            boton.disabled = true;
+            if (boton.tagName === 'INPUT') boton.value = texto;
+            else boton.textContent = texto;
+        }
+        try {
+            const response = await fetch(`/api/auth/${ruta}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok) {
+                mostrarModalMensaje('Error', data.error || 'No se pudo completar la solicitud. Inténtalo de nuevo.');
+                return;
+            }
+            alCompletar(data);
+        } catch (error) {
+            mostrarModalMensaje('Error', 'No se pudo conectar con el servidor. Vuelve a intentarlo.');
+        } finally {
+            form.dataset.enviando = 'false';
+            if (boton) {
+                boton.disabled = false;
+                if (boton.tagName === 'INPUT') boton.value = original;
+                else boton.textContent = original;
+            }
+        }
+    }
+
     const formForgotPassword = document.getElementById("formForgotPassword");
     if (formForgotPassword) {
-        formForgotPassword.addEventListener("submit", (e) => {
+        formForgotPassword.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             // Capturar el correo electrónico ingresado
             const emailInput = document.getElementById("forgotEmail");
-            const email = emailInput ? emailInput.value.trim() : "";
+            const email = emailInput ? emailInput.value.trim().toLowerCase() : "";
 
             if (!email) {
-                alert("Por favor, ingresa tu correo electrónico.");
+                mostrarModalMensaje("Error", "Por favor, ingresa tu correo electrónico.");
                 return;
             }
 
-            // Guardar en localStorage el correo y el código OTP simulado estático
-            localStorage.setItem("temp_reset_email", email);
-            localStorage.setItem("temp_otp_code", "123456");
-
-            // Mostrar alert() simulando que se envió el correo con el código
-            alert(`Se ha enviado un código de verificación a tu correo: ${email}\n(Código simulado: 123456)`);
-
-            // Redirigir a la vista de verificación (verifycode.html) usando window.location.href
-            redirigirA("verifycode.html");
+            await solicitarRecuperacion(formForgotPassword, 'forgot-password', { email }, 'Enviando...', (data) => {
+                sessionStorage.setItem('reset_email', email);
+                sessionStorage.removeItem('reset_otp');
+                // Retirar los datos que utilizaba la versión anterior del formulario.
+                ['temp_reset_email', 'temp_otp_code', 'temp_verified_otp'].forEach(key => localStorage.removeItem(key));
+                mostrarModalMensaje('Código de recuperación', data.mensaje || 'Revisa el código enviado a tu correo.', () => {
+                    redirigirA('verifycode.html');
+                });
+            });
         });
     }
 
     // Flujo 2: Verificar Código (formVerifyCode)
     const formVerifyCode = document.getElementById("formVerifyCode");
     if (formVerifyCode) {
-        formVerifyCode.addEventListener("submit", (e) => {
+        formVerifyCode.addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            // Capturar el código OTP ingresado y compararlo con el valor guardado en localStorage
             const otpInput = document.getElementById("otpCode");
             const inputOtp = otpInput ? otpInput.value.trim() : "";
-            const storedOtp = localStorage.getItem("temp_otp_code");
+            const email = sessionStorage.getItem('reset_email');
 
-            // Si no existe el código en localStorage, alertar del error y redirigir a forgotpassword.html
-            if (!storedOtp) {
-                alert("Error: No existe un código de recuperación activo. Por favor, solicita uno nuevo.");
-                redirigirA("forgotpassword.html");
+            if (!email) {
+                mostrarModalMensaje("Error", "No existe un código de recuperación activo. Por favor, solicita uno nuevo.", () => {
+                    redirigirA("forgotpassword.html");
+                });
                 return;
             }
 
-            // Si coincide, mostrar alert() de éxito y redirigir a resetpassword.html
-            if (inputOtp === storedOtp) {
-                alert("¡Código de verificación correcto!");
-                redirigirA("resetpassword.html");
-            } else {
-                // Si no coincide, mostrar alert() de error
-                alert("Error: El código ingresado es incorrecto. Por favor, inténtalo de nuevo.");
+            if (!/^[0-9]{6}$/.test(inputOtp)) {
+                mostrarModalMensaje('Error', 'Ingresa el código de 6 dígitos que recibiste por correo.');
+                return;
             }
+            sessionStorage.removeItem('reset_otp');
+            await solicitarRecuperacion(formVerifyCode, 'verify-otp', { email, otp: inputOtp }, 'Verificando...', (data) => {
+                sessionStorage.setItem('reset_otp', inputOtp);
+                mostrarModalMensaje('Éxito', data.mensaje || 'Código verificado.', () => {
+                    redirigirA('resetpassword.html');
+                });
+            });
+        });
+    }
+
+    const reenviarCodigo = document.getElementById('reenviarCodigoRecuperacion');
+    if (reenviarCodigo && formVerifyCode) {
+        reenviarCodigo.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = sessionStorage.getItem('reset_email');
+            if (!email) {
+                mostrarModalMensaje('Error', 'Solicita un código con tu correo.', () => redirigirA('forgotpassword.html'));
+                return;
+            }
+            await solicitarRecuperacion(formVerifyCode, 'forgot-password', { email }, 'Reenviando...', (data) => {
+                sessionStorage.removeItem('reset_otp');
+                mostrarModalMensaje('Código de recuperación', data.mensaje || 'Revisa tu correo.');
+            });
         });
     }
 
     // Flujo 3: Restablecer Contraseña (formResetPassword)
     const formResetPassword = document.getElementById("formResetPassword");
     if (formResetPassword) {
-        formResetPassword.addEventListener("submit", (e) => {
+        formResetPassword.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             // Capturar los campos de "nueva contraseña" y "confirmar contraseña"
             const newPassword = document.getElementById("newPassword")?.value || "";
             const confirmPassword = document.getElementById("confirmPassword")?.value || "";
 
-            // Declarar contraseña antigua simulada en memoria
-            const mockOldPassword = "pizza123";
+            const email = sessionStorage.getItem('reset_email');
+            const otp = sessionStorage.getItem('reset_otp');
+            if (!email || !otp) {
+                mostrarModalMensaje('Error', 'Primero verifica el código enviado a tu correo.', () => redirigirA('forgotpassword.html'));
+                return;
+            }
 
             // Regla 1 (Igualdad): Validar que la nueva contraseña y la confirmación coincidan exactamente
             if (newPassword !== confirmPassword) {
-                alert("Error: Las contraseñas no coinciden. Asegúrate de que ambas sean idénticas.");
+                mostrarModalMensaje("Error", "Las contraseñas no coinciden. Asegúrate de que ambas sean idénticas.");
                 return;
             }
 
             // Regla 2 (Fuerza): Validar mediante Regex (mínimo 8 caracteres, al menos 1 mayúscula y al menos 1 carácter especial)
             const regexFuerza = /^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
             if (!regexFuerza.test(newPassword)) {
-                alert("Error: La contraseña debe tener mínimo 8 caracteres, al menos 1 letra mayúscula y al menos 1 carácter especial.");
+                mostrarModalMensaje("Error", "La contraseña debe tener mínimo 8 caracteres, al menos 1 letra mayúscula y al menos 1 carácter especial.");
                 return;
             }
 
-            // Regla 3 (Historial): Validar estrictamente que la nueva contraseña no sea idéntica a mockOldPassword
-            if (newPassword === mockOldPassword) {
-                alert("Error: La nueva contraseña no puede ser idéntica a tu contraseña anterior (pizza123).");
-                return;
-            }
-
-            // Si pasa todas las validaciones:
-            const correoGuardado = localStorage.getItem("temp_reset_email") || "tu correo";
-
-            // Eliminar las variables temporales de localStorage
-            localStorage.removeItem("temp_reset_email");
-            localStorage.removeItem("temp_otp_code");
-            localStorage.removeItem("temp_verified_otp");
-
-            // Mostrar alert() de éxito confirmando el cambio para el correo guardado
-            alert(`¡Éxito! La contraseña ha sido restablecida correctamente para el usuario ${correoGuardado}.`);
-
-            // Redirigir a la pantalla de login (login.html)
-            redirigirA("login.html");
+            await solicitarRecuperacion(formResetPassword, 'reset-password', { email, otp, newPassword }, 'Guardando...', (data) => {
+                sessionStorage.removeItem('reset_email');
+                sessionStorage.removeItem('reset_otp');
+                mostrarModalMensaje('Éxito', data.mensaje || 'Tu contraseña ha sido restablecida.', () => {
+                    redirigirA('login.html');
+                });
+            });
         });
     }
 });

@@ -105,10 +105,10 @@
                                 </div>
                             </div>
 
-                            <a th:href="@{/envio}"
+                            <button type="button" id="btnComprar" th:data-email="${usuario != null ? usuario.email : ''}"
                                 class="btn-cta text-center w-100 py-2 fw-bold text-uppercase small text-decoration-none shadow d-block">
-                                Continuar con el envío <i class="fa-solid fa-arrow-right ms-1"></i>
-                            </a>
+                                Comprar
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -126,6 +126,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
     <script th:src="@{/js/cart.js}"></script>
 </body>
 

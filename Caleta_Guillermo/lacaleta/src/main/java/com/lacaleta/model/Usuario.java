@@ -35,6 +35,9 @@ public class Usuario {
     @Column(name = "fecha_registro")
     private LocalDateTime fechaRegistro;
 
+    @Column(name = "verificado", columnDefinition = "boolean default false")
+    private Boolean verificado = false;
+
     public Usuario() {
         this.rolId = 1; // CLIENTE por defecto
         this.fechaRegistro = LocalDateTime.now();
@@ -49,6 +52,14 @@ public class Usuario {
         this.dni = dni;
         this.rolId = (rolId != null) ? rolId : 1;
         this.fechaRegistro = LocalDateTime.now();
+    }
+
+    public Boolean getVerificado() {
+        return verificado;
+    }
+
+    public void setVerificado(Boolean verificado) {
+        this.verificado = verificado;
     }
 
     // Getters y Setters

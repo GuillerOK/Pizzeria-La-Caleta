@@ -4,16 +4,22 @@ import com.lacaleta.model.Usuario;
 import com.lacaleta.repository.UsuarioRepository;
 import com.lacaleta.service.EmailService;
 import com.lacaleta.service.UsuarioService;
+import com.lacaleta.service.VerificacionCuentaService;
+import com.lacaleta.service.CorreoException;
 import jakarta.servlet.http.HttpSession;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.Random;
+import java.security.SecureRandom;
+import java.time.Instant;
+import java.time.Duration;
+import java.util.Locale;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 import java.time.LocalDate;
@@ -32,8 +38,24 @@ public class PasswordResetController {
     @Autowired
     private EmailService emailService;
 
-    // Simula una caché temporal para los OTPs.
-    private final ConcurrentHashMap<String, String> otpCache = new ConcurrentHashMap<>();
+    @Autowired
+    private VerificacionCuentaService verificacionCuentaService;
+
+    // Caché de recuperación de contraseña; el OTP de registro se persiste en BD.
+    private final ConcurrentHashMap<String, RecoveryOtp> otpCache = new ConcurrentHashMap<>();
+    private final SecureRandom otpRandom = new SecureRandom();
+
+    record RecoveryOtp(String codigo, Instant vencimiento) { }
+
+    private boolean codigoRecuperacionValido(String email, String codigo) {
+        RecoveryOtp guardado = otpCache.get(email);
+        if (guardado == null) return false;
+        if (!guardado.vencimiento().isAfter(Instant.now())) {
+            otpCache.remove(email, guardado);
+            return false;
+        }
+        return guardado.codigo().equals(codigo);
+    }
 
     // Patrones de validación Regex
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-zA-Z]{2,}$");
@@ -53,6 +75,10 @@ public class PasswordResetController {
 
         if (usuarioAutenticado.isPresent()) {
             Usuario usuario = usuarioAutenticado.get();
+            if (!Boolean.TRUE.equals(usuario.getVerificado())) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                        .body(Map.of("error", "Debes verificar tu correo para iniciar sesión"));
+            }
             session.setAttribute("usuarioLogueado", usuario);
 
             String redirectUrl = usuario.esAdmin() ? "/admin" : "/";
@@ -127,8 +153,8 @@ public class PasswordResetController {
             return ResponseEntity.badRequest().body(Map.of("error", "Ingresa un correo electrónico válido (ejemplo: usuario@dominio.com)."));
         }
 
-        if (passClean.length() < 8) {
-            return ResponseEntity.badRequest().body(Map.of("error", "La contraseña debe contener al menos 8 caracteres."));
+        if (passClean.length() < 8 || passClean.getBytes(java.nio.charset.StandardCharsets.UTF_8).length > 72) {
+            return ResponseEntity.badRequest().body(Map.of("error", "La contraseña debe contener al menos 8 caracteres y como máximo 72 bytes."));
         }
 
         if (!passClean.equals(confirmClean)) {
@@ -142,13 +168,51 @@ public class PasswordResetController {
         String nombreCompleto = nomClean + " " + apeClean;
         Usuario nuevoUsuario = new Usuario(null, nombreCompleto, emailClean, passClean, telClean, docClean, 1);
 
-        boolean exito = usuarioService.guardar(nuevoUsuario);
-
-        if (!exito) {
-            return ResponseEntity.badRequest().body(Map.of("error", "El correo electrónico '" + emailClean + "' ya está registrado."));
+        boolean exito;
+        try {
+            exito = usuarioService.guardar(nuevoUsuario);
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(Map.of("error", "El correo ya está registrado."));
         }
 
-        return ResponseEntity.ok(Map.of("mensaje", "¡Registro exitoso! Ya puedes iniciar sesión."));
+        if (!exito) {
+            // Permite reintentar el envío si falló SMTP o venció el OTP, sin modificar la cuenta.
+            Optional<Usuario> pendiente = usuarioService.autenticar(emailClean, passClean);
+            if (pendiente.isEmpty() || Boolean.TRUE.equals(pendiente.get().getVerificado())) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                        .body(Map.of("error", "El correo electrónico '" + emailClean + "' ya está registrado."));
+            }
+        }
+
+        if (!verificacionCuentaService.enviarCodigo(emailClean)) {
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(Map.of("error",
+                    "Tu cuenta está pendiente de verificación. No pudimos enviar el correo; vuelve a enviar el formulario con el mismo correo y contraseña para reintentar."));
+        }
+        return ResponseEntity.status(exito ? HttpStatus.CREATED : HttpStatus.OK)
+                .body(Map.of("mensaje", "Te enviamos un código para verificar tu cuenta. Vence en 10 minutos.",
+                        "email", emailClean));
+    }
+
+    @PostMapping("/verify-account")
+    public ResponseEntity<?> verifyAccount(@RequestBody Map<String, String> payload) {
+        String email = payload.get("email");
+        String otp = payload.get("otp");
+        if (email == null || !EMAIL_PATTERN.matcher(email.trim()).matches()
+                || otp == null || !otp.matches("[0-9]{6}")) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Ingresa tu correo y un código de 6 dígitos."));
+        }
+        String emailClean = email.trim().toLowerCase();
+        return switch (verificacionCuentaService.verificar(emailClean, otp)) {
+            case VERIFICADA -> ResponseEntity.ok(Map.of("mensaje",
+                    "¡Bienvenido a La Caleta! Tu correo ha sido verificado. Ya puedes iniciar sesión."));
+            case AGOTADO -> ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body(Map.of("error",
+                    "Agotaste los intentos. Vuelve a enviar el formulario de registro para recibir otro código."));
+            case NO_ENCONTRADO -> ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("error", "Usuario no encontrado."));
+            case INVALIDO -> ResponseEntity.badRequest().body(Map.of("error",
+                    "El código es incorrecto o ha expirado. Vuelve a enviar el formulario de registro para recibir otro."));
+        };
     }
 
     @PostMapping("/forgot-password")
@@ -158,21 +222,32 @@ public class PasswordResetController {
             return ResponseEntity.badRequest().body(Map.of("error", "Email es requerido."));
         }
 
-        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email.toLowerCase());
+        email = email.trim().toLowerCase(Locale.ROOT);
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
         if (usuarioOpt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "Usuario no encontrado."));
         }
 
         // Generar OTP de 6 dígitos
-        String otp = String.format("%06d", new Random().nextInt(999999));
-        otpCache.put(email.toLowerCase(), otp);
+        Instant ahora = Instant.now();
+        otpCache.entrySet().removeIf(entry -> !entry.getValue().vencimiento().isAfter(ahora));
+        String otp = String.format(Locale.ROOT, "%06d", otpRandom.nextInt(1_000_000));
+        RecoveryOtp pendiente = new RecoveryOtp(otp, ahora.plus(Duration.ofMinutes(10)));
+        otpCache.put(email, pendiente);
 
         // Enviar por correo
-        boolean enviado = emailService.enviarCodigoRecuperacion(email.toLowerCase(), otp);
+        boolean enviado;
+        try {
+            enviado = emailService.enviarCodigoRecuperacion(email, otp);
+        } catch (CorreoException error) {
+            otpCache.remove(email, pendiente);
+            throw error;
+        }
         if (enviado) {
             return ResponseEntity.ok(Map.of("mensaje", "Se ha enviado un código de verificación a tu correo."));
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            otpCache.remove(email, pendiente);
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
                     .body(Map.of("error", "Error al enviar el correo."));
         }
     }
@@ -186,8 +261,8 @@ public class PasswordResetController {
             return ResponseEntity.badRequest().body(Map.of("error", "Faltan datos requeridos."));
         }
 
-        String storedOtp = otpCache.get(email.toLowerCase());
-        if (storedOtp != null && storedOtp.equals(otp)) {
+        email = email.trim().toLowerCase(Locale.ROOT);
+        if (codigoRecuperacionValido(email, otp)) {
             return ResponseEntity.ok(Map.of("mensaje", "Código verificado con éxito."));
         } else {
             return ResponseEntity.badRequest().body(Map.of("error", "El código ingresado es incorrecto o ha expirado."));
@@ -205,8 +280,8 @@ public class PasswordResetController {
         }
 
         // 1. Validar OTP
-        String storedOtp = otpCache.get(email.toLowerCase());
-        if (storedOtp == null || !storedOtp.equals(otp)) {
+        email = email.trim().toLowerCase(Locale.ROOT);
+        if (!codigoRecuperacionValido(email, otp)) {
             return ResponseEntity.badRequest().body(Map.of("error", "El código ingresado es incorrecto o ha expirado."));
         }
 
@@ -214,6 +289,10 @@ public class PasswordResetController {
         String strengthRegex = "^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$";
         if (!Pattern.compile(strengthRegex).matcher(newPassword).matches()) {
             return ResponseEntity.badRequest().body(Map.of("error", "La contraseña debe tener mínimo 8 caracteres, al menos 1 mayúscula y 1 carácter especial."));
+        }
+
+        if (newPassword.getBytes(java.nio.charset.StandardCharsets.UTF_8).length > 72) {
+            return ResponseEntity.badRequest().body(Map.of("error", "La contraseña debe tener como máximo 72 bytes."));
         }
 
         Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email.toLowerCase());
@@ -226,7 +305,8 @@ public class PasswordResetController {
         // 3. Verificar que la nueva contraseña no sea igual a la actual
         boolean esIgual = false;
         try {
-            if (usuario.getPassword() != null && usuario.getPassword().startsWith("$2a$")) {
+            if (usuario.getPassword() != null && (usuario.getPassword().startsWith("$2a$")
+                    || usuario.getPassword().startsWith("$2b$"))) {
                 esIgual = BCrypt.checkpw(newPassword, usuario.getPassword());
             } else {
                 esIgual = newPassword.equals(usuario.getPassword());

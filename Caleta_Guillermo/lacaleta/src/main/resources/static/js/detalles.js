@@ -197,6 +197,7 @@ function enviarAlCarritoDesdeDetalle() {
         const idx = parseInt(indiceEdicion);
 
         if (carrito[idx]) {
+            carrito[idx].productoId = Number(inputTamano.dataset.productoId);
             carrito[idx].nombre = detalleProductoFinal;
             carrito[idx].precio = precioPizza;
             carrito[idx].imagenUrl = imagenUrl;
@@ -205,17 +206,17 @@ function enviarAlCarritoDesdeDetalle() {
         }
 
         document.querySelectorAll('.item-extra-producto:checked').forEach(extra => {
-            agregarAlCarrito(extra.dataset.nombre, parseFloat(extra.value), extra.dataset.img || "/images/banner_promocional.jpg");
+            agregarAlCarrito(extra.dataset.nombre, parseFloat(extra.value), extra.dataset.img || "/images/banner_promocional.jpg", "", Number(extra.dataset.productoId));
         });
 
         setTimeout(() => {
             window.location.href = "/carrito";
         }, 300);
     } else {
-        agregarAlCarrito(detalleProductoFinal, precioPizza, imagenUrl, descripcion);
+        agregarAlCarrito(detalleProductoFinal, precioPizza, imagenUrl, descripcion, Number(inputTamano.dataset.productoId));
 
         document.querySelectorAll('.item-extra-producto:checked').forEach(extra => {
-            agregarAlCarrito(extra.dataset.nombre, parseFloat(extra.value), extra.dataset.img || "/images/banner_promocional.jpg");
+            agregarAlCarrito(extra.dataset.nombre, parseFloat(extra.value), extra.dataset.img || "/images/banner_promocional.jpg", "", Number(extra.dataset.productoId));
         });
 
         setTimeout(() => {

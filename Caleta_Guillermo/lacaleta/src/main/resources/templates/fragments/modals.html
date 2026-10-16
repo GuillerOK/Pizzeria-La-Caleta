@@ -129,6 +129,34 @@
         </div>
     </div>
 
+    <div th:fragment="modalVerificacionCuenta" class="modal fade" id="modalVerificacionCuenta"
+        tabindex="-1" aria-labelledby="modalVerificacionCuentaLabel" aria-hidden="true"
+        data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="modalVerificacionCuentaLabel">Verifica tu correo</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <form id="formVerificacionCuenta">
+                    <div class="modal-body">
+                        <p>Enviamos un código a <strong id="correoVerificacionCuenta"></strong>.</p>
+                        <label for="otpVerificacionCuenta" class="form-label">Código de 6 dígitos</label>
+                        <input id="otpVerificacionCuenta" name="otp" class="form-control" type="text"
+                            inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}"
+                            minlength="6" maxlength="6" required aria-describedby="ayudaVerificacionCuenta">
+                        <p id="ayudaVerificacionCuenta" class="small mt-3 mb-0">Vence en 10 minutos. Revisa también tu carpeta de spam.
+                            Si necesitas otro código, cierra esta ventana y vuelve a enviar el formulario con el mismo correo y contraseña.</p>
+                        <p id="errorVerificacionCuenta" class="text-warning mt-3 mb-0 d-none" role="status" aria-live="polite"></p>
+                    </div>
+                    <div class="modal-footer border-secondary">
+                        <button type="submit" class="btn btn-danger">Verificar cuenta</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Fragmento con todos los modales y offcanvas globales -->
     <div th:fragment="todosLosModals">
         <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>

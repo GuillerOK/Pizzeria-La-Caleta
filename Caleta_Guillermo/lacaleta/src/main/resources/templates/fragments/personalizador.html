@@ -20,30 +20,14 @@
                 </div>
             </div>
             <div class="cuerpo-acordeon" id="cuerpo-tamano">
-                <input type="radio" class="btn-check" name="tamano" id="tam-mediana" th:value="${param.precio != null ? param.precio : '36.00'}" data-label="Mediana (8 cortes)" onchange="seleccionarYContraer('tamano', this, 'cuerpo-tamano', 'resumen-box-tamano', 'alerta-tamano', 'cuerpo-masa', 'resumen-box-masa')">
-                <label class="fila-opcion" for="tam-mediana">
-                    <div>
-                        <span class="small fw-bold text-white d-block">Mediana</span>
-                        <span class="text-secondary fs-xs">8 cortes</span>
-                    </div>
-                    <span class="small text-white fw-semibold">Incluido</span>
-                </label>
-                <input type="radio" class="btn-check" name="tamano" id="tam-familiar" value="familiar" data-label="Familiar (12 cortes) +S/ 10.00" onchange="seleccionarYContraer('tamano', this, 'cuerpo-tamano', 'resumen-box-tamano', 'alerta-tamano', 'cuerpo-masa', 'resumen-box-masa')">
-                <label class="fila-opcion" for="tam-familiar">
-                    <div>
-                        <span class="small fw-bold text-white d-block">Familiar</span>
-                        <span class="text-secondary fs-xs">12 cortes</span>
-                    </div>
-                    <span class="small text-ro fw-bold">+S/ 10.00</span>
-                </label>
-                <input type="radio" class="btn-check" name="tamano" id="tam-mega" value="mega" data-label="Mega Caleta (16 cortes) +S/ 20.00" onchange="seleccionarYContraer('tamano', this, 'cuerpo-tamano', 'resumen-box-tamano', 'alerta-tamano', 'cuerpo-masa', 'resumen-box-masa')">
-                <label class="fila-opcion" for="tam-mega">
-                    <div>
-                        <span class="small fw-bold text-white d-block">Mega Caleta</span>
-                        <span class="text-secondary fs-xs">16 cortes</span>
-                    </div>
-                    <span class="small text-ro fw-bold">+S/ 20.00</span>
-                </label>
+                <div th:each="variante : ${variantes}">
+                    <input type="radio" class="btn-check" name="tamano" th:id="${'variante-' + variante.id}" th:value="${variante.precio}" th:data-producto-id="${variante.id}" th:data-label="${variante.tamano ?: 'Único'}" onchange="seleccionarYContraer('tamano', this, 'cuerpo-tamano', 'resumen-box-tamano', 'alerta-tamano', 'cuerpo-masa', 'resumen-box-masa')">
+                    <label class="fila-opcion" th:for="${'variante-' + variante.id}">
+                        <span th:text="${variante.tamano ?: 'Único'}"></span>
+                        <span th:text="${'S/ ' + #numbers.formatDecimal(variante.precio,1,2)}"></span>
+                    </label>
+                </div>
+                <p th:if="${#lists.isEmpty(variantes)}">Este producto ya no está disponible.</p>
             </div>
             <div class="caja-seleccionada d-none" id="resumen-box-tamano" onclick="alternarSeccion('cuerpo-tamano', 'resumen-box-tamano')">
                 <span class="small fw-semibold text-white" id="texto-resumen-tamano"></span>
@@ -152,7 +136,7 @@
                     </div>
                     <div class="d-flex align-items-center gap-3">
                         <span class="small text-ro fw-bold text-nowrap" th:text="'S/ ' + ${#numbers.formatDecimal(acomp.precio, 1, 2)}">+S/ 0.00</span>
-                        <input class="form-check-input item-extra-producto m-0 cursor-pointer" type="checkbox" th:id="${'extra-' + acomp.id}" th:value="${acomp.precio}" th:data-nombre="${acomp.nombre}" th:data-img="${acomp.imagenUrl}">
+                        <input class="form-check-input item-extra-producto m-0 cursor-pointer" type="checkbox" th:id="${'extra-' + acomp.id}" th:value="${acomp.precio}" th:data-producto-id="${acomp.id}" th:data-nombre="${acomp.nombre}" th:data-img="${acomp.imagenUrl}">
                     </div>
                 </label>
             </div>
@@ -172,7 +156,7 @@
                     </div>
                     <div class="d-flex align-items-center gap-3">
                         <span class="small text-ro fw-bold text-nowrap" th:text="'S/ ' + ${#numbers.formatDecimal(beb.precio, 1, 2)}">+S/ 0.00</span>
-                        <input class="form-check-input item-extra-producto m-0 cursor-pointer" type="checkbox" th:id="${'extra-' + beb.id}" th:value="${beb.precio}" th:data-nombre="${beb.nombre}" th:data-img="${beb.imagenUrl}">
+                        <input class="form-check-input item-extra-producto m-0 cursor-pointer" type="checkbox" th:id="${'extra-' + beb.id}" th:value="${beb.precio}" th:data-producto-id="${beb.id}" th:data-nombre="${beb.nombre}" th:data-img="${beb.imagenUrl}">
                     </div>
                 </label>
             </div>

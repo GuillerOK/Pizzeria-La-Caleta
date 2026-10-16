@@ -81,8 +81,13 @@ public class PageController {
     }
 
     @GetMapping("/detalles")
-    public String detalles(Model model, HttpSession session) {
+    public String detalles(Model model, HttpSession session,
+                           @RequestParam(defaultValue = "") String nombre) {
         cargarUsuarioEnModelo(model, session);
+        model.addAttribute("variantes", productoService.listar().stream()
+                .filter(p -> p.getNombre().equals(nombre) && Boolean.TRUE.equals(p.getDisponible())).toList());
+        model.addAttribute("acompanamientos", productoService.obtenerAcompanamientos());
+        model.addAttribute("bebidas", productoService.obtenerBebidas());
         return "shop/detalles";
     }
 

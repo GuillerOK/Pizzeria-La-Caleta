@@ -9,25 +9,60 @@ function cerrarSesion() {
 
 // Función genérica para mostrar notificaciones con Bootstrap Modal
 function mostrarModalMensaje(titulo, mensaje, accionCierre = null) {
-    const modalEl = document.getElementById('modalNotificacionGlobal');
+    let modalEl = document.getElementById('modalNotificacionGlobal');
+    
+    // Si la plantilla no incluyó el fragmento, lo inyectamos dinámicamente en el DOM
     if (!modalEl) {
-        if (accionCierre) accionCierre();
-        return;
+        modalEl = document.createElement('div');
+        modalEl.className = 'modal fade';
+        modalEl.id = 'modalNotificacionGlobal';
+        modalEl.tabIndex = -1;
+        modalEl.setAttribute('aria-labelledby', 'modalNotificacionGlobalLabel');
+        modalEl.setAttribute('aria-hidden', 'true');
+        modalEl.innerHTML = `
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-white border border-secondary border-opacity-25"
+                    style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                    <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
+                        <h5 class="modal-title fw-bold fs-5 text-white mb-0 d-flex align-items-center gap-2" id="modalNotificacionGlobalLabel"></h5>
+                        <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <p class="mb-0 text-white-50 fs-6" id="modalNotificacionGlobalMensaje"></p>
+                    </div>
+                    <div class="modal-footer border-top border-secondary border-opacity-25 py-2">
+                        <button type="button" class="btn btn-secondary px-4 fw-bold text-uppercase small" data-bs-dismiss="modal" style="border-radius: 30px;">
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modalEl);
     }
     
     const labelEl = document.getElementById('modalNotificacionGlobalLabel');
     const msgEl = document.getElementById('modalNotificacionGlobalMensaje');
     
-    if (labelEl) labelEl.innerText = titulo;
-    if (msgEl) msgEl.innerText = mensaje;
+    let iconoHtml = '<i class="fa-solid fa-circle-info text-info me-2"></i>';
+    const tituloLower = (titulo || '').toLowerCase();
+    if (tituloLower.includes('error')) {
+        iconoHtml = '<i class="fa-solid fa-circle-xmark text-danger me-2"></i>';
+    } else if (tituloLower.includes('éxito') || tituloLower.includes('exito')) {
+        iconoHtml = '<i class="fa-solid fa-circle-check text-success me-2"></i>';
+    }
     
-    const modalInstance = new bootstrap.Modal(modalEl);
+    if (labelEl) labelEl.innerHTML = `${iconoHtml}<span>${titulo || 'Notificación'}</span>`;
+    if (msgEl) msgEl.innerText = mensaje || '';
+    
+    const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
     
     if (accionCierre) {
-        modalEl.addEventListener('hidden.bs.modal', function onHidden() {
+        const onHidden = function () {
             modalEl.removeEventListener('hidden.bs.modal', onHidden);
             accionCierre();
-        });
+        };
+        modalEl.addEventListener('hidden.bs.modal', onHidden);
     }
     
     modalInstance.show();
@@ -77,9 +112,61 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. REGISTRO DE USUARIO (formRegistro)
     // -------------------------------------------------------------------------
     const formRegistro = document.getElementById("formRegistro");
+    const modalCuentaEl = document.getElementById('modalVerificacionCuenta');
+    const formVerificacionCuenta = document.getElementById('formVerificacionCuenta');
+    let emailCuentaPendiente = '';
+    let registrando = false;
+    let verificandoCuenta = false;
+
+    if (modalCuentaEl && formVerificacionCuenta) {
+        const otpInput = document.getElementById('otpVerificacionCuenta');
+        const errorCuenta = document.getElementById('errorVerificacionCuenta');
+        modalCuentaEl.addEventListener('shown.bs.modal', () => otpInput.focus());
+        modalCuentaEl.addEventListener('hide.bs.modal', (event) => {
+            if (verificandoCuenta) event.preventDefault();
+        });
+        formVerificacionCuenta.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (verificandoCuenta || !formVerificacionCuenta.reportValidity()) return;
+            const btn = formVerificacionCuenta.querySelector('button[type="submit"]');
+            verificandoCuenta = true;
+            btn.disabled = true;
+            btn.textContent = 'Verificando...';
+            errorCuenta.classList.add('d-none');
+            try {
+                const response = await fetch('/api/auth/verify-account', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: emailCuentaPendiente, otp: otpInput.value.trim() })
+                });
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok) {
+                    errorCuenta.textContent = data.error || 'No se pudo verificar el código. Inténtalo de nuevo.';
+                    errorCuenta.classList.remove('d-none');
+                    return;
+                }
+                verificandoCuenta = false;
+                modalCuentaEl.addEventListener('hidden.bs.modal', () => {
+                    mostrarModalMensaje('¡Bienvenido!', data.mensaje || 'Tu cuenta está verificada.', () => {
+                        redirigirA('login.html');
+                    });
+                }, { once: true });
+                bootstrap.Modal.getOrCreateInstance(modalCuentaEl).hide();
+            } catch (error) {
+                errorCuenta.textContent = 'No se pudo conectar con el servidor. Vuelve a intentarlo.';
+                errorCuenta.classList.remove('d-none');
+            } finally {
+                verificandoCuenta = false;
+                btn.disabled = false;
+                btn.textContent = 'Verificar cuenta';
+            }
+        });
+    }
+
     if (formRegistro) {
         formRegistro.addEventListener("submit", async (e) => {
             e.preventDefault();
+            if (registrando) return;
             
             const btnSubmit = formRegistro.querySelector("button[type='submit']") || formRegistro.querySelector("input[type='submit']");
             const btnOriginalText = btnSubmit ? (btnSubmit.innerText || btnSubmit.value) : "CREAR CUENTA";
@@ -166,15 +253,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (hayError) {
-                if (errorAlert) {
-                    errorAlert.innerText = 'Por favor corrige los campos marcados en rojo antes de continuar.';
-                    errorAlert.classList.remove('d-none');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
+                mostrarModalMensaje('Error', 'Por favor corrige los campos marcados en rojo antes de continuar.');
                 return;
             }
             
             try {
+                registrando = true;
                 if (btnSubmit) {
                     btnSubmit.disabled = true;
                     if (btnSubmit.tagName === 'INPUT') btnSubmit.value = "REGISTRANDO...";
@@ -191,18 +275,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     })
                 });
                 
-                const data = await response.json();
+                const data = await response.json().catch(() => ({}));
                 
                 if (response.ok) {
-                    mostrarModalMensaje("Éxito", data.mensaje || "Registro completado con éxito.", () => {
-                        window.location.href = "/login";
-                    });
+                    emailCuentaPendiente = data.email || email.toLowerCase();
+                    document.getElementById('correoVerificacionCuenta').textContent = emailCuentaPendiente;
+                    formVerificacionCuenta.reset();
+                    document.getElementById('errorVerificacionCuenta').classList.add('d-none');
+                    bootstrap.Modal.getOrCreateInstance(modalCuentaEl).show();
                 } else {
                     mostrarModalMensaje("Error", data.error || "Ocurrió un error en el registro.");
                 }
             } catch (error) {
                 mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
             } finally {
+                registrando = false;
                 if (btnSubmit) {
                     btnSubmit.disabled = false;
                     if (btnSubmit.tagName === 'INPUT') btnSubmit.value = btnOriginalText;
@@ -298,6 +385,170 @@ document.addEventListener("DOMContentLoaded", () => {
                 toggleEye2.classList.toggle("fa-eye");
                 toggleEye2.classList.toggle("fa-eye-slash");
             }
+        });
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. RECUPERACIÓN DE CONTRASEÑA MEDIANTE LA API Y CORREO SMTP
+    // -------------------------------------------------------------------------
+
+    // Función auxiliar para redirigir compatible tanto en archivos estáticos (.html) como en servidor (/ruta)
+    const redirigirA = (pagina) => {
+        const esArchivoEstatico = window.location.protocol === "file:" || window.location.pathname.endsWith(".html");
+        if (esArchivoEstatico) {
+            window.location.href = pagina;
+        } else {
+            const rutaLimpia = pagina.replace(".html", "");
+            window.location.href = rutaLimpia.startsWith("/") ? rutaLimpia : "/" + rutaLimpia;
+        }
+    };
+
+    // Solo se conserva en esta pestaña el correo y el código introducido por el usuario.
+    // La API comprueba siempre el OTP; el navegador nunca genera ni decide su validez.
+    async function solicitarRecuperacion(form, ruta, payload, texto, alCompletar) {
+        if (form.dataset.enviando === 'true') return;
+        const boton = form.querySelector('[type="submit"]');
+        const original = boton?.tagName === 'INPUT' ? boton.value : boton?.textContent;
+        form.dataset.enviando = 'true';
+        if (boton) {
+            boton.disabled = true;
+            if (boton.tagName === 'INPUT') boton.value = texto;
+            else boton.textContent = texto;
+        }
+        try {
+            const response = await fetch(`/api/auth/${ruta}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok) {
+                mostrarModalMensaje('Error', data.error || 'No se pudo completar la solicitud. Inténtalo de nuevo.');
+                return;
+            }
+            alCompletar(data);
+        } catch (error) {
+            mostrarModalMensaje('Error', 'No se pudo conectar con el servidor. Vuelve a intentarlo.');
+        } finally {
+            form.dataset.enviando = 'false';
+            if (boton) {
+                boton.disabled = false;
+                if (boton.tagName === 'INPUT') boton.value = original;
+                else boton.textContent = original;
+            }
+        }
+    }
+
+    const formForgotPassword = document.getElementById("formForgotPassword");
+    if (formForgotPassword) {
+        formForgotPassword.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            // Capturar el correo electrónico ingresado
+            const emailInput = document.getElementById("forgotEmail");
+            const email = emailInput ? emailInput.value.trim().toLowerCase() : "";
+
+            if (!email) {
+                mostrarModalMensaje("Error", "Por favor, ingresa tu correo electrónico.");
+                return;
+            }
+
+            await solicitarRecuperacion(formForgotPassword, 'forgot-password', { email }, 'Enviando...', (data) => {
+                sessionStorage.setItem('reset_email', email);
+                sessionStorage.removeItem('reset_otp');
+                // Retirar los datos que utilizaba la versión anterior del formulario.
+                ['temp_reset_email', 'temp_otp_code', 'temp_verified_otp'].forEach(key => localStorage.removeItem(key));
+                mostrarModalMensaje('Código de recuperación', data.mensaje || 'Revisa el código enviado a tu correo.', () => {
+                    redirigirA('verifycode.html');
+                });
+            });
+        });
+    }
+
+    // Flujo 2: Verificar Código (formVerifyCode)
+    const formVerifyCode = document.getElementById("formVerifyCode");
+    if (formVerifyCode) {
+        formVerifyCode.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const otpInput = document.getElementById("otpCode");
+            const inputOtp = otpInput ? otpInput.value.trim() : "";
+            const email = sessionStorage.getItem('reset_email');
+
+            if (!email) {
+                mostrarModalMensaje("Error", "No existe un código de recuperación activo. Por favor, solicita uno nuevo.", () => {
+                    redirigirA("forgotpassword.html");
+                });
+                return;
+            }
+
+            if (!/^[0-9]{6}$/.test(inputOtp)) {
+                mostrarModalMensaje('Error', 'Ingresa el código de 6 dígitos que recibiste por correo.');
+                return;
+            }
+            sessionStorage.removeItem('reset_otp');
+            await solicitarRecuperacion(formVerifyCode, 'verify-otp', { email, otp: inputOtp }, 'Verificando...', (data) => {
+                sessionStorage.setItem('reset_otp', inputOtp);
+                mostrarModalMensaje('Éxito', data.mensaje || 'Código verificado.', () => {
+                    redirigirA('resetpassword.html');
+                });
+            });
+        });
+    }
+
+    const reenviarCodigo = document.getElementById('reenviarCodigoRecuperacion');
+    if (reenviarCodigo && formVerifyCode) {
+        reenviarCodigo.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = sessionStorage.getItem('reset_email');
+            if (!email) {
+                mostrarModalMensaje('Error', 'Solicita un código con tu correo.', () => redirigirA('forgotpassword.html'));
+                return;
+            }
+            await solicitarRecuperacion(formVerifyCode, 'forgot-password', { email }, 'Reenviando...', (data) => {
+                sessionStorage.removeItem('reset_otp');
+                mostrarModalMensaje('Código de recuperación', data.mensaje || 'Revisa tu correo.');
+            });
+        });
+    }
+
+    // Flujo 3: Restablecer Contraseña (formResetPassword)
+    const formResetPassword = document.getElementById("formResetPassword");
+    if (formResetPassword) {
+        formResetPassword.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            // Capturar los campos de "nueva contraseña" y "confirmar contraseña"
+            const newPassword = document.getElementById("newPassword")?.value || "";
+            const confirmPassword = document.getElementById("confirmPassword")?.value || "";
+
+            const email = sessionStorage.getItem('reset_email');
+            const otp = sessionStorage.getItem('reset_otp');
+            if (!email || !otp) {
+                mostrarModalMensaje('Error', 'Primero verifica el código enviado a tu correo.', () => redirigirA('forgotpassword.html'));
+                return;
+            }
+
+            // Regla 1 (Igualdad): Validar que la nueva contraseña y la confirmación coincidan exactamente
+            if (newPassword !== confirmPassword) {
+                mostrarModalMensaje("Error", "Las contraseñas no coinciden. Asegúrate de que ambas sean idénticas.");
+                return;
+            }
+
+            // Regla 2 (Fuerza): Validar mediante Regex (mínimo 8 caracteres, al menos 1 mayúscula y al menos 1 carácter especial)
+            const regexFuerza = /^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
+            if (!regexFuerza.test(newPassword)) {
+                mostrarModalMensaje("Error", "La contraseña debe tener mínimo 8 caracteres, al menos 1 letra mayúscula y al menos 1 carácter especial.");
+                return;
+            }
+
+            await solicitarRecuperacion(formResetPassword, 'reset-password', { email, otp, newPassword }, 'Guardando...', (data) => {
+                sessionStorage.removeItem('reset_email');
+                sessionStorage.removeItem('reset_otp');
+                mostrarModalMensaje('Éxito', data.mensaje || 'Tu contraseña ha sido restablecida.', () => {
+                    redirigirA('login.html');
+                });
+            });
         });
     }
 });

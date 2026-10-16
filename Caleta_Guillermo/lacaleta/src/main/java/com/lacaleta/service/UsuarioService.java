@@ -41,6 +41,7 @@ public class UsuarioService {
         usuario.setEmail(emailLimpio);
 
         if (usuario.getId() == null) {
+            usuario.setVerificado(false);
             // Verificar si el correo ya existe en la BD antes de registrar
             if (usuarioRepository.existsByEmail(emailLimpio)) {
                 return false;
@@ -49,11 +50,9 @@ public class UsuarioService {
                 usuario.setFechaRegistro(LocalDateTime.now());
             }
             // Asignar rol CLIENTE (id=1) por defecto en nuevos registros
-            if (usuario.getRolId() == null) {
-                usuario.setRolId(1);
-            }
-            // Encriptar la contraseña antes de guardar si no está encriptada
-            if (usuario.getPassword() != null && !usuario.getPassword().startsWith("$2a$")) {
+            usuario.setRolId(1);
+            // Todo registro recibe una contraseña en texto y se cifra aquí una sola vez.
+            if (usuario.getPassword() != null) {
                 usuario.setPassword(BCrypt.hashpw(usuario.getPassword(), BCrypt.gensalt()));
             }
         }
@@ -62,8 +61,16 @@ public class UsuarioService {
         return true;
     }
 
+    public boolean verificarUsuario(String email) {
+        return buscarPorEmail(email).map(usuario -> {
+            usuario.setVerificado(true);
+            usuarioRepository.save(usuario);
+            return true;
+        }).orElse(false);
+    }
+
     /**
-     * Autentica un usuario comparando la contraseña contra el hash BCrypt almacenado.
+     * Autentica las credenciales. El controlador exige además la cuenta verificada.
      */
     public Optional<Usuario> autenticar(String email, String password) {
         if (email == null || password == null) {
