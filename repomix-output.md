@@ -1,0 +1,20517 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+# File Summary
+
+## Purpose
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+
+## File Format
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  a. A header with the file path (## File: path/to/file)
+  b. The full contents of the file in a code block
+
+## Usage Guidelines
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+
+## Notes
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+
+# Directory Structure
+```
+Caleta_Guillermo/
+  .vscode/
+    launch.json
+    settings.json
+  lacaleta/
+    .mvn/
+      wrapper/
+        maven-wrapper.properties
+    src/
+      main/
+        java/
+          com/
+            lacaleta/
+              config/
+                WebConfig.java
+              controller/
+                AdminInsumoController.java
+                AdminProductoController.java
+                AdminRestController.java
+                PageController.java
+                PasswordResetController.java
+              model/
+                Categoria.java
+                DetallePedido.java
+                Insumo.java
+                Pedido.java
+                Producto.java
+                Usuario.java
+              repository/
+                CategoriaRepository.java
+                InsumoRepository.java
+                PedidoRepository.java
+                ProductoRepository.java
+                UsuarioRepository.java
+              service/
+                CategoriaService.java
+                EmailService.java
+                InsumoService.java
+                ProductoService.java
+                UsuarioService.java
+              DatabaseSeeder.java
+              LacaletaApplication.java
+              TestQuery.java
+        resources/
+          static/
+            images/
+              banner_cuenta.png
+              banner_menu.png
+              banner_promocional.jpg
+              banner_promociones.png
+              banner.jpg
+              descripcion.jpg
+              lacaleta.png
+              libro_reclamaciones.jpg
+              mastercard.jpg
+              producto_americana.jpg
+              producto_combo1.jpg
+              producto_combo2.jpg
+              producto_combo3.jpg
+              producto_combo4.jpg
+              producto_hawaiana.jpg
+              producto_meat.jpg
+              producto_pepperoni.jpg
+              producto_vegetariana.jpg
+              visa.jpg
+              yape.jpg
+            js/
+              admi.js
+              auth-session.js
+              auth.js
+              cart.js
+              detalles.js
+              main.js
+              payment.js
+              reporte.js
+              shipping.js
+              ui.js
+            style/
+              admin.css
+              auth-admin.css
+              detalles.css
+              main.css
+              shop.css
+              styles.css
+            favicon.ico
+          templates/
+            account/
+              create.html
+              forgotpassword.html
+              login.html
+              perfil.html
+              resetpassword.html
+              verifycode.html
+            admin/
+              admin.html
+              reportes.html
+            checkout/
+              cart.html
+              payment.html
+              shipping.html
+            fragments/
+              banner.html
+              catalogo.html
+              footer-simple.html
+              footer.html
+              header-checkout.html
+              header.html
+              locales.html
+              modals.html
+              personalizador.html
+            info/
+              delivery.html
+              faq.html
+              terminos.html
+            shop/
+              detalles.html
+              locales.html
+              menu.html
+              promociones.html
+            index.html
+          application.properties
+      test/
+        java/
+          com/
+            lacaleta/
+              LacaletaApplicationTests.java
+    uploads/
+      pizzas/
+        1791344802756.jpg
+        1791346130557.jpg
+        1791347170541.jpg
+        1792025852508.jpg
+        1792025870078.jpg
+        1792025882173.jpg
+        1792025893765.jpg
+        1792025904731.jpg
+        1792025918421.jpg
+        1792025932859.jpg
+        1792025940913.jpg
+        1792025962901.jpg
+        1792025974001.jpg
+        1792025982838.jpg
+        1792026004110.jpg
+        1792026033760.jpg
+        1792026116113.jpg
+        1792026151803.jpg
+        1792026208491.jpg
+        1792026226391.jpg
+        1792026240063.jpg
+        1792026603167.jpg
+        1792026655434.jpg
+        1792026680724.jpg
+        1792026723018.jpg
+        1792026752725.jpg
+        1792026776504.jpg
+        1792026817398.jpg
+        1792026841531.jpg
+        1792026861587.jpg
+    .gitattributes
+    .gitignore
+    cookies.txt
+    DbChecker.class
+    DbChecker.java
+    mvnw
+    mvnw.cmd
+    pom.xml
+uploads/
+  pizzas/
+    1791344802756.jpg
+    1791346130557.jpg
+    1791347170541.jpg
+    1792025852508.jpg
+    1792025870078.jpg
+    1792025882173.jpg
+    1792025893765.jpg
+    1792025904731.jpg
+    1792025918421.jpg
+    1792025932859.jpg
+    1792025940913.jpg
+    1792025962901.jpg
+    1792025974001.jpg
+    1792025982838.jpg
+    1792026004110.jpg
+    1792026033760.jpg
+    1792026116113.jpg
+    1792026151803.jpg
+    1792026208491.jpg
+    1792026226391.jpg
+    1792026240063.jpg
+    1792026603167.jpg
+    1792026655434.jpg
+    1792026680724.jpg
+    1792026723018.jpg
+    1792026752725.jpg
+    1792026776504.jpg
+    1792026817398.jpg
+    1792026841531.jpg
+    1792026861587.jpg
+repomix-output.xml
+```
+
+# Files
+
+## File: Caleta_Guillermo/.vscode/launch.json
+```json
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LacaletaApplication<lacaleta>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.lacaleta.LacaletaApplication",
+            "projectName": "lacaleta",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
+```
+
+## File: Caleta_Guillermo/.vscode/settings.json
+```json
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "interactive"
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/.mvn/wrapper/maven-wrapper.properties
+```
+wrapperVersion=3.3.4
+distributionType=only-script
+distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.16/apache-maven-3.9.16-bin.zip
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/config/WebConfig.java
+```java
+package com.lacaleta.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // Mapear la ruta virtual /uploads/** al directorio físico uploads/
+        // Esto permite servir archivos subidos dinámicamente sin reiniciar el servidor.
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations("file:uploads/");
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/controller/AdminInsumoController.java
+```java
+package com.lacaleta.controller;
+
+import com.lacaleta.model.Insumo;
+import com.lacaleta.service.InsumoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+@Controller
+@RequestMapping("/admin/insumos")
+public class AdminInsumoController {
+
+    @Autowired
+    private InsumoService insumoService;
+
+    @PostMapping("/guardar")
+    public String guardar(
+            @RequestParam(value = "id", required = false) Integer id,
+            @RequestParam("nombre") String nombre,
+            @RequestParam("stockActual") Double stockActual,
+            @RequestParam("unidadMedida") String unidadMedida,
+            @RequestParam(value = "stockMinimo", defaultValue = "5.0") Double stockMinimo,
+            RedirectAttributes flash) {
+
+        Insumo insumo = new Insumo();
+        insumo.setId(id);
+        insumo.setNombre(nombre.trim());
+        insumo.setStockActual(stockActual);
+        insumo.setUnidadMedida(unidadMedida);
+        insumo.setStockMinimo(stockMinimo);
+
+        insumoService.guardar(insumo);
+        flash.addFlashAttribute("exito", "Insumo registrado/actualizado correctamente.");
+        return "redirect:/admin#stock";
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable Integer id, RedirectAttributes flash) {
+        if (insumoService.eliminar(id)) {
+            flash.addFlashAttribute("exito", "Insumo eliminado correctamente.");
+        } else {
+            flash.addFlashAttribute("error", "No se pudo encontrar el insumo a eliminar.");
+        }
+        return "redirect:/admin#stock";
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/controller/AdminProductoController.java
+```java
+package com.lacaleta.controller;
+
+import com.lacaleta.model.Producto;
+import com.lacaleta.service.CategoriaService;
+import com.lacaleta.service.ProductoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+@Controller
+@RequestMapping("/admin/pizzas")
+public class AdminProductoController {
+
+    @Autowired
+    private ProductoService productoService;
+
+    @Autowired
+    private CategoriaService categoriaService;
+
+    // POST: /admin/pizzas/guardar (Crear nueva pizza)
+    @PostMapping("/guardar")
+    public String guardar(
+            @RequestParam("nombre") String nombre,
+            @RequestParam("precio") Double precio,
+            @RequestParam(value = "stock", defaultValue = "10") Integer stock,
+            @RequestParam(value = "imagenUrl", required = false) String imagenUrl,
+            @RequestParam(value = "imagenArchivo", required = false) MultipartFile imagenArchivo,
+            @RequestParam(value = "codigoCategoria", defaultValue = "clasicas") String codigoCategoria,
+            @RequestParam(value = "tamano", defaultValue = "Familiar") String tamano,
+            RedirectAttributes flash) {
+
+        if (nombre == null || nombre.isBlank()) {
+            flash.addFlashAttribute("error", "El nombre de la pizza es obligatorio.");
+            return "redirect:/admin";
+        }
+        if (precio == null || precio <= 0) {
+            flash.addFlashAttribute("error", "El precio debe ser mayor a 0.");
+            return "redirect:/admin";
+        }
+
+        var catOpt = categoriaService.buscarPorCodigo(codigoCategoria);
+
+        Producto pizza = new Producto();
+        pizza.setNombre(nombre.trim());
+        pizza.setPrecio(precio);
+        pizza.setStock(stock);
+        pizza.setDescripcion("Pizza artesanal horneada a la leña.");
+        pizza.setTamano(tamano);
+        pizza.setDisponible(true);
+        pizza.setCategoria(catOpt.orElse(null));
+
+        String rutaImagenFinal = "/images/producto_americana.jpg";
+
+        if (imagenArchivo != null && !imagenArchivo.isEmpty()) {
+            try {
+                // Crear carpeta si no existe
+                File directorio = new File("uploads/pizzas");
+                if (!directorio.exists()) {
+                    directorio.mkdirs();
+                }
+                
+                // Generar nombre unico seguro
+                String nombreOriginal = imagenArchivo.getOriginalFilename();
+                String extension = "";
+                if (nombreOriginal != null && nombreOriginal.contains(".")) {
+                    extension = nombreOriginal.substring(nombreOriginal.lastIndexOf("."));
+                }
+                String nombreArchivo = System.currentTimeMillis() + extension;
+                Path ruta = Paths.get("uploads/pizzas", nombreArchivo);
+                
+                // Escribir el archivo
+                Files.write(ruta, imagenArchivo.getBytes());
+                
+                rutaImagenFinal = "/uploads/pizzas/" + nombreArchivo;
+            } catch (IOException e) {
+                e.printStackTrace();
+                flash.addFlashAttribute("error", "Error al procesar la subida de la imagen.");
+                return "redirect:/admin";
+            }
+        } else if (imagenUrl != null && !imagenUrl.isBlank()) {
+            rutaImagenFinal = imagenUrl.trim();
+        }
+
+        pizza.setImagenUrl(rutaImagenFinal);
+
+        productoService.guardar(pizza);
+        flash.addFlashAttribute("exito", "Pizza registrada correctamente.");
+        return "redirect:/admin";
+    }
+
+    // POST: /admin/pizzas/editar (Modificar pizza desde el modal de edición)
+    @PostMapping("/editar")
+    public String editar(
+            @RequestParam("id") Integer id,
+            @RequestParam("nombre") String nombre,
+            @RequestParam("precio") Double precio,
+            @RequestParam(value = "stock", defaultValue = "10") Integer stock,
+            @RequestParam(value = "imagenUrl", required = false) String imagenUrl,
+            @RequestParam(value = "imagenArchivo", required = false) MultipartFile imagenArchivo,
+            @RequestParam(value = "codigoCategoria", required = false) String codigoCategoria,
+            @RequestParam(value = "tamano", required = false) String tamano,
+            @RequestParam(value = "disponible", defaultValue = "true") Boolean disponible,
+            RedirectAttributes flash) {
+
+        var existente = productoService.buscarPorId(id);
+        if (existente.isEmpty()) {
+            flash.addFlashAttribute("error", "No se encontró la pizza a editar.");
+            return "redirect:/admin";
+        }
+
+        Producto pizza = existente.get();
+        pizza.setNombre(nombre.trim());
+        pizza.setPrecio(precio);
+        pizza.setStock(stock);
+        pizza.setDisponible(disponible);
+        if (tamano != null && !tamano.isBlank()) {
+            pizza.setTamano(tamano);
+        }
+        if (codigoCategoria != null && !codigoCategoria.isBlank()) {
+            var catOpt = categoriaService.buscarPorCodigo(codigoCategoria);
+            pizza.setCategoria(catOpt.orElse(pizza.getCategoria()));
+        }
+
+        // Si sube un archivo nuevo, lo procesamos
+        if (imagenArchivo != null && !imagenArchivo.isEmpty()) {
+            try {
+                File directorio = new File("uploads/pizzas");
+                if (!directorio.exists()) {
+                    directorio.mkdirs();
+                }
+                String nombreOriginal = imagenArchivo.getOriginalFilename();
+                String extension = "";
+                if (nombreOriginal != null && nombreOriginal.contains(".")) {
+                    extension = nombreOriginal.substring(nombreOriginal.lastIndexOf("."));
+                }
+                String nombreArchivo = System.currentTimeMillis() + extension;
+                Path ruta = Paths.get("uploads/pizzas", nombreArchivo);
+                Files.write(ruta, imagenArchivo.getBytes());
+                
+                pizza.setImagenUrl("/uploads/pizzas/" + nombreArchivo);
+            } catch (IOException e) {
+                e.printStackTrace();
+                flash.addFlashAttribute("error", "Error al procesar la nueva imagen.");
+                return "redirect:/admin";
+            }
+        } else if (imagenUrl != null && !imagenUrl.isBlank()) {
+            // Solo se actualiza si pasaron una URL de imagen válida
+            pizza.setImagenUrl(imagenUrl.trim());
+        }
+
+        productoService.guardar(pizza);
+        flash.addFlashAttribute("exito", "Pizza actualizada correctamente.");
+        return "redirect:/admin";
+    }
+
+    // GET: /admin/pizzas/eliminar/{id} (Eliminar según el botón del HTML)
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable Integer id, RedirectAttributes flash) {
+        if (productoService.eliminar(id)) {
+            flash.addFlashAttribute("exito", "Pizza eliminada correctamente.");
+        } else {
+            flash.addFlashAttribute("error", "No se pudo encontrar la pizza a eliminar.");
+        }
+        return "redirect:/admin";
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/controller/AdminRestController.java
+```java
+package com.lacaleta.controller;
+
+import com.lacaleta.model.Pedido;
+import com.lacaleta.model.Insumo;
+import com.lacaleta.model.Producto;
+import com.lacaleta.repository.InsumoRepository;
+import com.lacaleta.repository.PedidoRepository;
+import com.lacaleta.repository.ProductoRepository;
+import com.lacaleta.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/admin")
+public class AdminRestController {
+
+    @Autowired
+    private PedidoRepository pedidoRepository;
+
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    @Autowired
+    private InsumoRepository insumoRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @GetMapping("/dashboard/metricas")
+    public Map<String, Object> getDashboardMetrics() {
+        Map<String, Object> response = new HashMap<>();
+
+        // 1. Ventas del día (sumatoria total)
+        List<Pedido> pedidos = pedidoRepository.findAll();
+        LocalDate hoy = LocalDate.now();
+        double ventasDelDia = pedidos.stream()
+                .filter(p -> p.getFecha() != null && p.getFecha().toLocalDate().equals(hoy))
+                .mapToDouble(p -> p.getTotal() != null ? p.getTotal() : 0.0)
+                .sum();
+        response.put("ventasDelDia", ventasDelDia);
+
+        // 2. Pizzas en catálogo (count de productos activos)
+        long pizzasCatalogo = productoRepository.findAll().stream()
+                .filter(p -> p.getDisponible() != null && p.getDisponible())
+                .count();
+        response.put("pizzasCatalogo", pizzasCatalogo);
+
+        // 3. Insumos Críticos (stockActual <= stockMinimo)
+        long insumosCriticos = insumoRepository.findAll().stream()
+                .filter(i -> i.getStockActual() != null && i.getStockMinimo() != null && i.getStockActual() <= i.getStockMinimo())
+                .count();
+        response.put("insumosCriticos", insumosCriticos);
+
+        // 4. Clientes Registrados
+        long clientesRegistrados = usuarioRepository.findAll().stream()
+                .filter(u -> Integer.valueOf(1).equals(u.getRolId()))
+                .count();
+        response.put("clientesRegistrados", clientesRegistrados);
+
+        // 5. Gráfico de Ingresos Semanales (Últimas 4 semanas)
+        double[] ingresosSemanales = new double[4];
+        
+        // Datos para Gráfico Circular: Métodos de Pago
+        int yapePlin = 0, efectivo = 0, tarjeta = 0;
+
+        // Datos para Gráfico Barras: Pizzas (simulado basado en detalles de pedidos o estático adaptado)
+        // Como simplificación, calcularemos basados en las pizzas disponibles
+        Map<String, Double> ventasPorPizzaMap = new HashMap<>();
+
+        LocalDateTime now = LocalDateTime.now();
+        for (Pedido p : pedidos) {
+            if (p.getFecha() != null) {
+                long daysBetween = ChronoUnit.DAYS.between(p.getFecha().toLocalDate(), now.toLocalDate());
+                if (daysBetween >= 0 && daysBetween < 28) {
+                    int weekIndex = 3 - (int) (daysBetween / 7);
+                    ingresosSemanales[weekIndex] += (p.getTotal() != null ? p.getTotal() : 0.0);
+                }
+            }
+            
+            if (p.getMetodoPago() != null) {
+                String mp = p.getMetodoPago().toUpperCase();
+                if (mp.contains("YAPE") || mp.contains("PLIN")) yapePlin++;
+                else if (mp.contains("EFECTIVO")) efectivo++;
+                else if (mp.contains("TARJETA") || mp.contains("VISA")) tarjeta++;
+            }
+
+            if (p.getDetalles() != null) {
+                for (var d : p.getDetalles()) {
+                    if (d.getProducto() != null && d.getProducto().getNombre() != null) {
+                        ventasPorPizzaMap.put(d.getProducto().getNombre(), 
+                            ventasPorPizzaMap.getOrDefault(d.getProducto().getNombre(), 0.0) + (d.getSubtotal() != null ? d.getSubtotal() : 0.0));
+                    }
+                }
+            }
+        }
+        
+        response.put("graficoIngresosSemanales", Arrays.asList(
+            ingresosSemanales[0], ingresosSemanales[1], ingresosSemanales[2], ingresosSemanales[3]
+        ));
+
+        response.put("graficoPagos", Arrays.asList(yapePlin, efectivo, tarjeta));
+
+        // Ordenar y tomar top 5 pizzas
+        List<Map.Entry<String, Double>> topPizzas = ventasPorPizzaMap.entrySet().stream()
+            .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+            .limit(5).toList();
+        response.put("pizzasLabels", topPizzas.stream().map(Map.Entry::getKey).toList());
+        response.put("pizzasData", topPizzas.stream().map(Map.Entry::getValue).toList());
+
+        // Datos para Gráfico Horizontal: Insumos (Tomamos los 4 con menos stock)
+        List<Insumo> topInsumos = insumoRepository.findAll().stream()
+            .filter(i -> i.getStockActual() != null)
+            .sorted((i1, i2) -> i1.getStockActual().compareTo(i2.getStockActual()))
+            .limit(4).toList();
+            
+        response.put("insumosLabels", topInsumos.stream().map(Insumo::getNombre).toList());
+        response.put("insumosData", topInsumos.stream().map(Insumo::getStockActual).toList());
+
+        return response;
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/controller/PageController.java
+```java
+package com.lacaleta.controller;
+
+import com.lacaleta.model.Usuario;
+import com.lacaleta.service.CategoriaService;
+import com.lacaleta.service.InsumoService;
+import com.lacaleta.service.ProductoService;
+import com.lacaleta.service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
+import com.lacaleta.repository.PedidoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Optional;
+import java.util.regex.Pattern;
+
+@Controller
+public class PageController {
+
+    @Autowired
+    private ProductoService productoService;
+
+    @Autowired
+    private PedidoRepository pedidoRepository;
+
+    @Autowired
+    private CategoriaService categoriaService;
+
+    @Autowired
+    private InsumoService insumoService;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    // Patrones de validación Regex
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-zA-Z]{2,}$");
+    private static final Pattern PHONE_PERU_PATTERN = Pattern.compile("^9\\d{8}$");
+    private static final Pattern DNI_PATTERN = Pattern.compile("^\\d{8}$");
+    private static final Pattern NAME_PATTERN = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]{2,50}$");
+
+    private void cargarUsuarioEnModelo(Model model, HttpSession session) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuarioLogueado != null) {
+            model.addAttribute("usuario", usuarioLogueado);
+        }
+    }
+
+    @GetMapping("/")
+    public String index(Model model, HttpSession session) {
+        model.addAttribute("clasicas", productoService.obtenerClasicas());
+        model.addAttribute("combos", productoService.obtenerCombos());
+        cargarUsuarioEnModelo(model, session);
+        return "index";
+    }
+
+    @GetMapping("/menu")
+    public String menu(Model model, HttpSession session) {
+        model.addAttribute("promociones", productoService.obtenerPromociones());
+        model.addAttribute("principales", productoService.obtenerClasicas());
+        model.addAttribute("combos", productoService.obtenerCombos());
+        model.addAttribute("acompanamientos", productoService.obtenerAcompanamientos());
+        model.addAttribute("bebidas", productoService.obtenerBebidas());
+        model.addAttribute("categorias", categoriaService.listar());
+        cargarUsuarioEnModelo(model, session);
+        return "shop/menu";
+    }
+
+    @GetMapping("/promociones")
+    public String promociones(Model model, HttpSession session) {
+        model.addAttribute("promos1Persona", productoService.obtenerPromos1Persona());
+        model.addAttribute("promosDuo", productoService.obtenerPromosDuo());
+        model.addAttribute("promosTrio", productoService.obtenerPromosTrio());
+        model.addAttribute("promosFamiliares", productoService.obtenerPromosFamiliares());
+        cargarUsuarioEnModelo(model, session);
+        return "shop/promociones";
+    }
+
+    @GetMapping("/detalles")
+    public String detalles(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "shop/detalles";
+    }
+
+    @GetMapping("/locales")
+    public String locales(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "shop/locales";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "account/login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login";
+    }
+
+    @GetMapping("/registro")
+    public String registro() {
+        return "account/create";
+    }
+
+    @GetMapping("/forgotpassword")
+    public String forgotPassword() {
+        return "account/forgotpassword";
+    }
+
+    @GetMapping("/verifycode")
+    public String verifyCode() {
+        return "account/verifycode";
+    }
+
+    @GetMapping("/resetpassword")
+    public String resetPassword() {
+        return "account/resetpassword";
+    }
+
+    @GetMapping("/reportes")
+    public String reportes(HttpSession session, Model model) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuarioLogueado == null) {
+            return "redirect:/login";
+        }
+        if (!usuarioLogueado.esAdmin()) {
+            return "redirect:/";
+        }
+        cargarUsuarioEnModelo(model, session);
+        return "admin/reportes";
+    }
+
+    @GetMapping({ "/admin", "/administracion" })
+    public String admin(
+            @RequestParam(value = "categoria", required = false) String categoria,
+            @RequestParam(value = "disponible", required = false) Boolean disponible,
+            @RequestParam(value = "buscar", required = false) String buscar,
+            @RequestParam(value = "buscarInsumo", required = false) String buscarInsumo,
+            Model model,
+            HttpSession session) {
+
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuarioLogueado == null) {
+            return "redirect:/login";
+        }
+        if (!usuarioLogueado.esAdmin()) {
+            return "redirect:/";
+        }
+
+        cargarUsuarioEnModelo(model, session);
+
+        var listaPizzas = productoService.listarConFiltros(categoria, disponible, buscar);
+        var listaInsumos = insumoService.listarConFiltro(buscarInsumo);
+
+        model.addAttribute("pizzas", listaPizzas);
+        model.addAttribute("productos", listaPizzas);
+        model.addAttribute("insumos", listaInsumos);
+        model.addAttribute("totalPizzas", productoService.listar().size());
+        model.addAttribute("categorias", categoriaService.listar());
+
+        var listaPedidos = pedidoRepository.findAll();
+        var listaClientes = usuarioService.listar().stream()
+                .filter(u -> Integer.valueOf(1).equals(u.getRolId()))
+                .toList();
+
+        model.addAttribute("pedidos", listaPedidos);
+        model.addAttribute("clientes", listaClientes);
+
+        return "admin/admin";
+    }
+
+    @GetMapping({ "/carrito", "/cart" })
+    public String carrito(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "checkout/cart";
+    }
+
+    @GetMapping("/envio")
+    public String envio(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "checkout/shipping";
+    }
+
+    @GetMapping("/pago")
+    public String pago(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "checkout/payment";
+    }
+
+    @GetMapping("/faq")
+    public String faq(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "info/faq";
+    }
+
+    @GetMapping("/terminos")
+    public String terminos(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "info/terminos";
+    }
+
+    @GetMapping("/delivery")
+    public String delivery(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "info/delivery";
+    }
+
+    @GetMapping("/perfil")
+    public String perfil(Model model, HttpSession session) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+        
+        // Si el usuario no ha iniciado sesión, lo redirige al login
+        if (usuarioLogueado == null) {
+            return "redirect:/login";
+        }
+
+        cargarUsuarioEnModelo(model, session);
+
+        // Obtener historial de pedidos del usuario conectado
+        var misPedidos = pedidoRepository.findAll().stream()
+                .filter(p -> p.getUsuario() != null && usuarioLogueado.getId().equals(p.getUsuario().getId()))
+                .sorted((p1, p2) -> p2.getFecha().compareTo(p1.getFecha()))
+                .toList();
+
+        double totalGastado = misPedidos.stream().mapToDouble(p -> p.getTotal() != null ? p.getTotal() : 0.0).sum();
+        int puntosCaleta = (int) (totalGastado / 5.0); // 1 punto por cada S/ 5 de consumo
+
+        var ultimoPedido = misPedidos.isEmpty() ? null : misPedidos.get(0);
+
+        model.addAttribute("pedidos", misPedidos);
+        model.addAttribute("totalPedidos", misPedidos.size());
+        model.addAttribute("totalGastado", totalGastado);
+        model.addAttribute("puntosCaleta", puntosCaleta);
+        model.addAttribute("ultimoPedido", ultimoPedido);
+
+        return "account/perfil";
+    }
+
+    @PostMapping("/perfil/actualizar")
+    public String actualizarPerfil(@RequestParam("nombre") String nombre,
+                                   @RequestParam("telefono") String telefono,
+                                   @RequestParam(value = "dni", required = false) String dni,
+                                   HttpSession session,
+                                   org.springframework.web.servlet.mvc.support.RedirectAttributes redirectAttributes) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuarioLogueado == null) {
+            return "redirect:/login";
+        }
+
+        usuarioLogueado.setNombre(nombre);
+        usuarioLogueado.setTelefono(telefono);
+        if (dni != null) {
+            usuarioLogueado.setDni(dni);
+        }
+
+        boolean actualizado = usuarioService.guardar(usuarioLogueado);
+        if (actualizado) {
+            session.setAttribute("usuarioLogueado", usuarioLogueado);
+            redirectAttributes.addFlashAttribute("exito", "¡Tus datos personales se actualizaron correctamente!");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Ocurrió un error al intentar actualizar tus datos.");
+        }
+
+        return "redirect:/perfil";
+    }
+
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/controller/PasswordResetController.java
+```java
+package com.lacaleta.controller;
+
+import com.lacaleta.model.Usuario;
+import com.lacaleta.repository.UsuarioRepository;
+import com.lacaleta.service.EmailService;
+import com.lacaleta.service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
+import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
+import java.time.LocalDate;
+import java.time.Period;
+
+@RestController
+@RequestMapping("/api/auth")
+public class PasswordResetController {
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
+    private EmailService emailService;
+
+    // Simula una caché temporal para los OTPs.
+    private final ConcurrentHashMap<String, String> otpCache = new ConcurrentHashMap<>();
+
+    // Patrones de validación Regex
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-zA-Z]{2,}$");
+    private static final Pattern PHONE_PERU_PATTERN = Pattern.compile("^9\\d{8}$");
+    private static final Pattern DNI_PATTERN = Pattern.compile("^\\d{8}$");
+    private static final Pattern NAME_PATTERN = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]{2,50}$");
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Map<String, String> payload, HttpSession session) {
+        String email = payload.get("email");
+        String password = payload.get("password");
+
+        String emailClean = (email != null) ? email.trim().toLowerCase() : "";
+        String passClean = (password != null) ? password.trim() : "";
+
+        Optional<Usuario> usuarioAutenticado = usuarioService.autenticar(emailClean, passClean);
+
+        if (usuarioAutenticado.isPresent()) {
+            Usuario usuario = usuarioAutenticado.get();
+            session.setAttribute("usuarioLogueado", usuario);
+
+            String redirectUrl = usuario.esAdmin() ? "/admin" : "/";
+            return ResponseEntity.ok(Map.of("mensaje", "Inicio de sesión exitoso", "redirect", redirectUrl, "usuario", usuario));
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Correo electrónico o contraseña incorrectos."));
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody Map<String, String> payload) {
+        String nombre = payload.get("nombre");
+        String apellidos = payload.get("apellidos");
+        String tipoDocumento = payload.get("tipoDocumento");
+        String numeroDocumento = payload.get("numeroDocumento");
+        String telefono = payload.get("telefono");
+        String fechaNacimiento = payload.get("fechaNacimiento");
+        String email = payload.get("email");
+        String password = payload.get("password");
+        String confirmPassword = payload.get("confirmPassword");
+        String aceptaTerminosStr = payload.get("aceptaTerminos");
+
+        String nomClean = nombre != null ? nombre.trim() : "";
+        String apeClean = apellidos != null ? apellidos.trim() : "";
+        String tipoDocClean = tipoDocumento != null ? tipoDocumento.trim() : "DNI";
+        String docClean = numeroDocumento != null ? numeroDocumento.trim() : "";
+        String telClean = telefono != null ? telefono.trim() : "";
+        String emailClean = email != null ? email.trim().toLowerCase() : "";
+        String passClean = password != null ? password.trim() : "";
+        String confirmClean = confirmPassword != null ? confirmPassword.trim() : "";
+        boolean aceptaTerminos = "true".equalsIgnoreCase(aceptaTerminosStr);
+
+        if (!NAME_PATTERN.matcher(nomClean).matches() || !NAME_PATTERN.matcher(apeClean).matches()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Los nombres y apellidos deben contener solo letras (mínimo 2 caracteres)."));
+        }
+
+        if ("DNI".equalsIgnoreCase(tipoDocClean)) {
+            if (!DNI_PATTERN.matcher(docClean).matches()) {
+                return ResponseEntity.badRequest().body(Map.of("error", "El DNI debe contener exactamente 8 dígitos numéricos."));
+            }
+        } else if (docClean.length() < 6 || docClean.length() > 12) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Ingresa un número de documento válido (entre 6 y 12 caracteres)."));
+        }
+
+        if (!PHONE_PERU_PATTERN.matcher(telClean).matches()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "El número de teléfono debe ser un celular peruano válido (9 dígitos comenzando con 9)."));
+        }
+
+        if (fechaNacimiento != null && !fechaNacimiento.isBlank()) {
+            try {
+                LocalDate fechaNac = LocalDate.parse(fechaNacimiento);
+                LocalDate hoy = LocalDate.now();
+
+                if (fechaNac.isAfter(hoy)) {
+                    return ResponseEntity.badRequest().body(Map.of("error", "La fecha de nacimiento no puede estar en el futuro."));
+                }
+                int edad = Period.between(fechaNac, hoy).getYears();
+                if (edad < 14) {
+                    return ResponseEntity.badRequest().body(Map.of("error", "Debes tener al menos 14 años para registrarte."));
+                }
+                if (edad > 100) {
+                    return ResponseEntity.badRequest().body(Map.of("error", "Ingresa una fecha de nacimiento válida."));
+                }
+            } catch (Exception e) {
+                return ResponseEntity.badRequest().body(Map.of("error", "Formato de fecha de nacimiento no válido."));
+            }
+        } else {
+            return ResponseEntity.badRequest().body(Map.of("error", "Por favor ingresa tu fecha de nacimiento."));
+        }
+
+        if (!EMAIL_PATTERN.matcher(emailClean).matches()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Ingresa un correo electrónico válido (ejemplo: usuario@dominio.com)."));
+        }
+
+        if (passClean.length() < 8) {
+            return ResponseEntity.badRequest().body(Map.of("error", "La contraseña debe contener al menos 8 caracteres."));
+        }
+
+        if (!passClean.equals(confirmClean)) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Las contraseñas no coinciden. Por favor verifícalas."));
+        }
+
+        if (!aceptaTerminos) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Debes aceptar los términos y condiciones para continuar."));
+        }
+
+        String nombreCompleto = nomClean + " " + apeClean;
+        Usuario nuevoUsuario = new Usuario(null, nombreCompleto, emailClean, passClean, telClean, docClean, 1);
+
+        boolean exito = usuarioService.guardar(nuevoUsuario);
+
+        if (!exito) {
+            return ResponseEntity.badRequest().body(Map.of("error", "El correo electrónico '" + emailClean + "' ya está registrado."));
+        }
+
+        return ResponseEntity.ok(Map.of("mensaje", "¡Registro exitoso! Ya puedes iniciar sesión."));
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody Map<String, String> payload) {
+        String email = payload.get("email");
+        if (email == null || email.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Email es requerido."));
+        }
+
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email.toLowerCase());
+        if (usuarioOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "Usuario no encontrado."));
+        }
+
+        // Generar OTP de 6 dígitos
+        String otp = String.format("%06d", new Random().nextInt(999999));
+        otpCache.put(email.toLowerCase(), otp);
+
+        // Enviar por correo
+        boolean enviado = emailService.enviarCodigoRecuperacion(email.toLowerCase(), otp);
+        if (enviado) {
+            return ResponseEntity.ok(Map.of("mensaje", "Se ha enviado un código de verificación a tu correo."));
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Error al enviar el correo."));
+        }
+    }
+
+    @PostMapping("/verify-otp")
+    public ResponseEntity<?> verifyOtp(@RequestBody Map<String, String> payload) {
+        String email = payload.get("email");
+        String otp = payload.get("otp");
+
+        if (email == null || otp == null) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Faltan datos requeridos."));
+        }
+
+        String storedOtp = otpCache.get(email.toLowerCase());
+        if (storedOtp != null && storedOtp.equals(otp)) {
+            return ResponseEntity.ok(Map.of("mensaje", "Código verificado con éxito."));
+        } else {
+            return ResponseEntity.badRequest().body(Map.of("error", "El código ingresado es incorrecto o ha expirado."));
+        }
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody Map<String, String> payload) {
+        String email = payload.get("email");
+        String otp = payload.get("otp");
+        String newPassword = payload.get("newPassword");
+
+        if (email == null || otp == null || newPassword == null) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Faltan datos requeridos."));
+        }
+
+        // 1. Validar OTP
+        String storedOtp = otpCache.get(email.toLowerCase());
+        if (storedOtp == null || !storedOtp.equals(otp)) {
+            return ResponseEntity.badRequest().body(Map.of("error", "El código ingresado es incorrecto o ha expirado."));
+        }
+
+        // 2. Validar Regex (mínimo 8 caracteres, 1 mayúscula, 1 carácter especial)
+        String strengthRegex = "^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$";
+        if (!Pattern.compile(strengthRegex).matcher(newPassword).matches()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "La contraseña debe tener mínimo 8 caracteres, al menos 1 mayúscula y 1 carácter especial."));
+        }
+
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email.toLowerCase());
+        if (usuarioOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "Usuario no encontrado."));
+        }
+
+        Usuario usuario = usuarioOpt.get();
+
+        // 3. Verificar que la nueva contraseña no sea igual a la actual
+        boolean esIgual = false;
+        try {
+            if (usuario.getPassword() != null && usuario.getPassword().startsWith("$2a$")) {
+                esIgual = BCrypt.checkpw(newPassword, usuario.getPassword());
+            } else {
+                esIgual = newPassword.equals(usuario.getPassword());
+            }
+        } catch (Exception e) {
+            esIgual = false;
+        }
+
+        if (esIgual) {
+            return ResponseEntity.badRequest().body(Map.of("error", "La nueva contraseña no puede ser igual a la anterior."));
+        }
+
+        // 4. Encriptar y guardar
+        String hashedNewPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+        usuario.setPassword(hashedNewPassword);
+        usuarioRepository.save(usuario);
+
+        // 5. Eliminar OTP
+        otpCache.remove(email.toLowerCase());
+
+        return ResponseEntity.ok(Map.of("mensaje", "¡Contraseña restablecida exitosamente!"));
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/model/Categoria.java
+```java
+package com.lacaleta.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "categorias")
+public class Categoria {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @Column(nullable = false, unique = true, length = 50)
+    private String codigo;
+    
+    @Column(nullable = false, length = 100)
+    private String nombre;
+    
+    @Column(columnDefinition = "TEXT")
+    private String descripcion;
+    
+    private String icono;
+
+    public Categoria() {
+    }
+
+    public Categoria(Integer id, String codigo, String nombre, String descripcion, String icono) {
+        this.id = id;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.icono = icono;
+    }
+
+    public Integer getId() { 
+        return id; 
+    }
+    
+    public void setId(Integer id) { 
+        this.id = id; 
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() { 
+        return nombre; 
+    }
+    
+    public void setNombre(String nombre) { 
+        this.nombre = nombre; 
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getIcono() {
+        return icono;
+    }
+
+    public void setIcono(String icono) {
+        this.icono = icono;
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/model/DetallePedido.java
+```java
+package com.lacaleta.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "detalle_pedidos")
+public class DetallePedido {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+    
+    @ManyToOne
+    @JoinColumn(name = "producto_id")
+    private Producto producto;
+    
+    @Column(nullable = false)
+    private Integer cantidad;
+    
+    @Column(name = "precio_unitario", nullable = false)
+    private Double precioUnitario;
+    
+    @Column(nullable = false)
+    private Double subtotal;
+
+    public DetallePedido() {}
+
+    public DetallePedido(Pedido pedido, Producto producto, Integer cantidad, Double precioUnitario) {
+        this.pedido = pedido;
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.precioUnitario = precioUnitario;
+        this.subtotal = precioUnitario * cantidad;
+    }
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+
+    public Pedido getPedido() { return pedido; }
+    public void setPedido(Pedido pedido) { this.pedido = pedido; }
+
+    public Producto getProducto() { return producto; }
+    public void setProducto(Producto producto) { this.producto = producto; }
+
+    public Integer getCantidad() { return cantidad; }
+    public void setCantidad(Integer cantidad) { this.cantidad = cantidad; }
+
+    public Double getPrecioUnitario() { return precioUnitario; }
+    public void setPrecioUnitario(Double precioUnitario) { this.precioUnitario = precioUnitario; }
+
+    public Double getSubtotal() { return subtotal; }
+    public void setSubtotal(Double subtotal) { this.subtotal = subtotal; }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/model/Insumo.java
+```java
+package com.lacaleta.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "insumos")
+public class Insumo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @Column(nullable = false, unique = true, length = 50)
+    private String codigo;
+    
+    @Column(nullable = false, length = 100)
+    private String nombre;
+    
+    @Column(name = "stock_actual", nullable = false)
+    private Double stockActual;
+    
+    @Column(name = "unidad_medida", length = 50)
+    private String unidadMedida; // kg, Litros, unidades, etc.
+    
+    @Column(name = "stock_minimo")
+    private Double stockMinimo;   // Para calcular si está CRÍTICO u ÓPTIMO
+
+    public Insumo() {}
+
+    public Insumo(Integer id, String codigo, String nombre, Double stockActual, String unidadMedida, Double stockMinimo) {
+        this.id = id;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.stockActual = stockActual;
+        this.unidadMedida = unidadMedida;
+        this.stockMinimo = stockMinimo;
+    }
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+
+    public String getCodigo() { return codigo; }
+    public void setCodigo(String codigo) { this.codigo = codigo; }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public Double getStockActual() { return stockActual; }
+    public void setStockActual(Double stockActual) { this.stockActual = stockActual; }
+
+    public String getUnidadMedida() { return unidadMedida; }
+    public void setUnidadMedida(String unidadMedida) { this.unidadMedida = unidadMedida; }
+
+    public Double getStockMinimo() { return stockMinimo; }
+    public void setStockMinimo(Double stockMinimo) { this.stockMinimo = stockMinimo; }
+
+    public boolean isCritico() {
+        return this.stockActual <= this.stockMinimo;
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/model/Pedido.java
+```java
+package com.lacaleta.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "pedidos")
+public class Pedido {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+    
+    @Column(nullable = false)
+    private LocalDateTime fecha = LocalDateTime.now();
+    
+    @Column(nullable = false, length = 20)
+    private String estado = "PENDIENTE"; // PENDIENTE, EN_CAMINO, ENTREGADO
+    
+    @Column(name = "metodo_pago", length = 20)
+    private String metodoPago; // YAPE, TARJETA, EFECTIVO
+    
+    @Column(name = "direccion_entrega")
+    private String direccionEntrega;
+    
+    @Column(nullable = false)
+    private Double total;
+    
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetallePedido> detalles = new ArrayList<>();
+
+    public Pedido() {}
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+
+    public LocalDateTime getFecha() { return fecha; }
+    public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
+
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
+
+    public String getMetodoPago() { return metodoPago; }
+    public void setMetodoPago(String metodoPago) { this.metodoPago = metodoPago; }
+
+    public String getDireccionEntrega() { return direccionEntrega; }
+    public void setDireccionEntrega(String direccionEntrega) { this.direccionEntrega = direccionEntrega; }
+
+    public Double getTotal() { return total; }
+    public void setTotal(Double total) { this.total = total; }
+
+    public List<DetallePedido> getDetalles() { return detalles; }
+    public void setDetalles(List<DetallePedido> detalles) { this.detalles = detalles; }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/model/Producto.java
+```java
+package com.lacaleta.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "productos")
+public class Producto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @Column(nullable = false, length = 100)
+    private String nombre;
+    
+    @Column(columnDefinition = "TEXT")
+    private String descripcion;
+    
+    @Column(nullable = false)
+    private Double precio;
+    
+    @Column(name = "imagen_url")
+    private String imagenUrl;
+    
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+    
+    @Column(length = 50)
+    private String tamano;
+    
+    @Column(nullable = false)
+    private Boolean disponible = true;
+    
+    @Column(nullable = false)
+    private Integer stock = 10;
+
+    public Producto() {
+    }
+
+    public Producto(Integer id, String nombre, String descripcion, Double precio, 
+                    String imagenUrl, Categoria categoria, String tamano, Boolean disponible, Integer stock) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.imagenUrl = imagenUrl;
+        this.categoria = categoria;
+        this.tamano = tamano;
+        this.disponible = disponible != null ? disponible : true;
+        this.stock = stock != null ? stock : 10;
+    }
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+
+    public Double getPrecio() { return precio; }
+    public void setPrecio(Double precio) { this.precio = precio; }
+
+    public String getImagenUrl() { return imagenUrl; }
+    public void setImagenUrl(String imagenUrl) { this.imagenUrl = imagenUrl; }
+
+    public Categoria getCategoria() { return categoria; }
+    public void setCategoria(Categoria categoria) { this.categoria = categoria; }
+
+    public String getTamano() { return tamano; }
+    public void setTamano(String tamano) { this.tamano = tamano; }
+
+    public Boolean getDisponible() { return disponible; }
+    public void setDisponible(Boolean disponible) { this.disponible = disponible; }
+
+    public Integer getStock() { return stock; }
+    public void setStock(Integer stock) { this.stock = stock; }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/model/Usuario.java
+```java
+package com.lacaleta.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "usuarios")
+public class Usuario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false, length = 100)
+    private String nombre;
+
+    @Column(nullable = false, unique = true, length = 100)
+    private String email;
+
+    // Mapea exactamente la columna 'password_hash' de PostgreSQL
+    @Column(name = "password_hash", nullable = false)
+    private String password;
+
+    @Column(length = 15)
+    private String telefono;
+
+    @Column(length = 20)
+    private String dni;
+
+    // Mapea exactamente la columna 'rol_id' de PostgreSQL (Integer).
+    // 2 = ADMIN, 1 = CLIENTE segun tabla 'roles'
+    @Column(name = "rol_id", nullable = false)
+    private Integer rolId;
+
+    @Column(name = "fecha_registro")
+    private LocalDateTime fechaRegistro;
+
+    public Usuario() {
+        this.rolId = 1; // CLIENTE por defecto
+        this.fechaRegistro = LocalDateTime.now();
+    }
+
+    public Usuario(Integer id, String nombre, String email, String password, String telefono, String dni, Integer rolId) {
+        this.id = id;
+        this.nombre = nombre;
+        this.email = email;
+        this.password = password;
+        this.telefono = telefono;
+        this.dni = dni;
+        this.rolId = (rolId != null) ? rolId : 1;
+        this.fechaRegistro = LocalDateTime.now();
+    }
+
+    // Getters y Setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public Integer getRolId() {
+        return rolId;
+    }
+
+    public void setRolId(Integer rolId) {
+        this.rolId = rolId;
+    }
+
+    public LocalDateTime getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    /**
+     * Helper: devuelve true si el usuario es ADMIN (rolId == 2).
+     * Usar en controladores en lugar de comparar Strings.
+     */
+    public boolean esAdmin() {
+        return Integer.valueOf(2).equals(this.rolId);
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/repository/CategoriaRepository.java
+```java
+package com.lacaleta.repository;
+
+import com.lacaleta.model.Categoria;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.Optional;
+
+@Repository
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
+    Optional<Categoria> findByCodigo(String codigo);
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/repository/InsumoRepository.java
+```java
+package com.lacaleta.repository;
+
+import com.lacaleta.model.Insumo;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface InsumoRepository extends JpaRepository<Insumo, Integer> {
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/repository/PedidoRepository.java
+```java
+package com.lacaleta.repository;
+
+import com.lacaleta.model.Pedido;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/repository/ProductoRepository.java
+```java
+package com.lacaleta.repository;
+
+import com.lacaleta.model.Producto;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface ProductoRepository extends JpaRepository<Producto, Integer> {
+    List<Producto> findByCategoriaId(Integer categoriaId);
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/repository/UsuarioRepository.java
+```java
+package com.lacaleta.repository;
+
+import com.lacaleta.model.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> { 
+    Optional<Usuario> findByEmail(String email);
+    boolean existsByEmail(String email);
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/service/CategoriaService.java
+```java
+package com.lacaleta.service;
+
+import com.lacaleta.model.Categoria;
+import com.lacaleta.repository.CategoriaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class CategoriaService {
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
+    public List<Categoria> listar() {
+        return categoriaRepository.findAll();
+    }
+
+    public Optional<Categoria> buscarPorId(Integer id) {
+        return categoriaRepository.findById(id);
+    }
+
+    public Optional<Categoria> buscarPorCodigo(String codigo) {
+        return categoriaRepository.findByCodigo(codigo);
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/service/EmailService.java
+```java
+package com.lacaleta.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailService {
+
+    @Autowired(required = false)
+    private JavaMailSender mailSender;
+
+    public boolean enviarCodigoRecuperacion(String destino, String codigo) {
+        try {
+            if (mailSender == null) {
+                // Fallback para pruebas locales si aún no configuras SMTP
+                System.out.println(">>> CÓDIGO DE RECUPERACIÓN PARA " + destino + ": " + codigo);
+                return true;
+            }
+
+            SimpleMailMessage mensaje = new SimpleMailMessage();
+            mensaje.setTo(destino);
+            mensaje.setSubject("La Caleta - Código de Recuperación de Contraseña");
+            mensaje.setText("Hola,\n\nTu código de verificación para restablecer tu contraseña en La Caleta es: " 
+                            + codigo + "\n\nEste código vencerá en 10 minutos.\n\nSi no solicitaste este cambio, ignora este mensaje.");
+            
+            mailSender.send(mensaje);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/service/InsumoService.java
+```java
+package com.lacaleta.service;
+
+import com.lacaleta.model.Insumo;
+import com.lacaleta.repository.InsumoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Service
+public class InsumoService {
+
+    @Autowired
+    private InsumoRepository insumoRepository;
+
+    public List<Insumo> listar() {
+        return insumoRepository.findAll();
+    }
+
+    public List<Insumo> listarConFiltro(String buscar) {
+        if (buscar == null || buscar.isBlank()) {
+            return listar();
+        }
+        String filtro = buscar.toLowerCase().trim();
+        return insumoRepository.findAll().stream()
+                .filter(i -> i.getNombre().toLowerCase().contains(filtro)
+                        || i.getCodigo().toLowerCase().contains(filtro))
+                .collect(Collectors.toList());
+    }
+
+    public void guardar(Insumo insumo) {
+        insumoRepository.save(insumo);
+    }
+
+    public Optional<Insumo> buscarPorId(Integer id) {
+        return insumoRepository.findById(id);
+    }
+
+    public boolean eliminar(Integer id) {
+        if (insumoRepository.existsById(id)) {
+            insumoRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/service/ProductoService.java
+```java
+package com.lacaleta.service;
+
+import com.lacaleta.model.Categoria;
+import com.lacaleta.model.Producto;
+import com.lacaleta.repository.ProductoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ProductoService {
+
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    public List<Producto> listar() {
+        return productoRepository.findAll();
+    }
+
+    public Optional<Producto> buscarPorId(Integer id) {
+        return productoRepository.findById(id);
+    }
+
+    public boolean guardar(Producto datos) {
+        if (datos.getDisponible() == null) {
+            datos.setDisponible(true);
+        }
+        if (datos.getStock() == null) {
+            datos.setStock(10);
+        }
+        productoRepository.save(datos);
+        return true;
+    }
+
+    public boolean eliminar(Integer id) {
+        if (productoRepository.existsById(id)) {
+            productoRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public List<Producto> listarConFiltros(String codigoCategoria, Boolean disponible, String buscar) {
+        return productoRepository.findAll().stream()
+                .filter(p -> {
+                    if (codigoCategoria != null && !codigoCategoria.isBlank()) {
+                        if (p.getCategoria() == null
+                                || !codigoCategoria.equalsIgnoreCase(
+                                        p.getCategoria().getCodigo())) {
+                            return false;
+                        }
+                    }
+                    if (disponible != null) {
+                        if (!disponible.equals(p.getDisponible())) {
+                            return false;
+                        }
+                    }
+                    if (buscar != null && !buscar.isBlank()) {
+                        String query = buscar.trim().toLowerCase();
+                        boolean coincideNombre = p.getNombre() != null
+                                && p.getNombre().toLowerCase().contains(query);
+                        boolean coincideDesc = p.getDescripcion() != null
+                                && p.getDescripcion().toLowerCase().contains(query);
+                        return coincideNombre || coincideDesc;
+                    }
+                    return true;
+                })
+                .toList();
+    }
+
+    public List<Producto> porCategoria(String codigoCategoria) {
+        return productoRepository.findAll().stream()
+                .filter(p -> p.getCategoria() != null
+                        && p.getCategoria().getCodigo() != null
+                        && p.getCategoria().getCodigo().trim()
+                                .equalsIgnoreCase(codigoCategoria.trim()))
+                .toList();
+    }
+
+    public List<Producto> obtenerClasicas() {
+        List<Producto> res = new java.util.ArrayList<>();
+        res.addAll(porCategoria("principales"));
+        if (res.isEmpty()) {
+            res.addAll(porCategoria("clasicas"));
+        }
+        res.addAll(porCategoria("especiales"));
+        return res;
+    }
+
+    public List<Producto> obtenerCombos() {
+        return porCategoria("combos");
+    }
+
+    public List<Producto> obtenerAcompanamientos() {
+        List<Producto> res = porCategoria("acompanamientos");
+        if (res.isEmpty())
+            res = porCategoria("acompañamientos");
+        return res;
+    }
+
+    public List<Producto> obtenerBebidas() {
+        List<Producto> res = porCategoria("bebidas");
+        if (res.isEmpty())
+            res = porCategoria("bebida");
+        return res;
+    }
+
+    public List<Producto> obtenerPromociones() {
+        List<Producto> res = porCategoria("promociones");
+        if (res.isEmpty())
+            res = obtenerPromos1Persona();
+        return res;
+    }
+
+    public List<Producto> obtenerPromos1Persona() {
+        return productoRepository.findAll().stream()
+                .filter(p -> "Personal".equalsIgnoreCase(p.getTamano()))
+                .toList();
+    }
+
+    public List<Producto> obtenerPromosDuo() {
+        return productoRepository.findAll().stream()
+                .filter(p -> "Dúo".equalsIgnoreCase(p.getTamano()))
+                .toList();
+    }
+
+    public List<Producto> obtenerPromosTrio() {
+        return productoRepository.findAll().stream()
+                .filter(p -> "Trío".equalsIgnoreCase(p.getTamano()))
+                .toList();
+    }
+
+    public List<Producto> obtenerPromosFamiliares() {
+        return productoRepository.findAll().stream()
+                .filter(p -> "Familiar".equalsIgnoreCase(p.getTamano())
+                        && (p.getNombre().contains("Banquete")
+                        || p.getNombre().contains("Fiesta")
+                        || p.getNombre().contains("Gran Cofradía")))
+                .toList();
+    }
+
+    public List<Producto> obtenerFavoritas() {
+        return obtenerClasicas().stream().limit(3).toList();
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/service/UsuarioService.java
+```java
+package com.lacaleta.service;
+
+import com.lacaleta.model.Usuario;
+import com.lacaleta.repository.UsuarioRepository;
+import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class UsuarioService {
+
+    private final UsuarioRepository usuarioRepository;
+
+    @Autowired
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
+
+    public List<Usuario> listar() {
+        return usuarioRepository.findAll();
+    }
+
+    public Optional<Usuario> buscarPorEmail(String email) {
+        if (email == null) {
+            return Optional.empty();
+        }
+        return usuarioRepository.findByEmail(email.trim().toLowerCase());
+    }
+
+    public boolean guardar(Usuario usuario) {
+        if (usuario == null || usuario.getEmail() == null || usuario.getEmail().isBlank()) {
+            return false;
+        }
+
+        // Normalizamos el correo a minusculas y sin espacios laterales
+        String emailLimpio = usuario.getEmail().trim().toLowerCase();
+        usuario.setEmail(emailLimpio);
+
+        if (usuario.getId() == null) {
+            // Verificar si el correo ya existe en la BD antes de registrar
+            if (usuarioRepository.existsByEmail(emailLimpio)) {
+                return false;
+            }
+            if (usuario.getFechaRegistro() == null) {
+                usuario.setFechaRegistro(LocalDateTime.now());
+            }
+            // Asignar rol CLIENTE (id=1) por defecto en nuevos registros
+            if (usuario.getRolId() == null) {
+                usuario.setRolId(1);
+            }
+            // Encriptar la contraseña antes de guardar si no está encriptada
+            if (usuario.getPassword() != null && !usuario.getPassword().startsWith("$2a$")) {
+                usuario.setPassword(BCrypt.hashpw(usuario.getPassword(), BCrypt.gensalt()));
+            }
+        }
+
+        usuarioRepository.save(usuario);
+        return true;
+    }
+
+    /**
+     * Autentica un usuario comparando la contraseña contra el hash BCrypt almacenado.
+     */
+    public Optional<Usuario> autenticar(String email, String password) {
+        if (email == null || password == null) {
+            return Optional.empty();
+        }
+
+        String emailLimpio = email.trim().toLowerCase();
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(emailLimpio);
+
+        if (usuarioOpt.isPresent()) {
+            Usuario usuario = usuarioOpt.get();
+            if (usuario.getPassword() != null) {
+                try {
+                    // Soportar tanto BCrypt como texto plano (migracion)
+                    boolean autenticado;
+                    if (usuario.getPassword().startsWith("$2a$") || usuario.getPassword().startsWith("$2b$")) {
+                        autenticado = BCrypt.checkpw(password.trim(), usuario.getPassword());
+                    } else {
+                        autenticado = password.trim().equals(usuario.getPassword());
+                    }
+                    if (autenticado) {
+                        return Optional.of(usuario);
+                    }
+                } catch (Exception e) {
+                    // Hash invalido: no autenticar
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Actualiza la contraseña de un usuario, encriptandola con BCrypt.
+     */
+    public boolean actualizarPassword(String email, String nuevaPassword) {
+        if (email == null || nuevaPassword == null || nuevaPassword.isBlank()) {
+            return false;
+        }
+
+        String emailLimpio = email.trim().toLowerCase();
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(emailLimpio);
+
+        if (usuarioOpt.isPresent()) {
+            Usuario usuario = usuarioOpt.get();
+            usuario.setPassword(BCrypt.hashpw(nuevaPassword.trim(), BCrypt.gensalt()));
+            usuarioRepository.save(usuario);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Cuenta los usuarios con rolId == 1 (CLIENTE).
+     */
+    public long contarClientes() {
+        return usuarioRepository.findAll().stream()
+                .filter(u -> Integer.valueOf(1).equals(u.getRolId()))
+                .count();
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/DatabaseSeeder.java
+```java
+package com.lacaleta;
+
+import com.lacaleta.model.Categoria;
+import com.lacaleta.model.Insumo;
+import com.lacaleta.model.Producto;
+import com.lacaleta.repository.CategoriaRepository;
+import com.lacaleta.repository.InsumoRepository;
+import com.lacaleta.repository.ProductoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+public class DatabaseSeeder implements CommandLineRunner {
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    @Autowired
+    private InsumoRepository insumoRepository;
+
+    @Override
+    public void run(String... args) throws Exception {
+        // Sembrar Categorías si está vacío
+        if (categoriaRepository.count() == 0) {
+            Categoria clasicas = new Categoria(null, "clasicas", "Pizzas Clásicas", "Recetas tradicionales horneadas a la leña", "bi-pie-chart");
+            Categoria especiales = new Categoria(null, "especiales", "Pizzas Especiales & Fusión", "Ingredientes de autor y recetas marinas", "bi-fire");
+            Categoria combos = new Categoria(null, "combos", "Combos & Promociones", "Pizzas con complementos", "bi-tag");
+            Categoria acompanamientos = new Categoria(null, "acompanamientos", "Acompañamientos", "Para picar antes", "bi-basket");
+            Categoria bebidas = new Categoria(null, "bebidas", "Bebidas", "Refrescantes", "bi-cup-straw");
+            Categoria promociones = new Categoria(null, "promociones", "Promociones", "Ofertas especiales", "bi-star");
+
+            categoriaRepository.saveAll(List.of(clasicas, especiales, combos, acompanamientos, bebidas, promociones));
+
+            // Sembrar Insumos Iniciales si está vacío
+            if (insumoRepository.count() == 0) {
+                Insumo i1 = new Insumo(null, "INS-01", "Queso Mozzarella", 4.0, "kg", 5.0);
+                Insumo i2 = new Insumo(null, "INS-02", "Salsa Pomodoro", 12.0, "Litros", 5.0);
+                Insumo i3 = new Insumo(null, "INS-03", "Pepperoni Laminado", 7.0, "kg", 4.0);
+                Insumo i4 = new Insumo(null, "INS-04", "Masa Artesanal", 25.0, "unidades", 10.0);
+                insumoRepository.saveAll(List.of(i1, i2, i3, i4));
+            }
+
+            // Sembrar Productos Iniciales si está vacío
+            if (productoRepository.count() == 0) {
+                // Principales
+                productoRepository.save(new Producto(null, "La Cómplice", "Nuestra pizza más leal con abundante pepperoni crocante", 36.00, "/images/producto_pepperoni.jpg", clasicas, "Familiar", true, 20));
+                productoRepository.save(new Producto(null, "El Pacto", "Tocino ahumado crocante y jamón bajo un pacto de queso fundido", 32.00, "/images/producto_americana.jpg", clasicas, "Familiar", true, 25));
+                productoRepository.save(new Producto(null, "La Coartada", "Dulzura de piña caramelizada con jamón selecto en secreto", 35.00, "/images/producto_hawaiana.jpg", clasicas, "Familiar", true, 18));
+                productoRepository.save(new Producto(null, "La Confesión", "Pimientos asados, champiñones, aceitunas y albahaca fresca", 35.00, "/images/producto_vegetariana.jpg", clasicas, "Familiar", true, 15));
+                productoRepository.save(new Producto(null, "La Cofradía", "Alianza contundente de pepperoni, carne sazonada y tocino", 38.00, "/images/producto_meat.jpg", clasicas, "Familiar", true, 22));
+
+                // Combos
+                productoRepository.save(new Producto(null, "Dúo Clandestino", "2 Pizzas Grandes mas Gaseosa de 1.5L", 54.90, "/images/producto_combo1.jpg", combos, "Combo", true, 15));
+                productoRepository.save(new Producto(null, "Trío en Secreto", "3 Pizzas Medianas para compartir con el grupo selecto", 69.90, "/images/producto_combo2.jpg", combos, "Combo", true, 12));
+                productoRepository.save(new Producto(null, "El Silencio", "1 Pizza Familiar a eleccion mas Palitos de Ajo artesanales", 44.90, "/images/producto_combo3.jpg", combos, "Combo", true, 20));
+                productoRepository.save(new Producto(null, "Pacto Caleta", "2 Pizzas Familiares mas Alitas BBQ mas Gaseosa de 1.5L", 79.90, "/images/producto_combo4.jpg", combos, "Combo", true, 10));
+
+                // Acompañamientos
+                productoRepository.save(new Producto(null, "Palitos de Ajo", "Masa horneada con mantequilla de ajo, oregano y queso parmesano", 12.00, "/images/producto_combo3.jpg", acompanamientos, "Porción", true, 30));
+                productoRepository.save(new Producto(null, "Alitas BBQ", "6 alitas de pollo banadas en salsa barbacoa ahumada artesanal", 18.00, "/images/producto_combo4.jpg", acompanamientos, "6 Unid", true, 25));
+                productoRepository.save(new Producto(null, "Tequeños de Queso", "8 tequenos crocantes rellenos de queso con salsa guacamole secreta", 15.00, "/images/producto_meat.jpg", acompanamientos, "8 Unid", true, 20));
+
+                // Bebidas
+                productoRepository.save(new Producto(null, "Inca Kola 1.5L", "Botella no retornable bien helada para acompanar tu pizza", 9.00, "/images/producto_combo1.jpg", bebidas, "1.5L", true, 50));
+                productoRepository.save(new Producto(null, "Coca Cola 1.5L", "Sabor original helada en presentacion familiar no retornable", 9.00, "/images/producto_combo1.jpg", bebidas, "1.5L", true, 50));
+                productoRepository.save(new Producto(null, "Chicha Morada 1L", "Preparada con maiz morado, pina, manzana y toques de canela y clavo", 10.00, "/images/producto_combo2.jpg", bebidas, "1L", true, 30));
+
+                // Promociones
+                // 1 Persona
+                productoRepository.save(new Producto(null, "La Cómplice Personal", "Nuestra pizza leal personal con abundante pepperoni crocante", 19.90, "/images/producto_pepperoni.jpg", promociones, "Personal", true, 30));
+                productoRepository.save(new Producto(null, "El Pacto Personal", "Tocino crocante y jamón selecto bajo queso fundido personal", 17.90, "/images/producto_americana.jpg", promociones, "Personal", true, 30));
+                productoRepository.save(new Producto(null, "La Coartada Personal", "Dulzura de piña caramelizada con jamón en porción individual", 18.90, "/images/producto_hawaiana.jpg", promociones, "Personal", true, 20));
+                
+                // Duo
+                productoRepository.save(new Producto(null, "Dúo Cómplice", "2 Pizzas Medianas de Pepperoni crocante mas 2 Bebidas personales", 48.90, "/images/producto_combo1.jpg", promociones, "Dúo", true, 15));
+                productoRepository.save(new Producto(null, "Dúo Pacto Clásico", "2 Pizzas Medianas para compartir en pareja", 46.90, "/images/producto_americana.jpg", promociones, "Dúo", true, 15));
+
+                // Trio
+                productoRepository.save(new Producto(null, "Trilogía Caleta", "3 Pizzas Medianas clasicas a eleccion para el grupo selecto", 68.90, "/images/producto_combo2.jpg", promociones, "Trío", true, 12));
+                
+                // Familiar
+                productoRepository.save(new Producto(null, "Banquete Clandestino", "2 Pizzas Familiares mas 1 Porcion de Alitas BBQ mas Gaseosa 1.5L", 84.90, "/images/producto_combo4.jpg", promociones, "Familiar", true, 10));
+            }
+        }
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/LacaletaApplication.java
+```java
+package com.lacaleta;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class LacaletaApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(LacaletaApplication.class, args);
+	}
+
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/TestQuery.java
+```java
+package com.lacaleta;
+
+import com.lacaleta.repository.CategoriaRepository;
+import com.lacaleta.repository.ProductoRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+@Component
+public class TestQuery implements CommandLineRunner {
+    private final CategoriaRepository catRepo;
+    private final ProductoRepository prodRepo;
+    
+    public TestQuery(CategoriaRepository catRepo, ProductoRepository prodRepo) {
+        this.catRepo = catRepo;
+        this.prodRepo = prodRepo;
+    }
+
+    @Override
+    public void run(String... args) {
+        System.out.println("=== CATEGORIAS ===");
+        catRepo.findAll().forEach(c -> System.out.println(c.getId() + ": " + c.getNombre() + " (codigo: " + c.getCodigo() + ")"));
+        
+        System.out.println("=== PRODUCTOS ===");
+        prodRepo.findAll().forEach(p -> {
+            String cat = p.getCategoria() != null ? p.getCategoria().getCodigo() : "NULL";
+            System.out.println(p.getId() + ": " + p.getNombre() + " - Cat: " + cat);
+        });
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/js/admi.js
+```javascript
+function mostrarSeccion(idSeccion, elementoBtn) {
+    document.querySelectorAll('.caleta-seccion').forEach(sec => sec.classList.remove('activa'));
+    document.querySelectorAll('.caleta-menu-btn').forEach(btn => btn.classList.remove('activo'));
+
+    const seccionDestino = document.getElementById(idSeccion);
+    if (seccionDestino) {
+        seccionDestino.classList.add('activa');
+    }
+    if (elementoBtn) {
+        elementoBtn.classList.add('activo');
+    }
+
+    const titulos = {
+        'dashboard': 'Dashboard de Control',
+        'productos': 'Catálogo de Pizzas & Menú',
+        'stock': 'Control de Insumos y Materia Prima',
+        'ventas': 'Historial de Pedidos',
+        'clientes': 'Directorio de Clientes'
+    };
+    document.getElementById('tituloSeccion').innerText = titulos[idSeccion] || 'Panel de Administración';
+}
+
+function filtrarTabla(inputId, tablaId) {
+    const input = document.getElementById(inputId);
+    const filtro = input.value.toLowerCase();
+    const tabla = document.getElementById(tablaId);
+    const filas = tabla.getElementsByTagName('tr');
+
+    for (let i = 1; i < filas.length; i++) {
+        const filaTexto = filas[i].textContent.toLowerCase();
+        filas[i].style.display = filaTexto.includes(filtro) ? '' : 'none';
+    }
+}
+
+function abrirModalEditar(btn) {
+    if (!btn) return;
+    const editId = document.getElementById('edit-id');
+    const editNombre = document.getElementById('edit-nombre');
+    const editPrecio = document.getElementById('edit-precio');
+    const editImg = document.getElementById('edit-img');
+    const editTamano = document.getElementById('edit-tamano');
+    const editCategoria = document.getElementById('edit-categoria');
+    const editDisponible = document.getElementById('edit-disponible');
+
+    if (editId) editId.value = btn.getAttribute('data-id') || '';
+    if (editNombre) editNombre.value = btn.getAttribute('data-nombre') || '';
+    if (editPrecio) editPrecio.value = btn.getAttribute('data-precio') || '';
+    if (editImg) editImg.value = btn.getAttribute('data-img') || '';
+
+    if (editTamano) {
+        editTamano.value = btn.getAttribute('data-tamano') || 'Familiar';
+    }
+    if (editCategoria) {
+        editCategoria.value = btn.getAttribute('data-categoria') || 'clasicas';
+    }
+    if (editDisponible) {
+        const disp = btn.getAttribute('data-disponible');
+        editDisponible.value = (disp === 'false') ? 'false' : 'true';
+    }
+
+    const modalEl = document.getElementById('modalEditarPizza');
+    if (modalEl) {
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.show();
+    }
+}
+
+function abrirModalEditarInsumo(btn) {
+    if (!btn) return;
+    const editId = document.getElementById('edit-insumo-id');
+    const editNombre = document.getElementById('edit-insumo-nombre');
+    const editStock = document.getElementById('edit-insumo-stock');
+    const editUnidad = document.getElementById('edit-insumo-unidad');
+    const editMinimo = document.getElementById('edit-insumo-minimo');
+
+    if (editId) editId.value = btn.getAttribute('data-id') || '';
+    if (editNombre) editNombre.value = btn.getAttribute('data-nombre') || '';
+    if (editStock) editStock.value = btn.getAttribute('data-stock') || '';
+    if (editUnidad) editUnidad.value = btn.getAttribute('data-unidad') || '';
+    if (editMinimo) editMinimo.value = btn.getAttribute('data-minimo') || '';
+
+    const modalEl = document.getElementById('modalEditarInsumo');
+    if (modalEl) {
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.show();
+    }
+}
+
+
+
+function cerrarSesion() {
+    localStorage.removeItem("sesion_activa");
+    localStorage.removeItem("token");
+    window.location.href = "/logout";
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    fetchDashboardMetrics();
+
+    // Permite conservar la pestaña activa si hay hash en la URL (ej. #stock)
+    if (window.location.hash) {
+        const hash = window.location.hash.substring(1);
+        const botonesNav = document.querySelectorAll('.caleta-menu-btn');
+        if (hash === 'stock') {
+            mostrarSeccion('stock', botonesNav[2]);
+        } else if (hash === 'productos') {
+            mostrarSeccion('productos', botonesNav[1]);
+        }
+    }
+});
+
+async function fetchDashboardMetrics() {
+    try {
+        const response = await fetch('/api/admin/dashboard/metricas');
+        if (response.ok) {
+            const data = await response.json();
+            
+            const kpiVentas = document.getElementById('kpi-ventas-dia');
+            if (kpiVentas) kpiVentas.textContent = `S/ ${data.ventasDelDia.toFixed(2)}`;
+
+            const kpiPizzas = document.getElementById('kpi-pizzas-catalogo');
+            if (kpiPizzas) kpiPizzas.textContent = `${data.pizzasCatalogo} Variedades`;
+
+            const kpiInsumos = document.getElementById('kpi-insumos-criticos');
+            if (kpiInsumos) kpiInsumos.textContent = `${data.insumosCriticos} Alertas`;
+
+            const kpiClientes = document.getElementById('kpi-clientes');
+            if (kpiClientes) kpiClientes.textContent = `${data.clientesRegistrados}`;
+        }
+    } catch (error) {
+        console.error('Error fetching dashboard metrics:', error);
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/js/auth-session.js
+```javascript
+/**
+ * auth-session.js - Script para sincronizar el estado de sesión y actualizar el Navbar.
+ */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // 1. Obtener usuario almacenado si existe
+    const sesion = JSON.parse(localStorage.getItem("sesion_activa") || localStorage.getItem("usuarioLogueado"));
+
+    // 2. Si no hay área de usuario manipulable, finalizar
+    const navUserArea = document.getElementById("navUserArea");
+    if (!navUserArea) return;
+
+    // 3. Si existe sesión local y no ha sido renderizada por Thymeleaf, reemplazar enlace de inicio de sesión
+    if (sesion && sesion.nombre && !navUserArea.querySelector('.dropdown')) {
+        navUserArea.innerHTML = `
+            <div class="dropdown">
+                <button class="btn btn-dark text-white dropdown-toggle border-0 small fw-semibold d-flex align-items-center gap-2 shadow-none" 
+                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-circle-user text-warning fs-5"></i>
+                    <span>${sesion.nombre}</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary shadow">
+                    <li>
+                        <a class="dropdown-item text-white small" href="/logout" onclick="localStorage.clear();">
+                            <i class="fa-solid fa-right-from-bracket me-2 text-danger"></i>Cerrar sesión
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        `;
+    }
+});
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/js/auth.js
+```javascript
+const API_URL = 'https://pizzeria-la-caleta.onrender.com/api';
+
+function cerrarSesion() {
+    localStorage.removeItem("sesion_activa");
+    localStorage.removeItem("usuarioLogueado");
+    localStorage.removeItem("token");
+    window.location.href = "/logout";
+}
+
+// Función genérica para mostrar notificaciones con Bootstrap Modal
+function mostrarModalMensaje(titulo, mensaje, accionCierre = null) {
+    let modalEl = document.getElementById('modalNotificacionGlobal');
+    
+    // Si la plantilla no incluyó el fragmento, lo inyectamos dinámicamente en el DOM
+    if (!modalEl) {
+        modalEl = document.createElement('div');
+        modalEl.className = 'modal fade';
+        modalEl.id = 'modalNotificacionGlobal';
+        modalEl.tabIndex = -1;
+        modalEl.setAttribute('aria-labelledby', 'modalNotificacionGlobalLabel');
+        modalEl.setAttribute('aria-hidden', 'true');
+        modalEl.innerHTML = `
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-white border border-secondary border-opacity-25"
+                    style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                    <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
+                        <h5 class="modal-title fw-bold fs-5 text-white mb-0 d-flex align-items-center gap-2" id="modalNotificacionGlobalLabel"></h5>
+                        <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <p class="mb-0 text-white-50 fs-6" id="modalNotificacionGlobalMensaje"></p>
+                    </div>
+                    <div class="modal-footer border-top border-secondary border-opacity-25 py-2">
+                        <button type="button" class="btn btn-secondary px-4 fw-bold text-uppercase small" data-bs-dismiss="modal" style="border-radius: 30px;">
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modalEl);
+    }
+    
+    const labelEl = document.getElementById('modalNotificacionGlobalLabel');
+    const msgEl = document.getElementById('modalNotificacionGlobalMensaje');
+    
+    let iconoHtml = '<i class="fa-solid fa-circle-info text-info me-2"></i>';
+    const tituloLower = (titulo || '').toLowerCase();
+    if (tituloLower.includes('error')) {
+        iconoHtml = '<i class="fa-solid fa-circle-xmark text-danger me-2"></i>';
+    } else if (tituloLower.includes('éxito') || tituloLower.includes('exito')) {
+        iconoHtml = '<i class="fa-solid fa-circle-check text-success me-2"></i>';
+    }
+    
+    if (labelEl) labelEl.innerHTML = `${iconoHtml}<span>${titulo || 'Notificación'}</span>`;
+    if (msgEl) msgEl.innerText = mensaje || '';
+    
+    const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+    
+    if (accionCierre) {
+        const onHidden = function () {
+            modalEl.removeEventListener('hidden.bs.modal', onHidden);
+            accionCierre();
+        };
+        modalEl.addEventListener('hidden.bs.modal', onHidden);
+    }
+    
+    modalInstance.show();
+}
+
+// Sincronizar estado de sesión en el Navbar (Sobreescribe para incluir 'Mi Perfil' siempre)
+function actualizarNavbar() {
+    const sesion = JSON.parse(localStorage.getItem("sesion_activa") || localStorage.getItem("usuarioLogueado"));
+    const navUserArea = document.getElementById("navUserArea");
+
+    if (!navUserArea) return;
+
+    if (sesion && sesion.nombre) {
+        const esAdmin = sesion.rol === "ADMIN";
+        const iconoRol = esAdmin ? "fa-user-shield text-warning" : "fa-user-check text-success";
+        
+        navUserArea.innerHTML = `
+            <div class="dropdown">
+                <button class="btn btn-dark text-white dropdown-toggle border-0 small fw-semibold d-flex align-items-center gap-2 shadow-none" 
+                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid ${iconoRol} fs-5"></i>
+                    <span>${sesion.nombre}</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary shadow">
+                    <li>
+                        <a class="dropdown-item text-white small" href="/perfil">
+                            <i class="fa-solid fa-user me-2 text-danger"></i>Mi Perfil & Pedidos
+                        </a>
+                    </li>
+                    ${esAdmin ? '<li><a class="dropdown-item text-warning small fw-bold" href="/admin"><i class="fa-solid fa-gauge me-2"></i>Panel Admin</a></li>' : ''}
+                    <li><hr class="dropdown-divider border-secondary"></li>
+                    <li>
+                        <a class="dropdown-item text-white small" href="#" onclick="cerrarSesion()">
+                            <i class="fa-solid fa-right-from-bracket me-2 text-danger"></i>Cerrar sesión
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        `;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    actualizarNavbar();
+
+    // -------------------------------------------------------------------------
+    // 1. REGISTRO DE USUARIO (formRegistro)
+    // -------------------------------------------------------------------------
+    const formRegistro = document.getElementById("formRegistro");
+    if (formRegistro) {
+        formRegistro.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            
+            const btnSubmit = formRegistro.querySelector("button[type='submit']") || formRegistro.querySelector("input[type='submit']");
+            const btnOriginalText = btnSubmit ? (btnSubmit.innerText || btnSubmit.value) : "CREAR CUENTA";
+
+            const nombre = document.getElementById("regNombre")?.value.trim() || "";
+            const apellidos = document.getElementById("regApellido")?.value.trim() || "";
+            const tipoDoc = document.getElementById("regTipoDoc")?.value;
+            const numDoc = document.getElementById("regNumDoc")?.value.trim() || "";
+            const telefono = document.getElementById("regTelefono")?.value.trim() || "";
+            const fechaNac = document.getElementById("regFechaNac")?.value || "";
+            const email = document.getElementById("regEmail")?.value.trim() || "";
+            const pass = document.getElementById("regPassword")?.value || "";
+            const confirmPass = document.getElementById("regPasswordConfirm")?.value || "";
+            const aceptaTerminos = document.getElementById("checkTerminos")?.checked ? "true" : "false";
+
+            const errorAlert = document.getElementById('jsErrorAlert');
+            if (errorAlert) errorAlert.classList.add('d-none');
+
+            document.querySelectorAll('.msg-feedback').forEach(el => el.classList.add('d-none'));
+            document.querySelectorAll('input').forEach(el => el.classList.remove('is-invalid-custom'));
+
+            function marcarErrorCampo(idInput, idFeed, msg) {
+                const input = document.getElementById(idInput);
+                const feed = document.getElementById(idFeed);
+                if (input) input.classList.add('is-invalid-custom');
+                if (feed) {
+                    feed.innerText = msg;
+                    feed.className = 'msg-feedback text-danger fw-semibold';
+                    feed.classList.remove('d-none');
+                }
+            }
+
+            let hayError = false;
+
+            if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/.test(nombre)) {
+                marcarErrorCampo('regNombre', 'feedNombre', 'Ingresa un nombre válido (mínimo 2 letras).');
+                hayError = true;
+            }
+            if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/.test(apellidos)) {
+                marcarErrorCampo('regApellido', 'feedApellido', 'Ingresa un apellido válido (mínimo 2 letras).');
+                hayError = true;
+            }
+
+            if (tipoDoc === 'DNI') {
+                if (!/^\d{8}$/.test(numDoc)) {
+                    marcarErrorCampo('regNumDoc', 'feedNumDoc', 'El DNI debe tener exactamente 8 dígitos.');
+                    hayError = true;
+                } else if (/^(\d)\1{7}$/.test(numDoc) || numDoc === '12345678' || numDoc === '87654321') {
+                    marcarErrorCampo('regNumDoc', 'feedNumDoc', 'Por favor ingresa un número de DNI válido.');
+                    hayError = true;
+                }
+            } else if (numDoc.length < 6 || numDoc.length > 12) {
+                marcarErrorCampo('regNumDoc', 'feedNumDoc', 'El documento debe tener entre 6 y 12 caracteres.');
+                hayError = true;
+            }
+
+            if (!/^9\d{8}$/.test(telefono)) {
+                marcarErrorCampo('regTelefono', 'feedTelefono', 'El celular debe tener 9 dígitos y comenzar con 9.');
+                hayError = true;
+            }
+
+            if (!fechaNac) {
+                marcarErrorCampo('regFechaNac', 'feedFechaNac', 'Por favor selecciona tu fecha de nacimiento.');
+                hayError = true;
+            }
+
+            if (!/^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+                marcarErrorCampo('regEmail', 'feedEmail', 'Ingresa un correo electrónico válido.');
+                hayError = true;
+            }
+
+            if (pass.length < 8) {
+                marcarErrorCampo('regPassword', 'feedPassword', 'La contraseña debe tener al menos 8 caracteres.');
+                hayError = true;
+            }
+            if (pass !== confirmPass) {
+                marcarErrorCampo('regPasswordConfirm', 'feedPasswordConfirm', 'Las contraseñas no coinciden.');
+                hayError = true;
+            }
+
+            if (aceptaTerminos !== "true") {
+                marcarErrorCampo('checkTerminos', 'feedTerminos', 'Debes aceptar los términos y condiciones.');
+                hayError = true;
+            }
+
+            if (hayError) {
+                if (errorAlert) {
+                    errorAlert.innerText = 'Por favor corrige los campos marcados en rojo antes de continuar.';
+                    errorAlert.classList.remove('d-none');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                return;
+            }
+            
+            try {
+                if (btnSubmit) {
+                    btnSubmit.disabled = true;
+                    if (btnSubmit.tagName === 'INPUT') btnSubmit.value = "REGISTRANDO...";
+                    else btnSubmit.innerText = "REGISTRANDO...";
+                }
+                
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        nombre, apellidos, tipoDocumento: tipoDoc, numeroDocumento: numDoc, 
+                        telefono, fechaNacimiento: fechaNac, email, password: pass, 
+                        confirmPassword: confirmPass, aceptaTerminos 
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    mostrarModalMensaje("Éxito", data.mensaje || "Registro completado con éxito.", () => {
+                        window.location.href = "/login";
+                    });
+                } else {
+                    mostrarModalMensaje("Error", data.error || "Ocurrió un error en el registro.");
+                }
+            } catch (error) {
+                mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
+            } finally {
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    if (btnSubmit.tagName === 'INPUT') btnSubmit.value = btnOriginalText;
+                    else btnSubmit.innerText = btnOriginalText;
+                }
+            }
+        });
+    }
+
+    // -------------------------------------------------------------------------
+    // 2. INICIO DE SESIÓN (formLogin)
+    // -------------------------------------------------------------------------
+    const formLogin = document.getElementById("formLogin");
+    if (formLogin) {
+        formLogin.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById("loginEmail");
+            const passInput = document.getElementById("loginPassword");
+            const btnSubmit = formLogin.querySelector("button[type='submit']") || formLogin.querySelector("input[type='submit']");
+            const btnOriginalText = btnSubmit ? (btnSubmit.innerText || btnSubmit.value) : "INICIAR SESIÓN";
+
+            if (emailInput && passInput && emailInput.value.trim() !== "" && passInput.value.trim() !== "") {
+                const email = emailInput.value.trim().toLowerCase();
+                const password = passInput.value;
+                
+                try {
+                    if (btnSubmit) {
+                        btnSubmit.disabled = true;
+                        if (btnSubmit.tagName === 'INPUT') btnSubmit.value = "INICIANDO SESIÓN...";
+                        else btnSubmit.innerText = "INICIANDO SESIÓN...";
+                    }
+                    
+                    const response = await fetch('/api/auth/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        localStorage.setItem("sesion_activa", JSON.stringify(data.usuario));
+                        window.location.href = data.redirect || "/";
+                    } else {
+                        mostrarModalMensaje("Error", data.error || "Credenciales incorrectas.");
+                    }
+                } catch (error) {
+                    mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
+                } finally {
+                    if (btnSubmit) {
+                        btnSubmit.disabled = false;
+                        if (btnSubmit.tagName === 'INPUT') btnSubmit.value = btnOriginalText;
+                        else btnSubmit.innerText = btnOriginalText;
+                    }
+                }
+            }
+        });
+    }
+
+    // -------------------------------------------------------------------------
+    // 3. ALTERNAR VISIBILIDAD DE CONTRASEÑA
+    // -------------------------------------------------------------------------
+    const toggleEye = document.getElementById("toggleEye");
+    if (toggleEye) {
+        toggleEye.addEventListener("click", () => {
+            const passInput = document.getElementById("loginPassword");
+            if (passInput) {
+                passInput.type = passInput.type === "password" ? "text" : "password";
+                toggleEye.classList.toggle("fa-eye");
+                toggleEye.classList.toggle("fa-eye-slash");
+            }
+        });
+    }
+
+    const toggleEye1 = document.getElementById("toggleEye1");
+    if (toggleEye1) {
+        toggleEye1.addEventListener("click", () => {
+            const passInput = document.getElementById("newPassword");
+            if (passInput) {
+                passInput.type = passInput.type === "password" ? "text" : "password";
+                toggleEye1.classList.toggle("fa-eye");
+                toggleEye1.classList.toggle("fa-eye-slash");
+            }
+        });
+    }
+
+    const toggleEye2 = document.getElementById("toggleEye2");
+    if (toggleEye2) {
+        toggleEye2.addEventListener("click", () => {
+            const passInput = document.getElementById("confirmPassword");
+            if (passInput) {
+                passInput.type = passInput.type === "password" ? "text" : "password";
+                toggleEye2.classList.toggle("fa-eye");
+                toggleEye2.classList.toggle("fa-eye-slash");
+            }
+        });
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. FLUJO: OLVIDÉ MI CONTRASEÑA
+    // -------------------------------------------------------------------------
+    const formForgotPassword = document.getElementById("formForgotPassword");
+    if (formForgotPassword) {
+        formForgotPassword.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById("forgotEmail");
+            const btnSubmit = formForgotPassword.querySelector("input[type='submit']") || formForgotPassword.querySelector("button[type='submit']");
+            const btnOriginal = btnSubmit ? (btnSubmit.value || btnSubmit.innerText) : "RESTABLECER MI CONTRASEÑA";
+            
+            if (emailInput && emailInput.value.trim() !== "") {
+                const email = emailInput.value.trim().toLowerCase();
+                
+                try {
+                    if (btnSubmit) {
+                        btnSubmit.disabled = true;
+                        if (btnSubmit.tagName === 'INPUT') btnSubmit.value = "ENVIANDO...";
+                        else btnSubmit.innerText = "ENVIANDO...";
+                    }
+                    
+                    const response = await fetch('/api/auth/forgot-password', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        localStorage.setItem("temp_reset_email", email);
+                        mostrarModalMensaje("Éxito", data.mensaje || "Se ha enviado el código a tu correo.", () => {
+                            window.location.href = "/verifycode";
+                        });
+                    } else {
+                        mostrarModalMensaje("Error", data.error || "Ocurrió un error inesperado.");
+                    }
+                } catch (error) {
+                    mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
+                } finally {
+                    if (btnSubmit) {
+                        btnSubmit.disabled = false;
+                        if (btnSubmit.tagName === 'INPUT') btnSubmit.value = btnOriginal;
+                        else btnSubmit.innerText = btnOriginal;
+                    }
+                }
+            }
+        });
+    }
+
+    const formVerifyCode = document.getElementById("formVerifyCode");
+    if (formVerifyCode) {
+        formVerifyCode.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const inputOtp = document.getElementById("otpCode")?.value.trim();
+            const email = localStorage.getItem("temp_reset_email");
+            const btnSubmit = formVerifyCode.querySelector("input[type='submit']") || formVerifyCode.querySelector("button[type='submit']");
+            const btnOriginal = btnSubmit ? (btnSubmit.value || btnSubmit.innerText) : "VERIFICAR CÓDIGO";
+
+            if (!email) {
+                mostrarModalMensaje("Error", "No hay una sesión de recuperación activa. Vuelve a empezar.", () => {
+                    window.location.href = "/forgotpassword";
+                });
+                return;
+            }
+
+            try {
+                if (btnSubmit) {
+                    btnSubmit.disabled = true;
+                    if (btnSubmit.tagName === 'INPUT') btnSubmit.value = "VERIFICANDO...";
+                    else btnSubmit.innerText = "VERIFICANDO...";
+                }
+                
+                const response = await fetch('/api/auth/verify-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, otp: inputOtp })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    localStorage.setItem("temp_verified_otp", inputOtp);
+                    mostrarModalMensaje("Éxito", data.mensaje || "Código verificado con éxito.", () => {
+                        window.location.href = "/resetpassword";
+                    });
+                } else {
+                    mostrarModalMensaje("Error", data.error || "El código ingresado es incorrecto.");
+                }
+            } catch (error) {
+                mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
+            } finally {
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    if (btnSubmit.tagName === 'INPUT') btnSubmit.value = btnOriginal;
+                    else btnSubmit.innerText = btnOriginal;
+                }
+            }
+        });
+    }
+
+    const formResetPassword = document.getElementById("formResetPassword");
+    if (formResetPassword) {
+        formResetPassword.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const newPassword = document.getElementById("newPassword")?.value || "";
+            const confirmPassword = document.getElementById("confirmPassword")?.value || "";
+            const email = localStorage.getItem("temp_reset_email");
+            const otp = localStorage.getItem("temp_verified_otp");
+            const btnSubmit = formResetPassword.querySelector("input[type='submit']") || formResetPassword.querySelector("button[type='submit']");
+            const btnOriginal = btnSubmit ? (btnSubmit.value || btnSubmit.innerText) : "CONFIRMAR CONTRASEÑA";
+
+            if (!email || !otp) {
+                mostrarModalMensaje("Error", "Faltan datos de verificación. Vuelve a iniciar el proceso.", () => {
+                    window.location.href = "/forgotpassword";
+                });
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                mostrarModalMensaje("Error", "Las contraseñas no coinciden.");
+                return;
+            }
+
+            const strengthRegex = /^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
+            if (!strengthRegex.test(newPassword)) {
+                mostrarModalMensaje("Error", "La contraseña debe tener mínimo 8 caracteres, al menos 1 mayúscula y 1 carácter especial.");
+                return;
+            }
+
+            try {
+                if (btnSubmit) {
+                    btnSubmit.disabled = true;
+                    if (btnSubmit.tagName === 'INPUT') btnSubmit.value = "ACTUALIZANDO...";
+                    else btnSubmit.innerText = "ACTUALIZANDO...";
+                }
+                
+                const response = await fetch('/api/auth/reset-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, otp, newPassword })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    localStorage.removeItem("temp_reset_email");
+                    localStorage.removeItem("temp_verified_otp");
+                    
+                    mostrarModalMensaje("Éxito", data.mensaje || "Contraseña actualizada exitosamente.", () => {
+                        window.location.href = "/login";
+                    });
+                } else {
+                    mostrarModalMensaje("Error", data.error || "No se pudo restablecer la contraseña.");
+                }
+            } catch (error) {
+                mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
+            } finally {
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    if (btnSubmit.tagName === 'INPUT') btnSubmit.value = btnOriginal;
+                    else btnSubmit.innerText = btnOriginal;
+                }
+            }
+        });
+    }
+});
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/js/cart.js
+```javascript
+function obtenerCarrito() {
+    return JSON.parse(localStorage.getItem('carrito_caleta')) || [];
+}
+
+function guardarCarrito(carrito) {
+    localStorage.setItem('carrito_caleta', JSON.stringify(carrito));
+    actualizarVistasCarrito();
+}
+
+function agregarAlCarrito(nombre, precio, imagenUrl, descripcion = "") {
+    const carrito = obtenerCarrito();
+    const itemExistente = carrito.find(item => item.nombre === nombre);
+    if (itemExistente) {
+        itemExistente.cantidad += 1;
+    } else {
+        carrito.push({
+            nombre: nombre,
+            precio: parseFloat(precio),
+            cantidad: 1,
+            imagenUrl: imagenUrl,
+            descripcion: descripcion
+        });
+    }
+    guardarCarrito(carrito);
+    mostrarNotificacionCarrito(nombre);
+}
+
+function editarProductoCarrito(indice) {
+    const carrito = obtenerCarrito();
+    const item = carrito[indice];
+    if (!item) return;
+
+    const info = parsearNombreProducto(item.nombre);
+    
+    const params = new URLSearchParams({
+        nombre: info.nombre,
+        precio: item.precio,
+        img: item.imagenUrl,
+        desc: item.descripcion || '',
+        editar: indice
+    });
+
+    window.location.href = `/detalles?${params.toString()}`;
+}
+
+function cambiarCantidad(indice, cambio) {
+    const carrito = obtenerCarrito();
+    if (carrito[indice]) {
+        carrito[indice].cantidad += cambio;
+        if (carrito[indice].cantidad <= 0) {
+            carrito.splice(indice, 1);
+        }
+        guardarCarrito(carrito);
+    }
+}
+
+function eliminarDelCarrito(indice) {
+    const carrito = obtenerCarrito();
+    if (carrito[indice]) {
+        carrito.splice(indice, 1);
+        guardarCarrito(carrito);
+    }
+}
+
+function vaciarCarrito() {
+    localStorage.removeItem('carrito_caleta');
+    actualizarVistasCarrito();
+}
+
+function alternarInfo(idElemento, boton) {
+    const contenedor = document.getElementById(idElemento);
+    if (!contenedor) return;
+    const estaOculto = contenedor.classList.contains("d-none");
+    contenedor.classList.toggle("d-none");
+    boton.innerHTML = estaOculto
+        ? 'Ocultar información <i class="fa-solid fa-chevron-up ms-1 fs-xs"></i>'
+        : 'Ver información <i class="fa-solid fa-chevron-down ms-1 fs-xs"></i>';
+}
+
+function parsearNombreProducto(nombreCompleto) {
+    const pos = nombreCompleto.indexOf('(');
+    if (pos !== -1) {
+        return {
+            nombre: nombreCompleto.substring(0, pos).trim(),
+            detalles: nombreCompleto.substring(pos).trim()
+        };
+    }
+    return {
+        nombre: nombreCompleto,
+        detalles: ''
+    };
+}
+
+function formatearDetallesComoLista(detallesTexto) {
+    if (!detallesTexto) return '';
+
+    const partes = detallesTexto.match(/[(\[][^)\]]+[)\]]/g);
+
+    if (partes && partes.length > 0) {
+        return partes.map(parte => {
+            const limpio = parte.replace(/[()\[\]]/g, '').trim();
+            return `<div class="py-0.5">• ${limpio}</div>`;
+        }).join('');
+    }
+
+    return detallesTexto
+        .replace(/[()\[\]]/g, '')
+        .split(',')
+        .map(item => item.trim())
+        .filter(item => item.length > 0)
+        .map(item => `<div class="py-0.5">• ${item}</div>`)
+        .join('');
+}
+
+function actualizarVistasCarrito() {
+    const carrito = obtenerCarrito();
+    let subtotal = 0;
+    carrito.forEach(item => {
+        subtotal += item.precio * item.cantidad;
+    });
+
+    const costoEnvio = carrito.length > 0 ? 5.00 : 0.00;
+    const total = subtotal + costoEnvio;
+
+    const badgeMonto = document.querySelector('.nav-menu-link-shop span');
+    if (badgeMonto) {
+        badgeMonto.innerText = `S/ ${subtotal.toFixed(2)}`;
+    }
+
+    const offcanvasBody = document.querySelector('#offcanvasCarrito .offcanvas-body');
+    if (offcanvasBody) {
+        if (carrito.length === 0) {
+            offcanvasBody.innerHTML = `
+                <div class="text-center my-auto">
+                    <div class="mb-3">
+                        <i class="fa-solid fa-basket-shopping fs-1 text-secondary opacity-50"></i>
+                    </div>
+                    <h6 class="fw-bold text-white mb-2">Tu carrito está vacío</h6>
+                    <p class="text-secondary small mb-4">Aún no has agregado productos. Explora nuestras pizzas secretas.</p>
+                    <a href="/menu" class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small text-decoration-none">Explorar Menú</a>
+                </div>
+                <div class="border-top border-secondary border-opacity-25 pt-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-secondary small">Total estimado:</span>
+                        <span class="fw-bold fs-5 text-white">S/ 0.00</span>
+                    </div>
+                    <button class="btn btn-secondary w-100 fw-bold py-2 text-uppercase small disabled" style="border-radius: 30px;">Continuar con el pedido</button>
+                </div>
+            `;
+        } else {
+            const itemsHtml = carrito.map((item, idx) => {
+                const info = parsearNombreProducto(item.nombre);
+
+                return `
+                    <div class="d-flex align-items-start justify-content-between py-3 border-bottom border-secondary border-opacity-25 gap-2">
+                        <img src="${item.imagenUrl}" alt="${info.nombre}" class="rounded object-fit-cover flex-shrink-0" style="width: 48px; height: 48px;">
+                        <div class="flex-grow-1 ms-2 min-w-0">
+                            <h6 class="mb-1 text-white small fw-bold text-truncate">${info.nombre}</h6>
+                            
+                            ${info.detalles ? `
+                                <div class="mb-1 d-flex align-items-center gap-2">
+                                    <button type="button" class="btn-ver-info" onclick="alternarInfo('offcanvas-info-${idx}', this)">
+                                        Ver información <i class="fa-solid fa-chevron-down ms-1 fs-xs"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-link text-secondary p-0 text-decoration-none fs-xs hover-rojo" onclick="editarProductoCarrito(${idx})">
+                                        <i class="fa-solid fa-pen-to-square me-1"></i> Editar
+                                    </button>
+                                </div>
+                                <div id="offcanvas-info-${idx}" class="d-none text-white-50 fs-xs mt-1 ps-2 border-start border-secondary">
+                                    ${formatearDetallesComoLista(info.detalles)}
+                                </div>
+                            ` : ''}
+
+                            <span class="text-secondary fs-xs">S/ ${item.precio.toFixed(2)} x ${item.cantidad}</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                            <button onclick="cambiarCantidad(${idx}, -1)" class="btn btn-sm btn-outline-secondary py-0 px-2 text-white">-</button>
+                            <span class="small fw-bold text-white">${item.cantidad}</span>
+                            <button onclick="cambiarCantidad(${idx}, 1)" class="btn btn-sm btn-outline-secondary py-0 px-2 text-white">+</button>
+                            <button onclick="eliminarDelCarrito(${idx})" class="btn btn-sm text-danger p-0 ms-1 border-0">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            offcanvasBody.innerHTML = `
+                <div class="overflow-auto flex-grow-1 mb-3 pe-1">
+                    ${itemsHtml}
+                </div>
+                <div class="border-top border-secondary border-opacity-25 pt-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-secondary small">Subtotal:</span>
+                        <span class="fw-bold fs-5 text-white">S/ ${subtotal.toFixed(2)}</span>
+                    </div>
+                    <a href="/carrito" class="btn-cta w-100 fw-bold py-2 text-uppercase small text-decoration-none text-center d-block">
+                        Ver Carrito / Pagar
+                    </a>
+                </div>
+            `;
+        }
+    }
+
+    const tablaItems = document.getElementById('carrito-items');
+    const subtotalDOM = document.getElementById('resumen-subtotal');
+    const totalDOM = document.getElementById('resumen-total');
+    if (tablaItems) {
+        if (carrito.length === 0) {
+            tablaItems.innerHTML = `
+                <tr>
+                    <td colspan="4" class="text-center py-5 text-secondary">
+                        Tu carrito está vacío. <a href="/menu" class="text-ro text-decoration-none ms-1">Ver carta</a>
+                    </td>
+                </tr>
+            `;
+        } else {
+            tablaItems.innerHTML = carrito.map((item, idx) => {
+                const info = parsearNombreProducto(item.nombre);
+
+                return `
+                    <tr>
+                        <td class="ps-4 py-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="${item.imagenUrl}" alt="${info.nombre}" class="rounded-2 object-fit-cover" style="width: 55px; height: 55px;">
+                                <div>
+                                    <h6 class="fw-bold mb-1 text-white">${info.nombre}</h6>
+                                    
+                                    ${info.detalles ? `
+                                        <div class="mb-1 d-flex align-items-center gap-2">
+                                            <button type="button" class="btn-ver-info" onclick="alternarInfo('table-info-${idx}', this)">
+                                                Ver información <i class="fa-solid fa-chevron-down ms-1 fs-xs"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-link text-secondary p-0 text-decoration-none fs-xs hover-rojo" onclick="editarProductoCarrito(${idx})">
+                                                <i class="fa-solid fa-pen-to-square me-1"></i> Editar
+                                                </button>
+                                        </div>
+                                        <div id="table-info-${idx}" class="d-none text-white-50 fs-xs mt-1 ps-2 border-start border-secondary">
+                                            ${formatearDetallesComoLista(info.detalles)}
+                                        </div>
+                                    ` : ''}
+
+                                    <button onclick="eliminarDelCarrito(${idx})" class="btn btn-link text-danger p-0 text-decoration-none border-0 mt-1" style="font-size: 11px;">
+                                        <i class="fa-solid fa-trash-can me-1"></i> Eliminar
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center py-3">
+                            <div class="d-inline-flex align-items-center border border-secondary border-opacity-50 rounded-pill px-2 py-1">
+                                <button onclick="cambiarCantidad(${idx}, -1)" class="btn btn-sm text-white p-0 border-0 shadow-none"><i class="fa-solid fa-minus fs-xs"></i></button>
+                                <span class="px-2 fw-semibold small">${item.cantidad}</span>
+                                <button onclick="cambiarCantidad(${idx}, 1)" class="btn btn-sm text-white p-0 border-0 shadow-none"><i class="fa-solid fa-plus fs-xs"></i></button>
+                            </div>
+                        </td>
+                        <td class="text-end text-secondary small py-3">S/ ${item.precio.toFixed(2)}</td>
+                        <td class="text-end fw-bold text-white py-3 pe-4">S/ ${(item.precio * item.cantidad).toFixed(2)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+    }
+    if (subtotalDOM) subtotalDOM.innerText = `S/ ${subtotal.toFixed(2)}`;
+    if (totalDOM) totalDOM.innerText = `S/ ${total.toFixed(2)}`;
+}
+
+document.addEventListener("DOMContentLoaded", actualizarVistasCarrito);
+
+function mostrarNotificacionCarrito(nombreProducto) {
+    const toastEl = document.getElementById('toastCarrito');
+    const toastMensaje = document.getElementById('toastMensaje');
+    if (toastEl && toastMensaje) {
+        const info = parsearNombreProducto(nombreProducto);
+        toastMensaje.innerHTML = `<strong>${info.nombre}</strong> se agregó al pedido.`;
+        const toast = bootstrap.Toast.getOrCreateInstance(toastEl, { delay: 2500 });
+        toast.show();
+    }
+}
+
+function editarProductoCarrito(indice) {
+    const carrito = obtenerCarrito();
+    const item = carrito[indice];
+    if (!item) return;
+
+    const info = parsearNombreProducto(item.nombre);
+
+    const params = new URLSearchParams({
+        nombre: info.nombre,
+        precio: item.precio,
+        img: item.imagenUrl,
+        desc: item.descripcion || '',
+        editar: indice
+    });
+
+    window.location.href = `/detalles?${params.toString()}`;
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/js/detalles.js
+```javascript
+let pasoActual = 1;
+let precioBaseProducto = 36.00;
+
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const nombre = params.get("nombre");
+    const precio = params.get("precio");
+    const img = params.get("img");
+    const desc = params.get("desc");
+    const tipo = params.get("tipo");
+    const indiceEdicion = params.get("editar");
+
+    if (nombre) {
+        const elementoNombre = document.getElementById("detalleNombre");
+        const breadcrumb = document.getElementById("breadcrumbNombre");
+        if (elementoNombre) elementoNombre.innerText = nombre;
+        if (breadcrumb) breadcrumb.innerText = nombre;
+        document.title = `La Caleta | ${nombre}`;
+    }
+
+    if (desc) {
+        const elementoDesc = document.getElementById("detalleDescripcion");
+        if (elementoDesc) elementoDesc.innerText = desc;
+    }
+
+    if (tipo) {
+        const badgeCat = document.getElementById("badgeCategoria");
+        const tituloPers = document.getElementById("tituloPersonalizar");
+        if (badgeCat) badgeCat.innerText = tipo;
+        if (tituloPers) tituloPers.innerText = tipo.toLowerCase() === "combo" ? "Personaliza tu combo" : "Personaliza tu pizza";
+    }
+
+    if (img) {
+        const elementoImg = document.getElementById("detalleImagen");
+        if (elementoImg) elementoImg.src = img;
+    }
+
+    if (precio) {
+        precioBaseProducto = parseFloat(precio);
+        const radioMediana = document.getElementById("tam-mediana");
+        const radioFamiliar = document.getElementById("tam-familiar");
+        const radioMega = document.getElementById("tam-mega");
+        if (radioMediana) radioMediana.value = precioBaseProducto.toFixed(2);
+        if (radioFamiliar) radioFamiliar.value = (precioBaseProducto + 10.00).toFixed(2);
+        if (radioMega) radioMega.value = (precioBaseProducto + 20.00).toFixed(2);
+    }
+
+    if (indiceEdicion !== null) {
+        const carrito = JSON.parse(localStorage.getItem('carrito_caleta')) || [];
+        const itemAEditar = carrito[parseInt(indiceEdicion)];
+
+        if (itemAEditar) {
+            const btnFinalizar = document.getElementById("btnFinalizar");
+            if (btnFinalizar) {
+                btnFinalizar.innerHTML = 'Guardar cambios <i class="fa-solid fa-check ms-1"></i>';
+            }
+
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                const label = radio.dataset.label || radio.value;
+                if (label && itemAEditar.nombre.includes(label)) {
+                    radio.checked = true;
+                    // Actualiza el resumen colapsable
+                    const seccion = radio.name; // tamano, masa, cortesia
+                    const textoResumen = document.getElementById(`texto-resumen-${seccion}`);
+                    if (textoResumen) textoResumen.innerText = label;
+
+                    const badge = document.getElementById(`badge-${seccion}`);
+                    if (badge) {
+                        badge.innerText = "Completado";
+                        badge.className = "badge-completado";
+                    }
+
+                    const cuerpo = document.getElementById(`cuerpo-${seccion}`);
+                    const box = document.getElementById(`box-resumen-${seccion}`);
+                    if (cuerpo) cuerpo.classList.add("d-none");
+                    if (box) box.classList.remove("d-none");
+                }
+            });
+        }
+    }
+});
+
+function alternarSeccion(idCuerpo, idResumenBox) {
+    const cuerpo = document.getElementById(idCuerpo);
+    const box = document.getElementById(idResumenBox);
+    if (!cuerpo) return;
+
+    if (cuerpo.classList.contains("d-none")) {
+        cuerpo.classList.remove("d-none");
+        if (box) box.classList.add("d-none");
+    } else {
+        if (cuerpo.querySelector('input[type="radio"]:checked')) {
+            cuerpo.classList.add("d-none");
+            if (box) box.classList.remove("d-none");
+        }
+    }
+}
+
+function seleccionarYContraer(tipo, inputRadio, idCuerpoActual, idResumenActual, idAlertaActual, idCuerpoSiguiente, idResumenSiguiente) {
+    const textoResumen = document.getElementById(`texto-resumen-${tipo}`);
+    if (textoResumen) textoResumen.innerText = inputRadio.dataset.label || inputRadio.value;
+
+    const badgeActual = document.getElementById(`badge-${tipo}`);
+    if (badgeActual) {
+        badgeActual.innerText = "Completado";
+        badgeActual.className = "badge-completado";
+    }
+
+    const alertaActual = document.getElementById(idAlertaActual);
+    if (alertaActual) alertaActual.classList.add("d-none");
+
+    const cuerpoActual = document.getElementById(idCuerpoActual);
+    const boxActual = document.getElementById(idResumenActual);
+    if (cuerpoActual) cuerpoActual.classList.add("d-none");
+    if (boxActual) boxActual.classList.remove("d-none");
+
+    if (idCuerpoSiguiente) {
+        const cuerpoSig = document.getElementById(idCuerpoSiguiente);
+        const boxSig = document.getElementById(idResumenSiguiente);
+        if (cuerpoSig) cuerpoSig.classList.remove("d-none");
+        if (boxSig) boxSig.classList.add("d-none");
+
+        if (cuerpoSig && !cuerpoSig.querySelector('input[type="radio"]:checked')) {
+            const alertaSig = document.getElementById(idCuerpoSiguiente.replace("cuerpo-", "alerta-"));
+            if (alertaSig) alertaSig.classList.remove("d-none");
+        }
+    }
+}
+
+function irAlPaso(paso) {
+    if (paso === 2) {
+        const tamano = document.querySelector('input[name="tamano"]:checked');
+        const masa = document.querySelector('input[name="masa"]:checked');
+        const cortesia = document.querySelector('input[name="cortesia"]:checked');
+
+        if (!tamano || !masa || !cortesia) {
+            return;
+        }
+    }
+
+    pasoActual = paso;
+    document.getElementById("paso1-pizza").classList.toggle("d-none", paso !== 1);
+    document.getElementById("paso2-extras").classList.toggle("d-none", paso !== 2);
+    document.getElementById("btnAtras").classList.toggle("d-none", paso === 1);
+    document.getElementById("btnSiguiente").classList.toggle("d-none", paso === 2);
+    document.getElementById("btnFinalizar").classList.toggle("d-none", paso !== 2);
+
+    const stepCircle2 = document.getElementById("stepCircle2");
+    const stepLabel2 = document.getElementById("stepLabel2");
+    const stepLine = document.getElementById("stepLine");
+
+    if (paso === 1) {
+        stepCircle2.className = "rounded-circle d-flex align-items-center justify-content-center fw-bold border border-secondary text-secondary bg-transparent";
+        stepCircle2.innerText = "2";
+        stepLabel2.className = "small fw-bold mt-1 text-secondary";
+        stepLine.style.backgroundColor = "rgba(255,255,255,0.2)";
+    } else {
+        stepCircle2.className = "rounded-circle d-flex align-items-center justify-content-center fw-bold bg-ro text-white shadow-sm";
+        stepCircle2.innerHTML = '<i class="fa-solid fa-check"></i>';
+        stepLabel2.className = "small fw-bold mt-1 text-ro";
+        stepLine.style.backgroundColor = "var(--color-rojo-naranja)";
+    }
+}
+
+
+function enviarAlCarritoDesdeDetalle() {
+    const elementoNombre = document.getElementById("detalleNombre");
+    const elementoImagen = document.getElementById("detalleImagen");
+    const elementoDesc = document.getElementById("detalleDescripcion");
+    if (!elementoNombre || !elementoImagen) return;
+
+    const nombreBase = elementoNombre.innerText.trim();
+    const imagenUrl = elementoImagen.getAttribute("src");
+    const descripcion = elementoDesc ? elementoDesc.innerText.trim() : "";
+
+    const inputTamano = document.querySelector('input[name="tamano"]:checked');
+    const labelTamano = inputTamano ? (inputTamano.dataset.label || "Mediana") : "Mediana";
+
+    const inputMasa = document.querySelector('input[name="masa"]:checked');
+    const labelMasa = inputMasa ? inputMasa.value : "Masa Tradicional";
+
+    const inputCortesia = document.querySelector('input[name="cortesia"]:checked');
+    const cortesiaSeleccionada = inputCortesia ? inputCortesia.value : '';
+
+    let detalleProductoFinal = `${nombreBase} (${labelTamano}, ${labelMasa})`;
+    if (cortesiaSeleccionada) {
+        detalleProductoFinal += ` [Cortesía: ${cortesiaSeleccionada}]`;
+    }
+
+    const precioPizza = inputTamano && !isNaN(parseFloat(inputTamano.value)) ? parseFloat(inputTamano.value) : precioBaseProducto;
+
+    const params = new URLSearchParams(window.location.search);
+    const indiceEdicion = params.get("editar");
+
+    if (indiceEdicion !== null) {
+        const carrito = JSON.parse(localStorage.getItem('carrito_caleta')) || [];
+        const idx = parseInt(indiceEdicion);
+
+        if (carrito[idx]) {
+            carrito[idx].nombre = detalleProductoFinal;
+            carrito[idx].precio = precioPizza;
+            carrito[idx].imagenUrl = imagenUrl;
+            carrito[idx].descripcion = descripcion;
+            localStorage.setItem('carrito_caleta', JSON.stringify(carrito));
+        }
+
+        document.querySelectorAll('.item-extra-producto:checked').forEach(extra => {
+            agregarAlCarrito(extra.dataset.nombre, parseFloat(extra.value), extra.dataset.img || "/images/banner_promocional.jpg");
+        });
+
+        setTimeout(() => {
+            window.location.href = "/carrito";
+        }, 300);
+    } else {
+        agregarAlCarrito(detalleProductoFinal, precioPizza, imagenUrl, descripcion);
+
+        document.querySelectorAll('.item-extra-producto:checked').forEach(extra => {
+            agregarAlCarrito(extra.dataset.nombre, parseFloat(extra.value), extra.dataset.img || "/images/banner_promocional.jpg");
+        });
+
+        setTimeout(() => {
+            window.location.href = "/menu";
+        }, 1000);
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/js/main.js
+```javascript
+function desplazarASeccion(idDestino, boton) {
+    const destino = document.getElementById(idDestino);
+    if (!destino) {
+        console.warn("No se encontró el elemento con ID:", idDestino);
+        return;
+    }
+
+    const header = document.getElementById('header');
+    const navPromo = document.getElementById('categorias-promo');
+    const offset = (header ? header.offsetHeight : 0) + (navPromo ? navPromo.offsetHeight : 0) + 15;
+
+    const posicionElemento = destino.getBoundingClientRect().top + window.pageYOffset;
+    const posicionFinal = posicionElemento - offset;
+
+    window.scrollTo({
+        top: posicionFinal,
+        behavior: 'smooth'
+    });
+
+    document.querySelectorAll('#categorias-promo .btn-categoria').forEach(btn => btn.classList.remove('active'));
+    if (boton) {
+        boton.classList.add('active');
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (typeof verificarAccesoAdmin === "function") {
+        verificarAccesoAdmin();
+    }
+});
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/js/payment.js
+```javascript
+document.addEventListener("DOMContentLoaded", () => {
+    cargarResumenPago();
+    cargarDatosEnvioConfirmados();
+});
+
+function cargarResumenPago() {
+    const carrito = JSON.parse(localStorage.getItem('carrito_caleta')) || [];
+    const contenedorLista = document.getElementById('resumen-lista-pago');
+    const badgeCant = document.getElementById('resumen-cant-articulos');
+    const subtotalDOM = document.getElementById('pago-subtotal');
+    const envioDOM = document.getElementById('pago-envio-costo');
+    const totalDOM = document.getElementById('pago-total');
+
+    if (carrito.length === 0) {
+        window.location.href = '/menu';
+        return;
+    }
+
+    let subtotal = 0;
+    let cantidadTotal = 0;
+
+    contenedorLista.innerHTML = carrito.map(item => {
+        subtotal += item.precio * item.cantidad;
+        cantidadTotal += item.cantidad;
+
+        const pos = item.nombre.indexOf('(');
+        const nombreSimple = pos !== -1 ? item.nombre.substring(0, pos).trim() : item.nombre;
+
+        return `
+            <div class="d-flex align-items-center justify-content-between gap-2">
+                <div class="d-flex align-items-center gap-2 min-w-0">
+                    <img src="${item.imagenUrl}" alt="${nombreSimple}" class="rounded-2 object-fit-cover flex-shrink-0" style="width: 44px; height: 44px;">
+                    <div class="min-w-0">
+                        <h6 class="fw-bold mb-0 text-white small text-truncate" style="max-width: 170px;">${nombreSimple}</h6>
+                        <span class="text-secondary d-block" style="font-size: 11px;">Cant: ${item.cantidad}</span>
+                    </div>
+                </div>
+                <span class="fw-bold text-white small flex-shrink-0">S/ ${(item.precio * item.cantidad).toFixed(2)}</span>
+            </div>
+        `;
+    }).join('');
+
+    const datosEnvio = JSON.parse(localStorage.getItem('pedido_envio_caleta')) || {};
+    const costoEnvio = datosEnvio.tipoEntrega === 'delivery' ? 5.00 : 0.00;
+    const total = subtotal + costoEnvio;
+
+    if (badgeCant) badgeCant.innerText = cantidadTotal;
+    if (subtotalDOM) subtotalDOM.innerText = `S/ ${subtotal.toFixed(2)}`;
+    if (envioDOM) {
+        envioDOM.innerText = costoEnvio > 0 ? `S/ ${costoEnvio.toFixed(2)}` : "Gratis (Retiro en Tienda)";
+        envioDOM.className = costoEnvio > 0 ? "text-white fw-semibold" : "text-success fw-semibold";
+    }
+    if (totalDOM) totalDOM.innerText = `S/ ${total.toFixed(2)}`;
+}
+
+function cargarDatosEnvioConfirmados() {
+    const datosEnvio = JSON.parse(localStorage.getItem('pedido_envio_caleta'));
+    
+    if (datosEnvio) {
+        if (datosEnvio.nombre) document.getElementById('pago-contacto-nombre').innerText = datosEnvio.nombre;
+        if (datosEnvio.correo) document.getElementById('pago-contacto-correo').innerText = datosEnvio.correo;
+        if (datosEnvio.telefono) document.getElementById('pago-contacto-telefono').innerText = datosEnvio.telefono;
+
+        if (datosEnvio.tipoEntrega === 'delivery') {
+            document.getElementById('pago-titulo-metodo').innerText = "Dirección de Entrega (Delivery):";
+            document.getElementById('pago-destino-principal').innerText = datosEnvio.direccion || "Dirección registrada";
+            document.getElementById('pago-destino-detalle').innerText = datosEnvio.referencia || "Sin referencias adicionales";
+            document.getElementById('pago-destino-tiempo').innerText = "Tiempo estimado: 35 - 50 min";
+        } else {
+            document.getElementById('pago-titulo-metodo').innerText = "Punto de Retiro Seleccionado:";
+            document.getElementById('pago-destino-principal').innerText = datosEnvio.sede || "Sede Miraflores";
+            document.getElementById('pago-destino-detalle').innerText = datosEnvio.direccionSede || "Av. José Larco 850, Miraflores";
+            document.getElementById('pago-destino-tiempo').innerText = "Listo en: 20 - 30 min";
+        }
+    }
+}
+
+function alternarCamposFactura(mostrar) {
+    const box = document.getElementById('campos-factura');
+    const ruc = document.getElementById('factura-ruc');
+    const razon = document.getElementById('factura-razon');
+    
+    if (mostrar) {
+        box.classList.remove('d-none');
+        ruc.setAttribute('required', 'true');
+        razon.setAttribute('required', 'true');
+    } else {
+        box.classList.add('d-none');
+        ruc.removeAttribute('required');
+        razon.removeAttribute('required');
+    }
+}
+
+function alternarDetalleMetodoPago(metodo) {
+    const boxTarjeta = document.getElementById('box-formulario-tarjeta');
+    const boxYape = document.getElementById('box-formulario-yape');
+    const wrapTarjeta = document.getElementById('wrapper-tarjeta');
+    const wrapYape = document.getElementById('wrapper-yape');
+
+    if (metodo === 'tarjeta') {
+        boxTarjeta.classList.remove('d-none');
+        boxYape.classList.add('d-none');
+        wrapTarjeta.classList.add('activo');
+        wrapYape.classList.remove('activo');
+    } else {
+        boxTarjeta.classList.add('d-none');
+        boxYape.classList.remove('d-none');
+        wrapTarjeta.classList.remove('activo');
+        wrapYape.classList.add('activo');
+    }
+}
+
+function procesarPagoFinal(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('btnFinalizarPedido');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Procesando pedido...';
+
+    setTimeout(() => {
+        localStorage.removeItem('carrito_caleta');
+        localStorage.removeItem('pedido_envio_caleta');
+        window.location.href = '/pedido-confirmado'; 
+    }, 1800);
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/js/reporte.js
+```javascript
+function mostrarPaginaGraficos(num) {
+    const p1 = document.getElementById("paginaGraficos1");
+    const p2 = document.getElementById("paginaGraficos2");
+    const t1 = document.getElementById("tab1-link");
+    const t2 = document.getElementById("tab2-link");
+
+    if (num === 1) {
+        p1.style.display = "block";
+        p2.style.display = "none";
+        t1.classList.add("activo");
+        t2.classList.remove("activo");
+    } else {
+        p1.style.display = "none";
+        p2.style.display = "block";
+        t1.classList.remove("activo");
+        t2.classList.add("activo");
+    }
+}
+window.addEventListener('DOMContentLoaded', () => {
+
+    const colorNaranja = 'rgb(255, 69, 0)';
+    const colorCarmesi = 'rgb(187, 20, 53)';
+
+    // Configuración general de colores oscuros para ejes y leyendas en fondo claro
+    const configTextoGrafico = {
+        plugins: {
+            legend: { labels: { color: '#374151', font: { weight: '600' } } }
+        },
+        scales: {
+            x: { ticks: { color: '#4b5563' }, grid: { color: 'rgba(0, 0, 0, 0.05)' } },
+            y: { ticks: { color: '#4b5563' }, grid: { color: 'rgba(0, 0, 0, 0.05)' } }
+        }
+    };
+
+    async function cargarGraficos() {
+        try {
+            const response = await fetch('/api/admin/dashboard/metricas');
+            if (!response.ok) return;
+            const data = await response.json();
+
+            // Valores por defecto en caso de no haber data
+            const pizzasLabels = data.pizzasLabels && data.pizzasLabels.length > 0 ? data.pizzasLabels : ['Pepperoni', 'Hawaiana', 'Americana', 'Meat Lovers', 'Vegetariana'];
+            const pizzasData = data.pizzasData && data.pizzasData.length > 0 ? data.pizzasData : [0, 0, 0, 0, 0];
+            const ingresosSemanales = data.graficoIngresosSemanales || [0, 0, 0, 0];
+            const graficoPagos = data.graficoPagos || [0, 0, 0];
+            const insumosLabels = data.insumosLabels && data.insumosLabels.length > 0 ? data.insumosLabels : ['Mozzarella', 'Salsa Tomate', 'Pepperoni', 'Harina'];
+            const insumosData = data.insumosData && data.insumosData.length > 0 ? data.insumosData : [0, 0, 0, 0];
+
+            // 1. Barras: Pizzas
+            new Chart(document.getElementById('chartBarrasPizzas').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: pizzasLabels,
+                    datasets: [{
+                        label: 'Ventas en Soles (S/)',
+                        data: pizzasData,
+                        backgroundColor: [colorNaranja, colorCarmesi, '#d97706', '#dc2626', '#16a34a'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    ...configTextoGrafico
+                }
+            });
+
+            // 2. Lineal: Ingresos
+            new Chart(document.getElementById('chartLinealMensual').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'],
+                    datasets: [{
+                        label: 'Ingresos Semanales (S/)',
+                        data: ingresosSemanales,
+                        borderColor: colorNaranja,
+                        backgroundColor: 'rgba(255, 69, 0, 0.15)',
+                        fill: true,
+                        tension: 0.35,
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    ...configTextoGrafico
+                }
+            });
+
+            // 3. Circular: Métodos de Pago
+            new Chart(document.getElementById('chartCircularPagos').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Yape / Plin', 'Efectivo', 'Tarjeta Visa/Mastercard'],
+                    datasets: [{
+                        data: graficoPagos,
+                        backgroundColor: [colorNaranja, colorCarmesi, '#64748b']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { labels: { color: '#374151', font: { weight: '600' } } }
+                    }
+                }
+            });
+
+            // 4. Horizontal: Insumos
+            new Chart(document.getElementById('chartStockInsumos').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: insumosLabels,
+                    datasets: [{
+                        label: 'Unidades Disponibles',
+                        data: insumosData,
+                        backgroundColor: colorCarmesi,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    ...configTextoGrafico
+                }
+            });
+            
+        } catch (error) {
+            console.error("Error al cargar datos del dashboard: ", error);
+        }
+    }
+
+    cargarGraficos();
+});
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/js/shipping.js
+```javascript
+document.addEventListener("DOMContentLoaded", () => {
+    cargarResumenEnvio();
+    verificarEstadoUsuario();
+});
+
+let subtotalPedido = 0;
+
+// 1. Alterna entre vista Invitado y Usuario Logeado
+function verificarEstadoUsuario() {
+    // Revisa usuario guardado en localStorage (o tu clave de auth.js ej: 'usuario_caleta', 'usuario_actual')
+    const usuarioLogeado = JSON.parse(localStorage.getItem('usuario_caleta')) || JSON.parse(localStorage.getItem('usuario_actual'));
+    const seccionInvitado = document.getElementById('seccion-invitado');
+    const seccionLogueado = document.getElementById('seccion-logueado');
+
+    if (usuarioLogeado) {
+        // Está autenticado -> Mostramos formulario completo editable
+        seccionInvitado.classList.add('d-none');
+        seccionLogueado.classList.remove('d-none');
+
+        // Precarga sus datos personales registrados
+        if (usuarioLogeado.nombre) document.getElementById('inputNombreUser').value = usuarioLogeado.nombre;
+        if (usuarioLogeado.correo || usuarioLogeado.email) document.getElementById('inputCorreoUser').value = usuarioLogeado.correo || usuarioLogeado.email;
+        if (usuarioLogeado.telefono) document.getElementById('inputTelefonoUser').value = usuarioLogeado.telefono;
+        if (usuarioLogeado.documento) document.getElementById('inputDocumentoUser').value = usuarioLogeado.documento;
+        if (usuarioLogeado.direccion) document.getElementById('inputDireccionUser').value = usuarioLogeado.direccion;
+        if (usuarioLogeado.referencia) document.getElementById('inputReferenciaUser').value = usuarioLogeado.referencia;
+    } else {
+        // No está logeado -> Solo pedimos correo
+        seccionInvitado.classList.remove('d-none');
+        seccionLogueado.classList.add('d-none');
+
+        // Si ya había escrito un correo antes en esta sesión, lo precarga
+        const previo = JSON.parse(localStorage.getItem('pedido_envio_caleta'));
+        if (previo && previo.correo) {
+            document.getElementById('inputCorreoInvitado').value = previo.correo;
+        }
+    }
+}
+
+// 2. Control de Modalidad: Retiro vs. Delivery
+function cambiarModalidadEntrega(tipo) {
+    const camposDelivInvitado = document.getElementById('campos-delivery-invitado');
+    const inputDirInvitado = document.getElementById('inputDireccionInvitado');
+
+    const camposDelivUser = document.getElementById('campos-delivery-user');
+    const inputDirUser = document.getElementById('inputDireccionUser');
+
+    const cardSede = document.getElementById('card-sede-info');
+
+    if (tipo === 'delivery') {
+        camposDelivInvitado.classList.remove('d-none');
+        inputDirInvitado.setAttribute('required', 'true');
+
+        camposDelivUser.classList.remove('d-none');
+        inputDirUser.setAttribute('required', 'true');
+
+        if (cardSede) cardSede.classList.add('d-none');
+    } else {
+        camposDelivInvitado.classList.add('d-none');
+        inputDirInvitado.removeAttribute('required');
+
+        camposDelivUser.classList.add('d-none');
+        inputDirUser.removeAttribute('required');
+
+        if (cardSede) cardSede.classList.remove('d-none');
+    }
+
+    actualizarTotalesEnvio(tipo);
+}
+
+function actualizarTotalesEnvio(tipo) {
+    const costoEnvioDOM = document.getElementById('shipping-costo-envio');
+    const totalDOM = document.getElementById('shipping-total');
+
+    const costoEnvio = tipo === 'delivery' ? 5.00 : 0.00;
+    const total = subtotalPedido + costoEnvio;
+
+    if (costoEnvioDOM) {
+        costoEnvioDOM.innerText = costoEnvio > 0 ? `S/ ${costoEnvio.toFixed(2)}` : "Gratis (Retiro)";
+        costoEnvioDOM.className = costoEnvio > 0 ? "text-white fw-semibold" : "text-success fw-semibold";
+    }
+    if (totalDOM) totalDOM.innerText = `S/ ${total.toFixed(2)}`;
+}
+
+// 3. Cargar Carrito Real
+function cargarResumenEnvio() {
+    const carrito = JSON.parse(localStorage.getItem('carrito_caleta')) || [];
+    const contenedorLista = document.getElementById('shipping-lista-productos');
+    const badgeCant = document.getElementById('shipping-cant-articulos');
+    const subtotalDOM = document.getElementById('shipping-subtotal');
+
+    if (carrito.length === 0) {
+        window.location.href = '/menu';
+        return;
+    }
+
+    subtotalPedido = 0;
+    let cantidadTotal = 0;
+
+    contenedorLista.innerHTML = carrito.map(item => {
+        subtotalPedido += item.precio * item.cantidad;
+        cantidadTotal += item.cantidad;
+
+        const pos = item.nombre.indexOf('(');
+        const nombreSimple = pos !== -1 ? item.nombre.substring(0, pos).trim() : item.nombre;
+
+        return `
+            <div class="d-flex align-items-center justify-content-between gap-2">
+                <div class="d-flex align-items-center gap-2 min-w-0">
+                    <img src="${item.imagenUrl}" alt="${nombreSimple}" class="rounded-2 object-fit-cover flex-shrink-0" style="width: 44px; height: 44px;">
+                    <div class="min-w-0">
+                        <h6 class="fw-bold mb-0 text-white small text-truncate" style="max-width: 170px;">${nombreSimple}</h6>
+                        <span class="text-secondary d-block" style="font-size: 11px;">Cant: ${item.cantidad}</span>
+                    </div>
+                </div>
+                <span class="fw-bold text-white small flex-shrink-0">S/ ${(item.precio * item.cantidad).toFixed(2)}</span>
+            </div>
+        `;
+    }).join('');
+
+    if (badgeCant) badgeCant.innerText = cantidadTotal;
+    if (subtotalDOM) subtotalDOM.innerText = `S/ ${subtotalPedido.toFixed(2)}`;
+
+    const modalidadActual = document.querySelector('input[name="tipoModalidad"]:checked').value;
+    actualizarTotalesEnvio(modalidadActual);
+}
+
+// 4. Procesa envío para Invitado
+function procesarPasoEnvioInvitado(e) {
+    e.preventDefault();
+    const tipoModalidad = document.querySelector('input[name="tipoModalidad"]:checked').value;
+
+    const datosPedido = {
+        esInvitado: true,
+        nombre: "Cliente Invitado",
+        correo: document.getElementById('inputCorreoInvitado').value.trim(),
+        telefono: "Por confirmar",
+        documento: "-",
+        tipoEntrega: tipoModalidad,
+        sede: "Sede Miraflores",
+        direccionSede: "Av. José Larco 850, Miraflores, Lima",
+        direccion: tipoModalidad === 'delivery' ? document.getElementById('inputDireccionInvitado').value.trim() : "",
+        referencia: tipoModalidad === 'delivery' ? document.getElementById('inputReferenciaInvitado').value.trim() : ""
+    };
+
+    localStorage.setItem('pedido_envio_caleta', JSON.stringify(datosPedido));
+    window.location.href = '/pago';
+}
+
+// 5. Procesa envío para Usuario Logeado
+function procesarPasoEnvioLogueado(e) {
+    e.preventDefault();
+    const tipoModalidad = document.querySelector('input[name="tipoModalidad"]:checked').value;
+
+    const datosPedido = {
+        esInvitado: false,
+        nombre: document.getElementById('inputNombreUser').value.trim(),
+        correo: document.getElementById('inputCorreoUser').value.trim(),
+        telefono: document.getElementById('inputTelefonoUser').value.trim(),
+        documento: document.getElementById('inputDocumentoUser').value.trim(),
+        tipoEntrega: tipoModalidad,
+        sede: "Sede Miraflores",
+        direccionSede: "Av. José Larco 850, Miraflores, Lima",
+        direccion: tipoModalidad === 'delivery' ? document.getElementById('inputDireccionUser').value.trim() : "",
+        referencia: tipoModalidad === 'delivery' ? document.getElementById('inputReferenciaUser').value.trim() : ""
+    };
+
+    localStorage.setItem('pedido_envio_caleta', JSON.stringify(datosPedido));
+    window.location.href = '/pago';
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/js/ui.js
+```javascript
+// Desplazamiento horizontal de carruseles
+function desplazar(id, desplazamiento) {
+    const contenedor = document.getElementById(id);
+    if (contenedor) {
+        contenedor.scrollBy({ left: desplazamiento, behavior: 'smooth' });
+    }
+}
+
+// Filtrado de pestañas de categorías
+function cambiarSeccion(idSeccion, botonPresionado = null) {
+    const secciones = document.querySelectorAll('.seccion-menu');
+    secciones.forEach(sec => sec.classList.add('d-none'));
+
+    const seccionActiva = document.getElementById(idSeccion);
+    if (seccionActiva) {
+        seccionActiva.classList.remove('d-none');
+    }
+
+    const botones = document.querySelectorAll('.btn-categoria');
+    botones.forEach(btn => btn.classList.remove('active'));
+
+    if (botonPresionado) {
+        botonPresionado.classList.add('active');
+    } else {
+        const botonCoincidente = Array.from(botones).find(btn => 
+            btn.getAttribute('onclick')?.includes(idSeccion)
+        );
+        if (botonCoincidente) {
+            botonCoincidente.classList.add('active');
+        }
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function procesarHash() {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById(hash)) {
+        cambiarSeccion(hash);
+    }
+}
+
+window.addEventListener('DOMContentLoaded', procesarHash);
+window.addEventListener('hashchange', procesarHash);
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/style/admin.css
+```css
+.caleta-admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f3f4f6;
+    color: #1f2937;
+}
+
+/* Sidebar: fondo blanco con borde gris sutil */
+.caleta-sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 14px;
+    flex-shrink: 0;
+}
+
+.caleta-logo-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.caleta-logo-box h2 {
+    color: var(--color-rojo-naranja);
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.caleta-logo-box p {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: #6b7280;
+    margin: 4px 0 0 0;
+}
+
+.caleta-menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.caleta-menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: #4b5563;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.caleta-menu-btn:hover {
+    background-color: #fff1ed;
+    color: var(--color-rojo-naranja);
+}
+
+.caleta-menu-btn.activo {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco) !important;
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.25);
+}
+
+.caleta-menu-btn.highlight {
+    color: var(--color-carmesi);
+}
+
+.caleta-admin-user {
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.caleta-user-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.caleta-badge-rol {
+    background-color: var(--color-carmesi);
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+/* Área de contenido: fondo gris neutro limpio */
+.caleta-admin-main {
+    flex-grow: 1;
+    background-color: #f8fafc;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.caleta-admin-main .caleta-table,
+.caleta-admin-main .caleta-table th,
+.caleta-admin-main .caleta-table td {
+    color: #212529 !important;
+}
+
+/* CORRECCIÓN DE COLISIÓN EN BADGES / INSIGNIAS */
+.caleta-badge {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Insignia genérica con fondo neutro y texto oscuro legible */
+.caleta-admin-main .caleta-table .caleta-badge {
+    background-color: #e5e7eb;
+    color: #374151 !important;
+}
+
+/* Insignias de estado con colores propios contrastados */
+.caleta-badge.success {
+    background-color: #dcfce7 !important;
+    color: #15803d !important;
+}
+
+.caleta-badge.warning {
+    background-color: #fef9c3 !important;
+    color: #a16207 !important;
+}
+
+.caleta-badge.danger {
+    background-color: #fee2e2 !important;
+    color: #b91c1c !important;
+}
+
+.caleta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.caleta-header h3 {
+    margin: 0;
+    font-weight: 800;
+    color: #111827;
+}
+
+.caleta-header-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Botones genéricos de admin */
+.caleta-btn-primary {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transicion);
+}
+
+.caleta-btn-primary:hover {
+    background-color: rgb(255, 95, 30);
+    color: #fff;
+}
+
+.caleta-btn-outline {
+    background: #ffffff;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transicion);
+}
+
+.caleta-btn-outline:hover {
+    border-color: var(--color-rojo-naranja);
+    color: var(--color-rojo-naranja);
+    background-color: #fff1ed;
+}
+
+/* KPIs / Tarjetas con fondo blanco y bordes suaves */
+.caleta-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.caleta-kpi-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid var(--color-rojo-naranja);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.caleta-kpi-card.carmesi {
+    border-left-color: var(--color-carmesi);
+}
+
+.caleta-kpi-card.alerta {
+    border-left-color: #eab308;
+}
+
+.caleta-kpi-card.verde {
+    border-left-color: #22c55e;
+}
+
+.caleta-kpi-label {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.caleta-kpi-val {
+    font-size: 20px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0;
+}
+
+.caleta-kpi-icon {
+    font-size: 22px;
+    color: var(--color-rojo-naranja);
+    background: rgba(255, 69, 0, 0.08);
+    padding: 10px;
+    border-radius: 50%;
+}
+
+/* Tablas y paneles */
+.caleta-panel {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 20px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.caleta-panel-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1f2937;
+}
+
+.caleta-search-input {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #1f2937;
+    padding: 8px 12px;
+    border-radius: 6px;
+    outline: none;
+    font-size: 13px;
+    width: 260px;
+    max-width: 100%;
+    margin-bottom: 14px;
+    transition: var(--transicion);
+}
+
+.caleta-search-input:focus {
+    border-color: var(--color-rojo-naranja);
+}
+
+.caleta-table-container {
+    overflow-x: auto;
+}
+
+.table.caleta-table {
+    --bs-table-bg: transparent;
+    --bs-table-color: #374151;
+    border-color: #e5e7eb;
+}
+
+.table.caleta-table thead th {
+    background-color: #f9fafb;
+    color: var(--color-rojo-naranja);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table.caleta-table tbody td {
+    font-size: 12.5px;
+    vertical-align: middle;
+    border-bottom: 1px solid #f3f4f6;
+    color: #1f2937;
+}
+
+.caleta-seccion {
+    display: none;
+}
+
+.caleta-seccion.activa {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .caleta-admin-wrapper {
+        flex-direction: column;
+    }
+
+    .caleta-sidebar {
+        display: contents;
+    }
+
+    .caleta-logo-box {
+        order: 1;
+        background-color: #ffffff;
+        padding: 16px 14px 6px 14px;
+        text-align: center;
+    }
+
+    .caleta-menu-nav {
+        order: 2;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 6px 14px 12px 14px;
+        border-bottom: 1px solid #e5e7eb;
+        gap: 6px;
+    }
+
+    .caleta-menu-btn {
+        white-space: nowrap;
+        padding: 8px 12px;
+        font-size: 12.5px;
+    }
+
+    .caleta-admin-main {
+        order: 3;
+        padding: 16px 14px;
+    }
+
+    .caleta-admin-user {
+        order: 4;
+        background-color: #ffffff;
+        border-top: 1px solid #e5e7eb;
+        padding: 20px 14px;
+        text-align: center;
+        margin-top: auto;
+    }
+
+    .caleta-admin-user .btn-crear-cuenta,
+    .caleta-admin-user .caleta-btn-outline,
+    .caleta-admin-user a,
+    .caleta-admin-user button {
+        max-width: 280px;
+        margin: 10px auto 0 auto;
+    }
+
+    .caleta-kpi-grid {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/style/auth-admin.css
+```css
+.contenedor-login {
+    width: 100%;
+    min-height: calc(100vh - 180px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 15px;
+    background-color: var(--bg-negro);
+}
+
+.login-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 900px;
+    background-color: #f7f7f7;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+    color: #1f2937;
+}
+
+.login-seccion {
+    padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-izq {
+    background-color: #ffffff;
+    border-right: 1px solid #e5e5e5;
+}
+
+.login-der {
+    justify-content: space-between;
+    background-color: #f7f7f7;
+}
+
+.login-titulo {
+    font-size: 22px;
+    font-weight: 900;
+    color: #111827;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.username {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.username label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.username label span {
+    color: var(--carmesi);
+}
+
+.input-relative {
+    position: relative;
+    width: 100%;
+}
+
+.username input,
+.username select {
+    width: 100%;
+    height: 42px;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #111827;
+    background-color: #fff;
+    outline: none;
+    transition: var(--t);
+}
+
+.username input:focus,
+.username select:focus {
+    border-color: var(--ro);
+}
+
+.username input::placeholder {
+    color: #9ca3af;
+}
+
+.icono-ojo {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    cursor: pointer;
+}
+
+.recordar {
+    font-size: 13px;
+    color: var(--carmesi);
+    font-weight: 600;
+    cursor: pointer;
+    margin: 4px 0 20px 0;
+    width: fit-content;
+}
+
+.recordar:hover {
+    color: var(--ro);
+    text-decoration: underline;
+}
+
+.btn-login,
+.btn-crear-cuenta {
+    width: 100%;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 800;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--t);
+}
+
+.btn-login {
+    background-color: var(--ro);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3);
+}
+
+.btn-login:hover {
+    background-color: rgb(255, 90, 20);
+    color: #ffffff;
+}
+
+.btn-crear-cuenta {
+    background-color: var(--bg-suave);
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.btn-crear-cuenta:hover {
+    background-color: var(--carmesi);
+    color: #ffffff;
+}
+
+.beneficios-subtitulo {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.beneficios-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.beneficios-lista li {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.3;
+    position: relative;
+    padding-left: 16px;
+}
+
+.beneficios-lista li::before {
+    content: "•";
+    color: var(--ro);
+    font-size: 18px;
+    position: absolute;
+    left: 0;
+    top: -3px;
+}
+
+.forgot-wrapper {
+    max-width: 540px;
+    width: 100%;
+    margin: 40px auto;
+    color: #1f2937;
+}
+
+.forgot-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-align: center;
+    color: #111827;
+    margin-bottom: 20px;
+}
+
+.forgot-description {
+    font-size: 0.95rem;
+    text-align: center;
+    color: #4b5563;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.recaptcha-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1973e8;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 10px 14px;
+    max-width: 250px;
+    font-size: 0.85rem;
+    margin: 15px 0 30px;
+}
+
+.forgot-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgot-back-link {
+    color: #374151;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.forgot-back-link:hover {
+    color: var(--carmesi);
+}
+
+.caleta-admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background: #f8fafc;
+    color: #1f2937;
+}
+
+.caleta-sidebar {
+    width: 260px;
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 14px;
+    flex-shrink: 0;
+}
+
+.caleta-menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: #4b5563;
+    font-size: 13.5px;
+    font-weight: 600;
+    background: transparent;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--t);
+}
+
+.caleta-menu-btn:hover {
+    background: #fff1ed;
+    color: var(--ro);
+}
+
+.caleta-menu-btn.activo {
+    background: var(--ro);
+    color: #ffffff !important;
+}
+
+.caleta-admin-main {
+    flex-grow: 1;
+    background-color: #f8fafc;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.caleta-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.caleta-kpi-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid var(--ro);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.caleta-panel {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 20px;
+}
+
+.table.caleta-table thead th {
+    background: #f9fafb;
+    color: var(--ro);
+    font-size: 11.5px;
+    text-transform: uppercase;
+}
+
+.caleta-badge.success { background: #dcfce7 !important; color: #15803d !important; }
+.caleta-badge.warning { background: #fef9c3 !important; color: #a16207 !important; }
+.caleta-badge.danger { background: #fee2e2 !important; color: #b91c1c !important; }
+
+.caleta-btn-primary {
+    background: var(--ro);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .login-grid {
+        grid-template-columns: 1fr;
+    }
+    .login-izq {
+        border-right: none;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .caleta-admin-wrapper {
+        flex-direction: column;
+    }
+    .caleta-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/style/detalles.css
+```css
+.contenedor-foto-completa {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+}
+
+.contenedor-foto-completa img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.stepper-transparente {
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+}
+
+.bloque-personalizacion {
+    background-color: var(--color-negro-suave);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.fila-opcion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 14px;
+    border-radius: 8px;
+    background-color: rgba(24, 24, 24, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: var(--transicion);
+    user-select: none;
+    margin-bottom: 8px;
+}
+
+.fila-opcion:last-child {
+    margin-bottom: 0;
+}
+
+.fila-opcion:hover {
+    border-color: var(--color-rojo-naranja);
+    background-color: rgba(255, 69, 0, 0.05);
+}
+
+.btn-check:checked+.fila-opcion,
+.fila-opcion:has(.form-check-input:checked) {
+    border-color: var(--color-rojo-naranja) !important;
+    background-color: rgba(255, 69, 0, 0.12) !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--color-rojo-naranja);
+    border-color: var(--color-rojo-naranja);
+}
+
+.alerta-requerido {
+    background-color: rgba(251, 146, 60, 0.12);
+    border: 1px solid rgba(251, 146, 60, 0.3);
+    color: #fdba74;
+}
+
+.badge-contador {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+
+.badge-completado {
+    background-color: rgba(46, 125, 50, 0.18);
+    color: #4ade80;
+    border: 1px solid rgba(74, 222, 128, 0.35);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+
+.caja-seleccionada {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1.5px solid rgba(74, 222, 128, 0.45);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.caja-seleccionada:hover {
+    border-color: #4ade80;
+    background-color: rgba(74, 222, 128, 0.05);
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/style/main.css
+```css
+:root {
+    --ro: rgb(255, 69, 0);
+    --carmesi: rgb(187, 20, 53);
+    --bg-negro: rgb(24, 24, 24);
+    --bg-suave: rgb(35, 35, 35);
+    --t: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-negro);
+    color: #fff;
+}
+
+a { text-decoration: none; color: inherit; transition: var(--t); }
+#topbar { background-color: var(--carmesi); font-size: 14px; }
+#header { background-color: var(--bg-negro); border-bottom: 1px solid rgba(255,255,255,0.08); }
+footer { background-color: var(--bg-suave); border-top: 1px solid rgba(255,255,255,0.05); }
+
+.text-ro { color: var(--ro) !important; }
+.bg-ro { background-color: var(--ro) !important; }
+.fs-xs { font-size: 11px; }
+.cursor-pointer { cursor: pointer; }
+.hover-rojo:hover { color: var(--ro) !important; }
+.table-dark { --bs-table-bg: var(--bg-suave); }
+
+.btn-cta {
+    background-color: var(--ro);
+    color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(255,69,0,0.4);
+    transition: var(--t);
+}
+.btn-cta:hover {
+    background-color: rgb(255,90,20);
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.btn-add-caleta {
+    width: 36px;
+    height: 36px;
+    background-color: var(--ro);
+    color: var(--carmesi);
+    border: none;
+    transition: var(--t);
+}
+.btn-add-caleta:hover { background-color: var(--carmesi); color: #fff; }
+
+.buscador-input {
+    background-color: var(--bg-suave);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    border-radius: 30px;
+}
+.buscador-input:focus {
+    background-color: var(--bg-suave);
+    border-color: var(--ro);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255,69,0,0.35);
+}
+
+.accordion-button:not(.collapsed) { color: var(--ro) !important; }
+.accordion-button::after { filter: invert(1); }
+.accordion-button:not(.collapsed)::after {
+    filter: invert(36%) sepia(98%) saturate(3025%) hue-rotate(1deg) brightness(101%);
+}
+
+.nav-menu-link-shop,
+a[data-bs-toggle="offcanvas"][data-bs-target="#offcanvasCarrito"] {
+    background-color: var(--bg-suave) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 30px;
+    transition: var(--t);
+}
+
+.nav-menu-link-shop:hover,
+a[data-bs-toggle="offcanvas"][data-bs-target="#offcanvasCarrito"]:hover {
+    background-color: var(--ro) !important;
+    border-color: var(--ro) !important;
+    color: #fff !important;
+}
+
+.offcanvas,
+.offcanvas-header,
+.offcanvas-body,
+.modal-content {
+    background-color: var(--bg-suave) !important;
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.card,
+.card-resumen,
+.card-checkout,
+.tarjeta-resumen-pedido {
+    background-color: var(--bg-suave) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: #fff !important;
+}
+
+.btn-ver-info {
+    color: var(--ro) !important;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+.btn-ver-info:hover {
+    color: rgb(255, 90, 20) !important;
+}
+
+.nav-link-header,
+.link-usuario {
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-bottom: 2px solid transparent;
+    transition: var(--t);
+}
+
+.nav-link-header:hover,
+.link-usuario:hover {
+    color: var(--ro) !important;
+}
+
+.nav-link-header.active,
+.link-usuario.active {
+    color: var(--ro) !important;
+    border-bottom: 2px solid var(--ro) !important;
+}
+
+.text-ro {
+    color: var(--ro) !important;
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/style/shop.css
+```css
+.banner-img-slider {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+#carouselHero .carousel-indicators [data-bs-target] {
+    width: 26px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: none;
+    transition: var(--t);
+}
+
+#carouselHero .carousel-indicators .active {
+    background-color: var(--ro);
+    width: 36px;
+}
+
+#carouselHero .carousel-control-prev,
+#carouselHero .carousel-control-next {
+    width: 4%;
+}
+
+.carrusel-horizontal, 
+.categorias-scroll {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+.carrusel-horizontal::-webkit-scrollbar, 
+.categorias-scroll::-webkit-scrollbar { 
+    display: none; 
+}
+
+#categorias, 
+#categorias-promo {
+    background-color: var(--bg-negro) !important;
+}
+
+.btn-categoria {
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.75);
+    background-color: var(--bg-suave);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+}
+
+.btn-categoria:hover, 
+.btn-categoria.active {
+    background-color: var(--ro);
+    color: #fff;
+    border-color: var(--ro);
+}
+
+.contenedor-foto-completa { 
+    border-radius: 16px; 
+    overflow: hidden; 
+}
+
+.contenedor-foto-completa img { 
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    border-radius: 16px; 
+}
+
+.stepper-transparente { 
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    border-radius: 10px; 
+}
+
+.bloque-personalizacion, 
+.card-acordeon-caleta {
+    background-color: var(--bg-suave);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fila-opcion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(24, 24, 24, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    margin-bottom: 8px;
+    user-select: none;
+}
+
+.fila-opcion:hover { 
+    border-color: var(--ro); 
+}
+
+.btn-check:checked + .fila-opcion, 
+.fila-opcion:has(.form-check-input:checked) {
+    border-color: var(--ro) !important;
+    background-color: rgba(255, 69, 0, 0.12) !important;
+}
+
+.form-check-input:checked { 
+    background-color: var(--ro); 
+    border-color: var(--ro); 
+}
+
+.alerta-requerido { 
+    background: rgba(251, 146, 60, 0.12); 
+    border: 1px solid rgba(251, 146, 60, 0.3); 
+    color: #fdba74; 
+}
+
+.badge-contador { 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    font-size: 11px; 
+    padding: 2px 10px; 
+    border-radius: 20px; 
+}
+
+.badge-completado { 
+    background: rgba(46, 125, 50, 0.18); 
+    color: #4ade80; 
+    border: 1px solid rgba(74, 222, 128, 0.35); 
+    font-size: 11px; 
+    padding: 2px 10px; 
+    border-radius: 20px; 
+}
+
+.caja-seleccionada { 
+    border: 1.5px solid rgba(74, 222, 128, 0.45); 
+    border-radius: 8px; 
+    padding: 10px 14px; 
+    cursor: pointer; 
+}
+
+.tarjeta-opcion-pago:has(input:checked) { 
+    border-color: var(--ro) !important; 
+    background: rgba(255, 69, 0, 0.08); 
+}
+
+#descripcion { 
+    background-color: rgb(146, 31, 2) !important; 
+}
+
+.btn-carrusel {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--bg-suave);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--t);
+    padding: 0;
+}
+
+.btn-carrusel:hover {
+    background-color: var(--ro);
+    border-color: var(--ro);
+    color: #fff;
+}
+
+.tarjeta-producto, 
+.tarjeta-pizza, 
+.tarjeta-catalogo {
+    background-color: var(--bg-suave) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    width: 100%;
+}
+
+.carrusel-horizontal .tarjeta-pizza,
+.carrusel-horizontal .tarjeta-producto {
+    flex: 0 0 260px;
+    width: 260px;
+}
+
+.tarjeta-producto .card-img-top, 
+.tarjeta-pizza .card-img-top, 
+.tarjeta-catalogo .card-img-top {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: auto !important;
+    object-fit: cover;
+    display: block;
+}
+
+.tarjeta-producto h5, 
+.tarjeta-pizza h5, 
+.tarjeta-catalogo h5,
+.tarjeta-producto a, 
+.tarjeta-pizza a, 
+.tarjeta-catalogo a,
+.tarjeta-producto span.fw-bold, 
+.tarjeta-pizza span.fw-bold, 
+.tarjeta-catalogo span.fw-bold {
+    color: #ffffff !important;
+}
+
+.tarjeta-producto p, 
+.tarjeta-pizza p, 
+.tarjeta-catalogo p {
+    color: rgba(255, 255, 255, 0.65) !important;
+    font-size: 12px;
+}
+
+.tarjeta-producto .border-top, 
+.tarjeta-pizza .border-top, 
+.tarjeta-catalogo .border-top {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+section[id], 
+.seccion-scroll {
+    scroll-margin-top: 140px;
+}
+
+.tabla-caleta {
+    --bs-table-bg: transparent;
+    --bs-table-color: #fff;
+    color: #fff !important;
+}
+
+.tabla-caleta th,
+.tabla-caleta td {
+    background-color: transparent !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.link-volver:hover {
+    color: var(--ro) !important;
+}
+
+.text-ro {
+    color: var(--ro) !important;
+}
+
+.toast-caleta {
+    background-color: var(--bg-suave, #1a1a1a) !important;
+    border: 1px solid var(--ro) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 12px rgba(227, 30, 36, 0.2) !important;
+}
+
+.opcion-pago-wrapper {
+    background-color: rgba(0, 0, 0, 0.25);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.opcion-pago-wrapper.activo {
+    border-color: var(--ro) !important;
+    box-shadow: 0 0 10px rgba(227, 30, 36, 0.15);
+}
+
+.fs-xs {
+    font-size: 0.75rem;
+}
+
+.form-check-input:checked {
+    background-color: var(--ro);
+    border-color: var(--ro);
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/static/style/styles.css
+```css
+/* 1. Paleta de colores y variables */
+:root {
+    --color-rojo-naranja: rgb(255, 69, 0);
+    --color-carmesi: rgb(187, 20, 53);
+    --color-blanco: rgb(255, 255, 255);
+    --color-negro: rgb(24, 24, 24);
+    --color-negro-suave: rgb(35, 35, 35);
+    --transicion: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--color-negro);
+    color: var(--color-blanco);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transicion);
+}
+
+/* 2. Secciones con fondos personalizados */
+#topbar {
+    background-color: var(--color-carmesi);
+    font-size: 14px;
+}
+
+#header {
+    background-color: var(--color-negro);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#descripcion {
+    background-color: rgb(146, 31, 2);
+}
+
+#principales {
+    background-color: var(--color-negro);
+}
+
+/* 3. Banner principal */
+#banner {
+    min-height: 360px;
+    background-image: url('../images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+#banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(24, 24, 24, 0.75) 0%, rgba(24, 24, 24, 0.5) 100%);
+    z-index: 1;
+}
+
+.banner-contenido {
+    position: relative;
+    z-index: 2;
+}
+
+.banner-titulo {
+    color: var(--color-rojo-naranja);
+    text-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
+    letter-spacing: 2px;
+}
+
+/* 4. Botones y enlaces especiales */
+.btn-cta {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+}
+
+.btn-cta:hover {
+    background-color: rgb(255, 90, 20);
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.nav-menu-link-shop {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+}
+
+.btn-add-caleta {
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-carmesi);
+    border: none;
+    transition: var(--transicion);
+}
+
+.btn-add-caleta:hover {
+    background-color: var(--color-carmesi);
+    color: var(--color-blanco);
+}
+
+/* 5. Tarjetas de pizza y carrusel continuo */
+.carrusel-horizontal {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.carrusel-horizontal::-webkit-scrollbar {
+    display: none;
+}
+
+.tarjeta-pizza {
+    flex: 0 0 250px;
+    width: 250px;
+}
+
+.contenedor-login {
+    width: 100%;
+    min-height: calc(100vh - 160px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+    background-color: var(--color-negro);
+}
+
+.login-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 900px;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+}
+
+.login-seccion {
+    padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-izq {
+    background-color: var(--color-blanco);
+    border-right: 1px solid #e5e5e5;
+}
+
+.login-der {
+    justify-content: space-between;
+}
+
+.login-titulo {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--color-negro);
+    text-align: center;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+}
+
+.username {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.username label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.username label span {
+    color: var(--color-carmesi);
+}
+
+.input-relative {
+    position: relative;
+    width: 100%;
+}
+
+.username input {
+    width: 100%;
+    height: 42px;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--color-negro);
+    background-color: #fff;
+    outline: none;
+    transition: var(--transicion);
+}
+
+.username input:focus {
+    border-color: var(--color-rojo-naranja);
+}
+
+.username input::placeholder {
+    color: #9ca3af;
+}
+
+.icono-ojo {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    cursor: pointer;
+}
+
+.recordar {
+    font-size: 13px;
+    color: var(--color-carmesi);
+    font-weight: 600;
+    cursor: pointer;
+    margin: 4px 0 20px 0;
+    width: fit-content;
+}
+
+.recordar:hover {
+    color: var(--color-rojo-naranja);
+    text-decoration: underline;
+}
+
+.btn-login,
+.btn-crear-cuenta {
+    width: 100%;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transicion);
+}
+
+.btn-login {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3);
+}
+
+.btn-login:hover {
+    background-color: rgb(255, 90, 20);
+}
+
+.btn-crear-cuenta {
+    background-color: var(--color-negro-suave);
+    color: var(--color-blanco);
+    margin-top: 20px;
+}
+
+.btn-crear-cuenta:hover {
+    background-color: var(--color-carmesi);
+}
+
+.beneficios-subtitulo {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-negro);
+    margin-bottom: 12px;
+}
+
+.beneficios-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.beneficios-lista li {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.3;
+    position: relative;
+    padding-left: 16px;
+}
+
+.beneficios-lista li::before {
+    content: "•";
+    color: var(--color-rojo-naranja);
+    font-size: 18px;
+    position: absolute;
+    left: 0;
+    top: -3px;
+}
+
+footer {
+    background-color: var(--color-negro-suave);
+    padding: 20px 0;
+    text-align: center;
+    font-size: var(--texto-3);
+    color: rgba(255, 255, 255, 0.6);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+    .login-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .login-izq {
+        border-right: none;
+        border-bottom: 1px solid #e5e5e5;
+    }
+}
+
+.btn-carrusel {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-negro-suave);
+    color: var(--color-blanco);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: var(--transicion);
+}
+
+.btn-carrusel:hover {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    border-color: var(--color-rojo-naranja);
+}
+
+.buscador-input {
+    background-color: var(--color-negro-suave);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--color-blanco);
+    border-radius: 30px;
+    font-size: 14px;
+    transition: var(--transicion);
+}
+
+.buscador-input:focus {
+    background-color: var(--color-negro-suave);
+    border-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.35);
+}
+
+.buscador-input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.btn-buscar:hover {
+    color: var(--color-rojo-naranja) !important;
+}
+
+.accordion-button::after {
+    filter: invert(1) grayscale(100%);
+    transition: transform 0.3s ease;
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: invert(36%) sepia(98%) saturate(3025%) hue-rotate(1deg) brightness(101%) contrast(105%);
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--color-rojo-naranja) !important;
+}
+
+#categorias {
+    background-color: rgba(24, 24, 24, 0.95);
+    backdrop-filter: blur(8px);
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    z-index: 1020;
+}
+
+.categorias-scroll {
+    scrollbar-width: none;
+}
+
+.categorias-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.btn-categoria {
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.75);
+    background-color: var(--color-negro-suave);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    transition: var(--transicion);
+    text-decoration: none;
+}
+
+.btn-categoria:hover {
+    color: var(--color-blanco);
+    border-color: var(--color-rojo-naranja);
+    background-color: rgba(255, 69, 0, 0.15);
+}
+
+.btn-categoria.active {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    border-color: var(--color-rojo-naranja);
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.4);
+}
+
+section[id] {
+    scroll-margin-top: 70px;
+}
+
+.text-ro {
+    color: var(--color-rojo-naranja);
+}
+
+.bg-ro {
+    background-color: var(--color-rojo-naranja);
+}
+
+.fs-xs {
+    font-size: 11px;
+}
+
+.table-dark {
+    --bs-table-bg: var(--color-negro-suave);
+}
+
+.hover-rojo:hover {
+    color: var(--color-rojo-naranja) !important;
+}
+
+.card.bg-dark {
+    background-color: var(--color-negro-suave) !important;
+}
+
+/* Estilos para el selector de método de pago */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.tarjeta-opcion-pago {
+    background-color: rgba(255, 255, 255, 0.02);
+    transition: var(--transicion);
+}
+
+.tarjeta-opcion-pago:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 69, 0, 0.4) !important;
+}
+
+.tarjeta-opcion-pago:has(input:checked) {
+    border-color: var(--color-rojo-naranja) !important;
+    background-color: rgba(255, 69, 0, 0.08);
+}
+
+/* --- Apartado Forgot Password --- */
+.forgot-wrapper {
+    max-width: 540px;
+    width: 100%;
+    margin: 40px 0;
+}
+
+.forgot-description {
+    font-size: 0.95rem;
+    text-align: center;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.required {
+    color: var(--color-primary, #b31312);
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/account/create.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Crear Cuenta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+    <style>
+        /* Estilos para feedback de validación inline */
+        .msg-feedback {
+            font-size: 12px;
+            margin-top: 4px;
+            display: block;
+            transition: all 0.2s ease-in-out;
+        }
+        .is-invalid-custom {
+            border-color: #dc3545 !important;
+            box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <main>
+        <div class="contenedor-login">
+            <div class="login-seccion login-izq w-100 rounded shadow" style="max-width: 650px;">
+                <h2 class="login-titulo mb-4">¿AÚN NO TIENES CUENTA? REGÍSTRATE</h2>
+
+                <form id="formRegistro" th:action="@{/registro}" method="post" novalidate>
+                    <!-- Alerta de Error devuelta por Spring Boot -->
+                    <div th:if="${error}" class="alert alert-danger py-2 px-3 small mb-3 border-0 rounded-3 shadow-sm" role="alert" th:text="${error}"></div>
+                    <!-- Alerta de Error en pantalla (JS) -->
+                    <div id="jsErrorAlert" class="alert alert-danger py-2 px-3 small mb-3 border-0 rounded-3 shadow-sm d-none" role="alert"></div>
+
+                    <!-- Información personal -->
+                    <div class="beneficios-subtitulo border-bottom pb-2 mb-3">Información personal</div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 username">
+                            <label>Nombre <span>*</span></label>
+                            <input type="text" id="regNombre" name="nombre" placeholder="Ej. Camila"
+                                   th:value="${nombre}" required>
+                            <small id="feedNombre" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                        <div class="col-12 col-md-6 username">
+                            <label>Apellidos <span>*</span></label>
+                            <input type="text" id="regApellido" name="apellidos" placeholder="Ej. Torres"
+                                   th:value="${apellidos}" required>
+                            <small id="feedApellido" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 username">
+                            <label>Tipo de Documento <span>*</span></label>
+                            <select id="regTipoDoc" name="tipoDocumento" class="form-select" style="height: 42px; font-size: 14px;" required onchange="ajustarValidacionDoc()">
+                                <option value="DNI" th:selected="${tipoDocumento == 'DNI' || tipoDocumento == null}">DNI</option>
+                                <option value="CE" th:selected="${tipoDocumento == 'CE'}">Carnet de Extranjería</option>
+                                <option value="PAS" th:selected="${tipoDocumento == 'PAS'}">Pasaporte</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6 username">
+                            <label>Número de Documento <span>*</span></label>
+                            <input type="text" id="regNumDoc" name="numeroDocumento" placeholder="8 dígitos (Ej. 72839401)"
+                                   th:value="${numeroDocumento}" oninput="validarDocEnTiempoReal(this)" required>
+                            <small id="feedNumDoc" class="msg-feedback text-warning d-none"></small>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 username">
+                            <label>Número de teléfono <span>*</span></label>
+                            <input type="tel" id="regTelefono" name="telefono" placeholder="Ej. 987654321"
+                                   th:value="${telefono}" oninput="validarTelefonoEnTiempoReal(this)" required>
+                            <small id="feedTelefono" class="msg-feedback text-warning d-none"></small>
+                        </div>
+                        <div class="col-12 col-md-6 username">
+                            <label>Fecha de nacimiento <span>*</span></label>
+                            <input type="date" id="regFechaNac" name="fechaNacimiento"
+                                   th:value="${fechaNacimiento}" max="2012-12-31" min="1930-01-01" required>
+                            <small id="feedFechaNac" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                    </div>
+
+                    <!-- Información de inicio de sesión -->
+                    <div class="beneficios-subtitulo border-bottom pb-2 mb-3 mt-4">Información de inicio de sesión</div>
+
+                    <div class="username">
+                        <label>Correo electrónico <span>*</span></label>
+                        <input type="email" id="regEmail" name="email" placeholder="Ej. nombre@mail.com"
+                               th:value="${email}" required>
+                        <small id="feedEmail" class="msg-feedback text-danger d-none"></small>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 username">
+                            <label>Contraseña (mínimo 8 caracteres) <span>*</span></label>
+                            <div class="input-relative">
+                                <input type="password" id="regPassword" name="password" placeholder="••••••••" required>
+                            </div>
+                            <small id="feedPassword" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                        <div class="col-12 col-md-6 username">
+                            <label>Confirmar contraseña <span>*</span></label>
+                            <div class="input-relative">
+                                <input type="password" id="regPasswordConfirm" name="confirmPassword" placeholder="••••••••" required>
+                            </div>
+                            <small id="feedPasswordConfirm" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                    </div>
+
+                    <!-- Términos y condiciones -->
+                    <div class="d-flex flex-column gap-2 my-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkPromo" name="aceptaPromo" value="true">
+                            <label class="form-check-label text-dark small" for="checkPromo">
+                                Acepto recibir <strong>promociones y novedades</strong>.
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkTerminos" name="aceptaTerminos" value="true" required>
+                            <label class="form-check-label text-dark small" for="checkTerminos">
+                                Acepto los <a th:href="@{/terminos}" class="recordar p-0 d-inline text-decoration-underline">términos y condiciones</a> y la política de privacidad. <span>*</span>
+                            </label>
+                            <small id="feedTerminos" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                    </div>
+
+                    <!-- Acciones -->
+                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 pt-2">
+                        <a th:href="@{/login}" class="recordar m-0"><i class="fa-solid fa-arrow-left me-1"></i> Ya tengo cuenta</a>
+                        <button type="submit" class="btn-login w-auto px-4 border-0">CREAR CUENTA</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+
+    <script>
+        // 1. Cambiar Placeholders según Tipo de Documento
+        function ajustarValidacionDoc() {
+            const tipo = document.getElementById('regTipoDoc').value;
+            const inputDoc = document.getElementById('regNumDoc');
+            const feedDoc = document.getElementById('feedNumDoc');
+
+            feedDoc.classList.add('d-none');
+            inputDoc.classList.remove('is-invalid-custom');
+            inputDoc.value = "";
+
+            if (tipo === 'DNI') {
+                inputDoc.placeholder = "8 dígitos (Ej. 72839401)";
+            } else if (tipo === 'CE') {
+                inputDoc.placeholder = "Carnet de Extranjería (Ej. 000123456)";
+            } else {
+                inputDoc.placeholder = "Pasaporte (Ej. A12345678)";
+            }
+        }
+
+        // 2. Validación y aviso inmediato en el Documento
+        function validarDocEnTiempoReal(input) {
+            const tipo = document.getElementById('regTipoDoc').value;
+            const feedDoc = document.getElementById('feedNumDoc');
+            let valorLimpio = input.value;
+
+            if (tipo === 'DNI') {
+                valorLimpio = valorLimpio.replace(/[^0-9]/g, '');
+                
+                if (input.value !== valorLimpio) {
+                    feedDoc.innerText = '⚠️ El DNI solo puede contener números.';
+                    feedDoc.className = 'msg-feedback text-warning';
+                    feedDoc.classList.remove('d-none');
+                } else if (valorLimpio.length >= 8) {
+                    if (valorLimpio.length > 8) {
+                        valorLimpio = valorLimpio.slice(0, 8);
+                        feedDoc.innerText = 'ℹ️ Máximo 8 dígitos permitidos para DNI.';
+                        feedDoc.className = 'msg-feedback text-info';
+                        feedDoc.classList.remove('d-none');
+                    } else {
+                        feedDoc.classList.add('d-none');
+                    }
+                } else {
+                    feedDoc.innerText = `Llevas ${valorLimpio.length} de 8 dígitos.`;
+                    feedDoc.className = 'msg-feedback text-secondary';
+                    feedDoc.classList.remove('d-none');
+                }
+            } else {
+                valorLimpio = valorLimpio.replace(/[^a-zA-Z0-9]/g, '');
+                if (valorLimpio.length > 12) {
+                    valorLimpio = valorLimpio.slice(0, 12);
+                    feedDoc.innerText = 'ℹ️ Máximo 12 caracteres permitidos.';
+                    feedDoc.className = 'msg-feedback text-info';
+                    feedDoc.classList.remove('d-none');
+                } else {
+                    feedDoc.classList.add('d-none');
+                }
+            }
+            input.value = valorLimpio;
+        }
+
+        // 3. Validación y aviso inmediato en el Teléfono
+        function validarTelefonoEnTiempoReal(input) {
+            const feedTel = document.getElementById('feedTelefono');
+            let valorLimpio = input.value.replace(/[^0-9]/g, '');
+
+            if (valorLimpio.length > 0 && !valorLimpio.startsWith('9')) {
+                feedTel.innerText = '⚠️ El número de celular en Perú debe empezar con 9.';
+                feedTel.className = 'msg-feedback text-danger';
+                feedTel.classList.remove('d-none');
+            } else if (valorLimpio.length > 9) {
+                valorLimpio = valorLimpio.slice(0, 9);
+                feedTel.innerText = 'ℹ️ El número celular debe tener exactamente 9 dígitos.';
+                feedTel.className = 'msg-feedback text-info';
+                feedTel.classList.remove('d-none');
+            } else if (valorLimpio.length > 0 && valorLimpio.length < 9) {
+                feedTel.innerText = `Llevas ${valorLimpio.length} de 9 dígitos.`;
+                feedTel.className = 'msg-feedback text-secondary';
+                feedTel.classList.remove('d-none');
+            } else {
+                feedTel.classList.add('d-none');
+            }
+
+            input.value = valorLimpio;
+        }
+    </script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/account/forgotpassword.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Olvidé mi Contraseña</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <!-- Contenido Principal -->
+    <main>
+        <div class="contenedor-login">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-5 col-xl-4 login-seccion login-izq forgot-wrapper bg-white">
+                        <h2 class="login-titulo">OLVIDÉ MI CONTRASEÑA</h2>
+                        <p class="forgot-description">
+                            Por favor introduzca su dirección de correo electrónico para recibir un enlace de
+                            restablecimiento de contraseña.
+                        </p>
+
+                        <form id="formForgotPassword" th:action="@{/verify-code}" method="POST">
+                            <div class="username">
+                                <label for="forgotEmail">Correo electrónico <span>*</span></label>
+                                <input type="email" id="forgotEmail" name="email" placeholder="ejemplo@correo.com"
+                                    required>
+                            </div>
+
+                            <input type="submit" value="RESTABLECER MI CONTRASEÑA" class="btn-login">
+
+                            <div class="recordar text-center">
+                                <a th:href="@{/login}">
+                                    <i class="fa-solid fa-arrow-left"></i> Volver al inicio de sesión
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/account/login.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Iniciar Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <!-- Contenido Principal -->
+    <main>
+        <div class="contenedor-login">
+            <div class="login-grid">
+
+                <div class="login-seccion login-izq">
+                    <h2 class="login-titulo">INICIAR SESIÓN</h2>
+                    
+                    <form id="formLogin" th:action="@{/login}" method="post">
+                        <!-- Mensaje de error al fallar credenciales -->
+                        <div th:if="${error}" class="alert alert-danger py-2 px-3 small mb-3" role="alert" th:text="${error}"></div>
+                        
+                        <!-- Mensaje de éxito tras registrarse -->
+                        <div th:if="${mensaje}" class="alert alert-success py-2 px-3 small mb-3" role="alert" th:text="${mensaje}"></div>
+
+                        <div class="username">
+                            <label>Correo electrónico <span>*</span></label>
+                            <input type="email" id="loginEmail" name="email" placeholder="Ej. nombre@mail.com" required>
+                        </div>
+
+                        <div class="username input-password-box">
+                            <label>Contraseña <span>*</span></label>
+                            <div class="input-relative">
+                                <input type="password" id="loginPassword" name="password" placeholder="••••••••" required>
+                                <i class="fa-regular fa-eye icono-ojo" id="toggleEye"></i>
+                            </div>
+                        </div>
+
+                        <div class="recordar">
+                            <a th:href="@{/forgotpassword}">Olvidé mi contraseña</a>
+                        </div>
+
+                        <button type="submit" class="btn-login border-0 w-100 mt-2">INICIAR SESIÓN</button>
+                    </form>
+                </div>
+
+                <div class="login-seccion login-der">
+                    <h2 class="login-titulo">CREAR CUENTA</h2>
+
+                    <p class="beneficios-subtitulo">Crea una y aprovecha los beneficios:</p>
+
+                    <ul class="beneficios-lista">
+                        <li>Realiza tus compras de manera más ágil.</li>
+                        <li>Guarda múltiples direcciones de envío y facturación.</li>
+                        <li>Realiza el seguimiento a tus compras y revisa tus pedidos realizados.</li>
+                        <li>Haz una lista de productos favoritos.</li>
+                    </ul>
+
+                    <a th:href="@{/registro}" class="btn-crear-cuenta">CREAR CUENTA</a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/account/perfil.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Mi Perfil & Pedidos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+
+    <style>
+        .perfil-wrapper {
+            background-color: #121212;
+            color: #f3f4f6;
+            min-height: calc(100vh - 180px);
+            padding: 40px 0;
+        }
+
+        .perfil-card {
+            background-color: #1e1e1e;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .perfil-nav-btn {
+            background: transparent;
+            color: #a1a1aa;
+            border: none;
+            width: 100%;
+            text-align: left;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.25s ease;
+            margin-bottom: 6px;
+        }
+
+        .perfil-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+        }
+
+        .perfil-nav-btn.active {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+
+        .kpi-client-card {
+            background-color: #262626;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #dc2626;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .badge-estado {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-recibido { background-color: #1e3a8a; color: #93c5fd; }
+        .badge-preparacion { background-color: #854d0e; color: #fef08a; }
+        .badge-camino { background-color: #065f46; color: #a7f3d0; }
+        .badge-entregado { background-color: #14532d; color: #86efac; }
+        .badge-cancelado { background-color: #7f1d1d; color: #fca5a5; }
+
+        .form-control-dark {
+            background-color: #2d2d2d !important;
+            border: 1px solid #404040 !important;
+            color: #ffffff !important;
+            border-radius: 8px;
+            padding: 10px 14px;
+        }
+
+        .form-control-dark:focus {
+            border-color: #dc2626 !important;
+            box-shadow: 0 0 0 0.25rem rgba(220, 38, 38, 0.25) !important;
+        }
+
+        .table-dark-custom {
+            color: #e5e7eb;
+            vertical-align: middle;
+        }
+
+        .table-dark-custom thead th {
+            background-color: #262626;
+            color: #a1a1aa;
+            border-bottom: 2px solid #333;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .table-dark-custom tbody tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .avatar-box {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e11d48, #9f1239);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Público de La Caleta -->
+    <div th:replace="~{fragments/header :: header('perfil')}"></div>
+
+    <main class="perfil-wrapper">
+        <div class="container">
+
+            <!-- MENSAJES DE ESTADO FLASH -->
+            <div th:if="${exito}" class="alert alert-success alert-dismissible fade show mb-4 border-0 rounded-3 shadow" role="alert" style="background-color: #14532d; color: #86efac;">
+                <i class="bi bi-check-circle-fill me-2"></i> <span th:text="${exito}"></span>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+            </div>
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mb-4 border-0 rounded-3 shadow" role="alert" style="background-color: #7f1d1d; color: #fca5a5;">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i> <span th:text="${error}"></span>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- PANEL IZQUIERDO: RESUMEN Y NAVEGACIÓN DE PERFIL -->
+                <div class="col-12 col-lg-4">
+                    <div class="perfil-card text-center mb-4">
+                        <div class="d-flex justify-content-center mb-3">
+                            <div class="avatar-box">
+                                <span th:text="${usuario != null and usuario.nombre != null and !usuario.nombre.isEmpty() ? #strings.substring(usuario.nombre, 0, 1) : 'U'}">U</span>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold text-white mb-1" th:text="${usuario != null ? usuario.nombre : 'Cliente Caleta'}">Guillermo Cliente</h4>
+                        <p class="text-secondary small mb-2" th:text="${usuario != null ? usuario.email : 'cliente@gmail.com'}">cliente@gmail.com</p>
+                        
+                        <span class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-50 px-3 py-1 rounded-pill small fw-bold">
+                            CLIENTE EXCLUSIVO
+                        </span>
+                    </div>
+
+                    <!-- MENÚ DEL CLIENTE -->
+                    <div class="perfil-card">
+                        <h6 class="text-secondary text-uppercase fs-xs fw-bold mb-3 px-2">Mi Cuenta</h6>
+                        <nav>
+                            <button class="perfil-nav-btn active" id="btn-tab-resumen" onclick="cambiarPestanaCliente('resumen', this)">
+                                <i class="bi bi-grid-fill text-danger"></i> Resumen General
+                            </button>
+                            <button class="perfil-nav-btn" id="btn-tab-pedidos" onclick="cambiarPestanaCliente('pedidos', this)">
+                                <i class="bi bi-bag-check-fill text-warning"></i> Mis Pedidos Realizados
+                            </button>
+                            <button class="perfil-nav-btn" id="btn-tab-datos" onclick="cambiarPestanaCliente('datos', this)">
+                                <i class="bi bi-person-bounding-box text-info"></i> Mis Datos Personales
+                            </button>
+                            <a th:href="@{/logout}" class="perfil-nav-btn text-danger mt-3" onclick="localStorage.clear();">
+                                <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- PANEL DERECHO: CONTENIDO DINÁMICO -->
+                <div class="col-12 col-lg-8">
+
+                    <!-- SECCIÓN 1: RESUMEN GENERAL Y KPIS DEL USUARIO -->
+                    <section id="seccion-resumen" class="pestana-cliente-contenido">
+                        <div class="row g-3 mb-4">
+                            <div class="col-12 col-md-4">
+                                <div class="kpi-client-card" style="border-left-color: #dc2626;">
+                                    <div>
+                                        <span class="text-secondary small d-block">Pedidos Históricos</span>
+                                        <h3 class="fw-bold text-white mb-0" th:text="${totalPedidos != null ? totalPedidos : 0}">0</h3>
+                                    </div>
+                                    <i class="bi bi-receipt fs-2 text-danger opacity-75"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="kpi-client-card" style="border-left-color: #16a34a;">
+                                    <div>
+                                        <span class="text-secondary small d-block">Total Invertido</span>
+                                        <h3 class="fw-bold text-white mb-0" th:text="'S/ ' + ${#numbers.formatDecimal(totalGastado != null ? totalGastado : 0, 1, 2)}">S/ 0.00</h3>
+                                    </div>
+                                    <i class="bi bi-wallet2 fs-2 text-success opacity-75"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="kpi-client-card" style="border-left-color: #eab308;">
+                                    <div>
+                                        <span class="text-secondary small d-block">Puntos Caleta</span>
+                                        <h3 class="fw-bold text-warning mb-0" th:text="${puntosCaleta != null ? puntosCaleta : 0}">0 PTS</h3>
+                                    </div>
+                                    <i class="bi bi-star-fill fs-2 text-warning opacity-75"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ÚLTIMO PEDIDO REGISTRADO -->
+                        <div class="perfil-card mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="fw-bold text-white m-0">
+                                    <i class="bi bi-clock-history me-2 text-danger"></i>Estado de tu Último Pedido
+                                </h5>
+                                <button class="btn btn-sm btn-outline-light rounded-pill px-3" onclick="cambiarPestanaCliente('pedidos', document.getElementById('btn-tab-pedidos'))">
+                                    Ver todos
+                                </button>
+                            </div>
+
+                            <div th:if="${ultimoPedido == null}" class="text-center py-4 text-secondary">
+                                <i class="bi bi-bag-x fs-1 opacity-50 d-block mb-2"></i>
+                                <p class="mb-2">Aún no has realizado pedidos en La Caleta.</p>
+                                <a th:href="@{/menu}" class="btn btn-danger btn-sm rounded-pill px-4 font-weight-bold">Explorar Menú</a>
+                            </div>
+
+                            <div th:if="${ultimoPedido != null}" class="p-3 bg-dark rounded-3 border border-secondary border-opacity-25">
+                                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+                                    <div>
+                                        <span class="fw-bold text-white fs-5" th:text="'Ticket #' + ${ultimoPedido.id}">#ORD-001</span>
+                                        <span class="text-secondary small ms-2" th:text="${#temporals.format(ultimoPedido.fecha, 'dd/MM/yyyy HH:mm')}">14/10/2026 20:30</span>
+                                    </div>
+                                    <span th:class="'badge-estado ' + ${ultimoPedido.estado == 'Entregado' ? 'badge-entregado' : (ultimoPedido.estado == 'En camino' ? 'badge-camino' : (ultimoPedido.estado == 'En preparación' ? 'badge-preparacion' : 'badge-recibido'))}"
+                                          th:text="${ultimoPedido.estado != null ? ultimoPedido.estado : 'Recibido'}">
+                                        En preparación
+                                    </span>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-12 col-md-8 mb-2 mb-md-0">
+                                        <span class="text-secondary small d-block">Método de Pago:</span>
+                                        <strong class="text-white" th:text="${ultimoPedido.metodoPago}">Yape / Efectivo</strong>
+                                    </div>
+                                    <div class="col-12 col-md-4 text-md-end">
+                                        <span class="text-secondary small d-block">Monto Total:</span>
+                                        <span class="fs-5 fw-bold text-danger" th:text="'S/ ' + ${#numbers.formatDecimal(ultimoPedido.total, 1, 2)}">S/ 45.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SECCIÓN 2: HISTORIAL DE PEDIDOS HECHOS -->
+                    <section id="seccion-pedidos" class="pestana-cliente-contenido d-none">
+                        <div class="perfil-card">
+                            <h5 class="fw-bold text-white mb-3">
+                                <i class="bi bi-bag-check me-2 text-warning"></i>Historial Completo de Pedidos
+                            </h5>
+
+                            <div class="table-responsive">
+                                <table class="table table-dark-custom">
+                                    <thead>
+                                        <tr>
+                                            <th># Ticket</th>
+                                            <th>Fecha y Hora</th>
+                                            <th>Método Pago</th>
+                                            <th>Total</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:if="${pedidos == null or pedidos.isEmpty()}">
+                                            <td colspan="5" class="text-center text-secondary py-4">No tienes pedidos registrados en tu historial.</td>
+                                        </tr>
+                                        <tr th:each="p : ${pedidos}">
+                                            <td><strong class="text-white" th:text="'#ORD-' + ${p.id}">#ORD-001</strong></td>
+                                            <td th:text="${#temporals.format(p.fecha, 'dd/MM/yyyy HH:mm')}">14/10/2026 19:20</td>
+                                            <td th:text="${p.metodoPago}">Tarjeta</td>
+                                            <td class="fw-bold text-danger" th:text="'S/ ' + ${#numbers.formatDecimal(p.total, 1, 2)}">S/ 58.00</td>
+                                            <td>
+                                                <span th:class="'badge-estado ' + ${p.estado == 'Entregado' ? 'badge-entregado' : (p.estado == 'En camino' ? 'badge-camino' : (p.estado == 'En preparación' ? 'badge-preparacion' : 'badge-recibido'))}"
+                                                      th:text="${p.estado != null ? p.estado : 'Recibido'}">
+                                                    Entregado
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SECCIÓN 3: DATOS PERSONALES DEL USUARIO -->
+                    <section id="seccion-datos" class="pestana-cliente-contenido d-none">
+                        <div class="perfil-card">
+                            <h5 class="fw-bold text-white mb-4">
+                                <i class="bi bi-person-gear me-2 text-info"></i>Mis Datos Registrados
+                            </h5>
+
+                            <form th:action="@{/perfil/actualizar}" method="post">
+                                <div class="row g-3">
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label text-secondary small">Nombre Completo</label>
+                                        <input type="text" name="nombre" class="form-control form-control-dark" th:value="${usuario != null ? usuario.nombre : ''}" required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label text-secondary small">Correo Electrónico (Usuario)</label>
+                                        <input type="email" class="form-control form-control-dark opacity-75" th:value="${usuario != null ? usuario.email : ''}" readonly>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label text-secondary small">Número de Teléfono / Celular</label>
+                                        <input type="text" name="telefono" class="form-control form-control-dark" th:value="${usuario != null ? usuario.telefono : ''}" required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label text-secondary small">Documento de Identidad (DNI/CE)</label>
+                                        <input type="text" name="dni" class="form-control form-control-dark" th:value="${usuario != null ? usuario.dni : ''}" placeholder="Ej. 72819203">
+                                    </div>
+                                </div>
+
+                                <div class="text-end mt-4 pt-3 border-top border-secondary border-opacity-25">
+                                    <button type="submit" class="btn btn-danger px-4 rounded-3 fw-bold">
+                                        <i class="bi bi-save me-1"></i> Guardar Cambios
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Público de La Caleta -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+
+    <script>
+        function cambiarPestanaCliente(idSeccion, boton) {
+            document.querySelectorAll('.pestana-cliente-contenido').forEach(sec => sec.classList.add('d-none'));
+            document.querySelectorAll('.perfil-nav-btn').forEach(btn => btn.classList.remove('active'));
+
+            const seccionTarget = document.getElementById('seccion-' + idSeccion);
+            if (seccionTarget) {
+                seccionTarget.classList.remove('d-none');
+            }
+            if (boton) {
+                boton.classList.add('active');
+            }
+        }
+    </script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/account/resetpassword.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Restablecer Contraseña</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <!-- Contenido Principal: Formulario Restablecer Contraseña -->
+    <main>
+        <div class="contenedor-login">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="login-seccion login-izq forgot-wrapper">
+                        <h2 class="login-titulo">RESTABLECER CONTRASEÑA</h2>
+
+                        <form id="formResetPassword" th:action="@{/login}" method="POST">
+                            <div class="username input-password-box">
+                                <label for="newPassword">Contraseña <span>*</span></label>
+                                <div class="input-relative">
+                                    <input type="password" id="newPassword" name="newPassword" placeholder="••••••"
+                                        required>
+                                    <i class="fa-regular fa-eye icono-ojo" id="toggleEye1"></i>
+                                </div>
+                            </div>
+
+                            <div class="username input-password-box">
+                                <label for="confirmPassword">Repetir Contraseña <span>*</span></label>
+                                <div class="input-relative">
+                                    <input type="password" id="confirmPassword" name="confirmPassword"
+                                        placeholder="••••••" required>
+                                    <i class="fa-regular fa-eye icono-ojo" id="toggleEye2"></i>
+                                </div>
+                            </div>
+
+                            <input type="submit" value="RESTABLECER CONTRASEÑA" class="btn-login mt-3">
+
+                            <div class="recordar text-center mt-3 mb-0">
+                                ¿Ya tienes una cuenta? <a th:href="@{/login}">Iniciar sesión</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/account/verifycode.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Verificar Código</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <!-- Contenido Principal: Formulario de Código de Verificación OTP -->
+    <main>
+        <div class="contenedor-login">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="login-seccion login-izq forgot-wrapper">
+                        <h2 class="login-titulo">VERIFICAR CÓDIGO</h2>
+                        <p class="forgot-description">
+                            Hemos enviado un código de verificación a su correo electrónico. Ingréselo a continuación
+                            para continuar.
+                        </p>
+
+                        <form id="formVerifyCode" th:action="@{/reset-password}" method="POST">
+                            <div class="username">
+                                <label for="otpCode">Código de Verificación <span>*</span></label>
+                                <input type="text" id="otpCode" name="code"
+                                    placeholder="Ingrese el código de Verificación" maxlength="6" required>
+                            </div>
+
+                            <input type="submit" value="VERIFICAR CÓDIGO" class="btn-login mt-3">
+
+                            <div class="recordar text-center mt-3 mb-0">
+                                ¿No recibiste el código? <a href="#">Reenviar código</a>
+                            </div>
+
+                            <div class="recordar text-center mt-2 mb-0">
+                                <a th:href="@{/forgot-password}">
+                                    <i class="fa-solid fa-arrow-left"></i> Cambiar correo
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/admin/admin.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta Pizza | Panel de Administración</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="stylesheet" th:href="@{/style/admin.css}">
+</head>
+
+<body>
+
+    <div class="caleta-admin-wrapper">
+
+        <!-- SIDEBAR -->
+        <aside class="caleta-sidebar">
+            <div>
+                <div class="caleta-logo-box">
+                    <h2>LA CALETA</h2>
+                    <p>ADMINISTRADOR PIZZERÍA</p>
+                </div>
+
+                <nav class="caleta-menu-nav">
+                    <button class="caleta-menu-btn activo" onclick="mostrarSeccion('dashboard', this)">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </button>
+                    <button class="caleta-menu-btn" onclick="mostrarSeccion('productos', this)">
+                        <i class="bi bi-pie-chart"></i> Catálogo de Pizzas
+                    </button>
+                    <button class="caleta-menu-btn" onclick="mostrarSeccion('stock', this)">
+                        <i class="bi bi-box-seam"></i> Insumos y Stock
+                    </button>
+                    <button class="caleta-menu-btn" onclick="mostrarSeccion('ventas', this)">
+                        <i class="bi bi-receipt"></i> Historial Pedidos
+                    </button>
+                    <button class="caleta-menu-btn" onclick="mostrarSeccion('clientes', this)">
+                        <i class="bi bi-people"></i> Clientes
+                    </button>
+                    <a th:href="@{/reportes}" class="caleta-menu-btn highlight">
+                        <i class="bi bi-bar-chart-line-fill"></i> Reportes & Métricas
+                    </a>
+                </nav>
+            </div>
+
+            <!-- PERFIL DEL ADMINISTRADOR -->
+            <div class="caleta-admin-user">
+                <p class="caleta-user-name" id="adminNombreDisplay" th:text="${usuario.nombre}">Guillermo Admin</p>
+                <span class="caleta-badge-rol">ADMINISTRADOR</span>
+                <div style="margin-top: 15px;">
+                    <a href="#" onclick="cerrarSesion()" class="caleta-btn-outline"
+                        style="width: 100%; justify-content: center;">
+                        <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ÁREA PRINCIPAL -->
+        <main class="caleta-admin-main">
+
+            <header class="caleta-header">
+                <h3 id="tituloSeccion">Dashboard de Control</h3>
+                <div class="caleta-header-actions">
+                    <a th:href="@{/reportes}" class="caleta-btn-outline">
+                        <i class="bi bi-graph-up"></i> Ver Reportes Gráficos
+                    </a>
+                    <button class="caleta-btn-primary" data-bs-toggle="modal" data-bs-target="#modalNuevaPizza">
+                        <i class="bi bi-plus-circle"></i> Nueva Pizza / Combo
+                    </button>
+                </div>
+            </header>
+
+            <!-- MENSAJES DE ESTADO FLASH -->
+            <div th:if="${exito}" class="alert alert-success alert-dismissible fade show m-3" role="alert"
+                style="background-color: #166534; color: #fff; border: none;">
+                <i class="bi bi-check-circle-fill me-2"></i> <span th:text="${exito}"></span>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+            </div>
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show m-3" role="alert"
+                style="background-color: #991b1b; color: #fff; border: none;">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i> <span th:text="${error}"></span>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+            </div>
+
+            <!-- 1. DASHBOARD -->
+            <section id="dashboard" class="caleta-seccion activa">
+                <div class="caleta-kpi-grid">
+                    <div class="caleta-kpi-card">
+                        <div>
+                            <div class="caleta-kpi-label">Ventas del Día</div>
+                            <h4 class="caleta-kpi-val" id="kpi-ventas-dia">S/ 0.00</h4>
+                        </div>
+                        <i class="bi bi-currency-dollar caleta-kpi-icon"></i>
+                    </div>
+
+                    <div class="caleta-kpi-card carmesi">
+                        <div>
+                            <div class="caleta-kpi-label">Pizzas en Catálogo</div>
+                            <h4 class="caleta-kpi-val" id="kpi-pizzas-catalogo" th:text="${totalPizzas} + ' Variedades'">5 Variedades</h4>
+                        </div>
+                        <i class="bi bi-fire caleta-kpi-icon" style="color: var(--color-carmesi);"></i>
+                    </div>
+
+                    <div class="caleta-kpi-card alerta">
+                        <div>
+                            <div class="caleta-kpi-label">Insumos Críticos</div>
+                            <h4 class="caleta-kpi-val" id="kpi-insumos-criticos" style="color: #ca8a04;">0 Alertas</h4>
+                        </div>
+                        <i class="bi bi-exclamation-triangle caleta-kpi-icon" style="color: #ca8a04;"></i>
+                    </div>
+
+                    <div class="caleta-kpi-card verde">
+                        <div>
+                            <div class="caleta-kpi-label">Clientes Registrados</div>
+                            <h4 class="caleta-kpi-val" id="kpi-clientes" style="color: #15803d;">0</h4>
+                        </div>
+                        <i class="bi bi-people caleta-kpi-icon" style="color: #15803d;"></i>
+                    </div>
+                </div>
+
+                <div class="caleta-panel">
+                    <div class="caleta-panel-title">
+                        <i class="bi bi-clock-history text-ro"></i> Últimos Pedidos Registrados
+                    </div>
+                    <div class="caleta-table-container">
+                        <table class="table caleta-table">
+                            <thead>
+                                <tr>
+                                    <th>Ticket</th>
+                                    <th>Fecha</th>
+                                    <th>Cliente</th>
+                                    <th>Método Pago</th>
+                                    <th>Total</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                                <tr th:if="${pedidos == null or pedidos.isEmpty()}">
+                                    <td colspan="6" class="text-center text-muted py-4">No hay pedidos recientes.</td>
+                                </tr>
+                                <tr th:each="pedido : ${pedidos}">
+                                    <td><strong th:text="'#ORD-' + ${pedido.id}">#ORD-001</strong></td>
+                                    <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}">Fecha</td>
+                                    <td th:text="${pedido.usuario != null ? pedido.usuario.nombre : 'Cliente Anónimo'}">Cliente</td>
+                                    <td th:text="${pedido.metodoPago}">Método Pago</td>
+                                    <td class="text-ro"><strong th:text="'S/ ' + ${#numbers.formatDecimal(pedido.total, 1, 2)}">S/ 0.00</strong></td>
+                                    <td>
+                                        <span class="caleta-badge success" th:text="${pedido.estado != null ? pedido.estado : 'Recibido'}">Estado</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. CATÁLOGO DE PIZZAS -->
+            <section id="productos" class="caleta-seccion">
+                <div class="caleta-panel">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                        <input type="text" id="buscarProducto" class="caleta-search-input"
+                            placeholder="Buscar pizza por código o nombre..."
+                            onkeyup="filtrarTabla('buscarProducto', 'tablaProductos')">
+                        <button class="caleta-btn-primary" data-bs-toggle="modal" data-bs-target="#modalNuevaPizza">
+                            <i class="bi bi-plus-lg"></i> Agregar Pizza al Menú
+                        </button>
+                    </div>
+
+                    <div class="caleta-table-container">
+                        <table class="table caleta-table" id="tablaProductos">
+                            <thead>
+                                <tr>
+                                    <th>Foto</th>
+                                    <th>Código</th>
+                                    <th>Pizza</th>
+                                    <th>Categoría</th>
+                                    <th>Tamaño</th>
+                                    <th>Precio</th>
+                                    <th>Visibilidad Menú</th>
+                                    <th style="text-align: center;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="p : ${pizzas}">
+                                    <td>
+                                        <img th:src="${p.imagenUrl}" onerror="this.src='/images/producto_pepperoni.jpg'"
+                                            alt="Pizza"
+                                            style="width: 44px; height: 44px; object-fit: cover; border-radius: 6px;">
+                                    </td>
+                                    <td th:text="'#PZ-0' + ${p.id}">#PZ-01</td>
+                                    <td class="fw-bold" th:text="${p.nombre}">Nombre Pizza</td>
+                                    <td>
+                                        <span class="caleta-badge"
+                                            style="background-color: #f3f4f6; color: #1f2937; border: 1px solid #d1d5db; font-weight: 700;"
+                                            th:text="${p.categoria != null ? p.categoria.nombre : 'General'}">Clásicas</span>
+                                    </td>
+                                    <td th:text="${p.tamano != null ? p.tamano : 'Familiar'}">Familiar</td>
+                                    <td class="text-ro fw-bold"
+                                        th:text="'S/ ' + ${#numbers.formatDecimal(p.precio, 1, 2)}">S/ 0.00</td>
+                                    <td>
+                                        <span
+                                            th:class="${p.disponible == null or p.disponible ? 'caleta-badge success' : 'caleta-badge danger'}"
+                                            th:text="${p.disponible == null or p.disponible ? 'Disponible' : 'Agotado'}">Disponible</span>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <button class="caleta-btn-outline" style="padding: 4px 10px;"
+                                            title="Editar o Inhabilitar" th:data-id="${p.id}"
+                                            th:data-nombre="${p.nombre}" th:data-precio="${p.precio}"
+                                            th:data-tamano="${p.tamano != null ? p.tamano : 'Familiar'}"
+                                            th:data-categoria="${p.categoria != null ? p.categoria.codigo : 'clasicas'}"
+                                            th:data-disponible="${p.disponible != null ? p.disponible : true}"
+                                            th:data-img="${p.imagenUrl}" onclick="abrirModalEditar(this)">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                        <a th:href="@{/admin/pizzas/eliminar/{id}(id=${p.id})}"
+                                            class="caleta-btn-outline" style="padding: 4px 10px; color: #dc2626;"
+                                            title="Eliminar del catálogo"
+                                            onclick="return confirm('¿Seguro que deseas eliminar esta pizza del menú?')">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. STOCK DE INSUMOS Y MATERIA PRIMA (FILTROS + TABLA DINÁMICA + MODAL NUEVO/EDITAR) -->
+            <section id="stock" class="caleta-seccion">
+                <div class="caleta-panel">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+                        <!-- FORMULARIO DE FILTRADO PARA INSUMOS -->
+                        <form th:action="@{/admin}" method="get" style="display: flex; gap: 8px; align-items: center;">
+                            <input type="text" name="buscarInsumo" class="caleta-search-input"
+                                th:value="${param.buscarInsumo}" placeholder="Buscar insumo por nombre o código..."
+                                style="margin-bottom: 0;">
+                            <button type="submit" class="caleta-btn-outline" style="padding: 8px 14px;">
+                                <i class="bi bi-search"></i> Filtrar
+                            </button>
+                            <a th:href="@{/admin#stock}" class="caleta-btn-outline" style="padding: 8px 10px;"
+                                title="Limpiar filtro">
+                                <i class="bi bi-x-lg"></i>
+                            </a>
+                        </form>
+
+                        <button class="caleta-btn-primary" data-bs-toggle="modal" data-bs-target="#modalNuevoInsumo">
+                            <i class="bi bi-plus-lg"></i> Registrar Nuevo Insumo
+                        </button>
+                    </div>
+
+                    <div class="caleta-panel-title" style="margin-top: 15px;">
+                        <i class="bi bi-box-seam text-ro"></i> Listado de Insumos y Materia Prima
+                    </div>
+
+                    <div class="caleta-table-container">
+                        <table class="table caleta-table">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Insumo</th>
+                                    <th>Stock Actual</th>
+                                    <th>Stock Mínimo</th>
+                                    <th>Estado de Reposición</th>
+                                    <th style="text-align: center;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="ins : ${insumos}">
+                                    <td th:text="${ins.codigo}">INS-01</td>
+                                    <td class="fw-bold" th:text="${ins.nombre}">Queso Mozzarella</td>
+                                    <td><strong th:text="${ins.stockActual} + ' ' + ${ins.unidadMedida}">4 kg</strong>
+                                    </td>
+                                    <td th:text="${ins.stockMinimo} + ' ' + ${ins.unidadMedida}">5 kg</td>
+                                    <td>
+                                        <span th:if="${ins.critico}" class="caleta-badge danger">CRÍTICO (&le; <span
+                                                th:text="${ins.stockMinimo}"></span>)</span>
+                                        <span th:unless="${ins.critico}" class="caleta-badge success">ÓPTIMO</span>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <button class="caleta-btn-outline" style="padding: 4px 10px;"
+                                            title="Modificar Insumo" th:data-id="${ins.id}"
+                                            th:data-nombre="${ins.nombre}" th:data-stock="${ins.stockActual}"
+                                            th:data-unidad="${ins.unidadMedida}" th:data-minimo="${ins.stockMinimo}"
+                                            onclick="abrirModalEditarInsumo(this)">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                        <a th:href="@{/admin/insumos/eliminar/{id}(id=${ins.id})}"
+                                            class="caleta-btn-outline" style="padding: 4px 10px; color: #dc2626;"
+                                            title="Eliminar Insumo"
+                                            onclick="return confirm('¿Seguro que deseas eliminar este insumo?')">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. HISTORIAL DE VENTAS -->
+            <section id="ventas" class="caleta-seccion">
+                <div class="caleta-panel">
+                    <div class="caleta-panel-title">
+                        <i class="bi bi-receipt text-ro"></i> Registro Histórico de Boletas
+                    </div>
+                    <div class="caleta-table-container">
+                        <table class="table caleta-table">
+                            <thead>
+                                <tr>
+                                    <th># Boleta</th>
+                                    <th>Fecha</th>
+                                    <th>Cliente</th>
+                                    <th>Pago</th>
+                                    <th>Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${pedidos == null or pedidos.isEmpty()}">
+                                    <td colspan="5" class="text-center text-muted py-4">No hay historial de ventas.</td>
+                                </tr>
+                                <tr th:each="pedido : ${pedidos}">
+                                    <td th:text="'B001-' + ${#numbers.formatInteger(pedido.id, 4)}">B001-0001</td>
+                                    <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy')}">Fecha</td>
+                                    <td th:text="${pedido.usuario != null ? pedido.usuario.nombre : 'Cliente Anónimo'}">Cliente</td>
+                                    <td th:text="${pedido.metodoPago}">Pago</td>
+                                    <td th:text="'S/ ' + ${#numbers.formatDecimal(pedido.total, 1, 2)}">Monto</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. CLIENTES -->
+            <section id="clientes" class="caleta-seccion">
+                <div class="caleta-panel">
+                    <div class="caleta-panel-title">
+                        <i class="bi bi-people text-ro"></i> Directorio de Clientes
+                    </div>
+                    <div class="caleta-table-container">
+                        <table class="table caleta-table">
+                            <thead>
+                                <tr>
+                                    <th>DNI</th>
+                                    <th>Nombre</th>
+                                    <th>Teléfono</th>
+                                    <th>Dirección Delivery</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${clientes == null or clientes.isEmpty()}">
+                                    <td colspan="4" class="text-center text-muted py-4">Aún no hay clientes registrados en la base de datos.</td>
+                                </tr>
+                                <tr th:each="c : ${clientes}">
+                                    <td th:text="${c.dni != null and !c.dni.isEmpty() ? c.dni : 'No especificado'}" th:class="${c.dni == null or c.dni.isEmpty() ? 'text-muted' : ''}">No especificado</td>
+                                    <td class="fw-bold" th:text="${c.nombre}">Nombre</td>
+                                    <td th:text="${c.telefono}">Teléfono</td>
+                                    <td class="text-muted">Registrado el <span th:text="${#temporals.format(c.fechaRegistro, 'dd/MM/yyyy')}"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- MODAL 1: REGISTRAR NUEVA PIZZA -->
+    <div class="modal fade" id="modalNuevaPizza" tabindex="-1" aria-labelledby="modalNuevaPizzaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white border border-secondary border-opacity-25"
+                style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
+                    <h5 class="modal-title fw-bold fs-5 mb-0" id="modalNuevaPizzaLabel" style="color: var(--color-rojo-naranja);">
+                        <i class="bi bi-plus-circle me-2"></i>Registrar Pizza en Menú
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <form th:action="@{/admin/pizzas/guardar}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="stock" value="10">
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Nombre de la Pizza *</label>
+                            <input type="text" name="nombre" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. Americana Suprema" required>
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-secondary small fw-semibold">Categoría</label>
+                                <select name="codigoCategoria" class="form-select text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;">
+                                    <option th:each="cat : ${categorias}" th:value="${cat.codigo}" th:text="${cat.nombre}">Categoría Dinámica</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-secondary small fw-semibold">Tamaño</label>
+                                <select name="tamano" class="form-select text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;">
+                                    <option value="Personal">Personal</option>
+                                    <option value="Mediana">Mediana</option>
+                                    <option value="Familiar" selected>Familiar</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Precio de Venta (S/) *</label>
+                            <input type="number" step="0.50" min="1" name="precio" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. 42.00" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Subir Archivo de Imagen (PNG/JPG)</label>
+                            <input type="file" name="imagenArchivo" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" accept="image/png, image/jpeg">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">O usar URL externa / estática</label>
+                            <input type="text" name="imagenUrl" class="form-control text-white"
+                                style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="/images/producto_americana.jpg">
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3">
+                        <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="caleta-btn-primary">Guardar Pizza</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NUEVO INSUMO -->
+    <div class="modal fade" id="modalNuevoInsumo" tabindex="-1" aria-labelledby="modalNuevoInsumoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white border border-secondary border-opacity-25"
+                style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
+                    <h5 class="modal-title fw-bold fs-5 mb-0" id="modalNuevoInsumoLabel" style="color: var(--color-rojo-naranja);">
+                        <i class="bi bi-box-seam me-2"></i>Registrar Nuevo Insumo
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <form th:action="@{/admin/insumos/guardar}" method="post">
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Nombre del Insumo *</label>
+                            <input type="text" name="nombre" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. Aceitunas Rodajas" required>
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-secondary small fw-semibold">Stock Actual *</label>
+                                <input type="number" step="0.1" min="0" name="stockActual" class="form-control text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. 10.0" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-secondary small fw-semibold">Unidad de Medida *</label>
+                                <input type="text" name="unidadMedida" class="form-control text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. kg, Litros, und" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Stock Mínimo (Alerta Crítica) *</label>
+                            <input type="number" step="0.1" min="0" name="stockMinimo" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" value="5.0" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3">
+                        <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="caleta-btn-primary">Guardar Insumo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDITAR INSUMO -->
+    <div class="modal fade" id="modalEditarInsumo" tabindex="-1" aria-labelledby="modalEditarInsumoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white border border-secondary border-opacity-25"
+                style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
+                    <h5 class="modal-title fw-bold fs-5 mb-0" id="modalEditarInsumoLabel" style="color: var(--color-rojo-naranja);">
+                        <i class="bi bi-pencil-square me-2"></i>Modificar Insumo
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <form th:action="@{/admin/insumos/guardar}" method="post">
+                    <input type="hidden" id="edit-insumo-id" name="id">
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Nombre del Insumo *</label>
+                            <input type="text" id="edit-insumo-nombre" name="nombre" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" required>
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-secondary small fw-semibold">Stock Actual *</label>
+                                <input type="number" step="0.1" min="0" id="edit-insumo-stock" name="stockActual"
+                                    class="form-control text-white" style="background-color: #1b1b1b; border: 1px solid #444;" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-secondary small fw-semibold">Unidad de Medida *</label>
+                                <input type="text" id="edit-insumo-unidad" name="unidadMedida" class="form-control text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Stock Mínimo *</label>
+                            <input type="number" step="0.1" min="0" id="edit-insumo-minimo" name="stockMinimo"
+                                class="form-control text-white" style="background-color: #1b1b1b; border: 1px solid #444;" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3">
+                        <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="caleta-btn-primary">Actualizar Insumo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: MODIFICAR / INHABILITAR PIZZA -->
+    <div class="modal fade" id="modalEditarPizza" tabindex="-1" aria-labelledby="modalEditarPizzaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white border border-secondary border-opacity-25"
+                style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
+                    <h5 class="modal-title fw-bold fs-5 mb-0" id="modalEditarPizzaLabel" style="color: var(--color-rojo-naranja);">
+                        <i class="bi bi-pencil-square me-2"></i>Modificar / Inhabilitar Pizza
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <form th:action="@{/admin/pizzas/editar}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" id="edit-id" name="id">
+                    <input type="hidden" id="edit-stock" name="stock" value="10">
+
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Nombre de la Pizza *</label>
+                            <input type="text" id="edit-nombre" name="nombre" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" required>
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-secondary small fw-semibold">Categoría</label>
+                                <select id="edit-categoria" name="codigoCategoria" class="form-select text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;">
+                                    <option th:each="cat : ${categorias}" th:value="${cat.codigo}" th:text="${cat.nombre}">Categoría Dinámica</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-secondary small fw-semibold">Tamaño</label>
+                                <select id="edit-tamano" name="tamano" class="form-select text-white"
+                                    style="background-color: #1b1b1b; border: 1px solid #444;">
+                                    <option value="Personal">Personal</option>
+                                    <option value="Mediana">Mediana</option>
+                                    <option value="Familiar">Familiar</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- CONTROL DE DISPONIBILIDAD -->
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Estado en Menú Web</label>
+                            <select id="edit-disponible" name="disponible" class="form-select text-white"
+                                style="background-color: #1b1b1b; border: 1px solid #444;">
+                                <option value="true">Disponible (Visible para clientes)</option>
+                                <option value="false">Agotado / Inhabilitada (Oculta del menú)</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Precio (S/) *</label>
+                            <input type="number" step="0.50" min="1" id="edit-precio" name="precio" class="form-control text-white"
+                                style="background-color: #1b1b1b; border: 1px solid #444;" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">Subir Nuevo Archivo (PNG/JPG)</label>
+                            <input type="file" name="imagenArchivo" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;" accept="image/png, image/jpeg">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary small fw-semibold">O cambiar URL externa / estática</label>
+                            <input type="text" id="edit-img" name="imagenUrl" class="form-control text-white" 
+                                style="background-color: #1b1b1b; border: 1px solid #444;">
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3">
+                        <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="caleta-btn-primary">Actualizar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Global de Notificaciones -->
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/admi.js}"></script>
+
+</body>
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/admin/reportes.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta Pizza | Reportes y Gráficos</title>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- CHART.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- CSS PROPIO -->
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="stylesheet" th:href="@{/style/admin.css}">
+</head>
+
+<body>
+
+    <div class="caleta-admin-wrapper">
+
+        <!-- SIDEBAR -->
+        <aside class="caleta-sidebar">
+            <div>
+                <div class="caleta-logo-box">
+                    <h2>LA CALETA</h2>
+                    <p>ESTADÍSTICAS Y MÉTRICAS</p>
+                </div>
+
+                <nav class="caleta-menu-nav">
+                    <a th:href="@{/admin}" class="caleta-menu-btn">
+                        <i class="bi bi-arrow-left-circle"></i> Volver al Panel
+                    </a>
+                    <button class="caleta-menu-btn activo" id="tab1-link" onclick="mostrarPaginaGraficos(1)">
+                        <i class="bi bi-bar-chart-line"></i> Pág 1: Pizzas & Tendencia
+                    </button>
+                    <button class="caleta-menu-btn" id="tab2-link" onclick="mostrarPaginaGraficos(2)">
+                        <i class="bi bi-pie-chart"></i> Pág 2: Pagos & Stock
+                    </button>
+                </nav>
+            </div>
+
+            <!-- PERFIL DEL ADMINISTRADOR CONECTADO DINÁMICAMENTE -->
+            <div class="caleta-admin-user">
+                <p class="caleta-user-name" id="adminNombreDisplay" th:text="${usuario.nombre}">Guillermo Admin</p>
+                <span class="caleta-badge-rol">ADMINISTRADOR</span>
+                <div style="margin-top: 15px;">
+                    <a href="#" onclick="cerrarSesion()" class="caleta-btn-outline"
+                        style="width: 100%; justify-content: center;">
+                        <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CONTENIDO GRÁFICOS -->
+        <main class="caleta-admin-main">
+
+            <header class="caleta-header">
+                <div>
+                    <h3>Métricas y Reportes Estadísticos</h3>
+                    <p style="color: #6b7280; font-size: 13px; margin: 0;">Análisis visual del rendimiento y ventas de
+                        La Caleta</p>
+                </div>
+                <a th:href="@{/admin}" class="caleta-btn-outline">
+                    <i class="bi bi-house"></i> Regresar al Panel
+                </a>
+            </header>
+
+            <!-- PÁGINA 1: BARRAS & LINEAL -->
+            <div id="paginaGraficos1">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
+                        <i class="bi bi-1-circle-fill me-2"></i> Ventas por Categoría y Tendencia
+                    </h5>
+                    <button class="caleta-btn-primary" onclick="mostrarPaginaGraficos(2)">Ir a Página 2 &rarr;</button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+                    <div class="caleta-panel">
+                        <div class="caleta-panel-title">
+                            <i class="bi bi-bar-chart-fill text-ro"></i> Ventas Totales por Especialidad
+                        </div>
+                        <canvas id="chartBarrasPizzas" style="max-height: 320px;"></canvas>
+                    </div>
+
+                    <div class="caleta-panel">
+                        <div class="caleta-panel-title">
+                            <i class="bi bi-graph-up text-ro"></i> Evolución de Ventas Semanales (S/)
+                        </div>
+                        <canvas id="chartLinealMensual" style="max-height: 320px;"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PÁGINA 2: CIRCULAR & STOCK -->
+            <div id="paginaGraficos2" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
+                        <i class="bi bi-2-circle-fill me-2"></i> Medios de Pago y Nivel de Insumos
+                    </h5>
+                    <button class="caleta-btn-primary" onclick="mostrarPaginaGraficos(1)">&larr; Volver a Página
+                        1</button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+                    <div class="caleta-panel">
+                        <div class="caleta-panel-title">
+                            <i class="bi bi-pie-chart-fill text-ro"></i> Preferencia de Canales de Pago
+                        </div>
+                        <div style="display: flex; justify-content: center;">
+                            <canvas id="chartCircularPagos" style="max-height: 300px; max-width: 300px;"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="caleta-panel">
+                        <div class="caleta-panel-title">
+                            <i class="bi bi-box-seam text-ro"></i> Disponibilidad de Insumos Críticos
+                        </div>
+                        <canvas id="chartStockInsumos" style="max-height: 320px;"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- CONEXIONES JS DE LA APLICACIÓN -->
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/reporte.js}"></script>
+
+</body>
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/checkout/cart.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Carrito</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header-checkout :: headerCheckout}"></div>
+
+    <main>
+        <section class="py-3 border-bottom border-secondary border-opacity-25 bg-negro">
+            <div class="container">
+                <div class="d-flex align-items-center gap-3 gap-md-4 text-nowrap overflow-x-auto py-1 small">
+                    <div class="d-flex align-items-center gap-2 text-ro fw-bold">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">1</span>
+                        <span>Mis productos</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 text-secondary opacity-75">
+                        <span class="badge rounded-circle bg-secondary bg-opacity-25 text-white px-2 py-1">2</span>
+                        <span>Envío</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 text-secondary opacity-75">
+                        <span class="badge rounded-circle bg-secondary bg-opacity-25 text-white px-2 py-1">3</span>
+                        <span>Pago</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1 class="fw-bold text-white fs-3 mb-0 d-flex align-items-center gap-2">
+                        MI CARRITO
+                    </h1>
+                    <a th:href="@{/menu}"
+                        class="text-secondary small text-decoration-none d-none d-md-inline-block link-volver">
+                        <i class="fa-solid fa-arrow-left me-1"></i> Seguir comprando
+                    </a>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-12 col-lg-8">
+                        <div class="card card-resumen border-0 rounded-3 overflow-hidden shadow-sm">
+                            <div class="table-responsive">
+                                <table class="table align-middle mb-0 tabla-caleta" id="tabla-carrito">
+                                    <thead class="text-secondary small text-uppercase border-secondary border-opacity-25">
+                                        <tr>
+                                            <th scope="col" class="ps-4 py-3">Producto</th>
+                                            <th scope="col" class="py-3 text-center">Cantidad</th>
+                                            <th scope="col" class="py-3 text-end">Precio</th>
+                                            <th scope="col" class="py-3 text-end pe-4">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-secondary border-opacity-25" id="carrito-items">
+                                        <tr>
+                                            <td colspan="4" class="text-center py-5 text-secondary">
+                                                <i class="fa-solid fa-spinner fa-spin me-2"></i> Cargando tu pedido...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 d-md-none">
+                            <a th:href="@{/menu}" class="text-secondary small text-decoration-none link-volver">
+                                <i class="fa-solid fa-arrow-left me-1"></i> Seguir comprando
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-4">
+                        <div class="card card-resumen border-0 rounded-3 p-4 shadow-sm">
+                            <h5 class="fw-bold mb-3 text-white fs-6 text-uppercase border-bottom border-secondary border-opacity-25 pb-2">
+                                Resumen del pedido
+                            </h5>
+
+                            <div class="d-flex justify-content-between mb-2 small text-secondary">
+                                <span>Subtotal</span>
+                                <span class="text-white fw-semibold" id="resumen-subtotal">S/ 0.00</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3 small text-secondary">
+                                <span>Costo de envío</span>
+                                <span class="text-white fw-semibold" id="resumen-envio">S/ 5.00</span>
+                            </div>
+
+                            <div class="border-top border-secondary border-opacity-25 pt-3 mb-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold text-white">Total pedido</span>
+                                    <span class="fw-bold fs-5 text-ro" id="resumen-total">S/ 5.00</span>
+                                </div>
+                            </div>
+
+                            <a th:href="@{/envio}"
+                                class="btn-cta text-center w-100 py-2 fw-bold text-uppercase small text-decoration-none shadow d-block">
+                                Continuar con el envío <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/checkout/payment.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Pago</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header-checkout :: headerCheckout}"></div>
+
+    <main>
+        <section class="py-3 border-bottom border-secondary border-opacity-25 bg-negro">
+            <div class="container">
+                <div class="d-flex align-items-center gap-3 gap-md-4 text-nowrap overflow-x-auto py-1 small">
+                    <a th:href="@{/carrito}"
+                        class="d-flex align-items-center gap-2 text-ro opacity-75 text-decoration-none">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">
+                            <i class="fa-solid fa-check fs-xs"></i>
+                        </span>
+                        <span>Mis productos</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </a>
+                    <a th:href="@{/envio}"
+                        class="d-flex align-items-center gap-2 text-ro opacity-75 text-decoration-none">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">
+                            <i class="fa-solid fa-check fs-xs"></i>
+                        </span>
+                        <span>Envío</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </a>
+                    <div class="d-flex align-items-center gap-2 text-ro fw-bold">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">3</span>
+                        <span>Pago</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row g-4">
+
+                    <div class="col-12 col-lg-8 order-2 order-lg-1">
+
+                        <div
+                            class="tarjeta-local card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4">
+                            <div
+                                class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+                                <h5 class="fw-bold mb-0 text-white fs-6 text-uppercase d-flex align-items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-ro"></i> Datos de Entrega Confirmados
+                                </h5>
+                                <a th:href="@{/envio}" class="text-ro small text-decoration-none fw-semibold">
+                                    <i class="fa-solid fa-pen-to-square me-1"></i> Editar
+                                </a>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6 border-end-md border-secondary border-opacity-25">
+                                    <span class="text-secondary small d-block mb-1 fw-semibold">Contacto del
+                                        Cliente:</span>
+                                    <p class="text-white small mb-1 fw-semibold" id="pago-contacto-nombre">Cliente</p>
+                                    <p class="text-white-50 small mb-1" id="pago-contacto-correo">cliente@correo.com</p>
+                                    <p class="text-white-50 small mb-0" id="pago-contacto-telefono">+51 999 999 999</p>
+                                </div>
+                                <div class="col-12 col-md-6 ps-md-3">
+                                    <span class="text-secondary small d-block mb-1 fw-semibold"
+                                        id="pago-titulo-metodo">Método de Entrega:</span>
+                                    <p class="text-white small mb-1 fw-bold" id="pago-destino-principal">Sede Miraflores
+                                    </p>
+                                    <p class="text-white-50 small mb-1" id="pago-destino-detalle">Av. José Larco 850,
+                                        Miraflores, Lima</p>
+                                    <span
+                                        class="badge bg-secondary bg-opacity-25 text-white-50 small border border-secondary border-opacity-25 mt-1"
+                                        id="pago-destino-tiempo">
+                                        Tiempo estimado: 25 - 40 min
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form id="formCheckoutPago" onsubmit="procesarPagoFinal(event)"
+                            class="tarjeta-local card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm">
+
+                            <div class="mb-4">
+                                <h5 class="fw-bold text-white fs-6 text-uppercase mb-2">1. Comprobante de Pago</h5>
+                                <div
+                                    class="alert alert-warning py-2 px-3 small border-0 d-flex align-items-center gap-2 mb-3 bg-warning bg-opacity-10 text-warning">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                    <span>Importante: Tras confirmar la orden, el tipo de comprobante no podrá
+                                        modificarse.</span>
+                                </div>
+
+                                <div class="d-flex gap-4 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipoComprobante" id="boleta"
+                                            value="boleta" checked onchange="alternarCamposFactura(false)">
+                                        <label class="form-check-label text-white small cursor-pointer" for="boleta">
+                                            Boleta de Venta
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipoComprobante" id="factura"
+                                            value="factura" onchange="alternarCamposFactura(true)">
+                                        <label class="form-check-label text-white small cursor-pointer" for="factura">
+                                            Factura Electrónica
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div id="campos-factura"
+                                    class="row g-3 d-none p-3 rounded-3 bg-black bg-opacity-40 border border-secondary border-opacity-25 mt-1">
+                                    <div class="col-12 col-sm-5">
+                                        <label for="factura-ruc"
+                                            class="form-label text-secondary fs-xs fw-semibold mb-1">RUC (11 dígitos)
+                                            *</label>
+                                        <input type="text" class="form-control buscador-input" id="factura-ruc"
+                                            placeholder="Ej: 20123456789" maxlength="11" pattern="[0-9]{11}">
+                                    </div>
+                                    <div class="col-12 col-sm-7">
+                                        <label for="factura-razon"
+                                            class="form-label text-secondary fs-xs fw-semibold mb-1">Razón Social
+                                            *</label>
+                                        <input type="text" id="factura-razon" class="form-control buscador-input"
+                                            placeholder="Nombre de la empresa">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="border-secondary border-opacity-25 my-4">
+
+                            <div class="mb-4">
+                                <h5 class="fw-bold text-white fs-6 text-uppercase mb-3">2. Selecciona tu método de pago
+                                </h5>
+
+                                <div class="d-flex flex-column gap-3">
+
+                                    <div class="opcion-pago-wrapper rounded-3 border border-secondary border-opacity-50 overflow-hidden activo"
+                                        id="wrapper-tarjeta">
+                                        <label
+                                            class="p-3 d-flex align-items-center justify-content-between cursor-pointer w-100 mb-0"
+                                            for="pagoTarjeta">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <input class="form-check-input mt-0" type="radio" name="metodoPago"
+                                                    id="pagoTarjeta" value="tarjeta" checked
+                                                    onchange="alternarDetalleMetodoPago('tarjeta')">
+                                                <div>
+                                                    <span class="d-block text-white fw-semibold small">Pago en línea con
+                                                        Tarjeta</span>
+                                                    <small class="text-secondary">Aceptamos débito y crédito (Visa,
+                                                        Mastercard)</small>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <img th:src="@{/images/visa.jpg}" alt="Visa"
+                                                    class="rounded-1 object-fit-contain"
+                                                    style="width: 36px; height: 24px;"
+                                                    onerror="this.outerHTML='<i class=\'fa-brands fa-cc-visa fs-3 text-secondary\'></i>'">
+                                                <img th:src="@{/images/mastercard.jpg}" alt="Mastercard"
+                                                    class="rounded-1 object-fit-contain"
+                                                    style="width: 36px; height: 24px;"
+                                                    onerror="this.outerHTML='<i class=\'fa-brands fa-cc-mastercard fs-3 text-secondary\'></i>'">
+                                            </div>
+                                        </label>
+
+                                        <div id="box-formulario-tarjeta"
+                                            class="p-3 pt-0 border-top border-secondary border-opacity-25 bg-black bg-opacity-30">
+                                            <div class="row g-2 pt-3">
+                                                <div class="col-12">
+                                                    <label class="text-secondary fs-xs fw-semibold mb-1">Número de
+                                                        Tarjeta</label>
+                                                    <div class="position-relative">
+                                                        <input type="text" class="form-control buscador-input ps-3"
+                                                            placeholder="0000 0000 0000 0000" maxlength="19"
+                                                            id="card-number">
+                                                        <i
+                                                            class="fa-solid fa-credit-card position-absolute top-50 end-0 translate-middle-y me-3 text-secondary"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label
+                                                        class="text-secondary fs-xs fw-semibold mb-1">Expiración</label>
+                                                    <input type="text" class="form-control buscador-input"
+                                                        placeholder="MM/AA" maxlength="5">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="text-secondary fs-xs fw-semibold mb-1">CVV</label>
+                                                    <input type="password" class="form-control buscador-input"
+                                                        placeholder="123" maxlength="4">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="opcion-pago-wrapper rounded-3 border border-secondary border-opacity-50 overflow-hidden"
+                                        id="wrapper-yape">
+                                        <label
+                                            class="p-3 d-flex align-items-center justify-content-between cursor-pointer w-100 mb-0"
+                                            for="pagoYape">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <input class="form-check-input mt-0" type="radio" name="metodoPago"
+                                                    id="pagoYape" value="yape"
+                                                    onchange="alternarDetalleMetodoPago('yape')">
+                                                <div>
+                                                    <span class="d-block text-white fw-semibold small">Pagar con
+                                                        Yape</span>
+                                                    <small class="text-secondary">Código de aprobación o transferencia
+                                                        móvil</small>
+                                                </div>
+                                            </div>
+                                            <span class="badge px-2 py-1 text-white fw-bold"
+                                                style="background-color: #742284; font-size: 11px;">YAPE</span>
+                                        </label>
+
+                                        <div id="box-formulario-yape"
+                                            class="p-3 pt-0 border-top border-secondary border-opacity-25 bg-black bg-opacity-30 d-none">
+                                            <div class="pt-3">
+                                                <p class="small text-secondary mb-2">
+                                                    Transfiere al número <strong class="text-white">999 888 777</strong>
+                                                    (La Caleta Pizza) e ingresa tu código de validación:
+                                                </p>
+                                                <div class="col-12 col-sm-6">
+                                                    <label class="text-secondary fs-xs fw-semibold mb-1">Código de
+                                                        aprobación</label>
+                                                    <input type="text" class="form-control buscador-input"
+                                                        placeholder="Ej: 123456" maxlength="6">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="col-12 col-lg-4 order-1 order-lg-2">
+                        <div class="tarjeta-local card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm sticky-top"
+                            style="top: 20px;">
+
+                            <h5
+                                class="fw-bold mb-3 text-white fs-6 text-uppercase pb-2 border-bottom border-secondary border-opacity-25">
+                                Resumen del Pedido
+                            </h5>
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="small text-secondary"><strong class="text-white"
+                                        id="resumen-cant-articulos">0</strong> producto(s)</span>
+                                <a th:href="@{/carrito}"
+                                    class="small text-decoration-none text-ro fw-semibold">Modificar</a>
+                            </div>
+
+                            <div class="d-flex flex-column gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-25 overflow-y-auto"
+                                style="max-height: 280px;" id="resumen-lista-pago">
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-2 small text-secondary">
+                                <span>Subtotal</span>
+                                <span class="text-white fw-semibold" id="pago-subtotal">S/ 0.00</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3 small text-secondary">
+                                <span>Costo de envío / Servicio</span>
+                                <span class="text-success fw-semibold" id="pago-envio-costo">Gratis</span>
+                            </div>
+
+                            <div class="border-top border-secondary border-opacity-25 pt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold text-white">Total a pagar</span>
+                                    <span class="fw-bold fs-4 text-ro" id="pago-total">S/ 0.00</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/payment.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/checkout/shipping.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Envío</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header-checkout :: headerCheckout}"></div>
+
+    <main>
+        <section class="py-3 border-bottom border-secondary border-opacity-25 bg-negro">
+            <div class="container">
+                <div class="d-flex align-items-center gap-3 gap-md-4 text-nowrap overflow-x-auto py-1 small">
+                    <a th:href="@{/carrito}"
+                        class="d-flex align-items-center gap-2 text-ro opacity-75 text-decoration-none">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">
+                            <i class="fa-solid fa-check fs-xs"></i>
+                        </span>
+                        <span>Mis productos</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </a>
+                    <div class="d-flex align-items-center gap-2 text-ro fw-bold">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">2</span>
+                        <span>Envío</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 text-secondary opacity-50">
+                        <span class="badge rounded-circle bg-secondary bg-opacity-25 text-secondary px-2 py-1">3</span>
+                        <span>Pago</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row g-4">
+
+                    <div class="col-12 col-lg-8">
+
+                        <div
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4">
+                            <h2 class="fw-bold fs-5 mb-3 text-white">¿Cómo deseas recibir tu pedido?</h2>
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <label
+                                        class="p-3 rounded-3 border border-secondary border-opacity-50 d-flex align-items-center gap-3 cursor-pointer tarjeta-opcion-pago w-100">
+                                        <input class="form-check-input mt-0" type="radio" name="tipoModalidad"
+                                            id="optRetiro" value="retiro" checked
+                                            onchange="cambiarModalidadEntrega('retiro')">
+                                        <div>
+                                            <span class="d-block text-white fw-bold small"><i
+                                                    class="fa-solid fa-store text-ro me-1"></i> Retiro en Sede</span>
+                                            <small class="text-secondary">Recoge sin costo en nuestro local</small>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <label
+                                        class="p-3 rounded-3 border border-secondary border-opacity-50 d-flex align-items-center gap-3 cursor-pointer tarjeta-opcion-pago w-100">
+                                        <input class="form-check-input mt-0" type="radio" name="tipoModalidad"
+                                            id="optDelivery" value="delivery"
+                                            onchange="cambiarModalidadEntrega('delivery')">
+                                        <div>
+                                            <span class="d-block text-white fw-bold small"><i
+                                                    class="fa-solid fa-motorcycle text-ro me-1"></i> Delivery
+                                                Caleta</span>
+                                            <small class="text-secondary">Directo a tu dirección (+ S/ 5.00)</small>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="seccion-invitado"
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h2 class="fw-bold fs-5 mb-0 text-white">Ingresa tu correo para continuar</h2>
+                                <a th:href="@{/login}" class="text-ro small text-decoration-none fw-semibold">
+                                    ¿Ya tienes cuenta? Inicia sesión
+                                </a>
+                            </div>
+                            <p class="text-secondary small mb-4">
+                                Te enviaremos el comprobante electrónico, el código de pedido y el estado de
+                                preparación.
+                            </p>
+
+                            <form id="form-invitado" onsubmit="procesarPasoEnvioInvitado(event)">
+                                <div class="mb-3">
+                                    <label for="inputCorreoInvitado"
+                                        class="form-label small text-secondary fw-semibold">Correo Electrónico *</label>
+                                    <input type="email" id="inputCorreoInvitado" class="form-control buscador-input"
+                                        placeholder="ejemplo@correo.com" required>
+                                </div>
+
+                                <div id="campos-delivery-invitado" class="row g-3 d-none mb-3">
+                                    <div class="col-12 col-md-8">
+                                        <label for="inputDireccionInvitado"
+                                            class="form-label small text-secondary fw-semibold">Dirección de entrega
+                                            *</label>
+                                        <input type="text" id="inputDireccionInvitado"
+                                            class="form-control buscador-input" placeholder="Av. / Calle y Número">
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <label for="inputReferenciaInvitado"
+                                            class="form-label small text-secondary fw-semibold">Referencia</label>
+                                        <input type="text" id="inputReferenciaInvitado"
+                                            class="form-control buscador-input" placeholder="Dpto, timbre, etc.">
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="my-4 p-3 rounded-3 bg-black bg-opacity-25 border border-secondary border-opacity-10">
+                                    <ul class="list-unstyled small text-secondary mb-0 d-flex flex-column gap-2">
+                                        <li class="d-flex align-items-center gap-2">
+                                            <i class="fa-solid fa-shield-halved text-ro"></i> Compra rápida sin
+                                            necesidad de contraseña previa.
+                                        </li>
+                                        <li class="d-flex align-items-center gap-2">
+                                            <i class="fa-solid fa-receipt text-ro"></i> Comprobante y notificaciones
+                                            directas a tu bandeja.
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <button type="submit"
+                                    class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small border-0">
+                                    Continuar al Pago <i class="fa-solid fa-arrow-right ms-1"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <div id="seccion-logueado"
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4 d-none">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h2 class="fw-bold fs-5 mb-0 text-white">Datos de Contacto y Entrega</h2>
+                                <span
+                                    class="badge bg-success bg-opacity-25 text-success small border border-success border-opacity-25">
+                                    <i class="fa-solid fa-user-check me-1"></i> Sesión iniciada
+                                </span>
+                            </div>
+                            <p class="text-secondary small mb-4">
+                                Estos son tus datos registrados. Puedes modificarlos si estás pidiendo para un amigo o a
+                                otra dirección.
+                            </p>
+
+                            <form id="form-logueado" onsubmit="procesarPasoEnvioLogueado(event)">
+                                <div class="row g-3">
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputNombreUser"
+                                            class="form-label small text-secondary fw-semibold">Nombre y Apellidos
+                                            *</label>
+                                        <input type="text" id="inputNombreUser" class="form-control buscador-input"
+                                            required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputCorreoUser"
+                                            class="form-label small text-secondary fw-semibold">Correo Electrónico
+                                            *</label>
+                                        <input type="email" id="inputCorreoUser" class="form-control buscador-input"
+                                            required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputTelefonoUser"
+                                            class="form-label small text-secondary fw-semibold">Teléfono / WhatsApp
+                                            *</label>
+                                        <input type="tel" id="inputTelefonoUser" class="form-control buscador-input"
+                                            placeholder="999 999 999" required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputDocumentoUser"
+                                            class="form-label small text-secondary fw-semibold">DNI o Documento
+                                            *</label>
+                                        <input type="text" id="inputDocumentoUser" class="form-control buscador-input"
+                                            placeholder="N° de Documento" required>
+                                    </div>
+
+                                    <div id="campos-delivery-user" class="col-12 d-none">
+                                        <hr class="border-secondary border-opacity-25 my-2">
+                                        <div class="row g-3">
+                                            <div class="col-12 col-md-8">
+                                                <label for="inputDireccionUser"
+                                                    class="form-label small text-secondary fw-semibold">Dirección de
+                                                    entrega *</label>
+                                                <input type="text" id="inputDireccionUser"
+                                                    class="form-control buscador-input"
+                                                    placeholder="Av. / Calle y Número">
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <label for="inputReferenciaUser"
+                                                    class="form-label small text-secondary fw-semibold">Referencia</label>
+                                                <input type="text" id="inputReferenciaUser"
+                                                    class="form-control buscador-input"
+                                                    placeholder="Dpto, timbre, frente a...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <button type="submit"
+                                        class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small border-0">
+                                        Guardar y Continuar al Pago <i class="fa-solid fa-arrow-right ms-1"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 col-lg-4">
+
+                        <div
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4">
+                            <h5
+                                class="fw-bold mb-3 text-white fs-6 text-uppercase pb-2 border-bottom border-secondary border-opacity-25">
+                                Resumen de compra
+                            </h5>
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="small text-secondary"><strong class="text-white"
+                                        id="shipping-cant-articulos">0</strong> producto(s)</span>
+                                <a th:href="@{/carrito}"
+                                    class="small text-decoration-none text-ro fw-semibold">Editar</a>
+                            </div>
+
+                            <div class="d-flex flex-column gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-25 overflow-y-auto"
+                                style="max-height: 240px;" id="shipping-lista-productos">
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-2 small text-secondary">
+                                <span>Subtotal</span>
+                                <span class="text-white fw-semibold" id="shipping-subtotal">S/ 0.00</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3 small text-secondary">
+                                <span>Costo de envío</span>
+                                <span class="text-success fw-semibold" id="shipping-costo-envio">Gratis (Retiro)</span>
+                            </div>
+
+                            <div class="border-top border-secondary border-opacity-25 pt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold text-white">Total pedido</span>
+                                    <span class="fw-bold fs-5 text-ro" id="shipping-total">S/ 0.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="card-sede-info"
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm">
+                            <h5 class="fw-bold fs-6 mb-2 text-white"><i class="fa-solid fa-store text-ro me-1"></i> Sede
+                                de Retiro:</h5>
+                            <h6 class="fw-bold text-white mb-1" id="retiro-nombre-local">Sede Miraflores</h6>
+                            <p class="text-secondary small mb-2" id="retiro-direccion-local">
+                                Av. José Larco 850, Miraflores, Lima
+                            </p>
+                            <a href="https://maps.google.com" target="_blank"
+                                class="text-ro small text-decoration-none d-inline-flex align-items-center gap-1 mb-3"
+                                style="font-size: 11px;">
+                                <i class="fa-solid fa-diamond-turn-right"></i> ¿Cómo llegar?
+                            </a>
+                            <div class="rounded-3 overflow-hidden border border-secondary border-opacity-25"
+                                style="height: 140px;">
+                                <iframe id="retiro-mapa-iframe"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.8659691890887!2d-77.0315!3d-12.1215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDA3JzE3LjQiUyA3N8KwMDEnNTMuNCJX!5e0!3m2!1ses!2spe!4v1600000000000!5m2!1ses!2spe"
+                                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                                </iframe>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/shipping.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/banner.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <!-- Fragment de Slider Publicitario Puro (Solo Imágenes con Enlace) -->
+    <section th:fragment="sliderHero" id="banner-slider" class="position-relative w-100 overflow-hidden">
+        <div id="carouselHero" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+            <!-- Indicadores -->
+            <div class="carousel-indicators mb-2">
+                <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Menú"></button>
+                <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="1" aria-label="Promociones"></button>
+                <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="2" aria-label="Locales"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a th:href="@{/menu}" class="d-block w-100">
+                        <img th:src="@{/images/banner_menu.png}" class="d-block w-100 banner-img-slider" alt="Explora nuestro Menú">
+                    </a>
+                </div>
+
+                <div class="carousel-item">
+                    <a th:href="@{/promociones}" class="d-block w-100">
+                        <img th:src="@{/images/banner_promociones.png}" class="d-block w-100 banner-img-slider" alt="Conoce nuestras Promociones">
+                    </a>
+                </div>
+
+                <div class="carousel-item">
+                    <a th:href="@{/login}" class="d-block w-100">
+                        <img th:src="@{/images/banner_cuenta.png}" class="d-block w-100 banner-img-slider" alt="Crea tu Cuenta">
+                    </a>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselHero" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselHero" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </section>
+
+</body>
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/catalogo.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <nav th:fragment="navMenu" id="categorias" class="sticky-top py-2">
+        <div class="container">
+            <div class="d-flex flex-nowrap overflow-x-auto gap-2 py-1 categorias-scroll">
+                <button type="button" class="btn-categoria active text-nowrap"
+                    onclick="cambiarSeccion('promociones', this)">Promociones</button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="cambiarSeccion('pizzas-principales', this)">Principales</button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="cambiarSeccion('combos-secretos', this)">Combos Secretos</button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="cambiarSeccion('acompanamientos', this)">Acompañamientos</button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="cambiarSeccion('bebidas', this)">Bebidas</button>
+            </div>
+        </div>
+    </nav>
+
+    <nav th:fragment="navPromociones" id="categorias-promo" class="sticky-top py-2">
+        <div class="container">
+            <div class="d-flex flex-nowrap overflow-x-auto gap-2 py-1 categorias-scroll">
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="desplazarASeccion('promo-1persona', this)">
+                    <i class="fa-solid fa-user me-1"></i> 1 PERSONA
+                </button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="desplazarASeccion('promo-2personas', this)">
+                    <i class="fa-solid fa-user-group me-1"></i> 2 PERSONAS
+                </button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="desplazarASeccion('promo-3personas', this)">
+                    <i class="fa-solid fa-users me-1"></i> 3-4 PERSONAS
+                </button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="desplazarASeccion('promo-familiares', this)">
+                    <i class="fa-solid fa-people-group me-1"></i> 5 A MÁS
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Grilla de Productos -->
+    <section th:fragment="seccionGrilla(idSeccion, tituloSeccion, claseExtra, lista, tipo)" th:id="${idSeccion}"
+        class="py-4 seccion-scroll" th:classappend="${claseExtra}">
+        <div class="container">
+            <div th:if="${tituloSeccion != null and !tituloSeccion.isEmpty()}"
+                class="d-flex align-items-center mb-4 border-bottom border-secondary pb-2">
+                <h3 class="fw-bold text-white mb-0 text-uppercase fs-4" th:text="${tituloSeccion}">TÍTULO SECCIÓN</h3>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+                <div class="col d-flex justify-content-center" th:each="prod : ${lista}">
+                    <div class="card tarjeta-producto border-0 rounded-3 overflow-hidden shadow-sm w-100">
+                        <a
+                            th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}">
+                            <img th:src="@{${prod.imagenUrl}}" class="card-img-top object-fit-cover"
+                                th:alt="${prod.nombre}">
+                        </a>
+                        <div class="card-body d-flex flex-column text-center p-3">
+                            <a th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}"
+                                class="text-decoration-none">
+                                <h5 class="fw-bold fs-6 mb-1 text-truncate" th:text="${prod.nombre}"
+                                    th:title="${prod.nombre}">Producto</h5>
+                            </a>
+                            <p class="small flex-grow-1 mb-3 desc-clamp" th:text="${prod.descripcion}">Descripción</p>
+                            <div
+                                class="d-flex justify-content-between align-items-center pt-2 border-top border-secondary border-opacity-25 mt-auto">
+                                <a th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}"
+                                    class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center text-decoration-none flex-shrink-0"
+                                    title="Personalizar producto">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+                                <span class="fw-bold fs-6 text-nowrap ms-2"
+                                    th:text="'S/ ' + ${#numbers.formatDecimal(prod.precio, 1, 2)}">S/ 0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${#lists.isEmpty(lista)}" class="text-center py-4 text-secondary">
+                <p class="mb-0">No hay productos en esta sección por el momento.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrusel Horizontal -->
+    <section th:fragment="carruselHorizontal(idCarrusel, titulo, lista, tipo)" class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold mb-0 text-white" th:text="${titulo}">TÍTULO</h2>
+                <div class="d-flex gap-2">
+                    <button class="btn-carrusel rounded-circle d-flex align-items-center justify-content-center"
+                        th:data-target="${idCarrusel}" onclick="desplazar(this.dataset.target, -280)"
+                        aria-label="Anterior">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="btn-carrusel rounded-circle d-flex align-items-center justify-content-center"
+                        th:data-target="${idCarrusel}" onclick="desplazar(this.dataset.target, 280)"
+                        aria-label="Siguiente">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div th:id="${idCarrusel}" class="d-flex flex-nowrap overflow-x-auto gap-4 pb-3 carrusel-horizontal">
+                <div th:each="prod : ${lista}"
+                    class="tarjeta-pizza card bg-white text-dark border-0 overflow-hidden flex-shrink-0"
+                    style="width: 250px;">
+                    <a
+                        th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}">
+                        <img th:src="@{${prod.imagenUrl}}" class="card-img-top object-fit-cover"
+                            th:alt="${prod.nombre}">
+                    </a>
+                    <div class="card-body d-flex flex-column text-center p-3">
+                        <a th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}"
+                            class="text-decoration-none text-dark">
+                            <h5 class="fw-bold fs-6 mb-1 text-truncate" th:text="${prod.nombre}">Nombre</h5>
+                        </a>
+                        <p class="text-secondary small flex-grow-1 mb-3 desc-clamp" th:text="${prod.descripcion}">
+                            Descripción</p>
+                        <div class="d-flex justify-content-between align-items-center pt-2 border-top mt-auto">
+                            <a th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}"
+                                class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center text-decoration-none"
+                                title="Personalizar producto">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                            <span class="fw-bold fs-6 text-nowrap ms-2"
+                                th:text="'S/ ' + ${#numbers.formatDecimal(prod.precio, 1, 2)}">S/ 0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/footer-simple.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <footer th:fragment="footerSimple" class="py-4 text-center">
+        <div class="container">
+            <p class="small text-white-50 mb-0">&copy; 2026 La Caleta. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/footer.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <footer th:fragment="footer" class="py-5 text-start">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12 col-md-3">
+                    <img class="img-fluid mb-3" th:src="@{/images/lacaleta.png}" alt="La Caleta Logo" style="max-width: 140px;">
+                    <h6 class="fw-bold mb-2">Síguenos en</h6>
+                    <div class="d-flex gap-3 fs-5">
+                        <a href="https://www.facebook.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h6 class="fw-bold mb-3">Nuestros Productos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/menu#pizzas-principales}">Pizzas Principales</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/menu#combos-secretos}">Combos Secretos</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/menu#acompanamientos}">Acompañamientos</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/menu#bebidas}">Bebidas</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h6 class="fw-bold mb-3">Ayuda & Términos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/faq}">Preguntas Frecuentes</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/delivery}">Políticas de Delivery</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/terminos}">Términos y Condiciones</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/locales}">Nuestros Locales</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-2">Métodos de Pago</h6>
+                        <div class="d-flex align-items-center gap-2">
+                            <img th:src="@{/images/visa.jpg}" alt="Visa" class="bg-white p-1" style="height: 30px; object-fit: contain;">
+                            <img th:src="@{/images/mastercard.jpg}" alt="Mastercard" class="bg-white p-1" style="height: 30px; object-fit: contain;">
+                            <img th:src="@{/images/yape.jpg}" alt="Yape" class="bg-white p-1" style="height: 30px; object-fit: contain;">
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-2">Libro de Reclamaciones</h6>
+                        <a href="#">
+                            <img th:src="@{/images/libro_reclamaciones.jpg}" alt="Libro de Reclamaciones" style="max-height: 45px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top border-secondary">
+                <p class="small text-secondary mb-0">&copy; 2026 La Caleta. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/header-checkout.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header th:fragment="headerCheckout" class="w-100">
+    <section id="topbar" class="py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a href="tel:+51999999999" class="text-nowrap">
+                    <i class="fa-solid fa-phone me-1"></i> (+51) 999 999 999
+                </a>
+                <a href="mailto:lacaleta@gmail.com" class="d-none d-sm-inline text-nowrap">
+                    <i class="fa-regular fa-envelope me-1"></i> lacaleta@gmail.com
+                </a>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <nav id="header" class="navbar py-2 border-bottom border-secondary border-opacity-25">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a class="navbar-brand me-0" th:href="@{/}" style="width: 130px;">
+                    <img th:src="@{/images/lacaleta.png}" class="img-fluid" alt="Logo La Caleta">
+                </a>
+                <div class="d-none d-xl-block text-secondary fst-italic small">
+                    "El que come callado, come doble"
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+</body>
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/header.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header th:fragment="header(paginaActiva)" class="w-100">
+    <!-- Topbar -->
+    <section id="topbar" class="py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a href="tel:+51999999999" class="text-nowrap">
+                    <i class="fa-solid fa-phone me-1"></i> (+51) 999 999 999
+                </a>
+                <a href="mailto:lacaleta@gmail.com" class="d-none d-sm-inline text-nowrap">
+                    <i class="fa-regular fa-envelope me-1"></i> lacaleta@gmail.com
+                </a>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navbar principal -->
+    <nav id="header" class="navbar py-2 border-bottom border-secondary border-opacity-25">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a class="navbar-brand me-0" th:href="@{/}" style="width: 130px;">
+                    <img th:src="@{/images/lacaleta.png}" class="img-fluid" alt="Logo La Caleta">
+                </a>
+                <div class="d-none d-xl-block text-secondary fst-italic small">
+                    "El que come callado, come doble"
+                </div>
+            </div>
+
+            <!-- Lado Derecho: Menú, Carrito e Inicio de Sesión -->
+            <div class="d-flex align-items-center gap-3">
+                <!-- Enlaces de navegación con condicionales -->
+                <div id="navLinkMenu" class="d-none d-lg-flex align-items-center gap-2 me-2">
+                    <a class="nav-link px-3 py-1 fw-bold text-nowrap"
+                        th:classappend="${paginaActiva == 'menu'} ? 'active text-warning border-bottom border-warning' : 'text-white'"
+                        th:href="@{/menu}">Menú</a>
+                    <a class="nav-link px-3 py-1 fw-bold text-nowrap"
+                        th:classappend="${paginaActiva == 'promociones'} ? 'active text-warning border-bottom border-warning' : 'text-white'"
+                        th:href="@{/promociones}">Promociones</a>
+                    <a class="nav-link px-3 py-1 fw-bold text-nowrap"
+                        th:classappend="${paginaActiva == 'locales'} ? 'active text-warning border-bottom border-warning' : 'text-white'"
+                        th:href="@{/locales}">Locales</a>
+                    <a th:if="${usuario != null and usuario.esAdmin() and paginaActiva != 'admin'}"
+                        class="nav-link px-3 py-1 fw-bold text-warning text-nowrap"
+                        th:href="@{/admin}">
+                        <i class="fa-solid fa-lock me-1"></i> Administración
+                    </a>
+                </div>
+
+                <!-- Botón Carrito -->
+                <button type="button"
+                    class="nav-menu-link-shop px-3 py-2 fw-bold rounded-pill d-flex align-items-center gap-2 text-nowrap border-0"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="d-none d-sm-inline">S/ 0.00</span>
+                </button>
+
+                <!-- Área de Usuario / Sesión -->
+                <div id="navUserArea" class="d-flex align-items-center">
+    <!-- Si hay usuario en la sesión de Spring Boot -->
+    <div th:if="${session.usuarioLogueado != null or usuario != null}" class="dropdown">
+        <button class="btn btn-dark text-white dropdown-toggle border-0 small fw-semibold d-flex align-items-center gap-2 shadow-none" 
+                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user-check text-success fs-5"></i>
+            <span th:text="${session.usuarioLogueado != null ? session.usuarioLogueado.nombre : usuario.nombre}">Usuario</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary shadow">
+            <li>
+                <a class="dropdown-item text-white small" th:href="@{/perfil}">
+                    <i class="fa-solid fa-user me-2 text-danger"></i>Mi Perfil & Pedidos
+                </a>
+            </li>
+            <li th:if="${(session.usuarioLogueado != null and session.usuarioLogueado.esAdmin()) or (usuario != null and usuario.esAdmin())}">
+                <a class="dropdown-item text-warning small fw-bold" th:href="@{/admin}">
+                    <i class="fa-solid fa-gauge me-2"></i>Panel Admin
+                </a>
+            </li>
+            <li><hr class="dropdown-divider border-secondary"></li>
+            <li>
+                <a class="dropdown-item text-white small" th:href="@{/logout}" onclick="localStorage.clear();">
+                    <i class="fa-solid fa-right-from-bracket me-2 text-danger"></i>Cerrar sesión
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Si no hay sesión activa -->
+    <a th:unless="${session.usuarioLogueado != null or usuario != null}" th:href="@{/login}" class="btn-login-header">
+        <i class="fa-solid fa-user me-1"></i> Iniciar sesión
+    </a>
+</div>
+                <!-- Botón Hamburguesa Móvil -->
+                <button class="btn border-0 text-white p-1 d-lg-none shadow-none" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu"
+                    aria-label="Abrir navegación">
+                    <i class="fa-solid fa-bars fs-3"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+</body>
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/locales.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <section th:fragment="seccionLocales(listaLocales)" id="locales" class="py-4">
+        <div class="container">
+            <div class="d-flex flex-column gap-3 mx-auto" style="max-width: 900px;" id="contenedor-locales">
+
+                <!-- CASO 1: Si se pasa una lista desde Spring Boot -->
+                <th:block th:if="${listaLocales != null and !#lists.isEmpty(listaLocales)}">
+                    <div th:each="local : ${listaLocales}"
+                        class="tarjeta-local card text-white border border-secondary border-opacity-25 rounded-3 p-3 p-md-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12 col-md-6 border-end-md border-secondary border-opacity-25">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h5 class="fw-bold mb-0 text-white" th:text="${local.nombre}">Sede</h5>
+                                </div>
+                                <p class="text-secondary small mb-3" th:text="${local.direccion}">
+                                    Dirección del local
+                                </p>
+                                <a th:href="${local.mapaUrl != null ? local.mapaUrl : 'https://maps.google.com'}"
+                                    target="_blank"
+                                    class="btn-cta px-3 py-1 fw-bold text-uppercase d-inline-block small text-decoration-none"
+                                    style="font-size: 12px;">
+                                    Ver Local
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h6 class="text-white-50 text-uppercase fw-semibold small mb-2">Disponibilidad</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span th:if="${local.delivery == null or local.delivery}"
+                                        class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-motorcycle text-warning"></i> Delivery
+                                    </span>
+                                    <span th:if="${local.retiro == null or local.retiro}"
+                                        class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-location-dot text-warning"></i> Retiro en Tienda
+                                    </span>
+                                    <span th:if="${local.salon == null or local.salon}"
+                                        class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-utensils text-warning"></i> Salón
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+
+                <!-- CASO 2: Locales por defecto (si listaLocales es null o está vacía) -->
+                <th:block th:if="${listaLocales == null or #lists.isEmpty(listaLocales)}">
+                    <div
+                        class="tarjeta-local card text-white border border-secondary border-opacity-25 rounded-3 p-3 p-md-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12 col-md-6 border-end-md border-secondary border-opacity-25">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h5 class="fw-bold mb-0 text-white">Sede Miraflores</h5>
+                                </div>
+                                <p class="text-secondary small mb-3">
+                                    Av. José Larco 850, Miraflores, Lima
+                                </p>
+                                <a href="https://maps.google.com" target="_blank"
+                                    class="btn-cta px-3 py-1 fw-bold text-uppercase d-inline-block small text-decoration-none"
+                                    style="font-size: 12px;">
+                                    Ver Local
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h6 class="text-white-50 text-uppercase fw-semibold small mb-2">Disponibilidad</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-motorcycle text-warning"></i> Delivery
+                                    </span>
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-location-dot text-warning"></i> Retiro en Tienda
+                                    </span>
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-utensils text-warning"></i> Salón
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="tarjeta-local card text-white border border-secondary border-opacity-25 rounded-3 p-3 p-md-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12 col-md-6 border-end-md border-secondary border-opacity-25">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h5 class="fw-bold mb-0 text-white">Sede Los Olivos</h5>
+                                </div>
+                                <p class="text-secondary small mb-3">
+                                    Av. Antúnez de Mayolo 1120, Los Olivos, Lima
+                                </p>
+                                <a href="https://maps.google.com" target="_blank"
+                                    class="btn-cta px-3 py-1 fw-bold text-uppercase d-inline-block small text-decoration-none"
+                                    style="font-size: 12px;">
+                                    Ver Local
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h6 class="text-white-50 text-uppercase fw-semibold small mb-2">Disponibilidad</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-motorcycle text-warning"></i> Delivery
+                                    </span>
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-location-dot text-warning"></i> Retiro en Tienda
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/modals.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <!-- Panel Lateral del Carrito -->
+    <div th:fragment="offcanvasCarrito"
+        class="offcanvas offcanvas-end text-white border-start border-secondary border-opacity-25" tabindex="-1"
+        id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
+        <div class="offcanvas-header border-bottom border-secondary border-opacity-25 py-3">
+            <h5 class="offcanvas-title fw-bold text-white fs-6 mb-0 d-flex align-items-center gap-2"
+                id="offcanvasCarritoLabel">
+                CARRITO DE COMPRAS
+            </h5>
+            <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
+                aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-4">
+            <div class="text-center my-auto">
+                <div class="mb-3">
+                    <i class="fa-solid fa-basket-shopping fs-1 text-secondary opacity-50"></i>
+                </div>
+                <h6 class="fw-bold text-white mb-2">Tu carrito está vacío</h6>
+                <p class="text-secondary small mb-4">
+                    Tu producto ha sido eliminado del carrito y es necesario que realices tu compra nuevamente.
+                </p>
+                <a th:href="@{/menu}"
+                    class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small text-decoration-none">
+                    Explorar Menú
+                </a>
+            </div>
+            <div class="border-top border-secondary border-opacity-25 pt-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-secondary small">Total estimado:</span>
+                    <span class="fw-bold fs-5 text-white">S/ 0.00</span>
+                </div>
+                <button class="btn btn-secondary w-100 fw-bold py-2 text-uppercase small disabled"
+                    style="border-radius: 30px;">
+                    Continuar con el pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menú de Navegación Móvil -->
+    <div th:fragment="offcanvasMenu"
+        class="offcanvas offcanvas-start text-white border-end border-secondary border-opacity-25" tabindex="-1"
+        id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+        <div class="offcanvas-header border-bottom border-secondary border-opacity-25 py-3">
+            <div class="d-flex align-items-center gap-2" id="offcanvasMenuLabel">
+                <img th:src="@{/images/lacaleta.png}" alt="Logo" style="max-width: 100px;">
+            </div>
+            <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
+                aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-4">
+            <ul class="nav flex-column gap-3 fs-5 fw-bold">
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3" th:href="@{/menu}">Menú</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3"
+                        th:href="@{/promociones}">Promociones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3" th:href="@{/locales}">Locales</a>
+                </li>
+            </ul>
+            <div class="border-top border-secondary border-opacity-25 pt-3">
+                <p class="text-secondary small mb-2">Pedidos directos:</p>
+                <a href="tel:+51999999999" class="text-white fw-bold text-decoration-none small d-block mb-3">
+                    <i class="fa-solid fa-phone me-2 text-white"></i> (+51) 999 999 999
+                </a>
+                <div class="d-flex gap-3 fs-5">
+                    <a href="https://www.facebook.com" target="_blank" class="text-white-50"><i
+                            class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com" target="_blank" class="text-white-50"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com" target="_blank" class="text-white-50"><i
+                            class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Flotante -->
+    <div th:fragment="toastNotificacion" class="toast-container position-fixed bottom-0 end-0 p-3"
+        style="z-index: 1100;">
+        <div id="toastCarrito" class="toast toast-caleta align-items-center shadow-lg rounded-3 border-0" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex align-items-center">
+                <div class="toast-body d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-ro fs-5"></i>
+                    <span id="toastMensaje" class="small fw-semibold text-white"></span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Cerrar"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Notificación Global -->
+    <div th:fragment="modalNotificacionGlobal" class="modal fade" id="modalNotificacionGlobal" tabindex="-1"
+        aria-labelledby="modalNotificacionGlobalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white border border-secondary border-opacity-25"
+                style="background-color: #232323; border-radius: 12px;">
+                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
+                    <h5 class="modal-title fw-bold fs-5 text-white mb-0 d-flex align-items-center gap-2" id="modalNotificacionGlobalLabel"
+                        th:text="${modalTitulo != null ? modalTitulo : 'Notificación'}">
+                        Notificación
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <p class="mb-0 text-white-50 fs-6" id="modalNotificacionGlobalMensaje"
+                        th:text="${modalMensaje != null ? modalMensaje : ''}">
+                        Mensaje del sistema
+                    </p>
+                </div>
+                <div class="modal-footer border-top border-secondary border-opacity-25 py-2">
+                    <button type="button" class="btn btn-secondary px-4 fw-bold text-uppercase small"
+                        data-bs-dismiss="modal" style="border-radius: 30px;">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fragmento con todos los modales y offcanvas globales -->
+    <div th:fragment="todosLosModals">
+        <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+        <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+        <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+        <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+    </div>
+
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/personalizador.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <div th:fragment="bloqueTamano" class="bloque-personalizacion mb-3" id="seccion-tamano">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold text-white mb-0 fs-6">Elige el tamaño</h5>
+            <span class="text-ro small fw-semibold">(Obligatorio)</span>
+        </div>
+        <div class="alerta-requerido mb-2 p-2 rounded-2" id="alerta-tamano">
+            <i class="fa-solid fa-circle-info me-2 text-warning"></i>
+            <span class="fs-xs text-warning-emphasis">Por favor selecciona el mínimo requerido.</span>
+        </div>
+        <div class="card-acordeon-caleta p-3 rounded-3">
+            <div class="d-flex justify-content-between align-items-center cursor-pointer mb-2" onclick="alternarSeccion('cuerpo-tamano', 'resumen-box-tamano')">
+                <span class="small fw-semibold text-white-50">Selecciona 1 opción</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span id="badge-tamano" class="badge-contador">Selección 0/1</span>
+                    <i class="fa-solid fa-chevron-down text-secondary fs-xs icono-flecha"></i>
+                </div>
+            </div>
+            <div class="cuerpo-acordeon" id="cuerpo-tamano">
+                <input type="radio" class="btn-check" name="tamano" id="tam-mediana" th:value="${param.precio != null ? param.precio : '36.00'}" data-label="Mediana (8 cortes)" onchange="seleccionarYContraer('tamano', this, 'cuerpo-tamano', 'resumen-box-tamano', 'alerta-tamano', 'cuerpo-masa', 'resumen-box-masa')">
+                <label class="fila-opcion" for="tam-mediana">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Mediana</span>
+                        <span class="text-secondary fs-xs">8 cortes</span>
+                    </div>
+                    <span class="small text-white fw-semibold">Incluido</span>
+                </label>
+                <input type="radio" class="btn-check" name="tamano" id="tam-familiar" value="familiar" data-label="Familiar (12 cortes) +S/ 10.00" onchange="seleccionarYContraer('tamano', this, 'cuerpo-tamano', 'resumen-box-tamano', 'alerta-tamano', 'cuerpo-masa', 'resumen-box-masa')">
+                <label class="fila-opcion" for="tam-familiar">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Familiar</span>
+                        <span class="text-secondary fs-xs">12 cortes</span>
+                    </div>
+                    <span class="small text-ro fw-bold">+S/ 10.00</span>
+                </label>
+                <input type="radio" class="btn-check" name="tamano" id="tam-mega" value="mega" data-label="Mega Caleta (16 cortes) +S/ 20.00" onchange="seleccionarYContraer('tamano', this, 'cuerpo-tamano', 'resumen-box-tamano', 'alerta-tamano', 'cuerpo-masa', 'resumen-box-masa')">
+                <label class="fila-opcion" for="tam-mega">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Mega Caleta</span>
+                        <span class="text-secondary fs-xs">16 cortes</span>
+                    </div>
+                    <span class="small text-ro fw-bold">+S/ 20.00</span>
+                </label>
+            </div>
+            <div class="caja-seleccionada d-none" id="resumen-box-tamano" onclick="alternarSeccion('cuerpo-tamano', 'resumen-box-tamano')">
+                <span class="small fw-semibold text-white" id="texto-resumen-tamano"></span>
+                <i class="fa-solid fa-circle-dot text-success"></i>
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="bloqueMasa" class="bloque-personalizacion mb-3" id="seccion-masa">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold text-white mb-0 fs-6">Elige el tipo de masa</h5>
+            <span class="text-ro small fw-semibold">(Obligatorio)</span>
+        </div>
+        <div class="alerta-requerido mb-2 p-2 rounded-2 d-none" id="alerta-masa">
+            <i class="fa-solid fa-circle-info me-2 text-warning"></i>
+            <span class="fs-xs text-warning-emphasis">Por favor selecciona el mínimo requerido.</span>
+        </div>
+        <div class="card-acordeon-caleta p-3 rounded-3">
+            <div class="d-flex justify-content-between align-items-center cursor-pointer mb-2" onclick="alternarSeccion('cuerpo-masa', 'resumen-box-masa')">
+                <span class="small fw-semibold text-white-50">Selecciona 1 opción</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span id="badge-masa" class="badge-contador">Selección 0/1</span>
+                    <i class="fa-solid fa-chevron-down text-secondary fs-xs icono-flecha"></i>
+                </div>
+            </div>
+            <div class="cuerpo-acordeon d-none" id="cuerpo-masa">
+                <input type="radio" class="btn-check" name="masa" id="masa-tradicional" value="Masa Tradicional" onchange="seleccionarYContraer('masa', this, 'cuerpo-masa', 'resumen-box-masa', 'alerta-masa', 'cuerpo-cortesias', 'resumen-box-cortesias')">
+                <label class="fila-opcion" for="masa-tradicional">
+                    <span class="small fw-bold text-white">Masa Tradicional</span>
+                    <span class="small text-secondary">Estándar</span>
+                </label>
+                <input type="radio" class="btn-check" name="masa" id="masa-delgada" value="Delgada Crocante" onchange="seleccionarYContraer('masa', this, 'cuerpo-masa', 'resumen-box-masa', 'alerta-masa', 'cuerpo-cortesias', 'resumen-box-cortesias')">
+                <label class="fila-opcion" for="masa-delgada">
+                    <span class="small fw-bold text-white">Delgada Crocante</span>
+                    <span class="small text-secondary">Sin costo extra</span>
+                </label>
+            </div>
+            <div class="caja-seleccionada d-none" id="resumen-box-masa" onclick="alternarSeccion('cuerpo-masa', 'resumen-box-masa')">
+                <span class="small fw-semibold text-white" id="texto-resumen-masa"></span>
+                <i class="fa-solid fa-circle-dot text-success"></i>
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="bloqueCortesias" class="bloque-personalizacion mb-3" id="seccion-cortesias">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold text-white mb-0 fs-6">Cortesía de la casa</h5>
+            <span class="text-ro small fw-semibold">(Obligatorio)</span>
+        </div>
+        <div class="alerta-requerido mb-2 p-2 rounded-2 d-none" id="alerta-cortesias">
+            <i class="fa-solid fa-circle-info me-2 text-warning"></i>
+            <span class="fs-xs text-warning-emphasis">Por favor selecciona el mínimo requerido.</span>
+        </div>
+        <div class="card-acordeon-caleta p-3 rounded-3">
+            <div class="d-flex justify-content-between align-items-center cursor-pointer mb-2" onclick="alternarSeccion('cuerpo-cortesias', 'resumen-box-cortesias')">
+                <span class="small fw-semibold text-white-50">Selecciona 1 salsa de cortesía</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span id="badge-cortesias" class="badge-contador">Selección 0/1</span>
+                    <i class="fa-solid fa-chevron-down text-secondary fs-xs icono-flecha"></i>
+                </div>
+            </div>
+            <div class="cuerpo-acordeon d-none" id="cuerpo-cortesias">
+                <input type="radio" class="btn-check" name="cortesia" id="cort-ajo" value="Salsa de Ajo Especial (1 unid.)" onchange="seleccionarYContraer('cortesias', this, 'cuerpo-cortesias', 'resumen-box-cortesias', 'alerta-cortesias', null, null)">
+                <label class="fila-opcion" for="cort-ajo">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Salsa de Ajo Especial</span>
+                        <span class="text-secondary fs-xs">Receta artesanal Caleta</span>
+                    </div>
+                    <span class="small text-success fw-bold">Gratis</span>
+                </label>
+                <input type="radio" class="btn-check" name="cortesia" id="cort-pepperoncini" value="Pepperoncini Caleta" onchange="seleccionarYContraer('cortesias', this, 'cuerpo-cortesias', 'resumen-box-cortesias', 'alerta-cortesias', null, null)">
+                <label class="fila-opcion" for="cort-pepperoncini">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Pepperoncini Caleta</span>
+                        <span class="text-secondary fs-xs">Ají encurtido tradicional para el borde</span>
+                    </div>
+                    <span class="small text-success fw-bold">Gratis</span>
+                </label>
+                <input type="radio" class="btn-check" name="cortesia" id="cort-oregano" value="Sobre de Orégano y Ají Seco" onchange="seleccionarYContraer('cortesias', this, 'cuerpo-cortesias', 'resumen-box-cortesias', 'alerta-cortesias', null, null)">
+                <label class="fila-opcion" for="cort-oregano">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Sobre de Orégano y Ají Seco</span>
+                        <span class="text-secondary fs-xs">Condimento adicional</span>
+                    </div>
+                    <span class="small text-success fw-bold">Gratis</span>
+                </label>
+            </div>
+            <div class="caja-seleccionada d-none" id="resumen-box-cortesias" onclick="alternarSeccion('cuerpo-cortesias', 'resumen-box-cortesias')">
+                <span class="small fw-semibold text-white" id="texto-resumen-cortesias"></span>
+                <i class="fa-solid fa-circle-dot text-success"></i>
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="bloqueExtras">
+        <div class="bloque-personalizacion mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary border-opacity-10 pb-2">
+                <span class="fw-bold small text-uppercase text-white">Acompañamientos</span>
+                <span class="text-secondary fs-xs">Para compartir</span>
+            </div>
+            <div th:each="acomp : ${acompanamientos}" class="mb-2">
+                <label class="fila-opcion" th:for="${'extra-' + acomp.id}">
+                    <div>
+                        <span class="small fw-bold text-white d-block" th:text="${acomp.nombre}">Nombre</span>
+                        <span class="text-secondary fs-xs" th:text="${acomp.descripcion}">Descripción</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="small text-ro fw-bold text-nowrap" th:text="'S/ ' + ${#numbers.formatDecimal(acomp.precio, 1, 2)}">+S/ 0.00</span>
+                        <input class="form-check-input item-extra-producto m-0 cursor-pointer" type="checkbox" th:id="${'extra-' + acomp.id}" th:value="${acomp.precio}" th:data-nombre="${acomp.nombre}" th:data-img="${acomp.imagenUrl}">
+                    </div>
+                </label>
+            </div>
+            <div th:if="${#lists.isEmpty(acompanamientos)}" class="text-center py-2 text-secondary fs-xs">No hay acompañamientos disponibles por el momento.</div>
+        </div>
+
+        <div class="bloque-personalizacion">
+            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary border-opacity-10 pb-2">
+                <span class="fw-bold small text-uppercase text-white">Bebidas</span>
+                <span class="text-secondary fs-xs">Bien heladas</span>
+            </div>
+            <div th:each="beb : ${bebidas}" class="mb-2">
+                <label class="fila-opcion" th:for="${'extra-' + beb.id}">
+                    <div>
+                        <span class="small fw-bold text-white d-block" th:text="${beb.nombre}">Nombre</span>
+                        <span class="text-secondary fs-xs" th:text="${beb.descripcion}">Descripción</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="small text-ro fw-bold text-nowrap" th:text="'S/ ' + ${#numbers.formatDecimal(beb.precio, 1, 2)}">+S/ 0.00</span>
+                        <input class="form-check-input item-extra-producto m-0 cursor-pointer" type="checkbox" th:id="${'extra-' + beb.id}" th:value="${beb.precio}" th:data-nombre="${beb.nombre}" th:data-img="${beb.imagenUrl}">
+                    </div>
+                </label>
+            </div>
+            <div th:if="${#lists.isEmpty(bebidas)}" class="text-center py-2 text-secondary fs-xs">No hay bebidas disponibles por el momento.</div>
+        </div>
+    </div>
+
+</body>
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/info/delivery.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Políticas de Delivery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <main class="bg-white text-dark py-5" style="min-height: 80vh;">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Menú Lateral -->
+                <aside class="col-12 col-md-4 col-lg-3">
+                    <h5 class="fw-bold text-uppercase pb-2 border-bottom border-2 text-dark mb-3">Centro de Ayuda</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3 small">
+                        <li>
+                            <a th:href="@{/terminos}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Términos y Condiciones
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/delivery}" class="text-decoration-none fw-bold text-ro d-block border-start border-3 border-danger ps-2">
+                                Políticas de Delivery
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/faq}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Preguntas Frecuentes
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Área de Contenido -->
+                <div class="col-12 col-md-8 col-lg-9">
+                    <h2 class="fw-bold text-uppercase mb-4 text-dark border-bottom pb-2">Políticas y Condiciones de Entrega</h2>
+                    
+                    <p class="text-secondary leading-relaxed mb-4">
+                        En <strong>Pizzería La Caleta</strong> nuestro compromiso es asegurar que cada pedido llegue en el menor tiempo posible, manteniendo la temperatura ideal y la textura crocante de nuestras pizzas artesanales. A continuación, se describen los términos que regulan nuestro servicio de despacho a domicilio.
+                    </p>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">1. ZONAS DE COBERTURA Y HORARIOS</h5>
+                        <p class="text-secondary mb-2">
+                            El servicio de reparto se encuentra segmentado por radios de entrega asociados a cada sucursal para garantizar la calidad del producto.
+                        </p>
+                        <ul class="text-secondary small d-flex flex-column gap-1 mb-2">
+                            <li><strong>Horario regular:</strong> Lunes a Domingo de 12:00 m. a 10:30 p.m.</li>
+                            <li><strong>Validación de dirección:</strong> El sistema verifica de forma automática si su ubicación se encuentra dentro del rango de reparto habilitado al ingresar su dirección de entrega.</li>
+                            <li><strong>Alternativa de Recojo:</strong> Si su ubicación se encuentra fuera de cobertura, podrá optar por la modalidad de retiro en tienda (Pick Up).</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">2. TIEMPOS Y TARIFAS DE ENVÍO</h5>
+                        <p class="text-secondary mb-2">
+                            El tiempo estándar de entrega es de aproximadamente <strong>35 a 50 minutos</strong> desde la confirmación de la orden en cocina.
+                        </p>
+                        <p class="text-secondary mb-2">
+                            El costo de delivery se calcula según la distancia entre la sucursal de origen y el destino. Dicho valor se muestra claramente desglosado en el resumen de compra antes de confirmar el pago.
+                        </p>
+                        <p class="text-secondary">
+                            En días festivos, fines de semana con alta demanda o condiciones climatológicas adversas (lluvias intensas), los tiempos estimados pueden sufrir variaciones imprevistas.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">3. PROTOCOLO DE ENTREGA Y RECEPCIÓN</h5>
+                        <p class="text-secondary mb-2">
+                            Para resguardar la seguridad del cliente y del repartidor, se aplican las siguientes directrices:
+                        </p>
+                        <ul class="text-secondary small d-flex flex-column gap-2 mb-2">
+                            <li>La entrega se efectuará exclusivamente en la puerta principal de la vivienda, portería de condominios o recepción de edificios empresariales.</li>
+                            <li>El repartidor esperará un plazo máximo de <strong>10 minutos</strong> en el domicilio indicado intentando comunicarse vía llamada telefónica.</li>
+                            <li>En caso de no contactar al cliente, el pedido retornará al local de origen. La reprogramación generará un nuevo cargo de envío.</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">4. INCIDENCIAS Y ATENCIÓN POST-ENTREGA</h5>
+                        <p class="text-secondary">
+                            Es responsabilidad del cliente verificar la integridad y conformidad del pedido (sellos del empaque, bebidas y complementos) al momento de la entrega. En caso de discrepancias, repórtelo en un plazo no mayor a <strong>30 minutos</strong> a través de nuestra línea de atención para su solución inmediata.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/info/faq.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Preguntas Frecuentes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <main class="bg-white text-dark py-5" style="min-height: 80vh;">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Menú Lateral -->
+                <aside class="col-12 col-md-4 col-lg-3">
+                    <h5 class="fw-bold text-uppercase pb-2 border-bottom border-2 text-dark mb-3">Centro de Ayuda</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3 small">
+                        <li>
+                            <a th:href="@{/terminos}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Términos y Condiciones
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/delivery}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Políticas de Delivery
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/faq}" class="text-decoration-none fw-bold text-ro d-block border-start border-3 border-danger ps-2">
+                                Preguntas Frecuentes
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Área de Contenido -->
+                <div class="col-12 col-md-8 col-lg-9">
+                    <h2 class="fw-bold text-uppercase mb-4 text-dark border-bottom pb-2">Preguntas Frecuentes (FAQ)</h2>
+                    
+                    <p class="text-secondary leading-relaxed mb-4">
+                        Encuentra respuestas rápidas y claras a las consultas más comunes sobre compras, tiempos de despacho, medios de pago y modificaciones en tus pedidos.
+                    </p>
+
+                    <div class="accordion accordion-flush" id="accordionFaqBlanco">
+                        
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqOne">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqOne" aria-expanded="false" aria-controls="collapseFaqOne">
+                                    ¿Cuáles son los métodos de pago disponibles?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqOne" class="accordion-collapse collapse" aria-labelledby="faqOne" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    Aceptamos tarjetas de débito y crédito (Visa y Mastercard) mediante pasarela encriptada, pagos inmediatos por Yape, y la opción de pago contra entrega (efectivo con monto exacto o POS inalámbrico que lleva el repartidor).
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqTwo">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqTwo" aria-expanded="false" aria-controls="collapseFaqTwo">
+                                    ¿Cuál es el tiempo promedio de entrega?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwo" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    El plazo estimado comprende entre 35 y 50 minutos. Podrás conocer el avance de tu orden desde la confirmación del pago hasta que el repartidor arriba a tu dirección.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqThree">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqThree" aria-expanded="false" aria-controls="collapseFaqThree">
+                                    ¿Existe un consumo mínimo para delivery?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqThree" class="accordion-collapse collapse" aria-labelledby="faqThree" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    El monto mínimo de consumo para despachos a domicilio es de S/ 20.00 (sin incluir el costo por servicio de delivery).
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqFour">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqFour" aria-expanded="false" aria-controls="collapseFaqFour">
+                                    ¿Puedo retirar mi pedido directamente en tienda (Pick Up)?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqFour" class="accordion-collapse collapse" aria-labelledby="faqFour" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    Sí. Durante el proceso de compra selecciona "Retiro en local" y escoge la sucursal de tu preferencia. Tu pedido estará listo aproximadamente en 20 a 25 minutos sin costo adicional de envío.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqFive">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqFive" aria-expanded="false" aria-controls="collapseFaqFive">
+                                    ¿Cómo solicito factura o boleta electrónica?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqFive" class="accordion-collapse collapse" aria-labelledby="faqFive" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    En la pantalla de pago podrás seleccionar entre "Boleta" o "Factura". Para emitir factura, deberás ingresar el RUC y la Razón Social correspondiente antes de procesar la transacción.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqSix">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqSix" aria-expanded="false" aria-controls="collapseFaqSix">
+                                    ¿Qué debo hacer si mi pedido llega con algún inconveniente?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqSix" class="accordion-collapse collapse" aria-labelledby="faqSix" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    Comunícate inmediatamente dentro de los primeros 30 minutos a nuestra línea de atención (+51 999 999 999) o por correo a lacaleta@gmail.com con tu número de compra y una fotografía del producto para gestionar la reposición inmediata de tu orden.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/info/terminos.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Términos y Condiciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <main class="bg-white text-dark py-5" style="min-height: 80vh;">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Menú Lateral -->
+                <aside class="col-12 col-md-4 col-lg-3">
+                    <h5 class="fw-bold text-uppercase pb-2 border-bottom border-2 text-dark mb-3">Centro de Ayuda</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3 small">
+                        <li>
+                            <a th:href="@{/terminos}" class="text-decoration-none fw-bold text-ro d-block border-start border-3 border-danger ps-2">
+                                Términos y Condiciones
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/delivery}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Políticas de Delivery
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/faq}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Preguntas Frecuentes
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Área de Contenido -->
+                <div class="col-12 col-md-8 col-lg-9">
+                    <h2 class="fw-bold text-uppercase mb-4 text-dark border-bottom pb-2">Términos y Condiciones Generales</h2>
+                    
+                    <p class="text-secondary leading-relaxed mb-4">
+                        Bienvenido(a) a la plataforma web de <strong>Pizzería La Caleta</strong>. Al registrarse, navegar o formalizar una transacción a través de nuestros canales oficiales, usted acepta de forma plena y sin reserva los términos y condiciones aquí detallados. Le sugerimos leer con atención el presente documento.
+                    </p>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">1. CANALES DE COMPRA Y ATENCIÓN</h5>
+                        <p class="text-secondary mb-2">Los pedidos pueden gestionarse únicamente a través de los canales autorizados:</p>
+                        <ul class="text-secondary small d-flex flex-column gap-1">
+                            <li><strong>Plataforma Web:</strong> Catálogo digital con carrito de compras y pasarela integrada.</li>
+                            <li><strong>Central Telefónica:</strong> (+51) 999 999 999 en horario de atención comercial.</li>
+                            <li><strong>WhatsApp Oficial:</strong> (+51) 999 999 999 para asesoría y seguimiento de órdenes.</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">2. CONDICIONES DE PRECIOS, OFERTAS Y STOCK</h5>
+                        <p class="text-secondary mb-2">
+                            Todos los precios publicados se encuentran expresados en moneda nacional (Soles - PEN) e incluyen el Impuesto General a las Ventas (IGV).
+                        </p>
+                        <p class="text-secondary">
+                            Las ofertas y combos promocionales están sujetos a disponibilidad de masa e insumos frescos por local. Pizzería La Caleta se reserva la facultad de actualizar precios y recetas sin necesidad de comunicación previa, garantizando siempre el valor pactado al momento de emitir la orden de compra.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">3. CANCELACIONES, MODIFICACIONES Y DERECHO DE RETRACTO</h5>
+                        <p class="text-secondary mb-2">
+                            Al tratarse de alimentos preparados de consumo inmediato y perecibles, una vez confirmada la orden e iniciado el proceso de elaboración en cocina, no se admiten cancelaciones ni reembolsos por desistimiento del cliente.
+                        </p>
+                        <p class="text-secondary">
+                            Si requiere modificar datos de entrega o productos, deberá comunicarse de forma inmediata a nuestra central antes de que el pedido sea despachado.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">4. POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS</h5>
+                        <p class="text-secondary">
+                            En cumplimiento de la legislación vigente de Protección de Datos Personales, la información suministrada (nombre, número de contacto, correo y dirección) será procesada de manera confidencial y con la finalidad exclusiva de gestionar la entrega, facturación y seguimiento de su pedido.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">5. PROPIEDAD INTELECTUAL</h5>
+                        <p class="text-secondary">
+                            Las marcas, logotipos, imágenes de productos, textos y diseño web son propiedad exclusiva de Pizzería La Caleta. Queda estrictamente prohibida su reproducción, distribución o uso comercial no autorizado.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/shop/detalles.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Personalizar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="stylesheet" th:href="@{/style/detalles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header('')}"></div>
+    <main class="py-4">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb small">
+                    <li class="breadcrumb-item"><a th:href="@{/}" class="text-secondary text-decoration-none">Inicio</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/menu}" class="text-secondary text-decoration-none">Menú</a></li>
+                    <li class="breadcrumb-item active text-ro" id="breadcrumbNombre">Personalizar</li>
+                </ol>
+            </nav>
+            <div class="row g-4 align-items-start">
+                <div class="col-12 col-lg-6">
+                    <div class="contenedor-foto-completa">
+                        <img id="detalleImagen" th:src="@{/images/producto_pepperoni.jpg}" alt="Producto seleccionado">
+                        <span class="position-absolute top-0 start-0 m-3 badge bg-ro px-3 py-2 text-uppercase fw-bold rounded-pill shadow-sm">MÁS PEDIDA</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-3 mb-1">
+                        <h2 id="detalleNombre" class="fw-bold fs-3 text-white mb-0" th:text="${param.nombre != null ? param.nombre : 'Producto'}">Producto</h2>
+                        <span id="badgeCategoria" class="badge bg-secondary bg-opacity-25 text-white-50 border border-secondary border-opacity-25 px-3 py-2 text-capitalize" th:text="${param.tipo != null ? param.tipo : 'Pizza'}">Pizza</span>
+                    </div>
+                    <p id="detalleDescripcion" class="text-white-50 small mb-0 fw-medium" th:text="${param.desc != null ? param.desc : ''}"></p>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h3 id="tituloPersonalizar" class="fw-bold text-white mb-3 fs-4">Personaliza tu pedido</h3>
+                    <div class="d-flex align-items-center justify-content-center mb-4 p-3 stepper-transparente">
+                        <div id="stepIcon1" class="d-flex align-items-center cursor-pointer gap-2" onclick="irAlPaso(1)">
+                            <div id="stepCircle1" class="rounded-circle d-flex align-items-center justify-content-center fw-bold bg-ro text-white shadow-sm" style="width: 28px; height: 28px; font-size: 12px;">1</div>
+                            <span id="stepLabel1" class="small fw-bold text-ro">PIZZA</span>
+                        </div>
+                        <div id="stepLine" class="flex-grow-1 mx-3" style="height: 2px; background-color: rgba(255,255,255,0.2); max-width: 120px; transition: var(--transicion);"></div>
+                        <div id="stepIcon2" class="d-flex align-items-center cursor-pointer gap-2" onclick="irAlPaso(2)">
+                            <div id="stepCircle2" class="rounded-circle d-flex align-items-center justify-content-center fw-bold border border-secondary text-secondary bg-transparent" style="width: 28px; height: 28px; font-size: 12px;">2</div>
+                            <span id="stepLabel2" class="small fw-bold text-secondary">EXTRAS</span>
+                        </div>
+                    </div>
+                    <div id="paso1-pizza">
+                        <div th:replace="~{fragments/personalizador :: bloqueTamano}"></div>
+                        <div th:replace="~{fragments/personalizador :: bloqueMasa}"></div>
+                        <div th:replace="~{fragments/personalizador :: bloqueCortesias}"></div>
+                    </div>
+                    <div id="paso2-extras" class="d-none">
+                        <div th:replace="~{fragments/personalizador :: bloqueExtras}"></div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between gap-3 mt-3">
+                        <button id="btnAtras" type="button" class="btn btn-outline-secondary rounded-pill px-4 py-2 fw-semibold d-none" onclick="irAlPaso(1)">Atrás</button>
+                        <button id="btnSiguiente" type="button" class="btn btn-cta flex-grow-1 py-2 fw-bold text-uppercase d-flex justify-content-center align-items-center border-0" onclick="irAlPaso(2)">Siguiente</button>
+                        <button id="btnFinalizar" type="button" class="btn btn-cta flex-grow-1 py-2 fw-bold text-uppercase d-flex justify-content-center align-items-center border-0 d-none" onclick="enviarAlCarritoDesdeDetalle()">Agregar al pedido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/detalles.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+</body>
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/shop/locales.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Locales</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('locales')}"></div>
+
+    <main>
+        <section id="buscar-local" class="py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6 text-center">
+                        <h2 class="fw-bold text-white mb-2">LOCALES LA CALETA</h2>
+                        <p class="text-secondary small mb-4">
+                            Encuentra tu refugio más cercano. Contamos con 3 puntos clave en Lima para consumir en
+                            salón, delivery o recojo en tienda.
+                        </p>
+                        <div class="position-relative mx-auto mb-4" style="max-width: 480px;">
+                            <input type="text" class="form-control buscador-input ps-4 pe-5 py-2"
+                                placeholder="Ingresa tu distrito o dirección...">
+                            <button
+                                class="btn btn-buscar position-absolute top-50 end-0 translate-middle-y me-2 border-0 bg-transparent text-secondary"
+                                type="button" aria-label="Buscar">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <a th:href="@{/menu}"
+                                class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small text-decoration-none">
+                                Ver Menú Secreto
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div th:replace="~{fragments/locales :: seccionLocales(null)}"></div>
+
+        <section id="pregunta-local" class="py-5 border-top border-secondary border-opacity-10">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold text-white mb-2">PREGUNTAS SOBRE LOS LOCALES</h2>
+                    <p class="text-secondary small">Todo lo que necesitas saber antes de visitarnos o pedir tu pizza.</p>
+                </div>
+                <div class="accordion accordion-flush mx-auto d-flex flex-column gap-3" style="max-width: 900px;"
+                    id="acordeonLocales">
+                    <div class="accordion-item tarjeta-local border border-secondary border-opacity-25 rounded-3 overflow-hidden">
+                        <h3 class="accordion-header" id="headingUno">
+                            <button
+                                class="accordion-button collapsed bg-transparent text-secondary shadow-none fw-semibold p-3 p-md-4"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseUno"
+                                aria-expanded="false" aria-controls="collapseUno">
+                                ¿Cuáles son los horarios de atención en tienda?
+                            </button>
+                        </h3>
+                        <div id="collapseUno" class="accordion-collapse collapse" aria-labelledby="headingUno"
+                            data-bs-parent="#acordeonLocales">
+                            <div class="accordion-body text-secondary small pt-0 pb-4 px-3 px-md-4">
+                                Atendemos de lunes a domingo desde las 12:00 p.m. hasta las 11:00 p.m. Los días viernes
+                                y sábados el horario se extiende hasta la medianoche en salón y recojo en tienda.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item tarjeta-local border border-secondary border-opacity-25 rounded-3 overflow-hidden">
+                        <h3 class="accordion-header" id="headingDos">
+                            <button
+                                class="accordion-button collapsed bg-transparent text-secondary shadow-none fw-semibold p-3 p-md-4"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseDos"
+                                aria-expanded="false" aria-controls="collapseDos">
+                                ¿Puedo hacer mi pedido online y retirarlo en cualquier local?
+                            </button>
+                        </h3>
+                        <div id="collapseDos" class="accordion-collapse collapse" aria-labelledby="headingDos"
+                            data-bs-parent="#acordeonLocales">
+                            <div class="accordion-body text-secondary small pt-0 pb-4 px-3 px-md-4">
+                                Sí, al realizar tu compra selecciona la opción "Retiro en Tienda" y elige la sede más
+                                cercana. Tu pedido estará listo y caliente en aproximadamente 20 a 30 minutos.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item tarjeta-local border border-secondary border-opacity-25 rounded-3 overflow-hidden">
+                        <h3 class="accordion-header" id="headingTres">
+                            <button
+                                class="accordion-button collapsed bg-transparent text-secondary shadow-none fw-semibold p-3 p-md-4"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseTres"
+                                aria-expanded="false" aria-controls="collapseTres">
+                                ¿Se necesita reserva previa para comer en salón?
+                            </button>
+                        </h3>
+                        <div id="collapseTres" class="accordion-collapse collapse" aria-labelledby="headingTres"
+                            data-bs-parent="#acordeonLocales">
+                            <div class="accordion-body text-secondary small pt-0 pb-4 px-3 px-md-4">
+                                La atención en salón es por orden de llegada. Para grupos mayores a 8 personas
+                                recomendamos contactarnos vía WhatsApp o teléfono con 24 horas de anticipación.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item tarjeta-local border border-secondary border-opacity-25 rounded-3 overflow-hidden">
+                        <h3 class="accordion-header" id="headingCuatro">
+                            <button
+                                class="accordion-button collapsed bg-transparent text-secondary shadow-none fw-semibold p-3 p-md-4"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseCuatro"
+                                aria-expanded="false" aria-controls="collapseCuatro">
+                                ¿Qué métodos de pago aceptan directamente en tienda?
+                            </button>
+                        </h3>
+                        <div id="collapseCuatro" class="accordion-collapse collapse" aria-labelledby="headingCuatro"
+                            data-bs-parent="#acordeonLocales">
+                            <div class="accordion-body text-secondary small pt-0 pb-4 px-3 px-md-4">
+                                Aceptamos efectivo, tarjetas de débito/crédito (Visa, Mastercard, American Express) y
+                                pagos móviles mediante Yape y Plin sin recargo adicional.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/shop/menu.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Menu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('menu')}"></div>
+
+    <main class="py-3">
+        <div th:replace="~{fragments/catalogo :: navMenu}"></div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promociones', '', 'seccion-menu', ${promociones}, 'pizza')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('pizzas-principales', '', 'seccion-menu d-none', ${principales}, 'pizza')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('combos-secretos', '', 'seccion-menu d-none', ${combos}, 'combo')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('acompanamientos', '', 'seccion-menu d-none', ${acompanamientos}, 'simple')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('bebidas', '', 'seccion-menu d-none', ${bebidas}, 'simple')}">
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/shop/promociones.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Promociones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('promociones')}"></div>
+
+    <main class="py-3">
+        <div th:replace="~{fragments/catalogo :: navPromociones}"></div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promo-1persona', 'Para 1 Persona (Pizzas Personales)', '', ${promos1Persona}, 'pizza')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promo-2personas', 'Para 2 Personas (Dúos Clásicos)', '', ${promosDuo}, 'combo')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promo-3personas', 'Para 3 a 4 Personas (Tríos Caleta)', '', ${promosTrio}, 'combo')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promo-familiares', 'Para 5 a Más (Banquetes y Familiares)', '', ${promosFamiliares}, 'combo')}">
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/templates/index.html
+```html
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Pizzería Secreta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+    <div th:replace="~{fragments/header :: header('inicio')}"></div>
+    <main>
+        <div th:replace="~{fragments/banner :: sliderHero}"></div>
+
+        <div
+            th:replace="~{fragments/catalogo :: carruselHorizontal('carrusel-principales', 'LAS PRINCIPALES', ${clasicas}, 'pizza')}">
+        </div>
+
+        <section id="banner-promocional-1" class="py-3">
+            <div class="container">
+                <a th:href="@{/promociones}" class="d-block text-center">
+                    <img th:src="@{/images/banner_promocional.jpg}" class="img-fluid rounded-3 w-100 shadow-sm"
+                        alt="Promoción Come Caleta">
+                </a>
+            </div>
+        </section>
+
+        <div
+            th:replace="~{fragments/catalogo :: carruselHorizontal('carrusel-combos', 'COMBOS SECRETOS', ${combos}, 'combo')}">
+        </div>
+
+        <section id="descripcion" class="py-4 mt-5 mb-0">
+            <div class="container">
+                <div class="row align-items-center justify-content-center g-4 text-center text-md-start">
+                    <div class="col-8 col-sm-5 col-md-3 text-center">
+                        <img th:src="@{/images/descripcion.jpg}" class="img-fluid" style="max-height: 220px;"
+                            alt="Pizza Caleta">
+                    </div>
+                    <div class="col-12 col-md-6 text-white">
+                        <h2 class="fw-bold mb-2 fs-3">¿POR QUÉ CALETA?</h2>
+                        <p class="fs-6 opacity-75 mb-0">
+                            Porque la verdadera pasión no se anuncia, se disfruta en silencio. Nuestra receta es nuestro
+                            secreto mejor guardado.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+</body>
+
+</html>
+```
+
+## File: Caleta_Guillermo/lacaleta/src/main/resources/application.properties
+```
+spring.application.name=lacaleta
+server.port=8082
+
+# CONFIGURACIÓN NEON
+spring.datasource.url=jdbc:postgresql://ep-wandering-cell-ay8ox05o-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require
+spring.datasource.username=neondb_owner
+spring.datasource.password=npg_ULk4dAE5TuBH
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# JPA / HIBERNATE
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+# Configuración de Correo SMTP
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=soporte.lacaleta@gmail.com
+spring.mail.password=hghc cpag gzpj kxax 
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+```
+
+## File: Caleta_Guillermo/lacaleta/src/test/java/com/lacaleta/LacaletaApplicationTests.java
+```java
+package com.lacaleta;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class LacaletaApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/.gitattributes
+```
+/mvnw text eol=lf
+*.cmd text eol=crlf
+```
+
+## File: Caleta_Guillermo/lacaleta/.gitignore
+```
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+```
+
+## File: Caleta_Guillermo/lacaleta/cookies.txt
+```
+# Netscape HTTP Cookie File
+# https://curl.se/docs/http-cookies.html
+# This file was generated by libcurl! Edit at your own risk.
+```
+
+## File: Caleta_Guillermo/lacaleta/DbChecker.java
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class DbChecker {
+    public static void main(String[] args) {
+        String url = "jdbc:postgresql://ep-wandering-cell-ay8ox05o-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require";
+        String user = "neondb_owner";
+        String password = "npg_ULk4dAE5TuBH";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             Statement stmt = conn.createStatement()) {
+            
+            System.out.println("=== CATEGORIAS ===");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM categorias");
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") + " | " + rs.getString("codigo") + " | " + rs.getString("nombre"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+## File: Caleta_Guillermo/lacaleta/mvnw
+```
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# Apache Maven Wrapper startup batch script, version 3.3.4
+#
+# Optional ENV vars
+# -----------------
+#   JAVA_HOME - location of a JDK home dir, required when download maven via java source
+#   MVNW_REPOURL - repo url base for downloading maven distribution
+#   MVNW_USERNAME/MVNW_PASSWORD - user and password for downloading maven
+#   MVNW_VERBOSE - true: enable verbose log; debug: trace the mvnw script; others: silence the output
+# ----------------------------------------------------------------------------
+
+set -euf
+[ "${MVNW_VERBOSE-}" != debug ] || set -x
+
+# OS specific support.
+native_path() { printf %s\\n "$1"; }
+case "$(uname)" in
+CYGWIN* | MINGW*)
+  [ -z "${JAVA_HOME-}" ] || JAVA_HOME="$(cygpath --unix "$JAVA_HOME")"
+  native_path() { cygpath --path --windows "$1"; }
+  ;;
+esac
+
+# set JAVACMD and JAVACCMD
+set_java_home() {
+  # For Cygwin and MinGW, ensure paths are in Unix format before anything is touched
+  if [ -n "${JAVA_HOME-}" ]; then
+    if [ -x "$JAVA_HOME/jre/sh/java" ]; then
+      # IBM's JDK on AIX uses strange locations for the executables
+      JAVACMD="$JAVA_HOME/jre/sh/java"
+      JAVACCMD="$JAVA_HOME/jre/sh/javac"
+    else
+      JAVACMD="$JAVA_HOME/bin/java"
+      JAVACCMD="$JAVA_HOME/bin/javac"
+
+      if [ ! -x "$JAVACMD" ] || [ ! -x "$JAVACCMD" ]; then
+        echo "The JAVA_HOME environment variable is not defined correctly, so mvnw cannot run." >&2
+        echo "JAVA_HOME is set to \"$JAVA_HOME\", but \"\$JAVA_HOME/bin/java\" or \"\$JAVA_HOME/bin/javac\" does not exist." >&2
+        return 1
+      fi
+    fi
+  else
+    JAVACMD="$(
+      'set' +e
+      'unset' -f command 2>/dev/null
+      'command' -v java
+    )" || :
+    JAVACCMD="$(
+      'set' +e
+      'unset' -f command 2>/dev/null
+      'command' -v javac
+    )" || :
+
+    if [ ! -x "${JAVACMD-}" ] || [ ! -x "${JAVACCMD-}" ]; then
+      echo "The java/javac command does not exist in PATH nor is JAVA_HOME set, so mvnw cannot run." >&2
+      return 1
+    fi
+  fi
+}
+
+# hash string like Java String::hashCode
+hash_string() {
+  str="${1:-}" h=0
+  while [ -n "$str" ]; do
+    char="${str%"${str#?}"}"
+    h=$(((h * 31 + $(LC_CTYPE=C printf %d "'$char")) % 4294967296))
+    str="${str#?}"
+  done
+  printf %x\\n $h
+}
+
+verbose() { :; }
+[ "${MVNW_VERBOSE-}" != true ] || verbose() { printf %s\\n "${1-}"; }
+
+die() {
+  printf %s\\n "$1" >&2
+  exit 1
+}
+
+trim() {
+  # MWRAPPER-139:
+  #   Trims trailing and leading whitespace, carriage returns, tabs, and linefeeds.
+  #   Needed for removing poorly interpreted newline sequences when running in more
+  #   exotic environments such as mingw bash on Windows.
+  printf "%s" "${1}" | tr -d '[:space:]'
+}
+
+scriptDir="$(dirname "$0")"
+scriptName="$(basename "$0")"
+
+# parse distributionUrl and optional distributionSha256Sum, requires .mvn/wrapper/maven-wrapper.properties
+while IFS="=" read -r key value; do
+  case "${key-}" in
+  distributionUrl) distributionUrl=$(trim "${value-}") ;;
+  distributionSha256Sum) distributionSha256Sum=$(trim "${value-}") ;;
+  esac
+done <"$scriptDir/.mvn/wrapper/maven-wrapper.properties"
+[ -n "${distributionUrl-}" ] || die "cannot read distributionUrl property in $scriptDir/.mvn/wrapper/maven-wrapper.properties"
+
+case "${distributionUrl##*/}" in
+maven-mvnd-*bin.*)
+  MVN_CMD=mvnd.sh _MVNW_REPO_PATTERN=/maven/mvnd/
+  case "${PROCESSOR_ARCHITECTURE-}${PROCESSOR_ARCHITEW6432-}:$(uname -a)" in
+  *AMD64:CYGWIN* | *AMD64:MINGW*) distributionPlatform=windows-amd64 ;;
+  :Darwin*x86_64) distributionPlatform=darwin-amd64 ;;
+  :Darwin*arm64) distributionPlatform=darwin-aarch64 ;;
+  :Linux*x86_64*) distributionPlatform=linux-amd64 ;;
+  *)
+    echo "Cannot detect native platform for mvnd on $(uname)-$(uname -m), use pure java version" >&2
+    distributionPlatform=linux-amd64
+    ;;
+  esac
+  distributionUrl="${distributionUrl%-bin.*}-$distributionPlatform.zip"
+  ;;
+maven-mvnd-*) MVN_CMD=mvnd.sh _MVNW_REPO_PATTERN=/maven/mvnd/ ;;
+*) MVN_CMD="mvn${scriptName#mvnw}" _MVNW_REPO_PATTERN=/org/apache/maven/ ;;
+esac
+
+# apply MVNW_REPOURL and calculate MAVEN_HOME
+# maven home pattern: ~/.m2/wrapper/dists/{apache-maven-<version>,maven-mvnd-<version>-<platform>}/<hash>
+[ -z "${MVNW_REPOURL-}" ] || distributionUrl="$MVNW_REPOURL$_MVNW_REPO_PATTERN${distributionUrl#*"$_MVNW_REPO_PATTERN"}"
+distributionUrlName="${distributionUrl##*/}"
+distributionUrlNameMain="${distributionUrlName%.*}"
+distributionUrlNameMain="${distributionUrlNameMain%-bin}"
+MAVEN_USER_HOME="${MAVEN_USER_HOME:-${HOME}/.m2}"
+MAVEN_HOME="${MAVEN_USER_HOME}/wrapper/dists/${distributionUrlNameMain-}/$(hash_string "$distributionUrl")"
+
+exec_maven() {
+  unset MVNW_VERBOSE MVNW_USERNAME MVNW_PASSWORD MVNW_REPOURL || :
+  exec "$MAVEN_HOME/bin/$MVN_CMD" "$@" || die "cannot exec $MAVEN_HOME/bin/$MVN_CMD"
+}
+
+if [ -d "$MAVEN_HOME" ]; then
+  verbose "found existing MAVEN_HOME at $MAVEN_HOME"
+  exec_maven "$@"
+fi
+
+case "${distributionUrl-}" in
+*?-bin.zip | *?maven-mvnd-?*-?*.zip) ;;
+*) die "distributionUrl is not valid, must match *-bin.zip or maven-mvnd-*.zip, but found '${distributionUrl-}'" ;;
+esac
+
+# prepare tmp dir
+if TMP_DOWNLOAD_DIR="$(mktemp -d)" && [ -d "$TMP_DOWNLOAD_DIR" ]; then
+  clean() { rm -rf -- "$TMP_DOWNLOAD_DIR"; }
+  trap clean HUP INT TERM EXIT
+else
+  die "cannot create temp dir"
+fi
+
+mkdir -p -- "${MAVEN_HOME%/*}"
+
+# Download and Install Apache Maven
+verbose "Couldn't find MAVEN_HOME, downloading and installing it ..."
+verbose "Downloading from: $distributionUrl"
+verbose "Downloading to: $TMP_DOWNLOAD_DIR/$distributionUrlName"
+
+# select .zip or .tar.gz
+if ! command -v unzip >/dev/null; then
+  distributionUrl="${distributionUrl%.zip}.tar.gz"
+  distributionUrlName="${distributionUrl##*/}"
+fi
+
+# verbose opt
+__MVNW_QUIET_WGET=--quiet __MVNW_QUIET_CURL=--silent __MVNW_QUIET_UNZIP=-q __MVNW_QUIET_TAR=''
+[ "${MVNW_VERBOSE-}" != true ] || __MVNW_QUIET_WGET='' __MVNW_QUIET_CURL='' __MVNW_QUIET_UNZIP='' __MVNW_QUIET_TAR=v
+
+# normalize http auth
+case "${MVNW_PASSWORD:+has-password}" in
+'') MVNW_USERNAME='' MVNW_PASSWORD='' ;;
+has-password) [ -n "${MVNW_USERNAME-}" ] || MVNW_USERNAME='' MVNW_PASSWORD='' ;;
+esac
+
+if [ -z "${MVNW_USERNAME-}" ] && command -v wget >/dev/null; then
+  verbose "Found wget ... using wget"
+  wget ${__MVNW_QUIET_WGET:+"$__MVNW_QUIET_WGET"} "$distributionUrl" -O "$TMP_DOWNLOAD_DIR/$distributionUrlName" || die "wget: Failed to fetch $distributionUrl"
+elif [ -z "${MVNW_USERNAME-}" ] && command -v curl >/dev/null; then
+  verbose "Found curl ... using curl"
+  curl ${__MVNW_QUIET_CURL:+"$__MVNW_QUIET_CURL"} -f -L -o "$TMP_DOWNLOAD_DIR/$distributionUrlName" "$distributionUrl" || die "curl: Failed to fetch $distributionUrl"
+elif set_java_home; then
+  verbose "Falling back to use Java to download"
+  javaSource="$TMP_DOWNLOAD_DIR/Downloader.java"
+  targetZip="$TMP_DOWNLOAD_DIR/$distributionUrlName"
+  cat >"$javaSource" <<-END
+	public class Downloader extends java.net.Authenticator
+	{
+	  protected java.net.PasswordAuthentication getPasswordAuthentication()
+	  {
+	    return new java.net.PasswordAuthentication( System.getenv( "MVNW_USERNAME" ), System.getenv( "MVNW_PASSWORD" ).toCharArray() );
+	  }
+	  public static void main( String[] args ) throws Exception
+	  {
+	    setDefault( new Downloader() );
+	    java.nio.file.Files.copy( java.net.URI.create( args[0] ).toURL().openStream(), java.nio.file.Paths.get( args[1] ).toAbsolutePath().normalize() );
+	  }
+	}
+	END
+  # For Cygwin/MinGW, switch paths to Windows format before running javac and java
+  verbose " - Compiling Downloader.java ..."
+  "$(native_path "$JAVACCMD")" "$(native_path "$javaSource")" || die "Failed to compile Downloader.java"
+  verbose " - Running Downloader.java ..."
+  "$(native_path "$JAVACMD")" -cp "$(native_path "$TMP_DOWNLOAD_DIR")" Downloader "$distributionUrl" "$(native_path "$targetZip")"
+fi
+
+# If specified, validate the SHA-256 sum of the Maven distribution zip file
+if [ -n "${distributionSha256Sum-}" ]; then
+  distributionSha256Result=false
+  if [ "$MVN_CMD" = mvnd.sh ]; then
+    echo "Checksum validation is not supported for maven-mvnd." >&2
+    echo "Please disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties." >&2
+    exit 1
+  elif command -v sha256sum >/dev/null; then
+    if echo "$distributionSha256Sum  $TMP_DOWNLOAD_DIR/$distributionUrlName" | sha256sum -c - >/dev/null 2>&1; then
+      distributionSha256Result=true
+    fi
+  elif command -v shasum >/dev/null; then
+    if echo "$distributionSha256Sum  $TMP_DOWNLOAD_DIR/$distributionUrlName" | shasum -a 256 -c >/dev/null 2>&1; then
+      distributionSha256Result=true
+    fi
+  else
+    echo "Checksum validation was requested but neither 'sha256sum' or 'shasum' are available." >&2
+    echo "Please install either command, or disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties." >&2
+    exit 1
+  fi
+  if [ $distributionSha256Result = false ]; then
+    echo "Error: Failed to validate Maven distribution SHA-256, your Maven distribution might be compromised." >&2
+    echo "If you updated your Maven version, you need to update the specified distributionSha256Sum property." >&2
+    exit 1
+  fi
+fi
+
+# unzip and move
+if command -v unzip >/dev/null; then
+  unzip ${__MVNW_QUIET_UNZIP:+"$__MVNW_QUIET_UNZIP"} "$TMP_DOWNLOAD_DIR/$distributionUrlName" -d "$TMP_DOWNLOAD_DIR" || die "failed to unzip"
+else
+  tar xzf${__MVNW_QUIET_TAR:+"$__MVNW_QUIET_TAR"} "$TMP_DOWNLOAD_DIR/$distributionUrlName" -C "$TMP_DOWNLOAD_DIR" || die "failed to untar"
+fi
+
+# Find the actual extracted directory name (handles snapshots where filename != directory name)
+actualDistributionDir=""
+
+# First try the expected directory name (for regular distributions)
+if [ -d "$TMP_DOWNLOAD_DIR/$distributionUrlNameMain" ]; then
+  if [ -f "$TMP_DOWNLOAD_DIR/$distributionUrlNameMain/bin/$MVN_CMD" ]; then
+    actualDistributionDir="$distributionUrlNameMain"
+  fi
+fi
+
+# If not found, search for any directory with the Maven executable (for snapshots)
+if [ -z "$actualDistributionDir" ]; then
+  # enable globbing to iterate over items
+  set +f
+  for dir in "$TMP_DOWNLOAD_DIR"/*; do
+    if [ -d "$dir" ]; then
+      if [ -f "$dir/bin/$MVN_CMD" ]; then
+        actualDistributionDir="$(basename "$dir")"
+        break
+      fi
+    fi
+  done
+  set -f
+fi
+
+if [ -z "$actualDistributionDir" ]; then
+  verbose "Contents of $TMP_DOWNLOAD_DIR:"
+  verbose "$(ls -la "$TMP_DOWNLOAD_DIR")"
+  die "Could not find Maven distribution directory in extracted archive"
+fi
+
+verbose "Found extracted Maven distribution directory: $actualDistributionDir"
+printf %s\\n "$distributionUrl" >"$TMP_DOWNLOAD_DIR/$actualDistributionDir/mvnw.url"
+mv -- "$TMP_DOWNLOAD_DIR/$actualDistributionDir" "$MAVEN_HOME" || [ -d "$MAVEN_HOME" ] || die "fail to move MAVEN_HOME"
+
+clean || :
+exec_maven "$@"
+```
+
+## File: Caleta_Guillermo/lacaleta/mvnw.cmd
+```batch
+<# : batch portion
+@REM ----------------------------------------------------------------------------
+@REM Licensed to the Apache Software Foundation (ASF) under one
+@REM or more contributor license agreements.  See the NOTICE file
+@REM distributed with this work for additional information
+@REM regarding copyright ownership.  The ASF licenses this file
+@REM to you under the Apache License, Version 2.0 (the
+@REM "License"); you may not use this file except in compliance
+@REM with the License.  You may obtain a copy of the License at
+@REM
+@REM    http://www.apache.org/licenses/LICENSE-2.0
+@REM
+@REM Unless required by applicable law or agreed to in writing,
+@REM software distributed under the License is distributed on an
+@REM "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+@REM KIND, either express or implied.  See the License for the
+@REM specific language governing permissions and limitations
+@REM under the License.
+@REM ----------------------------------------------------------------------------
+
+@REM ----------------------------------------------------------------------------
+@REM Apache Maven Wrapper startup batch script, version 3.3.4
+@REM
+@REM Optional ENV vars
+@REM   MVNW_REPOURL - repo url base for downloading maven distribution
+@REM   MVNW_USERNAME/MVNW_PASSWORD - user and password for downloading maven
+@REM   MVNW_VERBOSE - true: enable verbose log; others: silence the output
+@REM ----------------------------------------------------------------------------
+
+@IF "%__MVNW_ARG0_NAME__%"=="" (SET __MVNW_ARG0_NAME__=%~nx0)
+@SET __MVNW_CMD__=
+@SET __MVNW_ERROR__=
+@SET __MVNW_PSMODULEP_SAVE=%PSModulePath%
+@SET PSModulePath=
+@FOR /F "usebackq tokens=1* delims==" %%A IN (`powershell -noprofile "& {$scriptDir='%~dp0'; $script='%__MVNW_ARG0_NAME__%'; icm -ScriptBlock ([Scriptblock]::Create((Get-Content -Raw '%~f0'))) -NoNewScope}"`) DO @(
+  IF "%%A"=="MVN_CMD" (set __MVNW_CMD__=%%B) ELSE IF "%%B"=="" (echo %%A) ELSE (echo %%A=%%B)
+)
+@SET PSModulePath=%__MVNW_PSMODULEP_SAVE%
+@SET __MVNW_PSMODULEP_SAVE=
+@SET __MVNW_ARG0_NAME__=
+@SET MVNW_USERNAME=
+@SET MVNW_PASSWORD=
+@IF NOT "%__MVNW_CMD__%"=="" ("%__MVNW_CMD__%" %*)
+@echo Cannot start maven from wrapper >&2 && exit /b 1
+@GOTO :EOF
+: end batch / begin powershell #>
+
+$ErrorActionPreference = "Stop"
+if ($env:MVNW_VERBOSE -eq "true") {
+  $VerbosePreference = "Continue"
+}
+
+# calculate distributionUrl, requires .mvn/wrapper/maven-wrapper.properties
+$distributionUrl = (Get-Content -Raw "$scriptDir/.mvn/wrapper/maven-wrapper.properties" | ConvertFrom-StringData).distributionUrl
+if (!$distributionUrl) {
+  Write-Error "cannot read distributionUrl property in $scriptDir/.mvn/wrapper/maven-wrapper.properties"
+}
+
+switch -wildcard -casesensitive ( $($distributionUrl -replace '^.*/','') ) {
+  "maven-mvnd-*" {
+    $USE_MVND = $true
+    $distributionUrl = $distributionUrl -replace '-bin\.[^.]*$',"-windows-amd64.zip"
+    $MVN_CMD = "mvnd.cmd"
+    break
+  }
+  default {
+    $USE_MVND = $false
+    $MVN_CMD = $script -replace '^mvnw','mvn'
+    break
+  }
+}
+
+# apply MVNW_REPOURL and calculate MAVEN_HOME
+# maven home pattern: ~/.m2/wrapper/dists/{apache-maven-<version>,maven-mvnd-<version>-<platform>}/<hash>
+if ($env:MVNW_REPOURL) {
+  $MVNW_REPO_PATTERN = if ($USE_MVND -eq $False) { "/org/apache/maven/" } else { "/maven/mvnd/" }
+  $distributionUrl = "$env:MVNW_REPOURL$MVNW_REPO_PATTERN$($distributionUrl -replace "^.*$MVNW_REPO_PATTERN",'')"
+}
+$distributionUrlName = $distributionUrl -replace '^.*/',''
+$distributionUrlNameMain = $distributionUrlName -replace '\.[^.]*$','' -replace '-bin$',''
+
+$MAVEN_M2_PATH = "$HOME/.m2"
+if ($env:MAVEN_USER_HOME) {
+  $MAVEN_M2_PATH = "$env:MAVEN_USER_HOME"
+}
+
+if (-not (Test-Path -Path $MAVEN_M2_PATH)) {
+    New-Item -Path $MAVEN_M2_PATH -ItemType Directory | Out-Null
+}
+
+$MAVEN_WRAPPER_DISTS = $null
+if ((Get-Item $MAVEN_M2_PATH).Target[0] -eq $null) {
+  $MAVEN_WRAPPER_DISTS = "$MAVEN_M2_PATH/wrapper/dists"
+} else {
+  $MAVEN_WRAPPER_DISTS = (Get-Item $MAVEN_M2_PATH).Target[0] + "/wrapper/dists"
+}
+
+$MAVEN_HOME_PARENT = "$MAVEN_WRAPPER_DISTS/$distributionUrlNameMain"
+$MAVEN_HOME_NAME = ([System.Security.Cryptography.SHA256]::Create().ComputeHash([byte[]][char[]]$distributionUrl) | ForEach-Object {$_.ToString("x2")}) -join ''
+$MAVEN_HOME = "$MAVEN_HOME_PARENT/$MAVEN_HOME_NAME"
+
+if (Test-Path -Path "$MAVEN_HOME" -PathType Container) {
+  Write-Verbose "found existing MAVEN_HOME at $MAVEN_HOME"
+  Write-Output "MVN_CMD=$MAVEN_HOME/bin/$MVN_CMD"
+  exit $?
+}
+
+if (! $distributionUrlNameMain -or ($distributionUrlName -eq $distributionUrlNameMain)) {
+  Write-Error "distributionUrl is not valid, must end with *-bin.zip, but found $distributionUrl"
+}
+
+# prepare tmp dir
+$TMP_DOWNLOAD_DIR_HOLDER = New-TemporaryFile
+$TMP_DOWNLOAD_DIR = New-Item -Itemtype Directory -Path "$TMP_DOWNLOAD_DIR_HOLDER.dir"
+$TMP_DOWNLOAD_DIR_HOLDER.Delete() | Out-Null
+trap {
+  if ($TMP_DOWNLOAD_DIR.Exists) {
+    try { Remove-Item $TMP_DOWNLOAD_DIR -Recurse -Force | Out-Null }
+    catch { Write-Warning "Cannot remove $TMP_DOWNLOAD_DIR" }
+  }
+}
+
+New-Item -Itemtype Directory -Path "$MAVEN_HOME_PARENT" -Force | Out-Null
+
+# Download and Install Apache Maven
+Write-Verbose "Couldn't find MAVEN_HOME, downloading and installing it ..."
+Write-Verbose "Downloading from: $distributionUrl"
+Write-Verbose "Downloading to: $TMP_DOWNLOAD_DIR/$distributionUrlName"
+
+$webclient = New-Object System.Net.WebClient
+if ($env:MVNW_USERNAME -and $env:MVNW_PASSWORD) {
+  $webclient.Credentials = New-Object System.Net.NetworkCredential($env:MVNW_USERNAME, $env:MVNW_PASSWORD)
+}
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$webclient.DownloadFile($distributionUrl, "$TMP_DOWNLOAD_DIR/$distributionUrlName") | Out-Null
+
+# If specified, validate the SHA-256 sum of the Maven distribution zip file
+$distributionSha256Sum = (Get-Content -Raw "$scriptDir/.mvn/wrapper/maven-wrapper.properties" | ConvertFrom-StringData).distributionSha256Sum
+if ($distributionSha256Sum) {
+  if ($USE_MVND) {
+    Write-Error "Checksum validation is not supported for maven-mvnd. `nPlease disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties."
+  }
+  Import-Module $PSHOME\Modules\Microsoft.PowerShell.Utility -Function Get-FileHash
+  if ((Get-FileHash "$TMP_DOWNLOAD_DIR/$distributionUrlName" -Algorithm SHA256).Hash.ToLower() -ne $distributionSha256Sum) {
+    Write-Error "Error: Failed to validate Maven distribution SHA-256, your Maven distribution might be compromised. If you updated your Maven version, you need to update the specified distributionSha256Sum property."
+  }
+}
+
+# unzip and move
+Expand-Archive "$TMP_DOWNLOAD_DIR/$distributionUrlName" -DestinationPath "$TMP_DOWNLOAD_DIR" | Out-Null
+
+# Find the actual extracted directory name (handles snapshots where filename != directory name)
+$actualDistributionDir = ""
+
+# First try the expected directory name (for regular distributions)
+$expectedPath = Join-Path "$TMP_DOWNLOAD_DIR" "$distributionUrlNameMain"
+$expectedMvnPath = Join-Path "$expectedPath" "bin/$MVN_CMD"
+if ((Test-Path -Path $expectedPath -PathType Container) -and (Test-Path -Path $expectedMvnPath -PathType Leaf)) {
+  $actualDistributionDir = $distributionUrlNameMain
+}
+
+# If not found, search for any directory with the Maven executable (for snapshots)
+if (!$actualDistributionDir) {
+  Get-ChildItem -Path "$TMP_DOWNLOAD_DIR" -Directory | ForEach-Object {
+    $testPath = Join-Path $_.FullName "bin/$MVN_CMD"
+    if (Test-Path -Path $testPath -PathType Leaf) {
+      $actualDistributionDir = $_.Name
+    }
+  }
+}
+
+if (!$actualDistributionDir) {
+  Write-Error "Could not find Maven distribution directory in extracted archive"
+}
+
+Write-Verbose "Found extracted Maven distribution directory: $actualDistributionDir"
+Rename-Item -Path "$TMP_DOWNLOAD_DIR/$actualDistributionDir" -NewName $MAVEN_HOME_NAME | Out-Null
+try {
+  Move-Item -Path "$TMP_DOWNLOAD_DIR/$MAVEN_HOME_NAME" -Destination $MAVEN_HOME_PARENT | Out-Null
+} catch {
+  if (! (Test-Path -Path "$MAVEN_HOME" -PathType Container)) {
+    Write-Error "fail to move MAVEN_HOME"
+  }
+} finally {
+  try { Remove-Item $TMP_DOWNLOAD_DIR -Recurse -Force | Out-Null }
+  catch { Write-Warning "Cannot remove $TMP_DOWNLOAD_DIR" }
+}
+
+Write-Output "MVN_CMD=$MAVEN_HOME/bin/$MVN_CMD"
+```
+
+## File: Caleta_Guillermo/lacaleta/pom.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>4.1.1</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.lacaleta</groupId>
+	<artifactId>lacaleta</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name/>
+	<description/>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+				<!-- Driver de PostgreSQL -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- Spring Data JPA -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mindrot</groupId>
+			<artifactId>jbcrypt</artifactId>
+			<version>0.4</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+```
+
+## File: repomix-output.xml
+```xml
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+Caleta_Guillermo/
+  .vscode/
+    launch.json
+    settings.json
+  lacaleta/
+    .mvn/
+      wrapper/
+        maven-wrapper.properties
+    src/
+      main/
+        java/
+          com/
+            lacaleta/
+              config/
+                WebConfig.java
+              controller/
+                AdminInsumoController.java
+                AdminProductoController.java
+                AdminRestController.java
+                PageController.java
+                PasswordResetController.java
+              model/
+                Categoria.java
+                DetallePedido.java
+                Insumo.java
+                Pedido.java
+                Producto.java
+                Usuario.java
+              repository/
+                CategoriaRepository.java
+                InsumoRepository.java
+                PedidoRepository.java
+                ProductoRepository.java
+                UsuarioRepository.java
+              service/
+                CategoriaService.java
+                EmailService.java
+                InsumoService.java
+                ProductoService.java
+                UsuarioService.java
+              DatabaseSeeder.java
+              LacaletaApplication.java
+              TestQuery.java
+        resources/
+          static/
+            js/
+              admi.js
+              auth-session.js
+              auth.js
+              cart.js
+              detalles.js
+              main.js
+              payment.js
+              reporte.js
+              shipping.js
+              ui.js
+            style/
+              admin.css
+              auth-admin.css
+              detalles.css
+              main.css
+              shop.css
+              styles.css
+          templates/
+            account/
+              create.html
+              forgotpassword.html
+              login.html
+              resetpassword.html
+              verifycode.html
+            admin/
+              admin.html
+              reportes.html
+            checkout/
+              cart.html
+              payment.html
+              shipping.html
+            fragments/
+              banner.html
+              catalogo.html
+              footer-simple.html
+              footer.html
+              header-checkout.html
+              header.html
+              locales.html
+              modals.html
+              personalizador.html
+            info/
+              delivery.html
+              faq.html
+              terminos.html
+            shop/
+              detalles.html
+              locales.html
+              menu.html
+              promociones.html
+            index.html
+          application.properties
+      test/
+        java/
+          com/
+            lacaleta/
+              LacaletaApplicationTests.java
+    .gitattributes
+    .gitignore
+    cookies.txt
+    DbChecker.java
+    mvnw
+    mvnw.cmd
+    pom.xml
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="Caleta_Guillermo/.vscode/launch.json">
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LacaletaApplication<lacaleta>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.lacaleta.LacaletaApplication",
+            "projectName": "lacaleta",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
+</file>
+
+<file path="Caleta_Guillermo/.vscode/settings.json">
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "interactive"
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/.mvn/wrapper/maven-wrapper.properties">
+wrapperVersion=3.3.4
+distributionType=only-script
+distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.16/apache-maven-3.9.16-bin.zip
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/config/WebConfig.java">
+package com.lacaleta.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // Mapear la ruta virtual /uploads/** al directorio físico uploads/
+        // Esto permite servir archivos subidos dinámicamente sin reiniciar el servidor.
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations("file:uploads/");
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/controller/AdminInsumoController.java">
+package com.lacaleta.controller;
+
+import com.lacaleta.model.Insumo;
+import com.lacaleta.service.InsumoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+@Controller
+@RequestMapping("/admin/insumos")
+public class AdminInsumoController {
+
+    @Autowired
+    private InsumoService insumoService;
+
+    @PostMapping("/guardar")
+    public String guardar(
+            @RequestParam(value = "id", required = false) Integer id,
+            @RequestParam("nombre") String nombre,
+            @RequestParam("stockActual") Double stockActual,
+            @RequestParam("unidadMedida") String unidadMedida,
+            @RequestParam(value = "stockMinimo", defaultValue = "5.0") Double stockMinimo,
+            RedirectAttributes flash) {
+
+        Insumo insumo = new Insumo();
+        insumo.setId(id);
+        insumo.setNombre(nombre.trim());
+        insumo.setStockActual(stockActual);
+        insumo.setUnidadMedida(unidadMedida);
+        insumo.setStockMinimo(stockMinimo);
+
+        insumoService.guardar(insumo);
+        flash.addFlashAttribute("exito", "Insumo registrado/actualizado correctamente.");
+        return "redirect:/admin#stock";
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable Integer id, RedirectAttributes flash) {
+        if (insumoService.eliminar(id)) {
+            flash.addFlashAttribute("exito", "Insumo eliminado correctamente.");
+        } else {
+            flash.addFlashAttribute("error", "No se pudo encontrar el insumo a eliminar.");
+        }
+        return "redirect:/admin#stock";
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/controller/AdminProductoController.java">
+package com.lacaleta.controller;
+
+import com.lacaleta.model.Producto;
+import com.lacaleta.service.CategoriaService;
+import com.lacaleta.service.ProductoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+@Controller
+@RequestMapping("/admin/pizzas")
+public class AdminProductoController {
+
+    @Autowired
+    private ProductoService productoService;
+
+    @Autowired
+    private CategoriaService categoriaService;
+
+    // POST: /admin/pizzas/guardar (Crear nueva pizza)
+    @PostMapping("/guardar")
+    public String guardar(
+            @RequestParam("nombre") String nombre,
+            @RequestParam("precio") Double precio,
+            @RequestParam(value = "stock", defaultValue = "10") Integer stock,
+            @RequestParam(value = "imagenUrl", required = false) String imagenUrl,
+            @RequestParam(value = "imagenArchivo", required = false) MultipartFile imagenArchivo,
+            @RequestParam(value = "codigoCategoria", defaultValue = "clasicas") String codigoCategoria,
+            @RequestParam(value = "tamano", defaultValue = "Familiar") String tamano,
+            RedirectAttributes flash) {
+
+        if (nombre == null || nombre.isBlank()) {
+            flash.addFlashAttribute("error", "El nombre de la pizza es obligatorio.");
+            return "redirect:/admin";
+        }
+        if (precio == null || precio <= 0) {
+            flash.addFlashAttribute("error", "El precio debe ser mayor a 0.");
+            return "redirect:/admin";
+        }
+
+        var catOpt = categoriaService.buscarPorCodigo(codigoCategoria);
+
+        Producto pizza = new Producto();
+        pizza.setNombre(nombre.trim());
+        pizza.setPrecio(precio);
+        pizza.setStock(stock);
+        pizza.setDescripcion("Pizza artesanal horneada a la leña.");
+        pizza.setTamano(tamano);
+        pizza.setDisponible(true);
+        pizza.setCategoria(catOpt.orElse(null));
+
+        String rutaImagenFinal = "/images/producto_americana.jpg";
+
+        if (imagenArchivo != null && !imagenArchivo.isEmpty()) {
+            try {
+                // Crear carpeta si no existe
+                File directorio = new File("uploads/pizzas");
+                if (!directorio.exists()) {
+                    directorio.mkdirs();
+                }
+                
+                // Generar nombre unico seguro
+                String nombreOriginal = imagenArchivo.getOriginalFilename();
+                String extension = "";
+                if (nombreOriginal != null && nombreOriginal.contains(".")) {
+                    extension = nombreOriginal.substring(nombreOriginal.lastIndexOf("."));
+                }
+                String nombreArchivo = System.currentTimeMillis() + extension;
+                Path ruta = Paths.get("uploads/pizzas", nombreArchivo);
+                
+                // Escribir el archivo
+                Files.write(ruta, imagenArchivo.getBytes());
+                
+                rutaImagenFinal = "/uploads/pizzas/" + nombreArchivo;
+            } catch (IOException e) {
+                e.printStackTrace();
+                flash.addFlashAttribute("error", "Error al procesar la subida de la imagen.");
+                return "redirect:/admin";
+            }
+        } else if (imagenUrl != null && !imagenUrl.isBlank()) {
+            rutaImagenFinal = imagenUrl.trim();
+        }
+
+        pizza.setImagenUrl(rutaImagenFinal);
+
+        productoService.guardar(pizza);
+        flash.addFlashAttribute("exito", "Pizza registrada correctamente.");
+        return "redirect:/admin";
+    }
+
+    // POST: /admin/pizzas/editar (Modificar pizza desde el modal de edición)
+    @PostMapping("/editar")
+    public String editar(
+            @RequestParam("id") Integer id,
+            @RequestParam("nombre") String nombre,
+            @RequestParam("precio") Double precio,
+            @RequestParam(value = "stock", defaultValue = "10") Integer stock,
+            @RequestParam(value = "imagenUrl", required = false) String imagenUrl,
+            @RequestParam(value = "imagenArchivo", required = false) MultipartFile imagenArchivo,
+            @RequestParam(value = "codigoCategoria", required = false) String codigoCategoria,
+            @RequestParam(value = "tamano", required = false) String tamano,
+            @RequestParam(value = "disponible", defaultValue = "true") Boolean disponible,
+            RedirectAttributes flash) {
+
+        var existente = productoService.buscarPorId(id);
+        if (existente.isEmpty()) {
+            flash.addFlashAttribute("error", "No se encontró la pizza a editar.");
+            return "redirect:/admin";
+        }
+
+        Producto pizza = existente.get();
+        pizza.setNombre(nombre.trim());
+        pizza.setPrecio(precio);
+        pizza.setStock(stock);
+        pizza.setDisponible(disponible);
+        if (tamano != null && !tamano.isBlank()) {
+            pizza.setTamano(tamano);
+        }
+        if (codigoCategoria != null && !codigoCategoria.isBlank()) {
+            var catOpt = categoriaService.buscarPorCodigo(codigoCategoria);
+            pizza.setCategoria(catOpt.orElse(pizza.getCategoria()));
+        }
+
+        // Si sube un archivo nuevo, lo procesamos
+        if (imagenArchivo != null && !imagenArchivo.isEmpty()) {
+            try {
+                File directorio = new File("uploads/pizzas");
+                if (!directorio.exists()) {
+                    directorio.mkdirs();
+                }
+                String nombreOriginal = imagenArchivo.getOriginalFilename();
+                String extension = "";
+                if (nombreOriginal != null && nombreOriginal.contains(".")) {
+                    extension = nombreOriginal.substring(nombreOriginal.lastIndexOf("."));
+                }
+                String nombreArchivo = System.currentTimeMillis() + extension;
+                Path ruta = Paths.get("uploads/pizzas", nombreArchivo);
+                Files.write(ruta, imagenArchivo.getBytes());
+                
+                pizza.setImagenUrl("/uploads/pizzas/" + nombreArchivo);
+            } catch (IOException e) {
+                e.printStackTrace();
+                flash.addFlashAttribute("error", "Error al procesar la nueva imagen.");
+                return "redirect:/admin";
+            }
+        } else if (imagenUrl != null && !imagenUrl.isBlank()) {
+            // Solo se actualiza si pasaron una URL de imagen válida
+            pizza.setImagenUrl(imagenUrl.trim());
+        }
+
+        productoService.guardar(pizza);
+        flash.addFlashAttribute("exito", "Pizza actualizada correctamente.");
+        return "redirect:/admin";
+    }
+
+    // GET: /admin/pizzas/eliminar/{id} (Eliminar según el botón del HTML)
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable Integer id, RedirectAttributes flash) {
+        if (productoService.eliminar(id)) {
+            flash.addFlashAttribute("exito", "Pizza eliminada correctamente.");
+        } else {
+            flash.addFlashAttribute("error", "No se pudo encontrar la pizza a eliminar.");
+        }
+        return "redirect:/admin";
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/controller/AdminRestController.java">
+package com.lacaleta.controller;
+
+import com.lacaleta.model.Pedido;
+import com.lacaleta.model.Insumo;
+import com.lacaleta.model.Producto;
+import com.lacaleta.repository.InsumoRepository;
+import com.lacaleta.repository.PedidoRepository;
+import com.lacaleta.repository.ProductoRepository;
+import com.lacaleta.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/admin")
+public class AdminRestController {
+
+    @Autowired
+    private PedidoRepository pedidoRepository;
+
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    @Autowired
+    private InsumoRepository insumoRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @GetMapping("/dashboard/metricas")
+    public Map<String, Object> getDashboardMetrics() {
+        Map<String, Object> response = new HashMap<>();
+
+        // 1. Ventas del día (sumatoria total)
+        List<Pedido> pedidos = pedidoRepository.findAll();
+        LocalDate hoy = LocalDate.now();
+        double ventasDelDia = pedidos.stream()
+                .filter(p -> p.getFecha() != null && p.getFecha().toLocalDate().equals(hoy))
+                .mapToDouble(p -> p.getTotal() != null ? p.getTotal() : 0.0)
+                .sum();
+        response.put("ventasDelDia", ventasDelDia);
+
+        // 2. Pizzas en catálogo (count de productos activos)
+        long pizzasCatalogo = productoRepository.findAll().stream()
+                .filter(p -> p.getDisponible() != null && p.getDisponible())
+                .count();
+        response.put("pizzasCatalogo", pizzasCatalogo);
+
+        // 3. Insumos Críticos (stockActual <= stockMinimo)
+        long insumosCriticos = insumoRepository.findAll().stream()
+                .filter(i -> i.getStockActual() != null && i.getStockMinimo() != null && i.getStockActual() <= i.getStockMinimo())
+                .count();
+        response.put("insumosCriticos", insumosCriticos);
+
+        // 4. Clientes Registrados
+        long clientesRegistrados = usuarioRepository.findAll().stream()
+                .filter(u -> Integer.valueOf(1).equals(u.getRolId()))
+                .count();
+        response.put("clientesRegistrados", clientesRegistrados);
+
+        // 5. Gráfico de Ingresos Semanales (Últimas 4 semanas)
+        double[] ingresosSemanales = new double[4];
+        
+        // Datos para Gráfico Circular: Métodos de Pago
+        int yapePlin = 0, efectivo = 0, tarjeta = 0;
+
+        // Datos para Gráfico Barras: Pizzas (simulado basado en detalles de pedidos o estático adaptado)
+        // Como simplificación, calcularemos basados en las pizzas disponibles
+        Map<String, Double> ventasPorPizzaMap = new HashMap<>();
+
+        LocalDateTime now = LocalDateTime.now();
+        for (Pedido p : pedidos) {
+            if (p.getFecha() != null) {
+                long daysBetween = ChronoUnit.DAYS.between(p.getFecha().toLocalDate(), now.toLocalDate());
+                if (daysBetween >= 0 && daysBetween < 28) {
+                    int weekIndex = 3 - (int) (daysBetween / 7);
+                    ingresosSemanales[weekIndex] += (p.getTotal() != null ? p.getTotal() : 0.0);
+                }
+            }
+            
+            if (p.getMetodoPago() != null) {
+                String mp = p.getMetodoPago().toUpperCase();
+                if (mp.contains("YAPE") || mp.contains("PLIN")) yapePlin++;
+                else if (mp.contains("EFECTIVO")) efectivo++;
+                else if (mp.contains("TARJETA") || mp.contains("VISA")) tarjeta++;
+            }
+
+            if (p.getDetalles() != null) {
+                for (var d : p.getDetalles()) {
+                    if (d.getProducto() != null && d.getProducto().getNombre() != null) {
+                        ventasPorPizzaMap.put(d.getProducto().getNombre(), 
+                            ventasPorPizzaMap.getOrDefault(d.getProducto().getNombre(), 0.0) + (d.getSubtotal() != null ? d.getSubtotal() : 0.0));
+                    }
+                }
+            }
+        }
+        
+        response.put("graficoIngresosSemanales", Arrays.asList(
+            ingresosSemanales[0], ingresosSemanales[1], ingresosSemanales[2], ingresosSemanales[3]
+        ));
+
+        response.put("graficoPagos", Arrays.asList(yapePlin, efectivo, tarjeta));
+
+        // Ordenar y tomar top 5 pizzas
+        List<Map.Entry<String, Double>> topPizzas = ventasPorPizzaMap.entrySet().stream()
+            .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+            .limit(5).toList();
+        response.put("pizzasLabels", topPizzas.stream().map(Map.Entry::getKey).toList());
+        response.put("pizzasData", topPizzas.stream().map(Map.Entry::getValue).toList());
+
+        // Datos para Gráfico Horizontal: Insumos (Tomamos los 4 con menos stock)
+        List<Insumo> topInsumos = insumoRepository.findAll().stream()
+            .filter(i -> i.getStockActual() != null)
+            .sorted((i1, i2) -> i1.getStockActual().compareTo(i2.getStockActual()))
+            .limit(4).toList();
+            
+        response.put("insumosLabels", topInsumos.stream().map(Insumo::getNombre).toList());
+        response.put("insumosData", topInsumos.stream().map(Insumo::getStockActual).toList());
+
+        return response;
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/controller/PageController.java">
+package com.lacaleta.controller;
+
+import com.lacaleta.model.Usuario;
+import com.lacaleta.service.CategoriaService;
+import com.lacaleta.service.InsumoService;
+import com.lacaleta.service.ProductoService;
+import com.lacaleta.service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
+import com.lacaleta.repository.PedidoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Optional;
+import java.util.regex.Pattern;
+
+@Controller
+public class PageController {
+
+    @Autowired
+    private ProductoService productoService;
+
+    @Autowired
+    private PedidoRepository pedidoRepository;
+
+    @Autowired
+    private CategoriaService categoriaService;
+
+    @Autowired
+    private InsumoService insumoService;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    // Patrones de validación Regex
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-zA-Z]{2,}$");
+    private static final Pattern PHONE_PERU_PATTERN = Pattern.compile("^9\\d{8}$");
+    private static final Pattern DNI_PATTERN = Pattern.compile("^\\d{8}$");
+    private static final Pattern NAME_PATTERN = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]{2,50}$");
+
+    private void cargarUsuarioEnModelo(Model model, HttpSession session) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuarioLogueado != null) {
+            model.addAttribute("usuario", usuarioLogueado);
+        }
+    }
+
+    @GetMapping("/")
+    public String index(Model model, HttpSession session) {
+        model.addAttribute("clasicas", productoService.obtenerClasicas());
+        model.addAttribute("combos", productoService.obtenerCombos());
+        cargarUsuarioEnModelo(model, session);
+        return "index";
+    }
+
+    @GetMapping("/menu")
+    public String menu(Model model, HttpSession session) {
+        model.addAttribute("promociones", productoService.obtenerPromociones());
+        model.addAttribute("principales", productoService.obtenerClasicas());
+        model.addAttribute("combos", productoService.obtenerCombos());
+        model.addAttribute("acompanamientos", productoService.obtenerAcompanamientos());
+        model.addAttribute("bebidas", productoService.obtenerBebidas());
+        model.addAttribute("categorias", categoriaService.listar());
+        cargarUsuarioEnModelo(model, session);
+        return "shop/menu";
+    }
+
+    @GetMapping("/promociones")
+    public String promociones(Model model, HttpSession session) {
+        model.addAttribute("promos1Persona", productoService.obtenerPromos1Persona());
+        model.addAttribute("promosDuo", productoService.obtenerPromosDuo());
+        model.addAttribute("promosTrio", productoService.obtenerPromosTrio());
+        model.addAttribute("promosFamiliares", productoService.obtenerPromosFamiliares());
+        cargarUsuarioEnModelo(model, session);
+        return "shop/promociones";
+    }
+
+    @GetMapping("/detalles")
+    public String detalles(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "shop/detalles";
+    }
+
+    @GetMapping("/locales")
+    public String locales(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "shop/locales";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "account/login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login";
+    }
+
+    @GetMapping("/registro")
+    public String registro() {
+        return "account/create";
+    }
+
+    @GetMapping("/forgotpassword")
+    public String forgotPassword() {
+        return "account/forgotpassword";
+    }
+
+    @GetMapping("/verifycode")
+    public String verifyCode() {
+        return "account/verifycode";
+    }
+
+    @GetMapping("/resetpassword")
+    public String resetPassword() {
+        return "account/resetpassword";
+    }
+
+    @GetMapping("/reportes")
+    public String reportes(HttpSession session, Model model) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuarioLogueado == null) {
+            return "redirect:/login";
+        }
+        if (!usuarioLogueado.esAdmin()) {
+            return "redirect:/";
+        }
+        cargarUsuarioEnModelo(model, session);
+        return "admin/reportes";
+    }
+
+    @GetMapping({ "/admin", "/administracion" })
+    public String admin(
+            @RequestParam(value = "categoria", required = false) String categoria,
+            @RequestParam(value = "disponible", required = false) Boolean disponible,
+            @RequestParam(value = "buscar", required = false) String buscar,
+            @RequestParam(value = "buscarInsumo", required = false) String buscarInsumo,
+            Model model,
+            HttpSession session) {
+
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuarioLogueado == null) {
+            return "redirect:/login";
+        }
+        if (!usuarioLogueado.esAdmin()) {
+            return "redirect:/";
+        }
+
+        cargarUsuarioEnModelo(model, session);
+
+        var listaPizzas = productoService.listarConFiltros(categoria, disponible, buscar);
+        var listaInsumos = insumoService.listarConFiltro(buscarInsumo);
+
+        model.addAttribute("pizzas", listaPizzas);
+        model.addAttribute("productos", listaPizzas);
+        model.addAttribute("insumos", listaInsumos);
+        model.addAttribute("totalPizzas", productoService.listar().size());
+        model.addAttribute("categorias", categoriaService.listar());
+
+        var listaPedidos = pedidoRepository.findAll();
+        var listaClientes = usuarioService.listar().stream()
+                .filter(u -> Integer.valueOf(1).equals(u.getRolId()))
+                .toList();
+
+        model.addAttribute("pedidos", listaPedidos);
+        model.addAttribute("clientes", listaClientes);
+
+        return "admin/admin";
+    }
+
+    @GetMapping({ "/carrito", "/cart" })
+    public String carrito(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "checkout/cart";
+    }
+
+    @GetMapping("/envio")
+    public String envio(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "checkout/shipping";
+    }
+
+    @GetMapping("/pago")
+    public String pago(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "checkout/payment";
+    }
+
+    @GetMapping("/faq")
+    public String faq(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "info/faq";
+    }
+
+    @GetMapping("/terminos")
+    public String terminos(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "info/terminos";
+    }
+
+    @GetMapping("/delivery")
+    public String delivery(Model model, HttpSession session) {
+        cargarUsuarioEnModelo(model, session);
+        return "info/delivery";
+    }
+
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/controller/PasswordResetController.java">
+package com.lacaleta.controller;
+
+import com.lacaleta.model.Usuario;
+import com.lacaleta.repository.UsuarioRepository;
+import com.lacaleta.service.EmailService;
+import com.lacaleta.service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
+import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
+import java.time.LocalDate;
+import java.time.Period;
+
+@RestController
+@RequestMapping("/api/auth")
+public class PasswordResetController {
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
+    private EmailService emailService;
+
+    // Simula una caché temporal para los OTPs.
+    private final ConcurrentHashMap<String, String> otpCache = new ConcurrentHashMap<>();
+
+    // Patrones de validación Regex
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-zA-Z]{2,}$");
+    private static final Pattern PHONE_PERU_PATTERN = Pattern.compile("^9\\d{8}$");
+    private static final Pattern DNI_PATTERN = Pattern.compile("^\\d{8}$");
+    private static final Pattern NAME_PATTERN = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]{2,50}$");
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Map<String, String> payload, HttpSession session) {
+        String email = payload.get("email");
+        String password = payload.get("password");
+
+        String emailClean = (email != null) ? email.trim().toLowerCase() : "";
+        String passClean = (password != null) ? password.trim() : "";
+
+        Optional<Usuario> usuarioAutenticado = usuarioService.autenticar(emailClean, passClean);
+
+        if (usuarioAutenticado.isPresent()) {
+            Usuario usuario = usuarioAutenticado.get();
+            session.setAttribute("usuarioLogueado", usuario);
+
+            String redirectUrl = usuario.esAdmin() ? "/admin" : "/";
+            return ResponseEntity.ok(Map.of("mensaje", "Inicio de sesión exitoso", "redirect", redirectUrl, "usuario", usuario));
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Correo electrónico o contraseña incorrectos."));
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody Map<String, String> payload) {
+        String nombre = payload.get("nombre");
+        String apellidos = payload.get("apellidos");
+        String tipoDocumento = payload.get("tipoDocumento");
+        String numeroDocumento = payload.get("numeroDocumento");
+        String telefono = payload.get("telefono");
+        String fechaNacimiento = payload.get("fechaNacimiento");
+        String email = payload.get("email");
+        String password = payload.get("password");
+        String confirmPassword = payload.get("confirmPassword");
+        String aceptaTerminosStr = payload.get("aceptaTerminos");
+
+        String nomClean = nombre != null ? nombre.trim() : "";
+        String apeClean = apellidos != null ? apellidos.trim() : "";
+        String tipoDocClean = tipoDocumento != null ? tipoDocumento.trim() : "DNI";
+        String docClean = numeroDocumento != null ? numeroDocumento.trim() : "";
+        String telClean = telefono != null ? telefono.trim() : "";
+        String emailClean = email != null ? email.trim().toLowerCase() : "";
+        String passClean = password != null ? password.trim() : "";
+        String confirmClean = confirmPassword != null ? confirmPassword.trim() : "";
+        boolean aceptaTerminos = "true".equalsIgnoreCase(aceptaTerminosStr);
+
+        if (!NAME_PATTERN.matcher(nomClean).matches() || !NAME_PATTERN.matcher(apeClean).matches()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Los nombres y apellidos deben contener solo letras (mínimo 2 caracteres)."));
+        }
+
+        if ("DNI".equalsIgnoreCase(tipoDocClean)) {
+            if (!DNI_PATTERN.matcher(docClean).matches()) {
+                return ResponseEntity.badRequest().body(Map.of("error", "El DNI debe contener exactamente 8 dígitos numéricos."));
+            }
+        } else if (docClean.length() < 6 || docClean.length() > 12) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Ingresa un número de documento válido (entre 6 y 12 caracteres)."));
+        }
+
+        if (!PHONE_PERU_PATTERN.matcher(telClean).matches()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "El número de teléfono debe ser un celular peruano válido (9 dígitos comenzando con 9)."));
+        }
+
+        if (fechaNacimiento != null && !fechaNacimiento.isBlank()) {
+            try {
+                LocalDate fechaNac = LocalDate.parse(fechaNacimiento);
+                LocalDate hoy = LocalDate.now();
+
+                if (fechaNac.isAfter(hoy)) {
+                    return ResponseEntity.badRequest().body(Map.of("error", "La fecha de nacimiento no puede estar en el futuro."));
+                }
+                int edad = Period.between(fechaNac, hoy).getYears();
+                if (edad < 14) {
+                    return ResponseEntity.badRequest().body(Map.of("error", "Debes tener al menos 14 años para registrarte."));
+                }
+                if (edad > 100) {
+                    return ResponseEntity.badRequest().body(Map.of("error", "Ingresa una fecha de nacimiento válida."));
+                }
+            } catch (Exception e) {
+                return ResponseEntity.badRequest().body(Map.of("error", "Formato de fecha de nacimiento no válido."));
+            }
+        } else {
+            return ResponseEntity.badRequest().body(Map.of("error", "Por favor ingresa tu fecha de nacimiento."));
+        }
+
+        if (!EMAIL_PATTERN.matcher(emailClean).matches()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Ingresa un correo electrónico válido (ejemplo: usuario@dominio.com)."));
+        }
+
+        if (passClean.length() < 8) {
+            return ResponseEntity.badRequest().body(Map.of("error", "La contraseña debe contener al menos 8 caracteres."));
+        }
+
+        if (!passClean.equals(confirmClean)) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Las contraseñas no coinciden. Por favor verifícalas."));
+        }
+
+        if (!aceptaTerminos) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Debes aceptar los términos y condiciones para continuar."));
+        }
+
+        String nombreCompleto = nomClean + " " + apeClean;
+        Usuario nuevoUsuario = new Usuario(null, nombreCompleto, emailClean, passClean, telClean, docClean, 1);
+
+        boolean exito = usuarioService.guardar(nuevoUsuario);
+
+        if (!exito) {
+            return ResponseEntity.badRequest().body(Map.of("error", "El correo electrónico '" + emailClean + "' ya está registrado."));
+        }
+
+        return ResponseEntity.ok(Map.of("mensaje", "¡Registro exitoso! Ya puedes iniciar sesión."));
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody Map<String, String> payload) {
+        String email = payload.get("email");
+        if (email == null || email.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Email es requerido."));
+        }
+
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email.toLowerCase());
+        if (usuarioOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "Usuario no encontrado."));
+        }
+
+        // Generar OTP de 6 dígitos
+        String otp = String.format("%06d", new Random().nextInt(999999));
+        otpCache.put(email.toLowerCase(), otp);
+
+        // Enviar por correo
+        boolean enviado = emailService.enviarCodigoRecuperacion(email.toLowerCase(), otp);
+        if (enviado) {
+            return ResponseEntity.ok(Map.of("mensaje", "Se ha enviado un código de verificación a tu correo."));
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Error al enviar el correo."));
+        }
+    }
+
+    @PostMapping("/verify-otp")
+    public ResponseEntity<?> verifyOtp(@RequestBody Map<String, String> payload) {
+        String email = payload.get("email");
+        String otp = payload.get("otp");
+
+        if (email == null || otp == null) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Faltan datos requeridos."));
+        }
+
+        String storedOtp = otpCache.get(email.toLowerCase());
+        if (storedOtp != null && storedOtp.equals(otp)) {
+            return ResponseEntity.ok(Map.of("mensaje", "Código verificado con éxito."));
+        } else {
+            return ResponseEntity.badRequest().body(Map.of("error", "El código ingresado es incorrecto o ha expirado."));
+        }
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody Map<String, String> payload) {
+        String email = payload.get("email");
+        String otp = payload.get("otp");
+        String newPassword = payload.get("newPassword");
+
+        if (email == null || otp == null || newPassword == null) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Faltan datos requeridos."));
+        }
+
+        // 1. Validar OTP
+        String storedOtp = otpCache.get(email.toLowerCase());
+        if (storedOtp == null || !storedOtp.equals(otp)) {
+            return ResponseEntity.badRequest().body(Map.of("error", "El código ingresado es incorrecto o ha expirado."));
+        }
+
+        // 2. Validar Regex (mínimo 8 caracteres, 1 mayúscula, 1 carácter especial)
+        String strengthRegex = "^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$";
+        if (!Pattern.compile(strengthRegex).matcher(newPassword).matches()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "La contraseña debe tener mínimo 8 caracteres, al menos 1 mayúscula y 1 carácter especial."));
+        }
+
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email.toLowerCase());
+        if (usuarioOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "Usuario no encontrado."));
+        }
+
+        Usuario usuario = usuarioOpt.get();
+
+        // 3. Verificar que la nueva contraseña no sea igual a la actual
+        boolean esIgual = false;
+        try {
+            if (usuario.getPassword() != null && usuario.getPassword().startsWith("$2a$")) {
+                esIgual = BCrypt.checkpw(newPassword, usuario.getPassword());
+            } else {
+                esIgual = newPassword.equals(usuario.getPassword());
+            }
+        } catch (Exception e) {
+            esIgual = false;
+        }
+
+        if (esIgual) {
+            return ResponseEntity.badRequest().body(Map.of("error", "La nueva contraseña no puede ser igual a la anterior."));
+        }
+
+        // 4. Encriptar y guardar
+        String hashedNewPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+        usuario.setPassword(hashedNewPassword);
+        usuarioRepository.save(usuario);
+
+        // 5. Eliminar OTP
+        otpCache.remove(email.toLowerCase());
+
+        return ResponseEntity.ok(Map.of("mensaje", "¡Contraseña restablecida exitosamente!"));
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/model/Categoria.java">
+package com.lacaleta.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "categorias")
+public class Categoria {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @Column(nullable = false, unique = true, length = 50)
+    private String codigo;
+    
+    @Column(nullable = false, length = 100)
+    private String nombre;
+    
+    @Column(columnDefinition = "TEXT")
+    private String descripcion;
+    
+    private String icono;
+
+    public Categoria() {
+    }
+
+    public Categoria(Integer id, String codigo, String nombre, String descripcion, String icono) {
+        this.id = id;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.icono = icono;
+    }
+
+    public Integer getId() { 
+        return id; 
+    }
+    
+    public void setId(Integer id) { 
+        this.id = id; 
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() { 
+        return nombre; 
+    }
+    
+    public void setNombre(String nombre) { 
+        this.nombre = nombre; 
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getIcono() {
+        return icono;
+    }
+
+    public void setIcono(String icono) {
+        this.icono = icono;
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/model/DetallePedido.java">
+package com.lacaleta.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "detalle_pedidos")
+public class DetallePedido {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+    
+    @ManyToOne
+    @JoinColumn(name = "producto_id")
+    private Producto producto;
+    
+    @Column(nullable = false)
+    private Integer cantidad;
+    
+    @Column(name = "precio_unitario", nullable = false)
+    private Double precioUnitario;
+    
+    @Column(nullable = false)
+    private Double subtotal;
+
+    public DetallePedido() {}
+
+    public DetallePedido(Pedido pedido, Producto producto, Integer cantidad, Double precioUnitario) {
+        this.pedido = pedido;
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.precioUnitario = precioUnitario;
+        this.subtotal = precioUnitario * cantidad;
+    }
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+
+    public Pedido getPedido() { return pedido; }
+    public void setPedido(Pedido pedido) { this.pedido = pedido; }
+
+    public Producto getProducto() { return producto; }
+    public void setProducto(Producto producto) { this.producto = producto; }
+
+    public Integer getCantidad() { return cantidad; }
+    public void setCantidad(Integer cantidad) { this.cantidad = cantidad; }
+
+    public Double getPrecioUnitario() { return precioUnitario; }
+    public void setPrecioUnitario(Double precioUnitario) { this.precioUnitario = precioUnitario; }
+
+    public Double getSubtotal() { return subtotal; }
+    public void setSubtotal(Double subtotal) { this.subtotal = subtotal; }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/model/Insumo.java">
+package com.lacaleta.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "insumos")
+public class Insumo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @Column(nullable = false, unique = true, length = 50)
+    private String codigo;
+    
+    @Column(nullable = false, length = 100)
+    private String nombre;
+    
+    @Column(name = "stock_actual", nullable = false)
+    private Double stockActual;
+    
+    @Column(name = "unidad_medida", length = 50)
+    private String unidadMedida; // kg, Litros, unidades, etc.
+    
+    @Column(name = "stock_minimo")
+    private Double stockMinimo;   // Para calcular si está CRÍTICO u ÓPTIMO
+
+    public Insumo() {}
+
+    public Insumo(Integer id, String codigo, String nombre, Double stockActual, String unidadMedida, Double stockMinimo) {
+        this.id = id;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.stockActual = stockActual;
+        this.unidadMedida = unidadMedida;
+        this.stockMinimo = stockMinimo;
+    }
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+
+    public String getCodigo() { return codigo; }
+    public void setCodigo(String codigo) { this.codigo = codigo; }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public Double getStockActual() { return stockActual; }
+    public void setStockActual(Double stockActual) { this.stockActual = stockActual; }
+
+    public String getUnidadMedida() { return unidadMedida; }
+    public void setUnidadMedida(String unidadMedida) { this.unidadMedida = unidadMedida; }
+
+    public Double getStockMinimo() { return stockMinimo; }
+    public void setStockMinimo(Double stockMinimo) { this.stockMinimo = stockMinimo; }
+
+    public boolean isCritico() {
+        return this.stockActual <= this.stockMinimo;
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/model/Pedido.java">
+package com.lacaleta.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "pedidos")
+public class Pedido {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+    
+    @Column(nullable = false)
+    private LocalDateTime fecha = LocalDateTime.now();
+    
+    @Column(nullable = false, length = 20)
+    private String estado = "PENDIENTE"; // PENDIENTE, EN_CAMINO, ENTREGADO
+    
+    @Column(name = "metodo_pago", length = 20)
+    private String metodoPago; // YAPE, TARJETA, EFECTIVO
+    
+    @Column(name = "direccion_entrega")
+    private String direccionEntrega;
+    
+    @Column(nullable = false)
+    private Double total;
+    
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetallePedido> detalles = new ArrayList<>();
+
+    public Pedido() {}
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+
+    public LocalDateTime getFecha() { return fecha; }
+    public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
+
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
+
+    public String getMetodoPago() { return metodoPago; }
+    public void setMetodoPago(String metodoPago) { this.metodoPago = metodoPago; }
+
+    public String getDireccionEntrega() { return direccionEntrega; }
+    public void setDireccionEntrega(String direccionEntrega) { this.direccionEntrega = direccionEntrega; }
+
+    public Double getTotal() { return total; }
+    public void setTotal(Double total) { this.total = total; }
+
+    public List<DetallePedido> getDetalles() { return detalles; }
+    public void setDetalles(List<DetallePedido> detalles) { this.detalles = detalles; }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/model/Producto.java">
+package com.lacaleta.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "productos")
+public class Producto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @Column(nullable = false, length = 100)
+    private String nombre;
+    
+    @Column(columnDefinition = "TEXT")
+    private String descripcion;
+    
+    @Column(nullable = false)
+    private Double precio;
+    
+    @Column(name = "imagen_url")
+    private String imagenUrl;
+    
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+    
+    @Column(length = 50)
+    private String tamano;
+    
+    @Column(nullable = false)
+    private Boolean disponible = true;
+    
+    @Column(nullable = false)
+    private Integer stock = 10;
+
+    public Producto() {
+    }
+
+    public Producto(Integer id, String nombre, String descripcion, Double precio, 
+                    String imagenUrl, Categoria categoria, String tamano, Boolean disponible, Integer stock) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.imagenUrl = imagenUrl;
+        this.categoria = categoria;
+        this.tamano = tamano;
+        this.disponible = disponible != null ? disponible : true;
+        this.stock = stock != null ? stock : 10;
+    }
+
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+
+    public Double getPrecio() { return precio; }
+    public void setPrecio(Double precio) { this.precio = precio; }
+
+    public String getImagenUrl() { return imagenUrl; }
+    public void setImagenUrl(String imagenUrl) { this.imagenUrl = imagenUrl; }
+
+    public Categoria getCategoria() { return categoria; }
+    public void setCategoria(Categoria categoria) { this.categoria = categoria; }
+
+    public String getTamano() { return tamano; }
+    public void setTamano(String tamano) { this.tamano = tamano; }
+
+    public Boolean getDisponible() { return disponible; }
+    public void setDisponible(Boolean disponible) { this.disponible = disponible; }
+
+    public Integer getStock() { return stock; }
+    public void setStock(Integer stock) { this.stock = stock; }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/model/Usuario.java">
+package com.lacaleta.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "usuarios")
+public class Usuario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false, length = 100)
+    private String nombre;
+
+    @Column(nullable = false, unique = true, length = 100)
+    private String email;
+
+    // Mapea exactamente la columna 'password_hash' de PostgreSQL
+    @Column(name = "password_hash", nullable = false)
+    private String password;
+
+    @Column(length = 15)
+    private String telefono;
+
+    @Column(length = 20)
+    private String dni;
+
+    // Mapea exactamente la columna 'rol_id' de PostgreSQL (Integer).
+    // 2 = ADMIN, 1 = CLIENTE segun tabla 'roles'
+    @Column(name = "rol_id", nullable = false)
+    private Integer rolId;
+
+    @Column(name = "fecha_registro")
+    private LocalDateTime fechaRegistro;
+
+    public Usuario() {
+        this.rolId = 1; // CLIENTE por defecto
+        this.fechaRegistro = LocalDateTime.now();
+    }
+
+    public Usuario(Integer id, String nombre, String email, String password, String telefono, String dni, Integer rolId) {
+        this.id = id;
+        this.nombre = nombre;
+        this.email = email;
+        this.password = password;
+        this.telefono = telefono;
+        this.dni = dni;
+        this.rolId = (rolId != null) ? rolId : 1;
+        this.fechaRegistro = LocalDateTime.now();
+    }
+
+    // Getters y Setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public Integer getRolId() {
+        return rolId;
+    }
+
+    public void setRolId(Integer rolId) {
+        this.rolId = rolId;
+    }
+
+    public LocalDateTime getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    /**
+     * Helper: devuelve true si el usuario es ADMIN (rolId == 2).
+     * Usar en controladores en lugar de comparar Strings.
+     */
+    public boolean esAdmin() {
+        return Integer.valueOf(2).equals(this.rolId);
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/repository/CategoriaRepository.java">
+package com.lacaleta.repository;
+
+import com.lacaleta.model.Categoria;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.Optional;
+
+@Repository
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
+    Optional<Categoria> findByCodigo(String codigo);
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/repository/InsumoRepository.java">
+package com.lacaleta.repository;
+
+import com.lacaleta.model.Insumo;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface InsumoRepository extends JpaRepository<Insumo, Integer> {
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/repository/PedidoRepository.java">
+package com.lacaleta.repository;
+
+import com.lacaleta.model.Pedido;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/repository/ProductoRepository.java">
+package com.lacaleta.repository;
+
+import com.lacaleta.model.Producto;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface ProductoRepository extends JpaRepository<Producto, Integer> {
+    List<Producto> findByCategoriaId(Integer categoriaId);
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/repository/UsuarioRepository.java">
+package com.lacaleta.repository;
+
+import com.lacaleta.model.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> { 
+    Optional<Usuario> findByEmail(String email);
+    boolean existsByEmail(String email);
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/service/CategoriaService.java">
+package com.lacaleta.service;
+
+import com.lacaleta.model.Categoria;
+import com.lacaleta.repository.CategoriaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class CategoriaService {
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
+    public List<Categoria> listar() {
+        return categoriaRepository.findAll();
+    }
+
+    public Optional<Categoria> buscarPorId(Integer id) {
+        return categoriaRepository.findById(id);
+    }
+
+    public Optional<Categoria> buscarPorCodigo(String codigo) {
+        return categoriaRepository.findByCodigo(codigo);
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/service/EmailService.java">
+package com.lacaleta.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailService {
+
+    @Autowired(required = false)
+    private JavaMailSender mailSender;
+
+    public boolean enviarCodigoRecuperacion(String destino, String codigo) {
+        try {
+            if (mailSender == null) {
+                // Fallback para pruebas locales si aún no configuras SMTP
+                System.out.println(">>> CÓDIGO DE RECUPERACIÓN PARA " + destino + ": " + codigo);
+                return true;
+            }
+
+            SimpleMailMessage mensaje = new SimpleMailMessage();
+            mensaje.setTo(destino);
+            mensaje.setSubject("La Caleta - Código de Recuperación de Contraseña");
+            mensaje.setText("Hola,\n\nTu código de verificación para restablecer tu contraseña en La Caleta es: " 
+                            + codigo + "\n\nEste código vencerá en 10 minutos.\n\nSi no solicitaste este cambio, ignora este mensaje.");
+            
+            mailSender.send(mensaje);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/service/InsumoService.java">
+package com.lacaleta.service;
+
+import com.lacaleta.model.Insumo;
+import com.lacaleta.repository.InsumoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Service
+public class InsumoService {
+
+    @Autowired
+    private InsumoRepository insumoRepository;
+
+    public List<Insumo> listar() {
+        return insumoRepository.findAll();
+    }
+
+    public List<Insumo> listarConFiltro(String buscar) {
+        if (buscar == null || buscar.isBlank()) {
+            return listar();
+        }
+        String filtro = buscar.toLowerCase().trim();
+        return insumoRepository.findAll().stream()
+                .filter(i -> i.getNombre().toLowerCase().contains(filtro)
+                        || i.getCodigo().toLowerCase().contains(filtro))
+                .collect(Collectors.toList());
+    }
+
+    public void guardar(Insumo insumo) {
+        insumoRepository.save(insumo);
+    }
+
+    public Optional<Insumo> buscarPorId(Integer id) {
+        return insumoRepository.findById(id);
+    }
+
+    public boolean eliminar(Integer id) {
+        if (insumoRepository.existsById(id)) {
+            insumoRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/service/ProductoService.java">
+package com.lacaleta.service;
+
+import com.lacaleta.model.Categoria;
+import com.lacaleta.model.Producto;
+import com.lacaleta.repository.ProductoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ProductoService {
+
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    public List<Producto> listar() {
+        return productoRepository.findAll();
+    }
+
+    public Optional<Producto> buscarPorId(Integer id) {
+        return productoRepository.findById(id);
+    }
+
+    public boolean guardar(Producto datos) {
+        if (datos.getDisponible() == null) {
+            datos.setDisponible(true);
+        }
+        if (datos.getStock() == null) {
+            datos.setStock(10);
+        }
+        productoRepository.save(datos);
+        return true;
+    }
+
+    public boolean eliminar(Integer id) {
+        if (productoRepository.existsById(id)) {
+            productoRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public List<Producto> listarConFiltros(String codigoCategoria, Boolean disponible, String buscar) {
+        return productoRepository.findAll().stream()
+                .filter(p -> {
+                    if (codigoCategoria != null && !codigoCategoria.isBlank()) {
+                        if (p.getCategoria() == null
+                                || !codigoCategoria.equalsIgnoreCase(
+                                        p.getCategoria().getCodigo())) {
+                            return false;
+                        }
+                    }
+                    if (disponible != null) {
+                        if (!disponible.equals(p.getDisponible())) {
+                            return false;
+                        }
+                    }
+                    if (buscar != null && !buscar.isBlank()) {
+                        String query = buscar.trim().toLowerCase();
+                        boolean coincideNombre = p.getNombre() != null
+                                && p.getNombre().toLowerCase().contains(query);
+                        boolean coincideDesc = p.getDescripcion() != null
+                                && p.getDescripcion().toLowerCase().contains(query);
+                        return coincideNombre || coincideDesc;
+                    }
+                    return true;
+                })
+                .toList();
+    }
+
+    public List<Producto> porCategoria(String codigoCategoria) {
+        return productoRepository.findAll().stream()
+                .filter(p -> p.getCategoria() != null
+                        && p.getCategoria().getCodigo() != null
+                        && p.getCategoria().getCodigo().trim()
+                                .equalsIgnoreCase(codigoCategoria.trim()))
+                .toList();
+    }
+
+    public List<Producto> obtenerClasicas() {
+        List<Producto> res = new java.util.ArrayList<>();
+        res.addAll(porCategoria("principales"));
+        if (res.isEmpty()) {
+            res.addAll(porCategoria("clasicas"));
+        }
+        res.addAll(porCategoria("especiales"));
+        return res;
+    }
+
+    public List<Producto> obtenerCombos() {
+        return porCategoria("combos");
+    }
+
+    public List<Producto> obtenerAcompanamientos() {
+        List<Producto> res = porCategoria("acompanamientos");
+        if (res.isEmpty())
+            res = porCategoria("acompañamientos");
+        return res;
+    }
+
+    public List<Producto> obtenerBebidas() {
+        List<Producto> res = porCategoria("bebidas");
+        if (res.isEmpty())
+            res = porCategoria("bebida");
+        return res;
+    }
+
+    public List<Producto> obtenerPromociones() {
+        List<Producto> res = porCategoria("promociones");
+        if (res.isEmpty())
+            res = obtenerPromos1Persona();
+        return res;
+    }
+
+    public List<Producto> obtenerPromos1Persona() {
+        return productoRepository.findAll().stream()
+                .filter(p -> "Personal".equalsIgnoreCase(p.getTamano()))
+                .toList();
+    }
+
+    public List<Producto> obtenerPromosDuo() {
+        return productoRepository.findAll().stream()
+                .filter(p -> "Dúo".equalsIgnoreCase(p.getTamano()))
+                .toList();
+    }
+
+    public List<Producto> obtenerPromosTrio() {
+        return productoRepository.findAll().stream()
+                .filter(p -> "Trío".equalsIgnoreCase(p.getTamano()))
+                .toList();
+    }
+
+    public List<Producto> obtenerPromosFamiliares() {
+        return productoRepository.findAll().stream()
+                .filter(p -> "Familiar".equalsIgnoreCase(p.getTamano())
+                        && (p.getNombre().contains("Banquete")
+                        || p.getNombre().contains("Fiesta")
+                        || p.getNombre().contains("Gran Cofradía")))
+                .toList();
+    }
+
+    public List<Producto> obtenerFavoritas() {
+        return obtenerClasicas().stream().limit(3).toList();
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/service/UsuarioService.java">
+package com.lacaleta.service;
+
+import com.lacaleta.model.Usuario;
+import com.lacaleta.repository.UsuarioRepository;
+import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class UsuarioService {
+
+    private final UsuarioRepository usuarioRepository;
+
+    @Autowired
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
+
+    public List<Usuario> listar() {
+        return usuarioRepository.findAll();
+    }
+
+    public Optional<Usuario> buscarPorEmail(String email) {
+        if (email == null) {
+            return Optional.empty();
+        }
+        return usuarioRepository.findByEmail(email.trim().toLowerCase());
+    }
+
+    public boolean guardar(Usuario usuario) {
+        if (usuario == null || usuario.getEmail() == null || usuario.getEmail().isBlank()) {
+            return false;
+        }
+
+        // Normalizamos el correo a minusculas y sin espacios laterales
+        String emailLimpio = usuario.getEmail().trim().toLowerCase();
+        usuario.setEmail(emailLimpio);
+
+        if (usuario.getId() == null) {
+            // Verificar si el correo ya existe en la BD antes de registrar
+            if (usuarioRepository.existsByEmail(emailLimpio)) {
+                return false;
+            }
+            if (usuario.getFechaRegistro() == null) {
+                usuario.setFechaRegistro(LocalDateTime.now());
+            }
+            // Asignar rol CLIENTE (id=1) por defecto en nuevos registros
+            if (usuario.getRolId() == null) {
+                usuario.setRolId(1);
+            }
+            // Encriptar la contraseña antes de guardar si no está encriptada
+            if (usuario.getPassword() != null && !usuario.getPassword().startsWith("$2a$")) {
+                usuario.setPassword(BCrypt.hashpw(usuario.getPassword(), BCrypt.gensalt()));
+            }
+        }
+
+        usuarioRepository.save(usuario);
+        return true;
+    }
+
+    /**
+     * Autentica un usuario comparando la contraseña contra el hash BCrypt almacenado.
+     */
+    public Optional<Usuario> autenticar(String email, String password) {
+        if (email == null || password == null) {
+            return Optional.empty();
+        }
+
+        String emailLimpio = email.trim().toLowerCase();
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(emailLimpio);
+
+        if (usuarioOpt.isPresent()) {
+            Usuario usuario = usuarioOpt.get();
+            if (usuario.getPassword() != null) {
+                try {
+                    // Soportar tanto BCrypt como texto plano (migracion)
+                    boolean autenticado;
+                    if (usuario.getPassword().startsWith("$2a$") || usuario.getPassword().startsWith("$2b$")) {
+                        autenticado = BCrypt.checkpw(password.trim(), usuario.getPassword());
+                    } else {
+                        autenticado = password.trim().equals(usuario.getPassword());
+                    }
+                    if (autenticado) {
+                        return Optional.of(usuario);
+                    }
+                } catch (Exception e) {
+                    // Hash invalido: no autenticar
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Actualiza la contraseña de un usuario, encriptandola con BCrypt.
+     */
+    public boolean actualizarPassword(String email, String nuevaPassword) {
+        if (email == null || nuevaPassword == null || nuevaPassword.isBlank()) {
+            return false;
+        }
+
+        String emailLimpio = email.trim().toLowerCase();
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(emailLimpio);
+
+        if (usuarioOpt.isPresent()) {
+            Usuario usuario = usuarioOpt.get();
+            usuario.setPassword(BCrypt.hashpw(nuevaPassword.trim(), BCrypt.gensalt()));
+            usuarioRepository.save(usuario);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Cuenta los usuarios con rolId == 1 (CLIENTE).
+     */
+    public long contarClientes() {
+        return usuarioRepository.findAll().stream()
+                .filter(u -> Integer.valueOf(1).equals(u.getRolId()))
+                .count();
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/DatabaseSeeder.java">
+package com.lacaleta;
+
+import com.lacaleta.model.Categoria;
+import com.lacaleta.model.Insumo;
+import com.lacaleta.model.Producto;
+import com.lacaleta.repository.CategoriaRepository;
+import com.lacaleta.repository.InsumoRepository;
+import com.lacaleta.repository.ProductoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+public class DatabaseSeeder implements CommandLineRunner {
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    @Autowired
+    private InsumoRepository insumoRepository;
+
+    @Override
+    public void run(String... args) throws Exception {
+        // Sembrar Categorías si está vacío
+        if (categoriaRepository.count() == 0) {
+            Categoria clasicas = new Categoria(null, "clasicas", "Pizzas Clásicas", "Recetas tradicionales horneadas a la leña", "bi-pie-chart");
+            Categoria especiales = new Categoria(null, "especiales", "Pizzas Especiales & Fusión", "Ingredientes de autor y recetas marinas", "bi-fire");
+            Categoria combos = new Categoria(null, "combos", "Combos & Promociones", "Pizzas con complementos", "bi-tag");
+            Categoria acompanamientos = new Categoria(null, "acompanamientos", "Acompañamientos", "Para picar antes", "bi-basket");
+            Categoria bebidas = new Categoria(null, "bebidas", "Bebidas", "Refrescantes", "bi-cup-straw");
+            Categoria promociones = new Categoria(null, "promociones", "Promociones", "Ofertas especiales", "bi-star");
+
+            categoriaRepository.saveAll(List.of(clasicas, especiales, combos, acompanamientos, bebidas, promociones));
+
+            // Sembrar Insumos Iniciales si está vacío
+            if (insumoRepository.count() == 0) {
+                Insumo i1 = new Insumo(null, "INS-01", "Queso Mozzarella", 4.0, "kg", 5.0);
+                Insumo i2 = new Insumo(null, "INS-02", "Salsa Pomodoro", 12.0, "Litros", 5.0);
+                Insumo i3 = new Insumo(null, "INS-03", "Pepperoni Laminado", 7.0, "kg", 4.0);
+                Insumo i4 = new Insumo(null, "INS-04", "Masa Artesanal", 25.0, "unidades", 10.0);
+                insumoRepository.saveAll(List.of(i1, i2, i3, i4));
+            }
+
+            // Sembrar Productos Iniciales si está vacío
+            if (productoRepository.count() == 0) {
+                // Principales
+                productoRepository.save(new Producto(null, "La Cómplice", "Nuestra pizza más leal con abundante pepperoni crocante", 36.00, "/images/producto_pepperoni.jpg", clasicas, "Familiar", true, 20));
+                productoRepository.save(new Producto(null, "El Pacto", "Tocino ahumado crocante y jamón bajo un pacto de queso fundido", 32.00, "/images/producto_americana.jpg", clasicas, "Familiar", true, 25));
+                productoRepository.save(new Producto(null, "La Coartada", "Dulzura de piña caramelizada con jamón selecto en secreto", 35.00, "/images/producto_hawaiana.jpg", clasicas, "Familiar", true, 18));
+                productoRepository.save(new Producto(null, "La Confesión", "Pimientos asados, champiñones, aceitunas y albahaca fresca", 35.00, "/images/producto_vegetariana.jpg", clasicas, "Familiar", true, 15));
+                productoRepository.save(new Producto(null, "La Cofradía", "Alianza contundente de pepperoni, carne sazonada y tocino", 38.00, "/images/producto_meat.jpg", clasicas, "Familiar", true, 22));
+
+                // Combos
+                productoRepository.save(new Producto(null, "Dúo Clandestino", "2 Pizzas Grandes mas Gaseosa de 1.5L", 54.90, "/images/producto_combo1.jpg", combos, "Combo", true, 15));
+                productoRepository.save(new Producto(null, "Trío en Secreto", "3 Pizzas Medianas para compartir con el grupo selecto", 69.90, "/images/producto_combo2.jpg", combos, "Combo", true, 12));
+                productoRepository.save(new Producto(null, "El Silencio", "1 Pizza Familiar a eleccion mas Palitos de Ajo artesanales", 44.90, "/images/producto_combo3.jpg", combos, "Combo", true, 20));
+                productoRepository.save(new Producto(null, "Pacto Caleta", "2 Pizzas Familiares mas Alitas BBQ mas Gaseosa de 1.5L", 79.90, "/images/producto_combo4.jpg", combos, "Combo", true, 10));
+
+                // Acompañamientos
+                productoRepository.save(new Producto(null, "Palitos de Ajo", "Masa horneada con mantequilla de ajo, oregano y queso parmesano", 12.00, "/images/producto_combo3.jpg", acompanamientos, "Porción", true, 30));
+                productoRepository.save(new Producto(null, "Alitas BBQ", "6 alitas de pollo banadas en salsa barbacoa ahumada artesanal", 18.00, "/images/producto_combo4.jpg", acompanamientos, "6 Unid", true, 25));
+                productoRepository.save(new Producto(null, "Tequeños de Queso", "8 tequenos crocantes rellenos de queso con salsa guacamole secreta", 15.00, "/images/producto_meat.jpg", acompanamientos, "8 Unid", true, 20));
+
+                // Bebidas
+                productoRepository.save(new Producto(null, "Inca Kola 1.5L", "Botella no retornable bien helada para acompanar tu pizza", 9.00, "/images/producto_combo1.jpg", bebidas, "1.5L", true, 50));
+                productoRepository.save(new Producto(null, "Coca Cola 1.5L", "Sabor original helada en presentacion familiar no retornable", 9.00, "/images/producto_combo1.jpg", bebidas, "1.5L", true, 50));
+                productoRepository.save(new Producto(null, "Chicha Morada 1L", "Preparada con maiz morado, pina, manzana y toques de canela y clavo", 10.00, "/images/producto_combo2.jpg", bebidas, "1L", true, 30));
+
+                // Promociones
+                // 1 Persona
+                productoRepository.save(new Producto(null, "La Cómplice Personal", "Nuestra pizza leal personal con abundante pepperoni crocante", 19.90, "/images/producto_pepperoni.jpg", promociones, "Personal", true, 30));
+                productoRepository.save(new Producto(null, "El Pacto Personal", "Tocino crocante y jamón selecto bajo queso fundido personal", 17.90, "/images/producto_americana.jpg", promociones, "Personal", true, 30));
+                productoRepository.save(new Producto(null, "La Coartada Personal", "Dulzura de piña caramelizada con jamón en porción individual", 18.90, "/images/producto_hawaiana.jpg", promociones, "Personal", true, 20));
+                
+                // Duo
+                productoRepository.save(new Producto(null, "Dúo Cómplice", "2 Pizzas Medianas de Pepperoni crocante mas 2 Bebidas personales", 48.90, "/images/producto_combo1.jpg", promociones, "Dúo", true, 15));
+                productoRepository.save(new Producto(null, "Dúo Pacto Clásico", "2 Pizzas Medianas para compartir en pareja", 46.90, "/images/producto_americana.jpg", promociones, "Dúo", true, 15));
+
+                // Trio
+                productoRepository.save(new Producto(null, "Trilogía Caleta", "3 Pizzas Medianas clasicas a eleccion para el grupo selecto", 68.90, "/images/producto_combo2.jpg", promociones, "Trío", true, 12));
+                
+                // Familiar
+                productoRepository.save(new Producto(null, "Banquete Clandestino", "2 Pizzas Familiares mas 1 Porcion de Alitas BBQ mas Gaseosa 1.5L", 84.90, "/images/producto_combo4.jpg", promociones, "Familiar", true, 10));
+            }
+        }
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/LacaletaApplication.java">
+package com.lacaleta;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class LacaletaApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(LacaletaApplication.class, args);
+	}
+
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/java/com/lacaleta/TestQuery.java">
+package com.lacaleta;
+
+import com.lacaleta.repository.CategoriaRepository;
+import com.lacaleta.repository.ProductoRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+@Component
+public class TestQuery implements CommandLineRunner {
+    private final CategoriaRepository catRepo;
+    private final ProductoRepository prodRepo;
+    
+    public TestQuery(CategoriaRepository catRepo, ProductoRepository prodRepo) {
+        this.catRepo = catRepo;
+        this.prodRepo = prodRepo;
+    }
+
+    @Override
+    public void run(String... args) {
+        System.out.println("=== CATEGORIAS ===");
+        catRepo.findAll().forEach(c -> System.out.println(c.getId() + ": " + c.getNombre() + " (codigo: " + c.getCodigo() + ")"));
+        
+        System.out.println("=== PRODUCTOS ===");
+        prodRepo.findAll().forEach(p -> {
+            String cat = p.getCategoria() != null ? p.getCategoria().getCodigo() : "NULL";
+            System.out.println(p.getId() + ": " + p.getNombre() + " - Cat: " + cat);
+        });
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/js/admi.js">
+function mostrarSeccion(idSeccion, elementoBtn) {
+    document.querySelectorAll('.caleta-seccion').forEach(sec => sec.classList.remove('activa'));
+    document.querySelectorAll('.caleta-menu-btn').forEach(btn => btn.classList.remove('activo'));
+
+    const seccionDestino = document.getElementById(idSeccion);
+    if (seccionDestino) {
+        seccionDestino.classList.add('activa');
+    }
+    if (elementoBtn) {
+        elementoBtn.classList.add('activo');
+    }
+
+    const titulos = {
+        'dashboard': 'Dashboard de Control',
+        'productos': 'Catálogo de Pizzas & Menú',
+        'stock': 'Control de Insumos y Materia Prima',
+        'ventas': 'Historial de Pedidos',
+        'clientes': 'Directorio de Clientes'
+    };
+    document.getElementById('tituloSeccion').innerText = titulos[idSeccion] || 'Panel de Administración';
+}
+
+function filtrarTabla(inputId, tablaId) {
+    const input = document.getElementById(inputId);
+    const filtro = input.value.toLowerCase();
+    const tabla = document.getElementById(tablaId);
+    const filas = tabla.getElementsByTagName('tr');
+
+    for (let i = 1; i < filas.length; i++) {
+        const filaTexto = filas[i].textContent.toLowerCase();
+        filas[i].style.display = filaTexto.includes(filtro) ? '' : 'none';
+    }
+}
+
+function abrirModalEditar(btn) {
+    document.getElementById('edit-id').value = btn.getAttribute('data-id');
+    document.getElementById('edit-nombre').value = btn.getAttribute('data-nombre');
+    document.getElementById('edit-precio').value = btn.getAttribute('data-precio');
+    document.getElementById('edit-img').value = btn.getAttribute('data-img');
+
+    if (document.getElementById('edit-tamano')) {
+        document.getElementById('edit-tamano').value = btn.getAttribute('data-tamano') || 'Familiar';
+    }
+    if (document.getElementById('edit-categoria')) {
+        document.getElementById('edit-categoria').value = btn.getAttribute('data-categoria') || 'clasicas';
+    }
+    if (document.getElementById('edit-disponible')) {
+        document.getElementById('edit-disponible').value = btn.getAttribute('data-disponible');
+    }
+
+    const modal = new bootstrap.Modal(document.getElementById('modalEditarPizza'));
+    modal.show();
+}
+
+function abrirModalEditarInsumo(btn) {
+    document.getElementById('edit-insumo-id').value = btn.getAttribute('data-id');
+    document.getElementById('edit-insumo-nombre').value = btn.getAttribute('data-nombre');
+    document.getElementById('edit-insumo-stock').value = btn.getAttribute('data-stock');
+    document.getElementById('edit-insumo-unidad').value = btn.getAttribute('data-unidad');
+    document.getElementById('edit-insumo-minimo').value = btn.getAttribute('data-minimo');
+
+    const modal = new bootstrap.Modal(document.getElementById('modalEditarInsumo'));
+    modal.show();
+}
+
+
+
+function cerrarSesion() {
+    localStorage.removeItem("sesion_activa");
+    localStorage.removeItem("token");
+    window.location.href = "/logout";
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    fetchDashboardMetrics();
+
+    // Permite conservar la pestaña activa si hay hash en la URL (ej. #stock)
+    if (window.location.hash) {
+        const hash = window.location.hash.substring(1);
+        const botonesNav = document.querySelectorAll('.caleta-menu-btn');
+        if (hash === 'stock') {
+            mostrarSeccion('stock', botonesNav[2]);
+        } else if (hash === 'productos') {
+            mostrarSeccion('productos', botonesNav[1]);
+        }
+    }
+});
+
+async function fetchDashboardMetrics() {
+    try {
+        const response = await fetch('/api/admin/dashboard/metricas');
+        if (response.ok) {
+            const data = await response.json();
+            
+            const kpiVentas = document.getElementById('kpi-ventas-dia');
+            if (kpiVentas) kpiVentas.textContent = `S/ ${data.ventasDelDia.toFixed(2)}`;
+
+            const kpiPizzas = document.getElementById('kpi-pizzas-catalogo');
+            if (kpiPizzas) kpiPizzas.textContent = `${data.pizzasCatalogo} Variedades`;
+
+            const kpiInsumos = document.getElementById('kpi-insumos-criticos');
+            if (kpiInsumos) kpiInsumos.textContent = `${data.insumosCriticos} Alertas`;
+
+            const kpiClientes = document.getElementById('kpi-clientes');
+            if (kpiClientes) kpiClientes.textContent = `${data.clientesRegistrados}`;
+        }
+    } catch (error) {
+        console.error('Error fetching dashboard metrics:', error);
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/js/auth-session.js">
+/**
+ * auth-session.js - Script para sincronizar el estado de sesión y actualizar el Navbar.
+ */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // 1. Obtener usuario almacenado si existe
+    const sesion = JSON.parse(localStorage.getItem("sesion_activa") || localStorage.getItem("usuarioLogueado"));
+
+    // 2. Si no hay área de usuario manipulable, finalizar
+    const navUserArea = document.getElementById("navUserArea");
+    if (!navUserArea) return;
+
+    // 3. Si existe sesión local y no ha sido renderizada por Thymeleaf, reemplazar enlace de inicio de sesión
+    if (sesion && sesion.nombre && !navUserArea.querySelector('.dropdown')) {
+        navUserArea.innerHTML = `
+            <div class="dropdown">
+                <button class="btn btn-dark text-white dropdown-toggle border-0 small fw-semibold d-flex align-items-center gap-2 shadow-none" 
+                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-circle-user text-warning fs-5"></i>
+                    <span>${sesion.nombre}</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary shadow">
+                    <li>
+                        <a class="dropdown-item text-white small" href="/logout" onclick="localStorage.clear();">
+                            <i class="fa-solid fa-right-from-bracket me-2 text-danger"></i>Cerrar sesión
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        `;
+    }
+});
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/js/auth.js">
+const API_URL = 'https://pizzeria-la-caleta.onrender.com/api';
+
+
+
+function cerrarSesion() {
+    localStorage.removeItem("sesion_activa");
+    localStorage.removeItem("usuarioLogueado");
+    localStorage.removeItem("token");
+    window.location.href = "/logout";
+}
+
+// Función genérica para mostrar notificaciones con Bootstrap Modal
+function mostrarModalMensaje(titulo, mensaje, accionCierre = null) {
+    const modalEl = document.getElementById('modalNotificacionGlobal');
+    if (!modalEl) {
+        // Fallback en caso de que el modal no exista en la vista actual
+        alert(`${titulo}: ${mensaje}`);
+        if(accionCierre) accionCierre();
+        return;
+    }
+    
+    document.getElementById('modalNotificacionGlobalLabel').innerText = titulo;
+    document.getElementById('modalNotificacionGlobalMensaje').innerText = mensaje;
+    
+    const modalInstance = new bootstrap.Modal(modalEl);
+    
+    if (accionCierre) {
+        modalEl.addEventListener('hidden.bs.modal', function onHidden() {
+            modalEl.removeEventListener('hidden.bs.modal', onHidden);
+            accionCierre();
+        });
+    }
+    
+    modalInstance.show();
+}
+
+// 3. Ejecución automática al cargar cualquier página
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Validaciones preventivas y envío asíncrono para el Registro en Frontend
+    const formRegistro = document.getElementById("formRegistro");
+    if (formRegistro) {
+        formRegistro.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            
+            const btnSubmit = formRegistro.querySelector("button[type='submit']") || formRegistro.querySelector("input[type='submit']");
+            const btnOriginalText = btnSubmit ? (btnSubmit.innerText || btnSubmit.value) : "CREAR CUENTA";
+
+            const nombre = document.getElementById("regNombre")?.value.trim() || "";
+            const apellidos = document.getElementById("regApellido")?.value.trim() || "";
+            const tipoDoc = document.getElementById("regTipoDoc")?.value;
+            const numDoc = document.getElementById("regNumDoc")?.value.trim() || "";
+            const telefono = document.getElementById("regTelefono")?.value.trim() || "";
+            const fechaNac = document.getElementById("regFechaNac")?.value || "";
+            const email = document.getElementById("regEmail")?.value.trim() || "";
+            const pass = document.getElementById("regPassword")?.value || "";
+            const confirmPass = document.getElementById("regPasswordConfirm")?.value || "";
+            const aceptaTerminos = document.getElementById("checkTerminos")?.checked ? "true" : "false";
+
+            const errorAlert = document.getElementById('jsErrorAlert');
+            if(errorAlert) errorAlert.classList.add('d-none');
+
+            // Ocultar mensajes previos de error
+            document.querySelectorAll('.msg-feedback').forEach(el => el.classList.add('d-none'));
+            document.querySelectorAll('input').forEach(el => el.classList.remove('is-invalid-custom'));
+
+            function marcarErrorCampo(idInput, idFeed, msg) {
+                const input = document.getElementById(idInput);
+                const feed = document.getElementById(idFeed);
+                if (input) input.classList.add('is-invalid-custom');
+                if (feed) {
+                    feed.innerText = msg;
+                    feed.className = 'msg-feedback text-danger fw-semibold';
+                    feed.classList.remove('d-none');
+                }
+            }
+
+            let hayError = false;
+
+            // Nombres y Apellidos
+            if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/.test(nombre)) {
+                marcarErrorCampo('regNombre', 'feedNombre', 'Ingresa un nombre válido (mínimo 2 letras).');
+                hayError = true;
+            }
+            if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/.test(apellidos)) {
+                marcarErrorCampo('regApellido', 'feedApellido', 'Ingresa un apellido válido (mínimo 2 letras).');
+                hayError = true;
+            }
+
+            // DNI / Documento
+            if (tipoDoc === 'DNI') {
+                if (!/^\d{8}$/.test(numDoc)) {
+                    marcarErrorCampo('regNumDoc', 'feedNumDoc', 'El DNI debe tener exactamente 8 dígitos.');
+                    hayError = true;
+                } else if (/^(\d)\1{7}$/.test(numDoc) || numDoc === '12345678' || numDoc === '87654321') {
+                    marcarErrorCampo('regNumDoc', 'feedNumDoc', 'Por favor ingresa un número de DNI válido.');
+                    hayError = true;
+                }
+            } else if (numDoc.length < 6 || numDoc.length > 12) {
+                marcarErrorCampo('regNumDoc', 'feedNumDoc', 'El documento debe tener entre 6 y 12 caracteres.');
+                hayError = true;
+            }
+
+            // Teléfono Celular
+            if (!/^9\d{8}$/.test(telefono)) {
+                marcarErrorCampo('regTelefono', 'feedTelefono', 'El celular debe tener 9 dígitos y comenzar con 9.');
+                hayError = true;
+            }
+
+            // Fecha de Nacimiento
+            if (!fechaNac) {
+                marcarErrorCampo('regFechaNac', 'feedFechaNac', 'Por favor selecciona tu fecha de nacimiento.');
+                hayError = true;
+            }
+
+            // Correo Electrónico
+            if (!/^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+                marcarErrorCampo('regEmail', 'feedEmail', 'Ingresa un correo electrónico válido.');
+                hayError = true;
+            }
+
+            // Contraseñas
+            if (pass.length < 8) {
+                marcarErrorCampo('regPassword', 'feedPassword', 'La contraseña debe tener al menos 8 caracteres.');
+                hayError = true;
+            }
+            if (pass !== confirmPass) {
+                marcarErrorCampo('regPasswordConfirm', 'feedPasswordConfirm', 'Las contraseñas no coinciden.');
+                hayError = true;
+            }
+
+            // Términos
+            if (aceptaTerminos !== "true") {
+                marcarErrorCampo('checkTerminos', 'feedTerminos', 'Debes aceptar los términos y condiciones.');
+                hayError = true;
+            }
+
+            if (hayError) {
+                if(errorAlert) {
+                    errorAlert.innerText = 'Por favor corrige los campos marcados en rojo antes de continuar.';
+                    errorAlert.classList.remove('d-none');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                return;
+            }
+            
+            // Si pasa las validaciones previas, hace el fetch
+            try {
+                if (btnSubmit) {
+                    btnSubmit.disabled = true;
+                    if(btnSubmit.tagName === 'INPUT') btnSubmit.value = "REGISTRANDO...";
+                    else btnSubmit.innerText = "REGISTRANDO...";
+                }
+                
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        nombre, apellidos, tipoDocumento: tipoDoc, numeroDocumento: numDoc, 
+                        telefono, fechaNacimiento: fechaNac, email, password: pass, 
+                        confirmPassword: confirmPass, aceptaTerminos 
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    mostrarModalMensaje("Éxito", data.mensaje, () => {
+                        window.location.href = "/login";
+                    });
+                } else {
+                    mostrarModalMensaje("Error", data.error || "Ocurrió un error en el registro.");
+                }
+            } catch (error) {
+                mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
+            } finally {
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    if(btnSubmit.tagName === 'INPUT') btnSubmit.value = btnOriginalText;
+                    else btnSubmit.innerText = btnOriginalText;
+                }
+            }
+        });
+    }
+
+    // --- FLUJO: INICIAR SESIÓN (Fetch Async) ---
+    const formLogin = document.getElementById("formLogin");
+    if (formLogin) {
+        formLogin.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById("loginEmail");
+            const passInput = document.getElementById("loginPassword");
+            const btnSubmit = formLogin.querySelector("button[type='submit']") || formLogin.querySelector("input[type='submit']");
+            const btnOriginalText = btnSubmit ? (btnSubmit.innerText || btnSubmit.value) : "INICIAR SESIÓN";
+
+            if (emailInput && passInput && emailInput.value.trim() !== "" && passInput.value.trim() !== "") {
+                const email = emailInput.value.trim().toLowerCase();
+                const password = passInput.value;
+                
+                try {
+                    if (btnSubmit) {
+                        btnSubmit.disabled = true;
+                        if(btnSubmit.tagName === 'INPUT') btnSubmit.value = "INICIANDO SESIÓN...";
+                        else btnSubmit.innerText = "INICIANDO SESIÓN...";
+                    }
+                    
+                    const response = await fetch('/api/auth/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        // Guardar datos en localstorage si es necesario
+                        localStorage.setItem("sesion_activa", JSON.stringify(data.usuario));
+                        window.location.href = data.redirect;
+                    } else {
+                        mostrarModalMensaje("Error", data.error || "Credenciales incorrectas.");
+                    }
+                } catch (error) {
+                    mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
+                } finally {
+                    if (btnSubmit) {
+                        btnSubmit.disabled = false;
+                        if(btnSubmit.tagName === 'INPUT') btnSubmit.value = btnOriginalText;
+                        else btnSubmit.innerText = btnOriginalText;
+                    }
+                }
+            }
+        });
+    }
+
+    // Toggle ver contraseña en Login
+    const toggleEye = document.getElementById("toggleEye");
+    if (toggleEye) {
+        toggleEye.addEventListener("click", () => {
+            const passInput = document.getElementById("loginPassword");
+            if (passInput) {
+                passInput.type = passInput.type === "password" ? "text" : "password";
+                toggleEye.classList.toggle("fa-eye");
+                toggleEye.classList.toggle("fa-eye-slash");
+            }
+        });
+    }
+
+    // Toggle ver contraseña (reset password 1)
+    const toggleEye1 = document.getElementById("toggleEye1");
+    if (toggleEye1) {
+        toggleEye1.addEventListener("click", () => {
+            const passInput = document.getElementById("newPassword");
+            if (passInput) {
+                passInput.type = passInput.type === "password" ? "text" : "password";
+                toggleEye1.classList.toggle("fa-eye");
+                toggleEye1.classList.toggle("fa-eye-slash");
+            }
+        });
+    }
+
+    // Toggle ver contraseña (reset password 2)
+    const toggleEye2 = document.getElementById("toggleEye2");
+    if (toggleEye2) {
+        toggleEye2.addEventListener("click", () => {
+            const passInput = document.getElementById("confirmPassword");
+            if (passInput) {
+                passInput.type = passInput.type === "password" ? "text" : "password";
+                toggleEye2.classList.toggle("fa-eye");
+                toggleEye2.classList.toggle("fa-eye-slash");
+            }
+        });
+    }
+
+    // --- FLUJO: OLVIDÉ MI CONTRASEÑA ---
+    const formForgotPassword = document.getElementById("formForgotPassword");
+    if (formForgotPassword) {
+        formForgotPassword.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById("forgotEmail");
+            const btnSubmit = formForgotPassword.querySelector("input[type='submit']");
+            
+            if (emailInput && emailInput.value.trim() !== "") {
+                const email = emailInput.value.trim().toLowerCase();
+                
+                try {
+                    if (btnSubmit) {
+                        btnSubmit.disabled = true;
+                        btnSubmit.value = "ENVIANDO...";
+                    }
+                    
+                    const response = await fetch('/api/auth/forgot-password', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        localStorage.setItem("temp_reset_email", email);
+                        mostrarModalMensaje("Éxito", data.mensaje, () => {
+                            window.location.href = "/verifycode";
+                        });
+                    } else {
+                        mostrarModalMensaje("Error", data.error || "Ocurrió un error inesperado.");
+                    }
+                } catch (error) {
+                    mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
+                } finally {
+                    if (btnSubmit) {
+                        btnSubmit.disabled = false;
+                        btnSubmit.value = "RESTABLECER MI CONTRASEÑA";
+                    }
+                }
+            }
+        });
+    }
+
+    const formVerifyCode = document.getElementById("formVerifyCode");
+    if (formVerifyCode) {
+        formVerifyCode.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const inputOtp = document.getElementById("otpCode")?.value.trim();
+            const email = localStorage.getItem("temp_reset_email");
+            const btnSubmit = formVerifyCode.querySelector("input[type='submit']");
+
+            if (!email) {
+                mostrarModalMensaje("Error", "No hay una sesión de recuperación activa. Vuelve a empezar.", () => {
+                    window.location.href = "/forgotpassword";
+                });
+                return;
+            }
+
+            try {
+                if (btnSubmit) {
+                    btnSubmit.disabled = true;
+                    btnSubmit.value = "VERIFICANDO...";
+                }
+                
+                const response = await fetch('/api/auth/verify-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, otp: inputOtp })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    localStorage.setItem("temp_verified_otp", inputOtp);
+                    mostrarModalMensaje("Éxito", data.mensaje, () => {
+                        window.location.href = "/resetpassword";
+                    });
+                } else {
+                    mostrarModalMensaje("Error", data.error || "El código ingresado es incorrecto.");
+                }
+            } catch (error) {
+                mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
+            } finally {
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    btnSubmit.value = "VERIFICAR CÓDIGO";
+                }
+            }
+        });
+    }
+
+    const formResetPassword = document.getElementById("formResetPassword");
+    if (formResetPassword) {
+        formResetPassword.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const newPassword = document.getElementById("newPassword")?.value || "";
+            const confirmPassword = document.getElementById("confirmPassword")?.value || "";
+            const email = localStorage.getItem("temp_reset_email");
+            const otp = localStorage.getItem("temp_verified_otp");
+            const btnSubmit = formResetPassword.querySelector("input[type='submit']");
+
+            if (!email || !otp) {
+                mostrarModalMensaje("Error", "Faltan datos de verificación. Vuelve a iniciar el proceso.", () => {
+                    window.location.href = "/forgotpassword";
+                });
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                mostrarModalMensaje("Error", "Las contraseñas no coinciden.");
+                return;
+            }
+
+            const strengthRegex = /^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
+            if (!strengthRegex.test(newPassword)) {
+                mostrarModalMensaje("Error", "La contraseña debe tener mínimo 8 caracteres, al menos 1 mayúscula y 1 carácter especial.");
+                return;
+            }
+
+            try {
+                if (btnSubmit) {
+                    btnSubmit.disabled = true;
+                    btnSubmit.value = "ACTUALIZANDO...";
+                }
+                
+                const response = await fetch('/api/auth/reset-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, otp, newPassword })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    localStorage.removeItem("temp_reset_email");
+                    localStorage.removeItem("temp_verified_otp");
+                    
+                    mostrarModalMensaje("Éxito", data.mensaje, () => {
+                        window.location.href = "/login";
+                    });
+                } else {
+                    mostrarModalMensaje("Error", data.error || "No se pudo restablecer la contraseña.");
+                }
+            } catch (error) {
+                mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
+            } finally {
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    btnSubmit.value = "CONFIRMAR CONTRASEÑA";
+                }
+            }
+        });
+    }
+});
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/js/cart.js">
+function obtenerCarrito() {
+    return JSON.parse(localStorage.getItem('carrito_caleta')) || [];
+}
+
+function guardarCarrito(carrito) {
+    localStorage.setItem('carrito_caleta', JSON.stringify(carrito));
+    actualizarVistasCarrito();
+}
+
+function agregarAlCarrito(nombre, precio, imagenUrl, descripcion = "") {
+    const carrito = obtenerCarrito();
+    const itemExistente = carrito.find(item => item.nombre === nombre);
+    if (itemExistente) {
+        itemExistente.cantidad += 1;
+    } else {
+        carrito.push({
+            nombre: nombre,
+            precio: parseFloat(precio),
+            cantidad: 1,
+            imagenUrl: imagenUrl,
+            descripcion: descripcion
+        });
+    }
+    guardarCarrito(carrito);
+    mostrarNotificacionCarrito(nombre);
+}
+
+function editarProductoCarrito(indice) {
+    const carrito = obtenerCarrito();
+    const item = carrito[indice];
+    if (!item) return;
+
+    const info = parsearNombreProducto(item.nombre);
+    
+    const params = new URLSearchParams({
+        nombre: info.nombre,
+        precio: item.precio,
+        img: item.imagenUrl,
+        desc: item.descripcion || '',
+        editar: indice
+    });
+
+    window.location.href = `/detalles?${params.toString()}`;
+}
+
+function cambiarCantidad(indice, cambio) {
+    const carrito = obtenerCarrito();
+    if (carrito[indice]) {
+        carrito[indice].cantidad += cambio;
+        if (carrito[indice].cantidad <= 0) {
+            carrito.splice(indice, 1);
+        }
+        guardarCarrito(carrito);
+    }
+}
+
+function eliminarDelCarrito(indice) {
+    const carrito = obtenerCarrito();
+    if (carrito[indice]) {
+        carrito.splice(indice, 1);
+        guardarCarrito(carrito);
+    }
+}
+
+function vaciarCarrito() {
+    localStorage.removeItem('carrito_caleta');
+    actualizarVistasCarrito();
+}
+
+function alternarInfo(idElemento, boton) {
+    const contenedor = document.getElementById(idElemento);
+    if (!contenedor) return;
+    const estaOculto = contenedor.classList.contains("d-none");
+    contenedor.classList.toggle("d-none");
+    boton.innerHTML = estaOculto
+        ? 'Ocultar información <i class="fa-solid fa-chevron-up ms-1 fs-xs"></i>'
+        : 'Ver información <i class="fa-solid fa-chevron-down ms-1 fs-xs"></i>';
+}
+
+function parsearNombreProducto(nombreCompleto) {
+    const pos = nombreCompleto.indexOf('(');
+    if (pos !== -1) {
+        return {
+            nombre: nombreCompleto.substring(0, pos).trim(),
+            detalles: nombreCompleto.substring(pos).trim()
+        };
+    }
+    return {
+        nombre: nombreCompleto,
+        detalles: ''
+    };
+}
+
+function formatearDetallesComoLista(detallesTexto) {
+    if (!detallesTexto) return '';
+
+    const partes = detallesTexto.match(/[(\[][^)\]]+[)\]]/g);
+
+    if (partes && partes.length > 0) {
+        return partes.map(parte => {
+            const limpio = parte.replace(/[()\[\]]/g, '').trim();
+            return `<div class="py-0.5">• ${limpio}</div>`;
+        }).join('');
+    }
+
+    return detallesTexto
+        .replace(/[()\[\]]/g, '')
+        .split(',')
+        .map(item => item.trim())
+        .filter(item => item.length > 0)
+        .map(item => `<div class="py-0.5">• ${item}</div>`)
+        .join('');
+}
+
+function actualizarVistasCarrito() {
+    const carrito = obtenerCarrito();
+    let subtotal = 0;
+    carrito.forEach(item => {
+        subtotal += item.precio * item.cantidad;
+    });
+
+    const costoEnvio = carrito.length > 0 ? 5.00 : 0.00;
+    const total = subtotal + costoEnvio;
+
+    const badgeMonto = document.querySelector('.nav-menu-link-shop span');
+    if (badgeMonto) {
+        badgeMonto.innerText = `S/ ${subtotal.toFixed(2)}`;
+    }
+
+    const offcanvasBody = document.querySelector('#offcanvasCarrito .offcanvas-body');
+    if (offcanvasBody) {
+        if (carrito.length === 0) {
+            offcanvasBody.innerHTML = `
+                <div class="text-center my-auto">
+                    <div class="mb-3">
+                        <i class="fa-solid fa-basket-shopping fs-1 text-secondary opacity-50"></i>
+                    </div>
+                    <h6 class="fw-bold text-white mb-2">Tu carrito está vacío</h6>
+                    <p class="text-secondary small mb-4">Aún no has agregado productos. Explora nuestras pizzas secretas.</p>
+                    <a href="/menu" class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small text-decoration-none">Explorar Menú</a>
+                </div>
+                <div class="border-top border-secondary border-opacity-25 pt-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-secondary small">Total estimado:</span>
+                        <span class="fw-bold fs-5 text-white">S/ 0.00</span>
+                    </div>
+                    <button class="btn btn-secondary w-100 fw-bold py-2 text-uppercase small disabled" style="border-radius: 30px;">Continuar con el pedido</button>
+                </div>
+            `;
+        } else {
+            const itemsHtml = carrito.map((item, idx) => {
+                const info = parsearNombreProducto(item.nombre);
+
+                return `
+                    <div class="d-flex align-items-start justify-content-between py-3 border-bottom border-secondary border-opacity-25 gap-2">
+                        <img src="${item.imagenUrl}" alt="${info.nombre}" class="rounded object-fit-cover flex-shrink-0" style="width: 48px; height: 48px;">
+                        <div class="flex-grow-1 ms-2 min-w-0">
+                            <h6 class="mb-1 text-white small fw-bold text-truncate">${info.nombre}</h6>
+                            
+                            ${info.detalles ? `
+                                <div class="mb-1 d-flex align-items-center gap-2">
+                                    <button type="button" class="btn-ver-info" onclick="alternarInfo('offcanvas-info-${idx}', this)">
+                                        Ver información <i class="fa-solid fa-chevron-down ms-1 fs-xs"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-link text-secondary p-0 text-decoration-none fs-xs hover-rojo" onclick="editarProductoCarrito(${idx})">
+                                        <i class="fa-solid fa-pen-to-square me-1"></i> Editar
+                                    </button>
+                                </div>
+                                <div id="offcanvas-info-${idx}" class="d-none text-white-50 fs-xs mt-1 ps-2 border-start border-secondary">
+                                    ${formatearDetallesComoLista(info.detalles)}
+                                </div>
+                            ` : ''}
+
+                            <span class="text-secondary fs-xs">S/ ${item.precio.toFixed(2)} x ${item.cantidad}</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                            <button onclick="cambiarCantidad(${idx}, -1)" class="btn btn-sm btn-outline-secondary py-0 px-2 text-white">-</button>
+                            <span class="small fw-bold text-white">${item.cantidad}</span>
+                            <button onclick="cambiarCantidad(${idx}, 1)" class="btn btn-sm btn-outline-secondary py-0 px-2 text-white">+</button>
+                            <button onclick="eliminarDelCarrito(${idx})" class="btn btn-sm text-danger p-0 ms-1 border-0">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            offcanvasBody.innerHTML = `
+                <div class="overflow-auto flex-grow-1 mb-3 pe-1">
+                    ${itemsHtml}
+                </div>
+                <div class="border-top border-secondary border-opacity-25 pt-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-secondary small">Subtotal:</span>
+                        <span class="fw-bold fs-5 text-white">S/ ${subtotal.toFixed(2)}</span>
+                    </div>
+                    <a href="/carrito" class="btn-cta w-100 fw-bold py-2 text-uppercase small text-decoration-none text-center d-block">
+                        Ver Carrito / Pagar
+                    </a>
+                </div>
+            `;
+        }
+    }
+
+    const tablaItems = document.getElementById('carrito-items');
+    const subtotalDOM = document.getElementById('resumen-subtotal');
+    const totalDOM = document.getElementById('resumen-total');
+    if (tablaItems) {
+        if (carrito.length === 0) {
+            tablaItems.innerHTML = `
+                <tr>
+                    <td colspan="4" class="text-center py-5 text-secondary">
+                        Tu carrito está vacío. <a href="/menu" class="text-ro text-decoration-none ms-1">Ver carta</a>
+                    </td>
+                </tr>
+            `;
+        } else {
+            tablaItems.innerHTML = carrito.map((item, idx) => {
+                const info = parsearNombreProducto(item.nombre);
+
+                return `
+                    <tr>
+                        <td class="ps-4 py-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="${item.imagenUrl}" alt="${info.nombre}" class="rounded-2 object-fit-cover" style="width: 55px; height: 55px;">
+                                <div>
+                                    <h6 class="fw-bold mb-1 text-white">${info.nombre}</h6>
+                                    
+                                    ${info.detalles ? `
+                                        <div class="mb-1 d-flex align-items-center gap-2">
+                                            <button type="button" class="btn-ver-info" onclick="alternarInfo('table-info-${idx}', this)">
+                                                Ver información <i class="fa-solid fa-chevron-down ms-1 fs-xs"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-link text-secondary p-0 text-decoration-none fs-xs hover-rojo" onclick="editarProductoCarrito(${idx})">
+                                                <i class="fa-solid fa-pen-to-square me-1"></i> Editar
+                                                </button>
+                                        </div>
+                                        <div id="table-info-${idx}" class="d-none text-white-50 fs-xs mt-1 ps-2 border-start border-secondary">
+                                            ${formatearDetallesComoLista(info.detalles)}
+                                        </div>
+                                    ` : ''}
+
+                                    <button onclick="eliminarDelCarrito(${idx})" class="btn btn-link text-danger p-0 text-decoration-none border-0 mt-1" style="font-size: 11px;">
+                                        <i class="fa-solid fa-trash-can me-1"></i> Eliminar
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center py-3">
+                            <div class="d-inline-flex align-items-center border border-secondary border-opacity-50 rounded-pill px-2 py-1">
+                                <button onclick="cambiarCantidad(${idx}, -1)" class="btn btn-sm text-white p-0 border-0 shadow-none"><i class="fa-solid fa-minus fs-xs"></i></button>
+                                <span class="px-2 fw-semibold small">${item.cantidad}</span>
+                                <button onclick="cambiarCantidad(${idx}, 1)" class="btn btn-sm text-white p-0 border-0 shadow-none"><i class="fa-solid fa-plus fs-xs"></i></button>
+                            </div>
+                        </td>
+                        <td class="text-end text-secondary small py-3">S/ ${item.precio.toFixed(2)}</td>
+                        <td class="text-end fw-bold text-white py-3 pe-4">S/ ${(item.precio * item.cantidad).toFixed(2)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+    }
+    if (subtotalDOM) subtotalDOM.innerText = `S/ ${subtotal.toFixed(2)}`;
+    if (totalDOM) totalDOM.innerText = `S/ ${total.toFixed(2)}`;
+}
+
+document.addEventListener("DOMContentLoaded", actualizarVistasCarrito);
+
+function mostrarNotificacionCarrito(nombreProducto) {
+    const toastEl = document.getElementById('toastCarrito');
+    const toastMensaje = document.getElementById('toastMensaje');
+    if (toastEl && toastMensaje) {
+        const info = parsearNombreProducto(nombreProducto);
+        toastMensaje.innerHTML = `<strong>${info.nombre}</strong> se agregó al pedido.`;
+        const toast = bootstrap.Toast.getOrCreateInstance(toastEl, { delay: 2500 });
+        toast.show();
+    }
+}
+
+function editarProductoCarrito(indice) {
+    const carrito = obtenerCarrito();
+    const item = carrito[indice];
+    if (!item) return;
+
+    const info = parsearNombreProducto(item.nombre);
+
+    const params = new URLSearchParams({
+        nombre: info.nombre,
+        precio: item.precio,
+        img: item.imagenUrl,
+        desc: item.descripcion || '',
+        editar: indice
+    });
+
+    window.location.href = `/detalles?${params.toString()}`;
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/js/detalles.js">
+let pasoActual = 1;
+let precioBaseProducto = 36.00;
+
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const nombre = params.get("nombre");
+    const precio = params.get("precio");
+    const img = params.get("img");
+    const desc = params.get("desc");
+    const tipo = params.get("tipo");
+    const indiceEdicion = params.get("editar");
+
+    if (nombre) {
+        const elementoNombre = document.getElementById("detalleNombre");
+        const breadcrumb = document.getElementById("breadcrumbNombre");
+        if (elementoNombre) elementoNombre.innerText = nombre;
+        if (breadcrumb) breadcrumb.innerText = nombre;
+        document.title = `La Caleta | ${nombre}`;
+    }
+
+    if (desc) {
+        const elementoDesc = document.getElementById("detalleDescripcion");
+        if (elementoDesc) elementoDesc.innerText = desc;
+    }
+
+    if (tipo) {
+        const badgeCat = document.getElementById("badgeCategoria");
+        const tituloPers = document.getElementById("tituloPersonalizar");
+        if (badgeCat) badgeCat.innerText = tipo;
+        if (tituloPers) tituloPers.innerText = tipo.toLowerCase() === "combo" ? "Personaliza tu combo" : "Personaliza tu pizza";
+    }
+
+    if (img) {
+        const elementoImg = document.getElementById("detalleImagen");
+        if (elementoImg) elementoImg.src = img;
+    }
+
+    if (precio) {
+        precioBaseProducto = parseFloat(precio);
+        const radioMediana = document.getElementById("tam-mediana");
+        const radioFamiliar = document.getElementById("tam-familiar");
+        const radioMega = document.getElementById("tam-mega");
+        if (radioMediana) radioMediana.value = precioBaseProducto.toFixed(2);
+        if (radioFamiliar) radioFamiliar.value = (precioBaseProducto + 10.00).toFixed(2);
+        if (radioMega) radioMega.value = (precioBaseProducto + 20.00).toFixed(2);
+    }
+
+    if (indiceEdicion !== null) {
+        const carrito = JSON.parse(localStorage.getItem('carrito_caleta')) || [];
+        const itemAEditar = carrito[parseInt(indiceEdicion)];
+
+        if (itemAEditar) {
+            const btnFinalizar = document.getElementById("btnFinalizar");
+            if (btnFinalizar) {
+                btnFinalizar.innerHTML = 'Guardar cambios <i class="fa-solid fa-check ms-1"></i>';
+            }
+
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                const label = radio.dataset.label || radio.value;
+                if (label && itemAEditar.nombre.includes(label)) {
+                    radio.checked = true;
+                    // Actualiza el resumen colapsable
+                    const seccion = radio.name; // tamano, masa, cortesia
+                    const textoResumen = document.getElementById(`texto-resumen-${seccion}`);
+                    if (textoResumen) textoResumen.innerText = label;
+
+                    const badge = document.getElementById(`badge-${seccion}`);
+                    if (badge) {
+                        badge.innerText = "Completado";
+                        badge.className = "badge-completado";
+                    }
+
+                    const cuerpo = document.getElementById(`cuerpo-${seccion}`);
+                    const box = document.getElementById(`box-resumen-${seccion}`);
+                    if (cuerpo) cuerpo.classList.add("d-none");
+                    if (box) box.classList.remove("d-none");
+                }
+            });
+        }
+    }
+});
+
+function alternarSeccion(idCuerpo, idResumenBox) {
+    const cuerpo = document.getElementById(idCuerpo);
+    const box = document.getElementById(idResumenBox);
+    if (!cuerpo) return;
+
+    if (cuerpo.classList.contains("d-none")) {
+        cuerpo.classList.remove("d-none");
+        if (box) box.classList.add("d-none");
+    } else {
+        if (cuerpo.querySelector('input[type="radio"]:checked')) {
+            cuerpo.classList.add("d-none");
+            if (box) box.classList.remove("d-none");
+        }
+    }
+}
+
+function seleccionarYContraer(tipo, inputRadio, idCuerpoActual, idResumenActual, idAlertaActual, idCuerpoSiguiente, idResumenSiguiente) {
+    const textoResumen = document.getElementById(`texto-resumen-${tipo}`);
+    if (textoResumen) textoResumen.innerText = inputRadio.dataset.label || inputRadio.value;
+
+    const badgeActual = document.getElementById(`badge-${tipo}`);
+    if (badgeActual) {
+        badgeActual.innerText = "Completado";
+        badgeActual.className = "badge-completado";
+    }
+
+    const alertaActual = document.getElementById(idAlertaActual);
+    if (alertaActual) alertaActual.classList.add("d-none");
+
+    const cuerpoActual = document.getElementById(idCuerpoActual);
+    const boxActual = document.getElementById(idResumenActual);
+    if (cuerpoActual) cuerpoActual.classList.add("d-none");
+    if (boxActual) boxActual.classList.remove("d-none");
+
+    if (idCuerpoSiguiente) {
+        const cuerpoSig = document.getElementById(idCuerpoSiguiente);
+        const boxSig = document.getElementById(idResumenSiguiente);
+        if (cuerpoSig) cuerpoSig.classList.remove("d-none");
+        if (boxSig) boxSig.classList.add("d-none");
+
+        if (cuerpoSig && !cuerpoSig.querySelector('input[type="radio"]:checked')) {
+            const alertaSig = document.getElementById(idCuerpoSiguiente.replace("cuerpo-", "alerta-"));
+            if (alertaSig) alertaSig.classList.remove("d-none");
+        }
+    }
+}
+
+function irAlPaso(paso) {
+    if (paso === 2) {
+        const tamano = document.querySelector('input[name="tamano"]:checked');
+        const masa = document.querySelector('input[name="masa"]:checked');
+        const cortesia = document.querySelector('input[name="cortesia"]:checked');
+
+        if (!tamano || !masa || !cortesia) {
+            return;
+        }
+    }
+
+    pasoActual = paso;
+    document.getElementById("paso1-pizza").classList.toggle("d-none", paso !== 1);
+    document.getElementById("paso2-extras").classList.toggle("d-none", paso !== 2);
+    document.getElementById("btnAtras").classList.toggle("d-none", paso === 1);
+    document.getElementById("btnSiguiente").classList.toggle("d-none", paso === 2);
+    document.getElementById("btnFinalizar").classList.toggle("d-none", paso !== 2);
+
+    const stepCircle2 = document.getElementById("stepCircle2");
+    const stepLabel2 = document.getElementById("stepLabel2");
+    const stepLine = document.getElementById("stepLine");
+
+    if (paso === 1) {
+        stepCircle2.className = "rounded-circle d-flex align-items-center justify-content-center fw-bold border border-secondary text-secondary bg-transparent";
+        stepCircle2.innerText = "2";
+        stepLabel2.className = "small fw-bold mt-1 text-secondary";
+        stepLine.style.backgroundColor = "rgba(255,255,255,0.2)";
+    } else {
+        stepCircle2.className = "rounded-circle d-flex align-items-center justify-content-center fw-bold bg-ro text-white shadow-sm";
+        stepCircle2.innerHTML = '<i class="fa-solid fa-check"></i>';
+        stepLabel2.className = "small fw-bold mt-1 text-ro";
+        stepLine.style.backgroundColor = "var(--color-rojo-naranja)";
+    }
+}
+
+
+function enviarAlCarritoDesdeDetalle() {
+    const elementoNombre = document.getElementById("detalleNombre");
+    const elementoImagen = document.getElementById("detalleImagen");
+    const elementoDesc = document.getElementById("detalleDescripcion");
+    if (!elementoNombre || !elementoImagen) return;
+
+    const nombreBase = elementoNombre.innerText.trim();
+    const imagenUrl = elementoImagen.getAttribute("src");
+    const descripcion = elementoDesc ? elementoDesc.innerText.trim() : "";
+
+    const inputTamano = document.querySelector('input[name="tamano"]:checked');
+    const labelTamano = inputTamano ? (inputTamano.dataset.label || "Mediana") : "Mediana";
+
+    const inputMasa = document.querySelector('input[name="masa"]:checked');
+    const labelMasa = inputMasa ? inputMasa.value : "Masa Tradicional";
+
+    const inputCortesia = document.querySelector('input[name="cortesia"]:checked');
+    const cortesiaSeleccionada = inputCortesia ? inputCortesia.value : '';
+
+    let detalleProductoFinal = `${nombreBase} (${labelTamano}, ${labelMasa})`;
+    if (cortesiaSeleccionada) {
+        detalleProductoFinal += ` [Cortesía: ${cortesiaSeleccionada}]`;
+    }
+
+    const precioPizza = inputTamano && !isNaN(parseFloat(inputTamano.value)) ? parseFloat(inputTamano.value) : precioBaseProducto;
+
+    const params = new URLSearchParams(window.location.search);
+    const indiceEdicion = params.get("editar");
+
+    if (indiceEdicion !== null) {
+        const carrito = JSON.parse(localStorage.getItem('carrito_caleta')) || [];
+        const idx = parseInt(indiceEdicion);
+
+        if (carrito[idx]) {
+            carrito[idx].nombre = detalleProductoFinal;
+            carrito[idx].precio = precioPizza;
+            carrito[idx].imagenUrl = imagenUrl;
+            carrito[idx].descripcion = descripcion;
+            localStorage.setItem('carrito_caleta', JSON.stringify(carrito));
+        }
+
+        document.querySelectorAll('.item-extra-producto:checked').forEach(extra => {
+            agregarAlCarrito(extra.dataset.nombre, parseFloat(extra.value), extra.dataset.img || "/images/banner_promocional.jpg");
+        });
+
+        setTimeout(() => {
+            window.location.href = "/carrito";
+        }, 300);
+    } else {
+        agregarAlCarrito(detalleProductoFinal, precioPizza, imagenUrl, descripcion);
+
+        document.querySelectorAll('.item-extra-producto:checked').forEach(extra => {
+            agregarAlCarrito(extra.dataset.nombre, parseFloat(extra.value), extra.dataset.img || "/images/banner_promocional.jpg");
+        });
+
+        setTimeout(() => {
+            window.location.href = "/menu";
+        }, 1000);
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/js/main.js">
+function desplazarASeccion(idDestino, boton) {
+    const destino = document.getElementById(idDestino);
+    if (!destino) {
+        console.warn("No se encontró el elemento con ID:", idDestino);
+        return;
+    }
+
+    const header = document.getElementById('header');
+    const navPromo = document.getElementById('categorias-promo');
+    const offset = (header ? header.offsetHeight : 0) + (navPromo ? navPromo.offsetHeight : 0) + 15;
+
+    const posicionElemento = destino.getBoundingClientRect().top + window.pageYOffset;
+    const posicionFinal = posicionElemento - offset;
+
+    window.scrollTo({
+        top: posicionFinal,
+        behavior: 'smooth'
+    });
+
+    document.querySelectorAll('#categorias-promo .btn-categoria').forEach(btn => btn.classList.remove('active'));
+    if (boton) {
+        boton.classList.add('active');
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (typeof verificarAccesoAdmin === "function") {
+        verificarAccesoAdmin();
+    }
+});
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/js/payment.js">
+document.addEventListener("DOMContentLoaded", () => {
+    cargarResumenPago();
+    cargarDatosEnvioConfirmados();
+});
+
+function cargarResumenPago() {
+    const carrito = JSON.parse(localStorage.getItem('carrito_caleta')) || [];
+    const contenedorLista = document.getElementById('resumen-lista-pago');
+    const badgeCant = document.getElementById('resumen-cant-articulos');
+    const subtotalDOM = document.getElementById('pago-subtotal');
+    const envioDOM = document.getElementById('pago-envio-costo');
+    const totalDOM = document.getElementById('pago-total');
+
+    if (carrito.length === 0) {
+        window.location.href = '/menu';
+        return;
+    }
+
+    let subtotal = 0;
+    let cantidadTotal = 0;
+
+    contenedorLista.innerHTML = carrito.map(item => {
+        subtotal += item.precio * item.cantidad;
+        cantidadTotal += item.cantidad;
+
+        const pos = item.nombre.indexOf('(');
+        const nombreSimple = pos !== -1 ? item.nombre.substring(0, pos).trim() : item.nombre;
+
+        return `
+            <div class="d-flex align-items-center justify-content-between gap-2">
+                <div class="d-flex align-items-center gap-2 min-w-0">
+                    <img src="${item.imagenUrl}" alt="${nombreSimple}" class="rounded-2 object-fit-cover flex-shrink-0" style="width: 44px; height: 44px;">
+                    <div class="min-w-0">
+                        <h6 class="fw-bold mb-0 text-white small text-truncate" style="max-width: 170px;">${nombreSimple}</h6>
+                        <span class="text-secondary d-block" style="font-size: 11px;">Cant: ${item.cantidad}</span>
+                    </div>
+                </div>
+                <span class="fw-bold text-white small flex-shrink-0">S/ ${(item.precio * item.cantidad).toFixed(2)}</span>
+            </div>
+        `;
+    }).join('');
+
+    const datosEnvio = JSON.parse(localStorage.getItem('pedido_envio_caleta')) || {};
+    const costoEnvio = datosEnvio.tipoEntrega === 'delivery' ? 5.00 : 0.00;
+    const total = subtotal + costoEnvio;
+
+    if (badgeCant) badgeCant.innerText = cantidadTotal;
+    if (subtotalDOM) subtotalDOM.innerText = `S/ ${subtotal.toFixed(2)}`;
+    if (envioDOM) {
+        envioDOM.innerText = costoEnvio > 0 ? `S/ ${costoEnvio.toFixed(2)}` : "Gratis (Retiro en Tienda)";
+        envioDOM.className = costoEnvio > 0 ? "text-white fw-semibold" : "text-success fw-semibold";
+    }
+    if (totalDOM) totalDOM.innerText = `S/ ${total.toFixed(2)}`;
+}
+
+function cargarDatosEnvioConfirmados() {
+    const datosEnvio = JSON.parse(localStorage.getItem('pedido_envio_caleta'));
+    
+    if (datosEnvio) {
+        if (datosEnvio.nombre) document.getElementById('pago-contacto-nombre').innerText = datosEnvio.nombre;
+        if (datosEnvio.correo) document.getElementById('pago-contacto-correo').innerText = datosEnvio.correo;
+        if (datosEnvio.telefono) document.getElementById('pago-contacto-telefono').innerText = datosEnvio.telefono;
+
+        if (datosEnvio.tipoEntrega === 'delivery') {
+            document.getElementById('pago-titulo-metodo').innerText = "Dirección de Entrega (Delivery):";
+            document.getElementById('pago-destino-principal').innerText = datosEnvio.direccion || "Dirección registrada";
+            document.getElementById('pago-destino-detalle').innerText = datosEnvio.referencia || "Sin referencias adicionales";
+            document.getElementById('pago-destino-tiempo').innerText = "Tiempo estimado: 35 - 50 min";
+        } else {
+            document.getElementById('pago-titulo-metodo').innerText = "Punto de Retiro Seleccionado:";
+            document.getElementById('pago-destino-principal').innerText = datosEnvio.sede || "Sede Miraflores";
+            document.getElementById('pago-destino-detalle').innerText = datosEnvio.direccionSede || "Av. José Larco 850, Miraflores";
+            document.getElementById('pago-destino-tiempo').innerText = "Listo en: 20 - 30 min";
+        }
+    }
+}
+
+function alternarCamposFactura(mostrar) {
+    const box = document.getElementById('campos-factura');
+    const ruc = document.getElementById('factura-ruc');
+    const razon = document.getElementById('factura-razon');
+    
+    if (mostrar) {
+        box.classList.remove('d-none');
+        ruc.setAttribute('required', 'true');
+        razon.setAttribute('required', 'true');
+    } else {
+        box.classList.add('d-none');
+        ruc.removeAttribute('required');
+        razon.removeAttribute('required');
+    }
+}
+
+function alternarDetalleMetodoPago(metodo) {
+    const boxTarjeta = document.getElementById('box-formulario-tarjeta');
+    const boxYape = document.getElementById('box-formulario-yape');
+    const wrapTarjeta = document.getElementById('wrapper-tarjeta');
+    const wrapYape = document.getElementById('wrapper-yape');
+
+    if (metodo === 'tarjeta') {
+        boxTarjeta.classList.remove('d-none');
+        boxYape.classList.add('d-none');
+        wrapTarjeta.classList.add('activo');
+        wrapYape.classList.remove('activo');
+    } else {
+        boxTarjeta.classList.add('d-none');
+        boxYape.classList.remove('d-none');
+        wrapTarjeta.classList.remove('activo');
+        wrapYape.classList.add('activo');
+    }
+}
+
+function procesarPagoFinal(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('btnFinalizarPedido');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Procesando pedido...';
+
+    setTimeout(() => {
+        localStorage.removeItem('carrito_caleta');
+        localStorage.removeItem('pedido_envio_caleta');
+        window.location.href = '/pedido-confirmado'; 
+    }, 1800);
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/js/reporte.js">
+function mostrarPaginaGraficos(num) {
+    const p1 = document.getElementById("paginaGraficos1");
+    const p2 = document.getElementById("paginaGraficos2");
+    const t1 = document.getElementById("tab1-link");
+    const t2 = document.getElementById("tab2-link");
+
+    if (num === 1) {
+        p1.style.display = "block";
+        p2.style.display = "none";
+        t1.classList.add("activo");
+        t2.classList.remove("activo");
+    } else {
+        p1.style.display = "none";
+        p2.style.display = "block";
+        t1.classList.remove("activo");
+        t2.classList.add("activo");
+    }
+}
+window.addEventListener('DOMContentLoaded', () => {
+
+    const colorNaranja = 'rgb(255, 69, 0)';
+    const colorCarmesi = 'rgb(187, 20, 53)';
+
+    // Configuración general de colores oscuros para ejes y leyendas en fondo claro
+    const configTextoGrafico = {
+        plugins: {
+            legend: { labels: { color: '#374151', font: { weight: '600' } } }
+        },
+        scales: {
+            x: { ticks: { color: '#4b5563' }, grid: { color: 'rgba(0, 0, 0, 0.05)' } },
+            y: { ticks: { color: '#4b5563' }, grid: { color: 'rgba(0, 0, 0, 0.05)' } }
+        }
+    };
+
+    async function cargarGraficos() {
+        try {
+            const response = await fetch('/api/admin/dashboard/metricas');
+            if (!response.ok) return;
+            const data = await response.json();
+
+            // Valores por defecto en caso de no haber data
+            const pizzasLabels = data.pizzasLabels && data.pizzasLabels.length > 0 ? data.pizzasLabels : ['Pepperoni', 'Hawaiana', 'Americana', 'Meat Lovers', 'Vegetariana'];
+            const pizzasData = data.pizzasData && data.pizzasData.length > 0 ? data.pizzasData : [0, 0, 0, 0, 0];
+            const ingresosSemanales = data.graficoIngresosSemanales || [0, 0, 0, 0];
+            const graficoPagos = data.graficoPagos || [0, 0, 0];
+            const insumosLabels = data.insumosLabels && data.insumosLabels.length > 0 ? data.insumosLabels : ['Mozzarella', 'Salsa Tomate', 'Pepperoni', 'Harina'];
+            const insumosData = data.insumosData && data.insumosData.length > 0 ? data.insumosData : [0, 0, 0, 0];
+
+            // 1. Barras: Pizzas
+            new Chart(document.getElementById('chartBarrasPizzas').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: pizzasLabels,
+                    datasets: [{
+                        label: 'Ventas en Soles (S/)',
+                        data: pizzasData,
+                        backgroundColor: [colorNaranja, colorCarmesi, '#d97706', '#dc2626', '#16a34a'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    ...configTextoGrafico
+                }
+            });
+
+            // 2. Lineal: Ingresos
+            new Chart(document.getElementById('chartLinealMensual').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'],
+                    datasets: [{
+                        label: 'Ingresos Semanales (S/)',
+                        data: ingresosSemanales,
+                        borderColor: colorNaranja,
+                        backgroundColor: 'rgba(255, 69, 0, 0.15)',
+                        fill: true,
+                        tension: 0.35,
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    ...configTextoGrafico
+                }
+            });
+
+            // 3. Circular: Métodos de Pago
+            new Chart(document.getElementById('chartCircularPagos').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Yape / Plin', 'Efectivo', 'Tarjeta Visa/Mastercard'],
+                    datasets: [{
+                        data: graficoPagos,
+                        backgroundColor: [colorNaranja, colorCarmesi, '#64748b']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { labels: { color: '#374151', font: { weight: '600' } } }
+                    }
+                }
+            });
+
+            // 4. Horizontal: Insumos
+            new Chart(document.getElementById('chartStockInsumos').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: insumosLabels,
+                    datasets: [{
+                        label: 'Unidades Disponibles',
+                        data: insumosData,
+                        backgroundColor: colorCarmesi,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    ...configTextoGrafico
+                }
+            });
+            
+        } catch (error) {
+            console.error("Error al cargar datos del dashboard: ", error);
+        }
+    }
+
+    cargarGraficos();
+});
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/js/shipping.js">
+document.addEventListener("DOMContentLoaded", () => {
+    cargarResumenEnvio();
+    verificarEstadoUsuario();
+});
+
+let subtotalPedido = 0;
+
+// 1. Alterna entre vista Invitado y Usuario Logeado
+function verificarEstadoUsuario() {
+    // Revisa usuario guardado en localStorage (o tu clave de auth.js ej: 'usuario_caleta', 'usuario_actual')
+    const usuarioLogeado = JSON.parse(localStorage.getItem('usuario_caleta')) || JSON.parse(localStorage.getItem('usuario_actual'));
+    const seccionInvitado = document.getElementById('seccion-invitado');
+    const seccionLogueado = document.getElementById('seccion-logueado');
+
+    if (usuarioLogeado) {
+        // Está autenticado -> Mostramos formulario completo editable
+        seccionInvitado.classList.add('d-none');
+        seccionLogueado.classList.remove('d-none');
+
+        // Precarga sus datos personales registrados
+        if (usuarioLogeado.nombre) document.getElementById('inputNombreUser').value = usuarioLogeado.nombre;
+        if (usuarioLogeado.correo || usuarioLogeado.email) document.getElementById('inputCorreoUser').value = usuarioLogeado.correo || usuarioLogeado.email;
+        if (usuarioLogeado.telefono) document.getElementById('inputTelefonoUser').value = usuarioLogeado.telefono;
+        if (usuarioLogeado.documento) document.getElementById('inputDocumentoUser').value = usuarioLogeado.documento;
+        if (usuarioLogeado.direccion) document.getElementById('inputDireccionUser').value = usuarioLogeado.direccion;
+        if (usuarioLogeado.referencia) document.getElementById('inputReferenciaUser').value = usuarioLogeado.referencia;
+    } else {
+        // No está logeado -> Solo pedimos correo
+        seccionInvitado.classList.remove('d-none');
+        seccionLogueado.classList.add('d-none');
+
+        // Si ya había escrito un correo antes en esta sesión, lo precarga
+        const previo = JSON.parse(localStorage.getItem('pedido_envio_caleta'));
+        if (previo && previo.correo) {
+            document.getElementById('inputCorreoInvitado').value = previo.correo;
+        }
+    }
+}
+
+// 2. Control de Modalidad: Retiro vs. Delivery
+function cambiarModalidadEntrega(tipo) {
+    const camposDelivInvitado = document.getElementById('campos-delivery-invitado');
+    const inputDirInvitado = document.getElementById('inputDireccionInvitado');
+
+    const camposDelivUser = document.getElementById('campos-delivery-user');
+    const inputDirUser = document.getElementById('inputDireccionUser');
+
+    const cardSede = document.getElementById('card-sede-info');
+
+    if (tipo === 'delivery') {
+        camposDelivInvitado.classList.remove('d-none');
+        inputDirInvitado.setAttribute('required', 'true');
+
+        camposDelivUser.classList.remove('d-none');
+        inputDirUser.setAttribute('required', 'true');
+
+        if (cardSede) cardSede.classList.add('d-none');
+    } else {
+        camposDelivInvitado.classList.add('d-none');
+        inputDirInvitado.removeAttribute('required');
+
+        camposDelivUser.classList.add('d-none');
+        inputDirUser.removeAttribute('required');
+
+        if (cardSede) cardSede.classList.remove('d-none');
+    }
+
+    actualizarTotalesEnvio(tipo);
+}
+
+function actualizarTotalesEnvio(tipo) {
+    const costoEnvioDOM = document.getElementById('shipping-costo-envio');
+    const totalDOM = document.getElementById('shipping-total');
+
+    const costoEnvio = tipo === 'delivery' ? 5.00 : 0.00;
+    const total = subtotalPedido + costoEnvio;
+
+    if (costoEnvioDOM) {
+        costoEnvioDOM.innerText = costoEnvio > 0 ? `S/ ${costoEnvio.toFixed(2)}` : "Gratis (Retiro)";
+        costoEnvioDOM.className = costoEnvio > 0 ? "text-white fw-semibold" : "text-success fw-semibold";
+    }
+    if (totalDOM) totalDOM.innerText = `S/ ${total.toFixed(2)}`;
+}
+
+// 3. Cargar Carrito Real
+function cargarResumenEnvio() {
+    const carrito = JSON.parse(localStorage.getItem('carrito_caleta')) || [];
+    const contenedorLista = document.getElementById('shipping-lista-productos');
+    const badgeCant = document.getElementById('shipping-cant-articulos');
+    const subtotalDOM = document.getElementById('shipping-subtotal');
+
+    if (carrito.length === 0) {
+        window.location.href = '/menu';
+        return;
+    }
+
+    subtotalPedido = 0;
+    let cantidadTotal = 0;
+
+    contenedorLista.innerHTML = carrito.map(item => {
+        subtotalPedido += item.precio * item.cantidad;
+        cantidadTotal += item.cantidad;
+
+        const pos = item.nombre.indexOf('(');
+        const nombreSimple = pos !== -1 ? item.nombre.substring(0, pos).trim() : item.nombre;
+
+        return `
+            <div class="d-flex align-items-center justify-content-between gap-2">
+                <div class="d-flex align-items-center gap-2 min-w-0">
+                    <img src="${item.imagenUrl}" alt="${nombreSimple}" class="rounded-2 object-fit-cover flex-shrink-0" style="width: 44px; height: 44px;">
+                    <div class="min-w-0">
+                        <h6 class="fw-bold mb-0 text-white small text-truncate" style="max-width: 170px;">${nombreSimple}</h6>
+                        <span class="text-secondary d-block" style="font-size: 11px;">Cant: ${item.cantidad}</span>
+                    </div>
+                </div>
+                <span class="fw-bold text-white small flex-shrink-0">S/ ${(item.precio * item.cantidad).toFixed(2)}</span>
+            </div>
+        `;
+    }).join('');
+
+    if (badgeCant) badgeCant.innerText = cantidadTotal;
+    if (subtotalDOM) subtotalDOM.innerText = `S/ ${subtotalPedido.toFixed(2)}`;
+
+    const modalidadActual = document.querySelector('input[name="tipoModalidad"]:checked').value;
+    actualizarTotalesEnvio(modalidadActual);
+}
+
+// 4. Procesa envío para Invitado
+function procesarPasoEnvioInvitado(e) {
+    e.preventDefault();
+    const tipoModalidad = document.querySelector('input[name="tipoModalidad"]:checked').value;
+
+    const datosPedido = {
+        esInvitado: true,
+        nombre: "Cliente Invitado",
+        correo: document.getElementById('inputCorreoInvitado').value.trim(),
+        telefono: "Por confirmar",
+        documento: "-",
+        tipoEntrega: tipoModalidad,
+        sede: "Sede Miraflores",
+        direccionSede: "Av. José Larco 850, Miraflores, Lima",
+        direccion: tipoModalidad === 'delivery' ? document.getElementById('inputDireccionInvitado').value.trim() : "",
+        referencia: tipoModalidad === 'delivery' ? document.getElementById('inputReferenciaInvitado').value.trim() : ""
+    };
+
+    localStorage.setItem('pedido_envio_caleta', JSON.stringify(datosPedido));
+    window.location.href = '/pago';
+}
+
+// 5. Procesa envío para Usuario Logeado
+function procesarPasoEnvioLogueado(e) {
+    e.preventDefault();
+    const tipoModalidad = document.querySelector('input[name="tipoModalidad"]:checked').value;
+
+    const datosPedido = {
+        esInvitado: false,
+        nombre: document.getElementById('inputNombreUser').value.trim(),
+        correo: document.getElementById('inputCorreoUser').value.trim(),
+        telefono: document.getElementById('inputTelefonoUser').value.trim(),
+        documento: document.getElementById('inputDocumentoUser').value.trim(),
+        tipoEntrega: tipoModalidad,
+        sede: "Sede Miraflores",
+        direccionSede: "Av. José Larco 850, Miraflores, Lima",
+        direccion: tipoModalidad === 'delivery' ? document.getElementById('inputDireccionUser').value.trim() : "",
+        referencia: tipoModalidad === 'delivery' ? document.getElementById('inputReferenciaUser').value.trim() : ""
+    };
+
+    localStorage.setItem('pedido_envio_caleta', JSON.stringify(datosPedido));
+    window.location.href = '/pago';
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/js/ui.js">
+// Desplazamiento horizontal de carruseles
+function desplazar(id, desplazamiento) {
+    const contenedor = document.getElementById(id);
+    if (contenedor) {
+        contenedor.scrollBy({ left: desplazamiento, behavior: 'smooth' });
+    }
+}
+
+// Filtrado de pestañas de categorías
+function cambiarSeccion(idSeccion, botonPresionado = null) {
+    const secciones = document.querySelectorAll('.seccion-menu');
+    secciones.forEach(sec => sec.classList.add('d-none'));
+
+    const seccionActiva = document.getElementById(idSeccion);
+    if (seccionActiva) {
+        seccionActiva.classList.remove('d-none');
+    }
+
+    const botones = document.querySelectorAll('.btn-categoria');
+    botones.forEach(btn => btn.classList.remove('active'));
+
+    if (botonPresionado) {
+        botonPresionado.classList.add('active');
+    } else {
+        const botonCoincidente = Array.from(botones).find(btn => 
+            btn.getAttribute('onclick')?.includes(idSeccion)
+        );
+        if (botonCoincidente) {
+            botonCoincidente.classList.add('active');
+        }
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function procesarHash() {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById(hash)) {
+        cambiarSeccion(hash);
+    }
+}
+
+window.addEventListener('DOMContentLoaded', procesarHash);
+window.addEventListener('hashchange', procesarHash);
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/style/admin.css">
+.caleta-admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f3f4f6;
+    color: #1f2937;
+}
+
+/* Sidebar: fondo blanco con borde gris sutil */
+.caleta-sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 14px;
+    flex-shrink: 0;
+}
+
+.caleta-logo-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.caleta-logo-box h2 {
+    color: var(--color-rojo-naranja);
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.caleta-logo-box p {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: #6b7280;
+    margin: 4px 0 0 0;
+}
+
+.caleta-menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.caleta-menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: #4b5563;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.caleta-menu-btn:hover {
+    background-color: #fff1ed;
+    color: var(--color-rojo-naranja);
+}
+
+.caleta-menu-btn.activo {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco) !important;
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.25);
+}
+
+.caleta-menu-btn.highlight {
+    color: var(--color-carmesi);
+}
+
+.caleta-admin-user {
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.caleta-user-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.caleta-badge-rol {
+    background-color: var(--color-carmesi);
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+/* Área de contenido: fondo gris neutro limpio */
+.caleta-admin-main {
+    flex-grow: 1;
+    background-color: #f8fafc;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.caleta-admin-main .caleta-table,
+.caleta-admin-main .caleta-table th,
+.caleta-admin-main .caleta-table td {
+    color: #212529 !important;
+}
+
+/* CORRECCIÓN DE COLISIÓN EN BADGES / INSIGNIAS */
+.caleta-badge {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Insignia genérica con fondo neutro y texto oscuro legible */
+.caleta-admin-main .caleta-table .caleta-badge {
+    background-color: #e5e7eb;
+    color: #374151 !important;
+}
+
+/* Insignias de estado con colores propios contrastados */
+.caleta-badge.success {
+    background-color: #dcfce7 !important;
+    color: #15803d !important;
+}
+
+.caleta-badge.warning {
+    background-color: #fef9c3 !important;
+    color: #a16207 !important;
+}
+
+.caleta-badge.danger {
+    background-color: #fee2e2 !important;
+    color: #b91c1c !important;
+}
+
+.caleta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.caleta-header h3 {
+    margin: 0;
+    font-weight: 800;
+    color: #111827;
+}
+
+.caleta-header-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Botones genéricos de admin */
+.caleta-btn-primary {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transicion);
+}
+
+.caleta-btn-primary:hover {
+    background-color: rgb(255, 95, 30);
+    color: #fff;
+}
+
+.caleta-btn-outline {
+    background: #ffffff;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transicion);
+}
+
+.caleta-btn-outline:hover {
+    border-color: var(--color-rojo-naranja);
+    color: var(--color-rojo-naranja);
+    background-color: #fff1ed;
+}
+
+/* KPIs / Tarjetas con fondo blanco y bordes suaves */
+.caleta-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.caleta-kpi-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid var(--color-rojo-naranja);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.caleta-kpi-card.carmesi {
+    border-left-color: var(--color-carmesi);
+}
+
+.caleta-kpi-card.alerta {
+    border-left-color: #eab308;
+}
+
+.caleta-kpi-card.verde {
+    border-left-color: #22c55e;
+}
+
+.caleta-kpi-label {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.caleta-kpi-val {
+    font-size: 20px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0;
+}
+
+.caleta-kpi-icon {
+    font-size: 22px;
+    color: var(--color-rojo-naranja);
+    background: rgba(255, 69, 0, 0.08);
+    padding: 10px;
+    border-radius: 50%;
+}
+
+/* Tablas y paneles */
+.caleta-panel {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 20px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.caleta-panel-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1f2937;
+}
+
+.caleta-search-input {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #1f2937;
+    padding: 8px 12px;
+    border-radius: 6px;
+    outline: none;
+    font-size: 13px;
+    width: 260px;
+    max-width: 100%;
+    margin-bottom: 14px;
+    transition: var(--transicion);
+}
+
+.caleta-search-input:focus {
+    border-color: var(--color-rojo-naranja);
+}
+
+.caleta-table-container {
+    overflow-x: auto;
+}
+
+.table.caleta-table {
+    --bs-table-bg: transparent;
+    --bs-table-color: #374151;
+    border-color: #e5e7eb;
+}
+
+.table.caleta-table thead th {
+    background-color: #f9fafb;
+    color: var(--color-rojo-naranja);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table.caleta-table tbody td {
+    font-size: 12.5px;
+    vertical-align: middle;
+    border-bottom: 1px solid #f3f4f6;
+    color: #1f2937;
+}
+
+.caleta-seccion {
+    display: none;
+}
+
+.caleta-seccion.activa {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .caleta-admin-wrapper {
+        flex-direction: column;
+    }
+
+    .caleta-sidebar {
+        display: contents;
+    }
+
+    .caleta-logo-box {
+        order: 1;
+        background-color: #ffffff;
+        padding: 16px 14px 6px 14px;
+        text-align: center;
+    }
+
+    .caleta-menu-nav {
+        order: 2;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 6px 14px 12px 14px;
+        border-bottom: 1px solid #e5e7eb;
+        gap: 6px;
+    }
+
+    .caleta-menu-btn {
+        white-space: nowrap;
+        padding: 8px 12px;
+        font-size: 12.5px;
+    }
+
+    .caleta-admin-main {
+        order: 3;
+        padding: 16px 14px;
+    }
+
+    .caleta-admin-user {
+        order: 4;
+        background-color: #ffffff;
+        border-top: 1px solid #e5e7eb;
+        padding: 20px 14px;
+        text-align: center;
+        margin-top: auto;
+    }
+
+    .caleta-admin-user .btn-crear-cuenta,
+    .caleta-admin-user .caleta-btn-outline,
+    .caleta-admin-user a,
+    .caleta-admin-user button {
+        max-width: 280px;
+        margin: 10px auto 0 auto;
+    }
+
+    .caleta-kpi-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/style/auth-admin.css">
+.contenedor-login {
+    width: 100%;
+    min-height: calc(100vh - 180px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 15px;
+    background-color: var(--bg-negro);
+}
+
+.login-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 900px;
+    background-color: #f7f7f7;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+    color: #1f2937;
+}
+
+.login-seccion {
+    padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-izq {
+    background-color: #ffffff;
+    border-right: 1px solid #e5e5e5;
+}
+
+.login-der {
+    justify-content: space-between;
+    background-color: #f7f7f7;
+}
+
+.login-titulo {
+    font-size: 22px;
+    font-weight: 900;
+    color: #111827;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.username {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.username label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.username label span {
+    color: var(--carmesi);
+}
+
+.input-relative {
+    position: relative;
+    width: 100%;
+}
+
+.username input,
+.username select {
+    width: 100%;
+    height: 42px;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #111827;
+    background-color: #fff;
+    outline: none;
+    transition: var(--t);
+}
+
+.username input:focus,
+.username select:focus {
+    border-color: var(--ro);
+}
+
+.username input::placeholder {
+    color: #9ca3af;
+}
+
+.icono-ojo {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    cursor: pointer;
+}
+
+.recordar {
+    font-size: 13px;
+    color: var(--carmesi);
+    font-weight: 600;
+    cursor: pointer;
+    margin: 4px 0 20px 0;
+    width: fit-content;
+}
+
+.recordar:hover {
+    color: var(--ro);
+    text-decoration: underline;
+}
+
+.btn-login,
+.btn-crear-cuenta {
+    width: 100%;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 800;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--t);
+}
+
+.btn-login {
+    background-color: var(--ro);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3);
+}
+
+.btn-login:hover {
+    background-color: rgb(255, 90, 20);
+    color: #ffffff;
+}
+
+.btn-crear-cuenta {
+    background-color: var(--bg-suave);
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.btn-crear-cuenta:hover {
+    background-color: var(--carmesi);
+    color: #ffffff;
+}
+
+.beneficios-subtitulo {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.beneficios-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.beneficios-lista li {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.3;
+    position: relative;
+    padding-left: 16px;
+}
+
+.beneficios-lista li::before {
+    content: "•";
+    color: var(--ro);
+    font-size: 18px;
+    position: absolute;
+    left: 0;
+    top: -3px;
+}
+
+.forgot-wrapper {
+    max-width: 540px;
+    width: 100%;
+    margin: 40px auto;
+    color: #1f2937;
+}
+
+.forgot-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-align: center;
+    color: #111827;
+    margin-bottom: 20px;
+}
+
+.forgot-description {
+    font-size: 0.95rem;
+    text-align: center;
+    color: #4b5563;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.recaptcha-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1973e8;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 10px 14px;
+    max-width: 250px;
+    font-size: 0.85rem;
+    margin: 15px 0 30px;
+}
+
+.forgot-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgot-back-link {
+    color: #374151;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.forgot-back-link:hover {
+    color: var(--carmesi);
+}
+
+.caleta-admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background: #f8fafc;
+    color: #1f2937;
+}
+
+.caleta-sidebar {
+    width: 260px;
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 14px;
+    flex-shrink: 0;
+}
+
+.caleta-menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: #4b5563;
+    font-size: 13.5px;
+    font-weight: 600;
+    background: transparent;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--t);
+}
+
+.caleta-menu-btn:hover {
+    background: #fff1ed;
+    color: var(--ro);
+}
+
+.caleta-menu-btn.activo {
+    background: var(--ro);
+    color: #ffffff !important;
+}
+
+.caleta-admin-main {
+    flex-grow: 1;
+    background-color: #f8fafc;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.caleta-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.caleta-kpi-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid var(--ro);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.caleta-panel {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 20px;
+}
+
+.table.caleta-table thead th {
+    background: #f9fafb;
+    color: var(--ro);
+    font-size: 11.5px;
+    text-transform: uppercase;
+}
+
+.caleta-badge.success { background: #dcfce7 !important; color: #15803d !important; }
+.caleta-badge.warning { background: #fef9c3 !important; color: #a16207 !important; }
+.caleta-badge.danger { background: #fee2e2 !important; color: #b91c1c !important; }
+
+.caleta-btn-primary {
+    background: var(--ro);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .login-grid {
+        grid-template-columns: 1fr;
+    }
+    .login-izq {
+        border-right: none;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .caleta-admin-wrapper {
+        flex-direction: column;
+    }
+    .caleta-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/style/detalles.css">
+.contenedor-foto-completa {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+}
+
+.contenedor-foto-completa img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.stepper-transparente {
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+}
+
+.bloque-personalizacion {
+    background-color: var(--color-negro-suave);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.fila-opcion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 14px;
+    border-radius: 8px;
+    background-color: rgba(24, 24, 24, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: var(--transicion);
+    user-select: none;
+    margin-bottom: 8px;
+}
+
+.fila-opcion:last-child {
+    margin-bottom: 0;
+}
+
+.fila-opcion:hover {
+    border-color: var(--color-rojo-naranja);
+    background-color: rgba(255, 69, 0, 0.05);
+}
+
+.btn-check:checked+.fila-opcion,
+.fila-opcion:has(.form-check-input:checked) {
+    border-color: var(--color-rojo-naranja) !important;
+    background-color: rgba(255, 69, 0, 0.12) !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--color-rojo-naranja);
+    border-color: var(--color-rojo-naranja);
+}
+
+.alerta-requerido {
+    background-color: rgba(251, 146, 60, 0.12);
+    border: 1px solid rgba(251, 146, 60, 0.3);
+    color: #fdba74;
+}
+
+.badge-contador {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+
+.badge-completado {
+    background-color: rgba(46, 125, 50, 0.18);
+    color: #4ade80;
+    border: 1px solid rgba(74, 222, 128, 0.35);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+
+.caja-seleccionada {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1.5px solid rgba(74, 222, 128, 0.45);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.caja-seleccionada:hover {
+    border-color: #4ade80;
+    background-color: rgba(74, 222, 128, 0.05);
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/style/main.css">
+:root {
+    --ro: rgb(255, 69, 0);
+    --carmesi: rgb(187, 20, 53);
+    --bg-negro: rgb(24, 24, 24);
+    --bg-suave: rgb(35, 35, 35);
+    --t: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-negro);
+    color: #fff;
+}
+
+a { text-decoration: none; color: inherit; transition: var(--t); }
+#topbar { background-color: var(--carmesi); font-size: 14px; }
+#header { background-color: var(--bg-negro); border-bottom: 1px solid rgba(255,255,255,0.08); }
+footer { background-color: var(--bg-suave); border-top: 1px solid rgba(255,255,255,0.05); }
+
+.text-ro { color: var(--ro) !important; }
+.bg-ro { background-color: var(--ro) !important; }
+.fs-xs { font-size: 11px; }
+.cursor-pointer { cursor: pointer; }
+.hover-rojo:hover { color: var(--ro) !important; }
+.table-dark { --bs-table-bg: var(--bg-suave); }
+
+.btn-cta {
+    background-color: var(--ro);
+    color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(255,69,0,0.4);
+    transition: var(--t);
+}
+.btn-cta:hover {
+    background-color: rgb(255,90,20);
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.btn-add-caleta {
+    width: 36px;
+    height: 36px;
+    background-color: var(--ro);
+    color: var(--carmesi);
+    border: none;
+    transition: var(--t);
+}
+.btn-add-caleta:hover { background-color: var(--carmesi); color: #fff; }
+
+.buscador-input {
+    background-color: var(--bg-suave);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    border-radius: 30px;
+}
+.buscador-input:focus {
+    background-color: var(--bg-suave);
+    border-color: var(--ro);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255,69,0,0.35);
+}
+
+.accordion-button:not(.collapsed) { color: var(--ro) !important; }
+.accordion-button::after { filter: invert(1); }
+.accordion-button:not(.collapsed)::after {
+    filter: invert(36%) sepia(98%) saturate(3025%) hue-rotate(1deg) brightness(101%);
+}
+
+.nav-menu-link-shop,
+a[data-bs-toggle="offcanvas"][data-bs-target="#offcanvasCarrito"] {
+    background-color: var(--bg-suave) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 30px;
+    transition: var(--t);
+}
+
+.nav-menu-link-shop:hover,
+a[data-bs-toggle="offcanvas"][data-bs-target="#offcanvasCarrito"]:hover {
+    background-color: var(--ro) !important;
+    border-color: var(--ro) !important;
+    color: #fff !important;
+}
+
+.offcanvas,
+.offcanvas-header,
+.offcanvas-body,
+.modal-content {
+    background-color: var(--bg-suave) !important;
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.card,
+.card-resumen,
+.card-checkout,
+.tarjeta-resumen-pedido {
+    background-color: var(--bg-suave) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: #fff !important;
+}
+
+.btn-ver-info {
+    color: var(--ro) !important;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+.btn-ver-info:hover {
+    color: rgb(255, 90, 20) !important;
+}
+
+.nav-link-header,
+.link-usuario {
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-bottom: 2px solid transparent;
+    transition: var(--t);
+}
+
+.nav-link-header:hover,
+.link-usuario:hover {
+    color: var(--ro) !important;
+}
+
+.nav-link-header.active,
+.link-usuario.active {
+    color: var(--ro) !important;
+    border-bottom: 2px solid var(--ro) !important;
+}
+
+.text-ro {
+    color: var(--ro) !important;
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/style/shop.css">
+.banner-img-slider {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+#carouselHero .carousel-indicators [data-bs-target] {
+    width: 26px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: none;
+    transition: var(--t);
+}
+
+#carouselHero .carousel-indicators .active {
+    background-color: var(--ro);
+    width: 36px;
+}
+
+#carouselHero .carousel-control-prev,
+#carouselHero .carousel-control-next {
+    width: 4%;
+}
+
+.carrusel-horizontal, 
+.categorias-scroll {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+.carrusel-horizontal::-webkit-scrollbar, 
+.categorias-scroll::-webkit-scrollbar { 
+    display: none; 
+}
+
+#categorias, 
+#categorias-promo {
+    background-color: var(--bg-negro) !important;
+}
+
+.btn-categoria {
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.75);
+    background-color: var(--bg-suave);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+}
+
+.btn-categoria:hover, 
+.btn-categoria.active {
+    background-color: var(--ro);
+    color: #fff;
+    border-color: var(--ro);
+}
+
+.contenedor-foto-completa { 
+    border-radius: 16px; 
+    overflow: hidden; 
+}
+
+.contenedor-foto-completa img { 
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    border-radius: 16px; 
+}
+
+.stepper-transparente { 
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    border-radius: 10px; 
+}
+
+.bloque-personalizacion, 
+.card-acordeon-caleta {
+    background-color: var(--bg-suave);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fila-opcion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(24, 24, 24, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    margin-bottom: 8px;
+    user-select: none;
+}
+
+.fila-opcion:hover { 
+    border-color: var(--ro); 
+}
+
+.btn-check:checked + .fila-opcion, 
+.fila-opcion:has(.form-check-input:checked) {
+    border-color: var(--ro) !important;
+    background-color: rgba(255, 69, 0, 0.12) !important;
+}
+
+.form-check-input:checked { 
+    background-color: var(--ro); 
+    border-color: var(--ro); 
+}
+
+.alerta-requerido { 
+    background: rgba(251, 146, 60, 0.12); 
+    border: 1px solid rgba(251, 146, 60, 0.3); 
+    color: #fdba74; 
+}
+
+.badge-contador { 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    font-size: 11px; 
+    padding: 2px 10px; 
+    border-radius: 20px; 
+}
+
+.badge-completado { 
+    background: rgba(46, 125, 50, 0.18); 
+    color: #4ade80; 
+    border: 1px solid rgba(74, 222, 128, 0.35); 
+    font-size: 11px; 
+    padding: 2px 10px; 
+    border-radius: 20px; 
+}
+
+.caja-seleccionada { 
+    border: 1.5px solid rgba(74, 222, 128, 0.45); 
+    border-radius: 8px; 
+    padding: 10px 14px; 
+    cursor: pointer; 
+}
+
+.tarjeta-opcion-pago:has(input:checked) { 
+    border-color: var(--ro) !important; 
+    background: rgba(255, 69, 0, 0.08); 
+}
+
+#descripcion { 
+    background-color: rgb(146, 31, 2) !important; 
+}
+
+.btn-carrusel {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--bg-suave);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--t);
+    padding: 0;
+}
+
+.btn-carrusel:hover {
+    background-color: var(--ro);
+    border-color: var(--ro);
+    color: #fff;
+}
+
+.tarjeta-producto, 
+.tarjeta-pizza, 
+.tarjeta-catalogo {
+    background-color: var(--bg-suave) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    width: 100%;
+}
+
+.carrusel-horizontal .tarjeta-pizza,
+.carrusel-horizontal .tarjeta-producto {
+    flex: 0 0 260px;
+    width: 260px;
+}
+
+.tarjeta-producto .card-img-top, 
+.tarjeta-pizza .card-img-top, 
+.tarjeta-catalogo .card-img-top {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: auto !important;
+    object-fit: cover;
+    display: block;
+}
+
+.tarjeta-producto h5, 
+.tarjeta-pizza h5, 
+.tarjeta-catalogo h5,
+.tarjeta-producto a, 
+.tarjeta-pizza a, 
+.tarjeta-catalogo a,
+.tarjeta-producto span.fw-bold, 
+.tarjeta-pizza span.fw-bold, 
+.tarjeta-catalogo span.fw-bold {
+    color: #ffffff !important;
+}
+
+.tarjeta-producto p, 
+.tarjeta-pizza p, 
+.tarjeta-catalogo p {
+    color: rgba(255, 255, 255, 0.65) !important;
+    font-size: 12px;
+}
+
+.tarjeta-producto .border-top, 
+.tarjeta-pizza .border-top, 
+.tarjeta-catalogo .border-top {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+section[id], 
+.seccion-scroll {
+    scroll-margin-top: 140px;
+}
+
+.tabla-caleta {
+    --bs-table-bg: transparent;
+    --bs-table-color: #fff;
+    color: #fff !important;
+}
+
+.tabla-caleta th,
+.tabla-caleta td {
+    background-color: transparent !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.link-volver:hover {
+    color: var(--ro) !important;
+}
+
+.text-ro {
+    color: var(--ro) !important;
+}
+
+.toast-caleta {
+    background-color: var(--bg-suave, #1a1a1a) !important;
+    border: 1px solid var(--ro) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 12px rgba(227, 30, 36, 0.2) !important;
+}
+
+.opcion-pago-wrapper {
+    background-color: rgba(0, 0, 0, 0.25);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.opcion-pago-wrapper.activo {
+    border-color: var(--ro) !important;
+    box-shadow: 0 0 10px rgba(227, 30, 36, 0.15);
+}
+
+.fs-xs {
+    font-size: 0.75rem;
+}
+
+.form-check-input:checked {
+    background-color: var(--ro);
+    border-color: var(--ro);
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/static/style/styles.css">
+/* 1. Paleta de colores y variables */
+:root {
+    --color-rojo-naranja: rgb(255, 69, 0);
+    --color-carmesi: rgb(187, 20, 53);
+    --color-blanco: rgb(255, 255, 255);
+    --color-negro: rgb(24, 24, 24);
+    --color-negro-suave: rgb(35, 35, 35);
+    --transicion: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--color-negro);
+    color: var(--color-blanco);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transicion);
+}
+
+/* 2. Secciones con fondos personalizados */
+#topbar {
+    background-color: var(--color-carmesi);
+    font-size: 14px;
+}
+
+#header {
+    background-color: var(--color-negro);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#descripcion {
+    background-color: rgb(146, 31, 2);
+}
+
+#principales {
+    background-color: var(--color-negro);
+}
+
+/* 3. Banner principal */
+#banner {
+    min-height: 360px;
+    background-image: url('../images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+#banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(24, 24, 24, 0.75) 0%, rgba(24, 24, 24, 0.5) 100%);
+    z-index: 1;
+}
+
+.banner-contenido {
+    position: relative;
+    z-index: 2;
+}
+
+.banner-titulo {
+    color: var(--color-rojo-naranja);
+    text-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
+    letter-spacing: 2px;
+}
+
+/* 4. Botones y enlaces especiales */
+.btn-cta {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+}
+
+.btn-cta:hover {
+    background-color: rgb(255, 90, 20);
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.nav-menu-link-shop {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+}
+
+.btn-add-caleta {
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-carmesi);
+    border: none;
+    transition: var(--transicion);
+}
+
+.btn-add-caleta:hover {
+    background-color: var(--color-carmesi);
+    color: var(--color-blanco);
+}
+
+/* 5. Tarjetas de pizza y carrusel continuo */
+.carrusel-horizontal {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.carrusel-horizontal::-webkit-scrollbar {
+    display: none;
+}
+
+.tarjeta-pizza {
+    flex: 0 0 250px;
+    width: 250px;
+}
+
+.contenedor-login {
+    width: 100%;
+    min-height: calc(100vh - 160px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+    background-color: var(--color-negro);
+}
+
+.login-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 900px;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+}
+
+.login-seccion {
+    padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-izq {
+    background-color: var(--color-blanco);
+    border-right: 1px solid #e5e5e5;
+}
+
+.login-der {
+    justify-content: space-between;
+}
+
+.login-titulo {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--color-negro);
+    text-align: center;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+}
+
+.username {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.username label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.username label span {
+    color: var(--color-carmesi);
+}
+
+.input-relative {
+    position: relative;
+    width: 100%;
+}
+
+.username input {
+    width: 100%;
+    height: 42px;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--color-negro);
+    background-color: #fff;
+    outline: none;
+    transition: var(--transicion);
+}
+
+.username input:focus {
+    border-color: var(--color-rojo-naranja);
+}
+
+.username input::placeholder {
+    color: #9ca3af;
+}
+
+.icono-ojo {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    cursor: pointer;
+}
+
+.recordar {
+    font-size: 13px;
+    color: var(--color-carmesi);
+    font-weight: 600;
+    cursor: pointer;
+    margin: 4px 0 20px 0;
+    width: fit-content;
+}
+
+.recordar:hover {
+    color: var(--color-rojo-naranja);
+    text-decoration: underline;
+}
+
+.btn-login,
+.btn-crear-cuenta {
+    width: 100%;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transicion);
+}
+
+.btn-login {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3);
+}
+
+.btn-login:hover {
+    background-color: rgb(255, 90, 20);
+}
+
+.btn-crear-cuenta {
+    background-color: var(--color-negro-suave);
+    color: var(--color-blanco);
+    margin-top: 20px;
+}
+
+.btn-crear-cuenta:hover {
+    background-color: var(--color-carmesi);
+}
+
+.beneficios-subtitulo {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-negro);
+    margin-bottom: 12px;
+}
+
+.beneficios-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.beneficios-lista li {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.3;
+    position: relative;
+    padding-left: 16px;
+}
+
+.beneficios-lista li::before {
+    content: "•";
+    color: var(--color-rojo-naranja);
+    font-size: 18px;
+    position: absolute;
+    left: 0;
+    top: -3px;
+}
+
+footer {
+    background-color: var(--color-negro-suave);
+    padding: 20px 0;
+    text-align: center;
+    font-size: var(--texto-3);
+    color: rgba(255, 255, 255, 0.6);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+    .login-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .login-izq {
+        border-right: none;
+        border-bottom: 1px solid #e5e5e5;
+    }
+}
+
+.btn-carrusel {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-negro-suave);
+    color: var(--color-blanco);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: var(--transicion);
+}
+
+.btn-carrusel:hover {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    border-color: var(--color-rojo-naranja);
+}
+
+.buscador-input {
+    background-color: var(--color-negro-suave);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--color-blanco);
+    border-radius: 30px;
+    font-size: 14px;
+    transition: var(--transicion);
+}
+
+.buscador-input:focus {
+    background-color: var(--color-negro-suave);
+    border-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.35);
+}
+
+.buscador-input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.btn-buscar:hover {
+    color: var(--color-rojo-naranja) !important;
+}
+
+.accordion-button::after {
+    filter: invert(1) grayscale(100%);
+    transition: transform 0.3s ease;
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: invert(36%) sepia(98%) saturate(3025%) hue-rotate(1deg) brightness(101%) contrast(105%);
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--color-rojo-naranja) !important;
+}
+
+#categorias {
+    background-color: rgba(24, 24, 24, 0.95);
+    backdrop-filter: blur(8px);
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    z-index: 1020;
+}
+
+.categorias-scroll {
+    scrollbar-width: none;
+}
+
+.categorias-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.btn-categoria {
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.75);
+    background-color: var(--color-negro-suave);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    transition: var(--transicion);
+    text-decoration: none;
+}
+
+.btn-categoria:hover {
+    color: var(--color-blanco);
+    border-color: var(--color-rojo-naranja);
+    background-color: rgba(255, 69, 0, 0.15);
+}
+
+.btn-categoria.active {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    border-color: var(--color-rojo-naranja);
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.4);
+}
+
+section[id] {
+    scroll-margin-top: 70px;
+}
+
+.text-ro {
+    color: var(--color-rojo-naranja);
+}
+
+.bg-ro {
+    background-color: var(--color-rojo-naranja);
+}
+
+.fs-xs {
+    font-size: 11px;
+}
+
+.table-dark {
+    --bs-table-bg: var(--color-negro-suave);
+}
+
+.hover-rojo:hover {
+    color: var(--color-rojo-naranja) !important;
+}
+
+.card.bg-dark {
+    background-color: var(--color-negro-suave) !important;
+}
+
+/* Estilos para el selector de método de pago */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.tarjeta-opcion-pago {
+    background-color: rgba(255, 255, 255, 0.02);
+    transition: var(--transicion);
+}
+
+.tarjeta-opcion-pago:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 69, 0, 0.4) !important;
+}
+
+.tarjeta-opcion-pago:has(input:checked) {
+    border-color: var(--color-rojo-naranja) !important;
+    background-color: rgba(255, 69, 0, 0.08);
+}
+
+/* --- Apartado Forgot Password --- */
+.forgot-wrapper {
+    max-width: 540px;
+    width: 100%;
+    margin: 40px 0;
+}
+
+.forgot-description {
+    font-size: 0.95rem;
+    text-align: center;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.required {
+    color: var(--color-primary, #b31312);
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/account/create.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Crear Cuenta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+    <style>
+        /* Estilos para feedback de validación inline */
+        .msg-feedback {
+            font-size: 12px;
+            margin-top: 4px;
+            display: block;
+            transition: all 0.2s ease-in-out;
+        }
+        .is-invalid-custom {
+            border-color: #dc3545 !important;
+            box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <main>
+        <div class="contenedor-login">
+            <div class="login-seccion login-izq w-100 rounded shadow" style="max-width: 650px;">
+                <h2 class="login-titulo mb-4">¿AÚN NO TIENES CUENTA? REGÍSTRATE</h2>
+
+                <form id="formRegistro" th:action="@{/registro}" method="post" novalidate>
+                    <!-- Alerta de Error devuelta por Spring Boot -->
+                    <div th:if="${error}" class="alert alert-danger py-2 px-3 small mb-3 border-0 rounded-3 shadow-sm" role="alert" th:text="${error}"></div>
+                    <!-- Alerta de Error en pantalla (JS) -->
+                    <div id="jsErrorAlert" class="alert alert-danger py-2 px-3 small mb-3 border-0 rounded-3 shadow-sm d-none" role="alert"></div>
+
+                    <!-- Información personal -->
+                    <div class="beneficios-subtitulo border-bottom pb-2 mb-3">Información personal</div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 username">
+                            <label>Nombre <span>*</span></label>
+                            <input type="text" id="regNombre" name="nombre" placeholder="Ej. Camila"
+                                   th:value="${nombre}" required>
+                            <small id="feedNombre" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                        <div class="col-12 col-md-6 username">
+                            <label>Apellidos <span>*</span></label>
+                            <input type="text" id="regApellido" name="apellidos" placeholder="Ej. Torres"
+                                   th:value="${apellidos}" required>
+                            <small id="feedApellido" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 username">
+                            <label>Tipo de Documento <span>*</span></label>
+                            <select id="regTipoDoc" name="tipoDocumento" class="form-select" style="height: 42px; font-size: 14px;" required onchange="ajustarValidacionDoc()">
+                                <option value="DNI" th:selected="${tipoDocumento == 'DNI' || tipoDocumento == null}">DNI</option>
+                                <option value="CE" th:selected="${tipoDocumento == 'CE'}">Carnet de Extranjería</option>
+                                <option value="PAS" th:selected="${tipoDocumento == 'PAS'}">Pasaporte</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6 username">
+                            <label>Número de Documento <span>*</span></label>
+                            <input type="text" id="regNumDoc" name="numeroDocumento" placeholder="8 dígitos (Ej. 72839401)"
+                                   th:value="${numeroDocumento}" oninput="validarDocEnTiempoReal(this)" required>
+                            <small id="feedNumDoc" class="msg-feedback text-warning d-none"></small>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 username">
+                            <label>Número de teléfono <span>*</span></label>
+                            <input type="tel" id="regTelefono" name="telefono" placeholder="Ej. 987654321"
+                                   th:value="${telefono}" oninput="validarTelefonoEnTiempoReal(this)" required>
+                            <small id="feedTelefono" class="msg-feedback text-warning d-none"></small>
+                        </div>
+                        <div class="col-12 col-md-6 username">
+                            <label>Fecha de nacimiento <span>*</span></label>
+                            <input type="date" id="regFechaNac" name="fechaNacimiento"
+                                   th:value="${fechaNacimiento}" max="2012-12-31" min="1930-01-01" required>
+                            <small id="feedFechaNac" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                    </div>
+
+                    <!-- Información de inicio de sesión -->
+                    <div class="beneficios-subtitulo border-bottom pb-2 mb-3 mt-4">Información de inicio de sesión</div>
+
+                    <div class="username">
+                        <label>Correo electrónico <span>*</span></label>
+                        <input type="email" id="regEmail" name="email" placeholder="Ej. nombre@mail.com"
+                               th:value="${email}" required>
+                        <small id="feedEmail" class="msg-feedback text-danger d-none"></small>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 username">
+                            <label>Contraseña (mínimo 8 caracteres) <span>*</span></label>
+                            <div class="input-relative">
+                                <input type="password" id="regPassword" name="password" placeholder="••••••••" required>
+                            </div>
+                            <small id="feedPassword" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                        <div class="col-12 col-md-6 username">
+                            <label>Confirmar contraseña <span>*</span></label>
+                            <div class="input-relative">
+                                <input type="password" id="regPasswordConfirm" name="confirmPassword" placeholder="••••••••" required>
+                            </div>
+                            <small id="feedPasswordConfirm" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                    </div>
+
+                    <!-- Términos y condiciones -->
+                    <div class="d-flex flex-column gap-2 my-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkPromo" name="aceptaPromo" value="true">
+                            <label class="form-check-label text-dark small" for="checkPromo">
+                                Acepto recibir <strong>promociones y novedades</strong>.
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkTerminos" name="aceptaTerminos" value="true" required>
+                            <label class="form-check-label text-dark small" for="checkTerminos">
+                                Acepto los <a th:href="@{/terminos}" class="recordar p-0 d-inline text-decoration-underline">términos y condiciones</a> y la política de privacidad. <span>*</span>
+                            </label>
+                            <small id="feedTerminos" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                    </div>
+
+                    <!-- Acciones -->
+                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 pt-2">
+                        <a th:href="@{/login}" class="recordar m-0"><i class="fa-solid fa-arrow-left me-1"></i> Ya tengo cuenta</a>
+                        <button type="submit" class="btn-login w-auto px-4 border-0">CREAR CUENTA</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+
+    <script>
+        // 1. Cambiar Placeholders según Tipo de Documento
+        function ajustarValidacionDoc() {
+            const tipo = document.getElementById('regTipoDoc').value;
+            const inputDoc = document.getElementById('regNumDoc');
+            const feedDoc = document.getElementById('feedNumDoc');
+
+            feedDoc.classList.add('d-none');
+            inputDoc.classList.remove('is-invalid-custom');
+            inputDoc.value = "";
+
+            if (tipo === 'DNI') {
+                inputDoc.placeholder = "8 dígitos (Ej. 72839401)";
+            } else if (tipo === 'CE') {
+                inputDoc.placeholder = "Carnet de Extranjería (Ej. 000123456)";
+            } else {
+                inputDoc.placeholder = "Pasaporte (Ej. A12345678)";
+            }
+        }
+
+        // 2. Validación y aviso inmediato en el Documento
+        function validarDocEnTiempoReal(input) {
+            const tipo = document.getElementById('regTipoDoc').value;
+            const feedDoc = document.getElementById('feedNumDoc');
+            let valorLimpio = input.value;
+
+            if (tipo === 'DNI') {
+                valorLimpio = valorLimpio.replace(/[^0-9]/g, '');
+                
+                if (input.value !== valorLimpio) {
+                    feedDoc.innerText = '⚠️ El DNI solo puede contener números.';
+                    feedDoc.className = 'msg-feedback text-warning';
+                    feedDoc.classList.remove('d-none');
+                } else if (valorLimpio.length >= 8) {
+                    if (valorLimpio.length > 8) {
+                        valorLimpio = valorLimpio.slice(0, 8);
+                        feedDoc.innerText = 'ℹ️ Máximo 8 dígitos permitidos para DNI.';
+                        feedDoc.className = 'msg-feedback text-info';
+                        feedDoc.classList.remove('d-none');
+                    } else {
+                        feedDoc.classList.add('d-none');
+                    }
+                } else {
+                    feedDoc.innerText = `Llevas ${valorLimpio.length} de 8 dígitos.`;
+                    feedDoc.className = 'msg-feedback text-secondary';
+                    feedDoc.classList.remove('d-none');
+                }
+            } else {
+                valorLimpio = valorLimpio.replace(/[^a-zA-Z0-9]/g, '');
+                if (valorLimpio.length > 12) {
+                    valorLimpio = valorLimpio.slice(0, 12);
+                    feedDoc.innerText = 'ℹ️ Máximo 12 caracteres permitidos.';
+                    feedDoc.className = 'msg-feedback text-info';
+                    feedDoc.classList.remove('d-none');
+                } else {
+                    feedDoc.classList.add('d-none');
+                }
+            }
+            input.value = valorLimpio;
+        }
+
+        // 3. Validación y aviso inmediato en el Teléfono
+        function validarTelefonoEnTiempoReal(input) {
+            const feedTel = document.getElementById('feedTelefono');
+            let valorLimpio = input.value.replace(/[^0-9]/g, '');
+
+            if (valorLimpio.length > 0 && !valorLimpio.startsWith('9')) {
+                feedTel.innerText = '⚠️ El número de celular en Perú debe empezar con 9.';
+                feedTel.className = 'msg-feedback text-danger';
+                feedTel.classList.remove('d-none');
+            } else if (valorLimpio.length > 9) {
+                valorLimpio = valorLimpio.slice(0, 9);
+                feedTel.innerText = 'ℹ️ El número celular debe tener exactamente 9 dígitos.';
+                feedTel.className = 'msg-feedback text-info';
+                feedTel.classList.remove('d-none');
+            } else if (valorLimpio.length > 0 && valorLimpio.length < 9) {
+                feedTel.innerText = `Llevas ${valorLimpio.length} de 9 dígitos.`;
+                feedTel.className = 'msg-feedback text-secondary';
+                feedTel.classList.remove('d-none');
+            } else {
+                feedTel.classList.add('d-none');
+            }
+
+            input.value = valorLimpio;
+        }
+    </script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/account/forgotpassword.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Olvidé mi Contraseña</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <!-- Contenido Principal -->
+    <main>
+        <div class="contenedor-login">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-5 col-xl-4 login-seccion login-izq forgot-wrapper bg-white">
+                        <h2 class="login-titulo">OLVIDÉ MI CONTRASEÑA</h2>
+                        <p class="forgot-description">
+                            Por favor introduzca su dirección de correo electrónico para recibir un enlace de
+                            restablecimiento de contraseña.
+                        </p>
+
+                        <form id="formForgotPassword" th:action="@{/verify-code}" method="POST">
+                            <div class="username">
+                                <label for="forgotEmail">Correo electrónico <span>*</span></label>
+                                <input type="email" id="forgotEmail" name="email" placeholder="ejemplo@correo.com"
+                                    required>
+                            </div>
+
+                            <input type="submit" value="RESTABLECER MI CONTRASEÑA" class="btn-login">
+
+                            <div class="recordar text-center">
+                                <a th:href="@{/login}">
+                                    <i class="fa-solid fa-arrow-left"></i> Volver al inicio de sesión
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/account/login.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Iniciar Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <!-- Contenido Principal -->
+    <main>
+        <div class="contenedor-login">
+            <div class="login-grid">
+
+                <div class="login-seccion login-izq">
+                    <h2 class="login-titulo">INICIAR SESIÓN</h2>
+                    
+                    <form id="formLogin" th:action="@{/login}" method="post">
+                        <!-- Mensaje de error al fallar credenciales -->
+                        <div th:if="${error}" class="alert alert-danger py-2 px-3 small mb-3" role="alert" th:text="${error}"></div>
+                        
+                        <!-- Mensaje de éxito tras registrarse -->
+                        <div th:if="${mensaje}" class="alert alert-success py-2 px-3 small mb-3" role="alert" th:text="${mensaje}"></div>
+
+                        <div class="username">
+                            <label>Correo electrónico <span>*</span></label>
+                            <input type="email" id="loginEmail" name="email" placeholder="Ej. nombre@mail.com" required>
+                        </div>
+
+                        <div class="username input-password-box">
+                            <label>Contraseña <span>*</span></label>
+                            <div class="input-relative">
+                                <input type="password" id="loginPassword" name="password" placeholder="••••••••" required>
+                                <i class="fa-regular fa-eye icono-ojo" id="toggleEye"></i>
+                            </div>
+                        </div>
+
+                        <div class="recordar">
+                            <a th:href="@{/forgotpassword}">Olvidé mi contraseña</a>
+                        </div>
+
+                        <button type="submit" class="btn-login border-0 w-100 mt-2">INICIAR SESIÓN</button>
+                    </form>
+                </div>
+
+                <div class="login-seccion login-der">
+                    <h2 class="login-titulo">CREAR CUENTA</h2>
+
+                    <p class="beneficios-subtitulo">Crea una y aprovecha los beneficios:</p>
+
+                    <ul class="beneficios-lista">
+                        <li>Realiza tus compras de manera más ágil.</li>
+                        <li>Guarda múltiples direcciones de envío y facturación.</li>
+                        <li>Realiza el seguimiento a tus compras y revisa tus pedidos realizados.</li>
+                        <li>Haz una lista de productos favoritos.</li>
+                    </ul>
+
+                    <a th:href="@{/registro}" class="btn-crear-cuenta">CREAR CUENTA</a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/account/resetpassword.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Restablecer Contraseña</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <!-- Contenido Principal: Formulario Restablecer Contraseña -->
+    <main>
+        <div class="contenedor-login">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="login-seccion login-izq forgot-wrapper">
+                        <h2 class="login-titulo">RESTABLECER CONTRASEÑA</h2>
+
+                        <form id="formResetPassword" th:action="@{/login}" method="POST">
+                            <div class="username input-password-box">
+                                <label for="newPassword">Contraseña <span>*</span></label>
+                                <div class="input-relative">
+                                    <input type="password" id="newPassword" name="newPassword" placeholder="••••••"
+                                        required>
+                                    <i class="fa-regular fa-eye icono-ojo" id="toggleEye1"></i>
+                                </div>
+                            </div>
+
+                            <div class="username input-password-box">
+                                <label for="confirmPassword">Repetir Contraseña <span>*</span></label>
+                                <div class="input-relative">
+                                    <input type="password" id="confirmPassword" name="confirmPassword"
+                                        placeholder="••••••" required>
+                                    <i class="fa-regular fa-eye icono-ojo" id="toggleEye2"></i>
+                                </div>
+                            </div>
+
+                            <input type="submit" value="RESTABLECER CONTRASEÑA" class="btn-login mt-3">
+
+                            <div class="recordar text-center mt-3 mb-0">
+                                ¿Ya tienes una cuenta? <a th:href="@{/login}">Iniciar sesión</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/account/verifycode.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Verificar Código</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <!-- Contenido Principal: Formulario de Código de Verificación OTP -->
+    <main>
+        <div class="contenedor-login">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="login-seccion login-izq forgot-wrapper">
+                        <h2 class="login-titulo">VERIFICAR CÓDIGO</h2>
+                        <p class="forgot-description">
+                            Hemos enviado un código de verificación a su correo electrónico. Ingréselo a continuación
+                            para continuar.
+                        </p>
+
+                        <form id="formVerifyCode" th:action="@{/reset-password}" method="POST">
+                            <div class="username">
+                                <label for="otpCode">Código de Verificación <span>*</span></label>
+                                <input type="text" id="otpCode" name="code"
+                                    placeholder="Ingrese el código de Verificación" maxlength="6" required>
+                            </div>
+
+                            <input type="submit" value="VERIFICAR CÓDIGO" class="btn-login mt-3">
+
+                            <div class="recordar text-center mt-3 mb-0">
+                                ¿No recibiste el código? <a href="#">Reenviar código</a>
+                            </div>
+
+                            <div class="recordar text-center mt-2 mb-0">
+                                <a th:href="@{/forgot-password}">
+                                    <i class="fa-solid fa-arrow-left"></i> Cambiar correo
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/admin/admin.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta Pizza | Panel de Administración</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="stylesheet" th:href="@{/style/admin.css}">
+</head>
+
+<body>
+
+    <div class="caleta-admin-wrapper">
+
+        <!-- SIDEBAR -->
+        <aside class="caleta-sidebar">
+            <div>
+                <div class="caleta-logo-box">
+                    <h2>LA CALETA</h2>
+                    <p>ADMINISTRADOR PIZZERÍA</p>
+                </div>
+
+                <nav class="caleta-menu-nav">
+                    <button class="caleta-menu-btn activo" onclick="mostrarSeccion('dashboard', this)">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </button>
+                    <button class="caleta-menu-btn" onclick="mostrarSeccion('productos', this)">
+                        <i class="bi bi-pie-chart"></i> Catálogo de Pizzas
+                    </button>
+                    <button class="caleta-menu-btn" onclick="mostrarSeccion('stock', this)">
+                        <i class="bi bi-box-seam"></i> Insumos y Stock
+                    </button>
+                    <button class="caleta-menu-btn" onclick="mostrarSeccion('ventas', this)">
+                        <i class="bi bi-receipt"></i> Historial Pedidos
+                    </button>
+                    <button class="caleta-menu-btn" onclick="mostrarSeccion('clientes', this)">
+                        <i class="bi bi-people"></i> Clientes
+                    </button>
+                    <a th:href="@{/reportes}" class="caleta-menu-btn highlight">
+                        <i class="bi bi-bar-chart-line-fill"></i> Reportes & Métricas
+                    </a>
+                </nav>
+            </div>
+
+            <!-- PERFIL DEL ADMINISTRADOR -->
+            <div class="caleta-admin-user">
+                <p class="caleta-user-name" id="adminNombreDisplay" th:text="${usuario.nombre}">Guillermo Admin</p>
+                <span class="caleta-badge-rol">ADMINISTRADOR</span>
+                <div style="margin-top: 15px;">
+                    <a href="#" onclick="cerrarSesion()" class="caleta-btn-outline"
+                        style="width: 100%; justify-content: center;">
+                        <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ÁREA PRINCIPAL -->
+        <main class="caleta-admin-main">
+
+            <header class="caleta-header">
+                <h3 id="tituloSeccion">Dashboard de Control</h3>
+                <div class="caleta-header-actions">
+                    <a th:href="@{/reportes}" class="caleta-btn-outline">
+                        <i class="bi bi-graph-up"></i> Ver Reportes Gráficos
+                    </a>
+                    <button class="caleta-btn-primary" data-bs-toggle="modal" data-bs-target="#modalNuevaPizza">
+                        <i class="bi bi-plus-circle"></i> Nueva Pizza / Combo
+                    </button>
+                </div>
+            </header>
+
+            <!-- MENSAJES DE ESTADO FLASH -->
+            <div th:if="${exito}" class="alert alert-success alert-dismissible fade show m-3" role="alert"
+                style="background-color: #166534; color: #fff; border: none;">
+                <i class="bi bi-check-circle-fill me-2"></i> <span th:text="${exito}"></span>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+            </div>
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show m-3" role="alert"
+                style="background-color: #991b1b; color: #fff; border: none;">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i> <span th:text="${error}"></span>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+            </div>
+
+            <!-- 1. DASHBOARD -->
+            <section id="dashboard" class="caleta-seccion activa">
+                <div class="caleta-kpi-grid">
+                    <div class="caleta-kpi-card">
+                        <div>
+                            <div class="caleta-kpi-label">Ventas del Día</div>
+                            <h4 class="caleta-kpi-val" id="kpi-ventas-dia">S/ 0.00</h4>
+                        </div>
+                        <i class="bi bi-currency-dollar caleta-kpi-icon"></i>
+                    </div>
+
+                    <div class="caleta-kpi-card carmesi">
+                        <div>
+                            <div class="caleta-kpi-label">Pizzas en Catálogo</div>
+                            <h4 class="caleta-kpi-val" id="kpi-pizzas-catalogo" th:text="${totalPizzas} + ' Variedades'">5 Variedades</h4>
+                        </div>
+                        <i class="bi bi-fire caleta-kpi-icon" style="color: var(--color-carmesi);"></i>
+                    </div>
+
+                    <div class="caleta-kpi-card alerta">
+                        <div>
+                            <div class="caleta-kpi-label">Insumos Críticos</div>
+                            <h4 class="caleta-kpi-val" id="kpi-insumos-criticos" style="color: #ca8a04;">0 Alertas</h4>
+                        </div>
+                        <i class="bi bi-exclamation-triangle caleta-kpi-icon" style="color: #ca8a04;"></i>
+                    </div>
+
+                    <div class="caleta-kpi-card verde">
+                        <div>
+                            <div class="caleta-kpi-label">Clientes Registrados</div>
+                            <h4 class="caleta-kpi-val" id="kpi-clientes" style="color: #15803d;">0</h4>
+                        </div>
+                        <i class="bi bi-people caleta-kpi-icon" style="color: #15803d;"></i>
+                    </div>
+                </div>
+
+                <div class="caleta-panel">
+                    <div class="caleta-panel-title">
+                        <i class="bi bi-clock-history text-ro"></i> Últimos Pedidos Registrados
+                    </div>
+                    <div class="caleta-table-container">
+                        <table class="table caleta-table">
+                            <thead>
+                                <tr>
+                                    <th>Ticket</th>
+                                    <th>Fecha</th>
+                                    <th>Cliente</th>
+                                    <th>Método Pago</th>
+                                    <th>Total</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                                <tr th:if="${pedidos == null or pedidos.isEmpty()}">
+                                    <td colspan="6" class="text-center text-muted py-4">No hay pedidos recientes.</td>
+                                </tr>
+                                <tr th:each="pedido : ${pedidos}">
+                                    <td><strong th:text="'#ORD-' + ${pedido.id}">#ORD-001</strong></td>
+                                    <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}">Fecha</td>
+                                    <td th:text="${pedido.usuario != null ? pedido.usuario.nombre : 'Cliente Anónimo'}">Cliente</td>
+                                    <td th:text="${pedido.metodoPago}">Método Pago</td>
+                                    <td class="text-ro"><strong th:text="'S/ ' + ${#numbers.formatDecimal(pedido.total, 1, 2)}">S/ 0.00</strong></td>
+                                    <td>
+                                        <span class="caleta-badge success" th:text="${pedido.estado != null ? pedido.estado : 'Recibido'}">Estado</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. CATÁLOGO DE PIZZAS -->
+            <section id="productos" class="caleta-seccion">
+                <div class="caleta-panel">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                        <input type="text" id="buscarProducto" class="caleta-search-input"
+                            placeholder="Buscar pizza por código o nombre..."
+                            onkeyup="filtrarTabla('buscarProducto', 'tablaProductos')">
+                        <button class="caleta-btn-primary" data-bs-toggle="modal" data-bs-target="#modalNuevaPizza">
+                            <i class="bi bi-plus-lg"></i> Agregar Pizza al Menú
+                        </button>
+                    </div>
+
+                    <div class="caleta-table-container">
+                        <table class="table caleta-table" id="tablaProductos">
+                            <thead>
+                                <tr>
+                                    <th>Foto</th>
+                                    <th>Código</th>
+                                    <th>Pizza</th>
+                                    <th>Categoría</th>
+                                    <th>Tamaño</th>
+                                    <th>Precio</th>
+                                    <th>Visibilidad Menú</th>
+                                    <th style="text-align: center;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="p : ${pizzas}">
+                                    <td>
+                                        <img th:src="${p.imagenUrl}" onerror="this.src='/images/producto_pepperoni.jpg'"
+                                            alt="Pizza"
+                                            style="width: 44px; height: 44px; object-fit: cover; border-radius: 6px;">
+                                    </td>
+                                    <td th:text="'#PZ-0' + ${p.id}">#PZ-01</td>
+                                    <td class="fw-bold" th:text="${p.nombre}">Nombre Pizza</td>
+                                    <td>
+                                        <span class="caleta-badge"
+                                            style="background-color: #f3f4f6; color: #1f2937; border: 1px solid #d1d5db; font-weight: 700;"
+                                            th:text="${p.categoria != null ? p.categoria.nombre : 'General'}">Clásicas</span>
+                                    </td>
+                                    <td th:text="${p.tamano != null ? p.tamano : 'Familiar'}">Familiar</td>
+                                    <td class="text-ro fw-bold"
+                                        th:text="'S/ ' + ${#numbers.formatDecimal(p.precio, 1, 2)}">S/ 0.00</td>
+                                    <td>
+                                        <span
+                                            th:class="${p.disponible == null or p.disponible ? 'caleta-badge success' : 'caleta-badge danger'}"
+                                            th:text="${p.disponible == null or p.disponible ? 'Disponible' : 'Agotado'}">Disponible</span>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <button class="caleta-btn-outline" style="padding: 4px 10px;"
+                                            title="Editar o Inhabilitar" th:data-id="${p.id}"
+                                            th:data-nombre="${p.nombre}" th:data-precio="${p.precio}"
+                                            th:data-tamano="${p.tamano != null ? p.tamano : 'Familiar'}"
+                                            th:data-categoria="${p.categoria != null ? p.categoria.codigo : 'clasicas'}"
+                                            th:data-disponible="${p.disponible != null ? p.disponible : true}"
+                                            th:data-img="${p.imagenUrl}" onclick="abrirModalEditar(this)">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                        <a th:href="@{/admin/pizzas/eliminar/{id}(id=${p.id})}"
+                                            class="caleta-btn-outline" style="padding: 4px 10px; color: #dc2626;"
+                                            title="Eliminar del catálogo"
+                                            onclick="return confirm('¿Seguro que deseas eliminar esta pizza del menú?')">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. STOCK DE INSUMOS Y MATERIA PRIMA (FILTROS + TABLA DINÁMICA + MODAL NUEVO/EDITAR) -->
+            <section id="stock" class="caleta-seccion">
+                <div class="caleta-panel">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+                        <!-- FORMULARIO DE FILTRADO PARA INSUMOS -->
+                        <form th:action="@{/admin}" method="get" style="display: flex; gap: 8px; align-items: center;">
+                            <input type="text" name="buscarInsumo" class="caleta-search-input"
+                                th:value="${param.buscarInsumo}" placeholder="Buscar insumo por nombre o código..."
+                                style="margin-bottom: 0;">
+                            <button type="submit" class="caleta-btn-outline" style="padding: 8px 14px;">
+                                <i class="bi bi-search"></i> Filtrar
+                            </button>
+                            <a th:href="@{/admin#stock}" class="caleta-btn-outline" style="padding: 8px 10px;"
+                                title="Limpiar filtro">
+                                <i class="bi bi-x-lg"></i>
+                            </a>
+                        </form>
+
+                        <button class="caleta-btn-primary" data-bs-toggle="modal" data-bs-target="#modalNuevoInsumo">
+                            <i class="bi bi-plus-lg"></i> Registrar Nuevo Insumo
+                        </button>
+                    </div>
+
+                    <div class="caleta-panel-title" style="margin-top: 15px;">
+                        <i class="bi bi-box-seam text-ro"></i> Listado de Insumos y Materia Prima
+                    </div>
+
+                    <div class="caleta-table-container">
+                        <table class="table caleta-table">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Insumo</th>
+                                    <th>Stock Actual</th>
+                                    <th>Stock Mínimo</th>
+                                    <th>Estado de Reposición</th>
+                                    <th style="text-align: center;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="ins : ${insumos}">
+                                    <td th:text="${ins.codigo}">INS-01</td>
+                                    <td class="fw-bold" th:text="${ins.nombre}">Queso Mozzarella</td>
+                                    <td><strong th:text="${ins.stockActual} + ' ' + ${ins.unidadMedida}">4 kg</strong>
+                                    </td>
+                                    <td th:text="${ins.stockMinimo} + ' ' + ${ins.unidadMedida}">5 kg</td>
+                                    <td>
+                                        <span th:if="${ins.critico}" class="caleta-badge danger">CRÍTICO (&le; <span
+                                                th:text="${ins.stockMinimo}"></span>)</span>
+                                        <span th:unless="${ins.critico}" class="caleta-badge success">ÓPTIMO</span>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <button class="caleta-btn-outline" style="padding: 4px 10px;"
+                                            title="Modificar Insumo" th:data-id="${ins.id}"
+                                            th:data-nombre="${ins.nombre}" th:data-stock="${ins.stockActual}"
+                                            th:data-unidad="${ins.unidadMedida}" th:data-minimo="${ins.stockMinimo}"
+                                            onclick="abrirModalEditarInsumo(this)">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                        <a th:href="@{/admin/insumos/eliminar/{id}(id=${ins.id})}"
+                                            class="caleta-btn-outline" style="padding: 4px 10px; color: #dc2626;"
+                                            title="Eliminar Insumo"
+                                            onclick="return confirm('¿Seguro que deseas eliminar este insumo?')">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. HISTORIAL DE VENTAS -->
+            <section id="ventas" class="caleta-seccion">
+                <div class="caleta-panel">
+                    <div class="caleta-panel-title">
+                        <i class="bi bi-receipt text-ro"></i> Registro Histórico de Boletas
+                    </div>
+                    <div class="caleta-table-container">
+                        <table class="table caleta-table">
+                            <thead>
+                                <tr>
+                                    <th># Boleta</th>
+                                    <th>Fecha</th>
+                                    <th>Cliente</th>
+                                    <th>Pago</th>
+                                    <th>Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${pedidos == null or pedidos.isEmpty()}">
+                                    <td colspan="5" class="text-center text-muted py-4">No hay historial de ventas.</td>
+                                </tr>
+                                <tr th:each="pedido : ${pedidos}">
+                                    <td th:text="'B001-' + ${#numbers.formatInteger(pedido.id, 4)}">B001-0001</td>
+                                    <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy')}">Fecha</td>
+                                    <td th:text="${pedido.usuario != null ? pedido.usuario.nombre : 'Cliente Anónimo'}">Cliente</td>
+                                    <td th:text="${pedido.metodoPago}">Pago</td>
+                                    <td th:text="'S/ ' + ${#numbers.formatDecimal(pedido.total, 1, 2)}">Monto</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. CLIENTES -->
+            <section id="clientes" class="caleta-seccion">
+                <div class="caleta-panel">
+                    <div class="caleta-panel-title">
+                        <i class="bi bi-people text-ro"></i> Directorio de Clientes
+                    </div>
+                    <div class="caleta-table-container">
+                        <table class="table caleta-table">
+                            <thead>
+                                <tr>
+                                    <th>DNI</th>
+                                    <th>Nombre</th>
+                                    <th>Teléfono</th>
+                                    <th>Dirección Delivery</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${clientes == null or clientes.isEmpty()}">
+                                    <td colspan="4" class="text-center text-muted py-4">Aún no hay clientes registrados en la base de datos.</td>
+                                </tr>
+                                <tr th:each="c : ${clientes}">
+                                    <td th:text="${c.dni != null and !c.dni.isEmpty() ? c.dni : 'No especificado'}" th:class="${c.dni == null or c.dni.isEmpty() ? 'text-muted' : ''}">No especificado</td>
+                                    <td class="fw-bold" th:text="${c.nombre}">Nombre</td>
+                                    <td th:text="${c.telefono}">Teléfono</td>
+                                    <td class="text-muted">Registrado el <span th:text="${#temporals.format(c.fechaRegistro, 'dd/MM/yyyy')}"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- MODAL 1: REGISTRAR NUEVA PIZZA -->
+    <div class="modal fade" id="modalNuevaPizza" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"
+                style="background-color: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
+                <div
+                    style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
+                        <i class="bi bi-plus-circle me-2"></i>Registrar Pizza en Menú
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form th:action="@{/admin/pizzas/guardar}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="stock" value="10">
+                    <div style="padding: 20px;">
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Nombre de la Pizza</label>
+                            <input type="text" name="nombre" class="form-control" placeholder="Ej. Americana Suprema"
+                                required>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label style="color: #d1d5db;">Categoría</label>
+                                <select name="codigoCategoria" class="form-select"
+                                    style="background:#222; color:#fff; border:1px solid #444;">
+                                    <option th:each="cat : ${categorias}" th:value="${cat.codigo}" th:text="${cat.nombre}">Categoría Dinámica</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label style="color: #d1d5db;">Tamaño</label>
+                                <select name="tamano" class="form-select"
+                                    style="background:#222; color:#fff; border:1px solid #444;">
+                                    <option value="Personal">Personal</option>
+                                    <option value="Mediana">Mediana</option>
+                                    <option value="Familiar" selected>Familiar</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Precio de Venta (S/)</label>
+                            <input type="number" step="0.50" name="precio" class="form-control" placeholder="Ej. 42.00"
+                                required>
+                        </div>
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Subir Archivo de Imagen (PNG/JPG)</label>
+                            <input type="file" name="imagenArchivo" class="form-control" accept="image/png, image/jpeg">
+                        </div>
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">O usar URL externa / estática</label>
+                            <input type="text" name="imagenUrl" class="form-control"
+                                placeholder="/images/producto_americana.jpg">
+                        </div>
+                    </div>
+                    <div
+                        style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: flex-end; gap: 10px;">
+                        <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="caleta-btn-primary">Guardar Pizza</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NUEVO INSUMO -->
+    <div class="modal fade" id="modalNuevoInsumo" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"
+                style="background-color: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
+                <div
+                    style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
+                        <i class="bi bi-box-seam me-2"></i>Registrar Nuevo Insumo
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form th:action="@{/admin/insumos/guardar}" method="post">
+                    <div style="padding: 20px;">
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Nombre del Insumo</label>
+                            <input type="text" name="nombre" class="form-control" placeholder="Ej. Aceitunas Rodajas"
+                                required>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label style="color: #d1d5db;">Stock Actual</label>
+                                <input type="number" step="0.1" name="stockActual" class="form-control"
+                                    placeholder="Ej. 10.0" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label style="color: #d1d5db;">Unidad de Medida</label>
+                                <input type="text" name="unidadMedida" class="form-control"
+                                    placeholder="Ej. kg, Litros, und" required>
+                            </div>
+                        </div>
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Stock Mínimo (Alerta Crítica)</label>
+                            <input type="number" step="0.1" name="stockMinimo" class="form-control" value="5.0"
+                                required>
+                        </div>
+                    </div>
+                    <div
+                        style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: flex-end; gap: 10px;">
+                        <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="caleta-btn-primary">Guardar Insumo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDITAR INSUMO -->
+    <div class="modal fade" id="modalEditarInsumo" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"
+                style="background-color: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
+                <div
+                    style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
+                        <i class="bi bi-pencil-square me-2"></i>Modificar Insumo
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form th:action="@{/admin/insumos/guardar}" method="post">
+                    <input type="hidden" id="edit-insumo-id" name="id">
+                    <div style="padding: 20px;">
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Nombre del Insumo</label>
+                            <input type="text" id="edit-insumo-nombre" name="nombre" class="form-control" required>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label style="color: #d1d5db;">Stock Actual</label>
+                                <input type="number" step="0.1" id="edit-insumo-stock" name="stockActual"
+                                    class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label style="color: #d1d5db;">Unidad de Medida</label>
+                                <input type="text" id="edit-insumo-unidad" name="unidadMedida" class="form-control"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Stock Mínimo</label>
+                            <input type="number" step="0.1" id="edit-insumo-minimo" name="stockMinimo"
+                                class="form-control" required>
+                        </div>
+                    </div>
+                    <div
+                        style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: flex-end; gap: 10px;">
+                        <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="caleta-btn-primary">Actualizar Insumo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: MODIFICAR / INHABILITAR PIZZA -->
+    <div class="modal fade" id="modalEditarPizza" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"
+                style="background-color: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
+                <div
+                    style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
+                        <i class="bi bi-pencil-square me-2"></i>Modificar / Inhabilitar Pizza
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form th:action="@{/admin/pizzas/editar}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" id="edit-id" name="id">
+                    <input type="hidden" id="edit-stock" name="stock" value="10">
+
+                    <div style="padding: 20px;">
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Nombre de la Pizza</label>
+                            <input type="text" id="edit-nombre" name="nombre" class="form-control" required>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label style="color: #d1d5db;">Categoría</label>
+                                <select id="edit-categoria" name="codigoCategoria" class="form-select"
+                                    style="background:#222; color:#fff; border:1px solid #444;">
+                                    <option th:each="cat : ${categorias}" th:value="${cat.codigo}" th:text="${cat.nombre}">Categoría Dinámica</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label style="color: #d1d5db;">Tamaño</label>
+                                <select id="edit-tamano" name="tamano" class="form-select"
+                                    style="background:#222; color:#fff; border:1px solid #444;">
+                                    <option value="Personal">Personal</option>
+                                    <option value="Mediana">Mediana</option>
+                                    <option value="Familiar">Familiar</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- CONTROL DE DISPONIBILIDAD -->
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Estado en Menú Web</label>
+                            <select id="edit-disponible" name="disponible" class="form-select"
+                                style="background:#222; color:#fff; border:1px solid #444;">
+                                <option value="true">Disponible (Visible para clientes)</option>
+                                <option value="false">Agotado / Inhabilitada (Oculta del menú)</option>
+                            </select>
+                        </div>
+
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Precio (S/)</label>
+                            <input type="number" step="0.50" id="edit-precio" name="precio" class="form-control"
+                                required>
+                        </div>
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Subir Nuevo Archivo (PNG/JPG)</label>
+                            <input type="file" name="imagenArchivo" class="form-control" accept="image/png, image/jpeg">
+                        </div>
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">O cambiar URL externa / estática</label>
+                            <input type="text" id="edit-img" name="imagenUrl" class="form-control">
+                        </div>
+                    </div>
+                    <div
+                        style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: flex-end; gap: 10px;">
+                        <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="caleta-btn-primary">Actualizar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/admi.js}"></script>
+
+</body>
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/admin/reportes.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta Pizza | Reportes y Gráficos</title>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- CHART.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- CSS PROPIO -->
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="stylesheet" th:href="@{/style/admin.css}">
+</head>
+
+<body>
+
+    <div class="caleta-admin-wrapper">
+
+        <!-- SIDEBAR -->
+        <aside class="caleta-sidebar">
+            <div>
+                <div class="caleta-logo-box">
+                    <h2>LA CALETA</h2>
+                    <p>ESTADÍSTICAS Y MÉTRICAS</p>
+                </div>
+
+                <nav class="caleta-menu-nav">
+                    <a th:href="@{/admin}" class="caleta-menu-btn">
+                        <i class="bi bi-arrow-left-circle"></i> Volver al Panel
+                    </a>
+                    <button class="caleta-menu-btn activo" id="tab1-link" onclick="mostrarPaginaGraficos(1)">
+                        <i class="bi bi-bar-chart-line"></i> Pág 1: Pizzas & Tendencia
+                    </button>
+                    <button class="caleta-menu-btn" id="tab2-link" onclick="mostrarPaginaGraficos(2)">
+                        <i class="bi bi-pie-chart"></i> Pág 2: Pagos & Stock
+                    </button>
+                </nav>
+            </div>
+
+            <!-- PERFIL DEL ADMINISTRADOR CONECTADO DINÁMICAMENTE -->
+            <div class="caleta-admin-user">
+                <p class="caleta-user-name" id="adminNombreDisplay" th:text="${usuario.nombre}">Guillermo Admin</p>
+                <span class="caleta-badge-rol">ADMINISTRADOR</span>
+                <div style="margin-top: 15px;">
+                    <a href="#" onclick="cerrarSesion()" class="caleta-btn-outline"
+                        style="width: 100%; justify-content: center;">
+                        <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CONTENIDO GRÁFICOS -->
+        <main class="caleta-admin-main">
+
+            <header class="caleta-header">
+                <div>
+                    <h3>Métricas y Reportes Estadísticos</h3>
+                    <p style="color: #6b7280; font-size: 13px; margin: 0;">Análisis visual del rendimiento y ventas de
+                        La Caleta</p>
+                </div>
+                <a th:href="@{/admin}" class="caleta-btn-outline">
+                    <i class="bi bi-house"></i> Regresar al Panel
+                </a>
+            </header>
+
+            <!-- PÁGINA 1: BARRAS & LINEAL -->
+            <div id="paginaGraficos1">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
+                        <i class="bi bi-1-circle-fill me-2"></i> Ventas por Categoría y Tendencia
+                    </h5>
+                    <button class="caleta-btn-primary" onclick="mostrarPaginaGraficos(2)">Ir a Página 2 &rarr;</button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+                    <div class="caleta-panel">
+                        <div class="caleta-panel-title">
+                            <i class="bi bi-bar-chart-fill text-ro"></i> Ventas Totales por Especialidad
+                        </div>
+                        <canvas id="chartBarrasPizzas" style="max-height: 320px;"></canvas>
+                    </div>
+
+                    <div class="caleta-panel">
+                        <div class="caleta-panel-title">
+                            <i class="bi bi-graph-up text-ro"></i> Evolución de Ventas Semanales (S/)
+                        </div>
+                        <canvas id="chartLinealMensual" style="max-height: 320px;"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PÁGINA 2: CIRCULAR & STOCK -->
+            <div id="paginaGraficos2" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
+                        <i class="bi bi-2-circle-fill me-2"></i> Medios de Pago y Nivel de Insumos
+                    </h5>
+                    <button class="caleta-btn-primary" onclick="mostrarPaginaGraficos(1)">&larr; Volver a Página
+                        1</button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+                    <div class="caleta-panel">
+                        <div class="caleta-panel-title">
+                            <i class="bi bi-pie-chart-fill text-ro"></i> Preferencia de Canales de Pago
+                        </div>
+                        <div style="display: flex; justify-content: center;">
+                            <canvas id="chartCircularPagos" style="max-height: 300px; max-width: 300px;"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="caleta-panel">
+                        <div class="caleta-panel-title">
+                            <i class="bi bi-box-seam text-ro"></i> Disponibilidad de Insumos Críticos
+                        </div>
+                        <canvas id="chartStockInsumos" style="max-height: 320px;"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- CONEXIONES JS DE LA APLICACIÓN -->
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/reporte.js}"></script>
+
+</body>
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/checkout/cart.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Carrito</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header-checkout :: headerCheckout}"></div>
+
+    <main>
+        <section class="py-3 border-bottom border-secondary border-opacity-25 bg-negro">
+            <div class="container">
+                <div class="d-flex align-items-center gap-3 gap-md-4 text-nowrap overflow-x-auto py-1 small">
+                    <div class="d-flex align-items-center gap-2 text-ro fw-bold">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">1</span>
+                        <span>Mis productos</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 text-secondary opacity-75">
+                        <span class="badge rounded-circle bg-secondary bg-opacity-25 text-white px-2 py-1">2</span>
+                        <span>Envío</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 text-secondary opacity-75">
+                        <span class="badge rounded-circle bg-secondary bg-opacity-25 text-white px-2 py-1">3</span>
+                        <span>Pago</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1 class="fw-bold text-white fs-3 mb-0 d-flex align-items-center gap-2">
+                        MI CARRITO
+                    </h1>
+                    <a th:href="@{/menu}"
+                        class="text-secondary small text-decoration-none d-none d-md-inline-block link-volver">
+                        <i class="fa-solid fa-arrow-left me-1"></i> Seguir comprando
+                    </a>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-12 col-lg-8">
+                        <div class="card card-resumen border-0 rounded-3 overflow-hidden shadow-sm">
+                            <div class="table-responsive">
+                                <table class="table align-middle mb-0 tabla-caleta" id="tabla-carrito">
+                                    <thead class="text-secondary small text-uppercase border-secondary border-opacity-25">
+                                        <tr>
+                                            <th scope="col" class="ps-4 py-3">Producto</th>
+                                            <th scope="col" class="py-3 text-center">Cantidad</th>
+                                            <th scope="col" class="py-3 text-end">Precio</th>
+                                            <th scope="col" class="py-3 text-end pe-4">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border-secondary border-opacity-25" id="carrito-items">
+                                        <tr>
+                                            <td colspan="4" class="text-center py-5 text-secondary">
+                                                <i class="fa-solid fa-spinner fa-spin me-2"></i> Cargando tu pedido...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 d-md-none">
+                            <a th:href="@{/menu}" class="text-secondary small text-decoration-none link-volver">
+                                <i class="fa-solid fa-arrow-left me-1"></i> Seguir comprando
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-4">
+                        <div class="card card-resumen border-0 rounded-3 p-4 shadow-sm">
+                            <h5 class="fw-bold mb-3 text-white fs-6 text-uppercase border-bottom border-secondary border-opacity-25 pb-2">
+                                Resumen del pedido
+                            </h5>
+
+                            <div class="d-flex justify-content-between mb-2 small text-secondary">
+                                <span>Subtotal</span>
+                                <span class="text-white fw-semibold" id="resumen-subtotal">S/ 0.00</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3 small text-secondary">
+                                <span>Costo de envío</span>
+                                <span class="text-white fw-semibold" id="resumen-envio">S/ 5.00</span>
+                            </div>
+
+                            <div class="border-top border-secondary border-opacity-25 pt-3 mb-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold text-white">Total pedido</span>
+                                    <span class="fw-bold fs-5 text-ro" id="resumen-total">S/ 5.00</span>
+                                </div>
+                            </div>
+
+                            <a th:href="@{/envio}"
+                                class="btn-cta text-center w-100 py-2 fw-bold text-uppercase small text-decoration-none shadow d-block">
+                                Continuar con el envío <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/checkout/payment.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Pago</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header-checkout :: headerCheckout}"></div>
+
+    <main>
+        <section class="py-3 border-bottom border-secondary border-opacity-25 bg-negro">
+            <div class="container">
+                <div class="d-flex align-items-center gap-3 gap-md-4 text-nowrap overflow-x-auto py-1 small">
+                    <a th:href="@{/carrito}"
+                        class="d-flex align-items-center gap-2 text-ro opacity-75 text-decoration-none">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">
+                            <i class="fa-solid fa-check fs-xs"></i>
+                        </span>
+                        <span>Mis productos</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </a>
+                    <a th:href="@{/envio}"
+                        class="d-flex align-items-center gap-2 text-ro opacity-75 text-decoration-none">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">
+                            <i class="fa-solid fa-check fs-xs"></i>
+                        </span>
+                        <span>Envío</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </a>
+                    <div class="d-flex align-items-center gap-2 text-ro fw-bold">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">3</span>
+                        <span>Pago</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row g-4">
+
+                    <div class="col-12 col-lg-8 order-2 order-lg-1">
+
+                        <div
+                            class="tarjeta-local card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4">
+                            <div
+                                class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+                                <h5 class="fw-bold mb-0 text-white fs-6 text-uppercase d-flex align-items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-ro"></i> Datos de Entrega Confirmados
+                                </h5>
+                                <a th:href="@{/envio}" class="text-ro small text-decoration-none fw-semibold">
+                                    <i class="fa-solid fa-pen-to-square me-1"></i> Editar
+                                </a>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6 border-end-md border-secondary border-opacity-25">
+                                    <span class="text-secondary small d-block mb-1 fw-semibold">Contacto del
+                                        Cliente:</span>
+                                    <p class="text-white small mb-1 fw-semibold" id="pago-contacto-nombre">Cliente</p>
+                                    <p class="text-white-50 small mb-1" id="pago-contacto-correo">cliente@correo.com</p>
+                                    <p class="text-white-50 small mb-0" id="pago-contacto-telefono">+51 999 999 999</p>
+                                </div>
+                                <div class="col-12 col-md-6 ps-md-3">
+                                    <span class="text-secondary small d-block mb-1 fw-semibold"
+                                        id="pago-titulo-metodo">Método de Entrega:</span>
+                                    <p class="text-white small mb-1 fw-bold" id="pago-destino-principal">Sede Miraflores
+                                    </p>
+                                    <p class="text-white-50 small mb-1" id="pago-destino-detalle">Av. José Larco 850,
+                                        Miraflores, Lima</p>
+                                    <span
+                                        class="badge bg-secondary bg-opacity-25 text-white-50 small border border-secondary border-opacity-25 mt-1"
+                                        id="pago-destino-tiempo">
+                                        Tiempo estimado: 25 - 40 min
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form id="formCheckoutPago" onsubmit="procesarPagoFinal(event)"
+                            class="tarjeta-local card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm">
+
+                            <div class="mb-4">
+                                <h5 class="fw-bold text-white fs-6 text-uppercase mb-2">1. Comprobante de Pago</h5>
+                                <div
+                                    class="alert alert-warning py-2 px-3 small border-0 d-flex align-items-center gap-2 mb-3 bg-warning bg-opacity-10 text-warning">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                    <span>Importante: Tras confirmar la orden, el tipo de comprobante no podrá
+                                        modificarse.</span>
+                                </div>
+
+                                <div class="d-flex gap-4 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipoComprobante" id="boleta"
+                                            value="boleta" checked onchange="alternarCamposFactura(false)">
+                                        <label class="form-check-label text-white small cursor-pointer" for="boleta">
+                                            Boleta de Venta
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tipoComprobante" id="factura"
+                                            value="factura" onchange="alternarCamposFactura(true)">
+                                        <label class="form-check-label text-white small cursor-pointer" for="factura">
+                                            Factura Electrónica
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div id="campos-factura"
+                                    class="row g-3 d-none p-3 rounded-3 bg-black bg-opacity-40 border border-secondary border-opacity-25 mt-1">
+                                    <div class="col-12 col-sm-5">
+                                        <label for="factura-ruc"
+                                            class="form-label text-secondary fs-xs fw-semibold mb-1">RUC (11 dígitos)
+                                            *</label>
+                                        <input type="text" class="form-control buscador-input" id="factura-ruc"
+                                            placeholder="Ej: 20123456789" maxlength="11" pattern="[0-9]{11}">
+                                    </div>
+                                    <div class="col-12 col-sm-7">
+                                        <label for="factura-razon"
+                                            class="form-label text-secondary fs-xs fw-semibold mb-1">Razón Social
+                                            *</label>
+                                        <input type="text" id="factura-razon" class="form-control buscador-input"
+                                            placeholder="Nombre de la empresa">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="border-secondary border-opacity-25 my-4">
+
+                            <div class="mb-4">
+                                <h5 class="fw-bold text-white fs-6 text-uppercase mb-3">2. Selecciona tu método de pago
+                                </h5>
+
+                                <div class="d-flex flex-column gap-3">
+
+                                    <div class="opcion-pago-wrapper rounded-3 border border-secondary border-opacity-50 overflow-hidden activo"
+                                        id="wrapper-tarjeta">
+                                        <label
+                                            class="p-3 d-flex align-items-center justify-content-between cursor-pointer w-100 mb-0"
+                                            for="pagoTarjeta">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <input class="form-check-input mt-0" type="radio" name="metodoPago"
+                                                    id="pagoTarjeta" value="tarjeta" checked
+                                                    onchange="alternarDetalleMetodoPago('tarjeta')">
+                                                <div>
+                                                    <span class="d-block text-white fw-semibold small">Pago en línea con
+                                                        Tarjeta</span>
+                                                    <small class="text-secondary">Aceptamos débito y crédito (Visa,
+                                                        Mastercard)</small>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <img th:src="@{/images/visa.jpg}" alt="Visa"
+                                                    class="rounded-1 object-fit-contain"
+                                                    style="width: 36px; height: 24px;"
+                                                    onerror="this.outerHTML='<i class=\'fa-brands fa-cc-visa fs-3 text-secondary\'></i>'">
+                                                <img th:src="@{/images/mastercard.jpg}" alt="Mastercard"
+                                                    class="rounded-1 object-fit-contain"
+                                                    style="width: 36px; height: 24px;"
+                                                    onerror="this.outerHTML='<i class=\'fa-brands fa-cc-mastercard fs-3 text-secondary\'></i>'">
+                                            </div>
+                                        </label>
+
+                                        <div id="box-formulario-tarjeta"
+                                            class="p-3 pt-0 border-top border-secondary border-opacity-25 bg-black bg-opacity-30">
+                                            <div class="row g-2 pt-3">
+                                                <div class="col-12">
+                                                    <label class="text-secondary fs-xs fw-semibold mb-1">Número de
+                                                        Tarjeta</label>
+                                                    <div class="position-relative">
+                                                        <input type="text" class="form-control buscador-input ps-3"
+                                                            placeholder="0000 0000 0000 0000" maxlength="19"
+                                                            id="card-number">
+                                                        <i
+                                                            class="fa-solid fa-credit-card position-absolute top-50 end-0 translate-middle-y me-3 text-secondary"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label
+                                                        class="text-secondary fs-xs fw-semibold mb-1">Expiración</label>
+                                                    <input type="text" class="form-control buscador-input"
+                                                        placeholder="MM/AA" maxlength="5">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="text-secondary fs-xs fw-semibold mb-1">CVV</label>
+                                                    <input type="password" class="form-control buscador-input"
+                                                        placeholder="123" maxlength="4">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="opcion-pago-wrapper rounded-3 border border-secondary border-opacity-50 overflow-hidden"
+                                        id="wrapper-yape">
+                                        <label
+                                            class="p-3 d-flex align-items-center justify-content-between cursor-pointer w-100 mb-0"
+                                            for="pagoYape">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <input class="form-check-input mt-0" type="radio" name="metodoPago"
+                                                    id="pagoYape" value="yape"
+                                                    onchange="alternarDetalleMetodoPago('yape')">
+                                                <div>
+                                                    <span class="d-block text-white fw-semibold small">Pagar con
+                                                        Yape</span>
+                                                    <small class="text-secondary">Código de aprobación o transferencia
+                                                        móvil</small>
+                                                </div>
+                                            </div>
+                                            <span class="badge px-2 py-1 text-white fw-bold"
+                                                style="background-color: #742284; font-size: 11px;">YAPE</span>
+                                        </label>
+
+                                        <div id="box-formulario-yape"
+                                            class="p-3 pt-0 border-top border-secondary border-opacity-25 bg-black bg-opacity-30 d-none">
+                                            <div class="pt-3">
+                                                <p class="small text-secondary mb-2">
+                                                    Transfiere al número <strong class="text-white">999 888 777</strong>
+                                                    (La Caleta Pizza) e ingresa tu código de validación:
+                                                </p>
+                                                <div class="col-12 col-sm-6">
+                                                    <label class="text-secondary fs-xs fw-semibold mb-1">Código de
+                                                        aprobación</label>
+                                                    <input type="text" class="form-control buscador-input"
+                                                        placeholder="Ej: 123456" maxlength="6">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="col-12 col-lg-4 order-1 order-lg-2">
+                        <div class="tarjeta-local card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm sticky-top"
+                            style="top: 20px;">
+
+                            <h5
+                                class="fw-bold mb-3 text-white fs-6 text-uppercase pb-2 border-bottom border-secondary border-opacity-25">
+                                Resumen del Pedido
+                            </h5>
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="small text-secondary"><strong class="text-white"
+                                        id="resumen-cant-articulos">0</strong> producto(s)</span>
+                                <a th:href="@{/carrito}"
+                                    class="small text-decoration-none text-ro fw-semibold">Modificar</a>
+                            </div>
+
+                            <div class="d-flex flex-column gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-25 overflow-y-auto"
+                                style="max-height: 280px;" id="resumen-lista-pago">
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-2 small text-secondary">
+                                <span>Subtotal</span>
+                                <span class="text-white fw-semibold" id="pago-subtotal">S/ 0.00</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3 small text-secondary">
+                                <span>Costo de envío / Servicio</span>
+                                <span class="text-success fw-semibold" id="pago-envio-costo">Gratis</span>
+                            </div>
+
+                            <div class="border-top border-secondary border-opacity-25 pt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold text-white">Total a pagar</span>
+                                    <span class="fw-bold fs-4 text-ro" id="pago-total">S/ 0.00</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/payment.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/checkout/shipping.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Envío</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header-checkout :: headerCheckout}"></div>
+
+    <main>
+        <section class="py-3 border-bottom border-secondary border-opacity-25 bg-negro">
+            <div class="container">
+                <div class="d-flex align-items-center gap-3 gap-md-4 text-nowrap overflow-x-auto py-1 small">
+                    <a th:href="@{/carrito}"
+                        class="d-flex align-items-center gap-2 text-ro opacity-75 text-decoration-none">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">
+                            <i class="fa-solid fa-check fs-xs"></i>
+                        </span>
+                        <span>Mis productos</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </a>
+                    <div class="d-flex align-items-center gap-2 text-ro fw-bold">
+                        <span class="badge rounded-circle bg-ro text-white px-2 py-1">2</span>
+                        <span>Envío</span>
+                        <i class="fa-solid fa-chevron-right text-secondary fs-xs ms-2"></i>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 text-secondary opacity-50">
+                        <span class="badge rounded-circle bg-secondary bg-opacity-25 text-secondary px-2 py-1">3</span>
+                        <span>Pago</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row g-4">
+
+                    <div class="col-12 col-lg-8">
+
+                        <div
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4">
+                            <h2 class="fw-bold fs-5 mb-3 text-white">¿Cómo deseas recibir tu pedido?</h2>
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <label
+                                        class="p-3 rounded-3 border border-secondary border-opacity-50 d-flex align-items-center gap-3 cursor-pointer tarjeta-opcion-pago w-100">
+                                        <input class="form-check-input mt-0" type="radio" name="tipoModalidad"
+                                            id="optRetiro" value="retiro" checked
+                                            onchange="cambiarModalidadEntrega('retiro')">
+                                        <div>
+                                            <span class="d-block text-white fw-bold small"><i
+                                                    class="fa-solid fa-store text-ro me-1"></i> Retiro en Sede</span>
+                                            <small class="text-secondary">Recoge sin costo en nuestro local</small>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <label
+                                        class="p-3 rounded-3 border border-secondary border-opacity-50 d-flex align-items-center gap-3 cursor-pointer tarjeta-opcion-pago w-100">
+                                        <input class="form-check-input mt-0" type="radio" name="tipoModalidad"
+                                            id="optDelivery" value="delivery"
+                                            onchange="cambiarModalidadEntrega('delivery')">
+                                        <div>
+                                            <span class="d-block text-white fw-bold small"><i
+                                                    class="fa-solid fa-motorcycle text-ro me-1"></i> Delivery
+                                                Caleta</span>
+                                            <small class="text-secondary">Directo a tu dirección (+ S/ 5.00)</small>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="seccion-invitado"
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h2 class="fw-bold fs-5 mb-0 text-white">Ingresa tu correo para continuar</h2>
+                                <a th:href="@{/login}" class="text-ro small text-decoration-none fw-semibold">
+                                    ¿Ya tienes cuenta? Inicia sesión
+                                </a>
+                            </div>
+                            <p class="text-secondary small mb-4">
+                                Te enviaremos el comprobante electrónico, el código de pedido y el estado de
+                                preparación.
+                            </p>
+
+                            <form id="form-invitado" onsubmit="procesarPasoEnvioInvitado(event)">
+                                <div class="mb-3">
+                                    <label for="inputCorreoInvitado"
+                                        class="form-label small text-secondary fw-semibold">Correo Electrónico *</label>
+                                    <input type="email" id="inputCorreoInvitado" class="form-control buscador-input"
+                                        placeholder="ejemplo@correo.com" required>
+                                </div>
+
+                                <div id="campos-delivery-invitado" class="row g-3 d-none mb-3">
+                                    <div class="col-12 col-md-8">
+                                        <label for="inputDireccionInvitado"
+                                            class="form-label small text-secondary fw-semibold">Dirección de entrega
+                                            *</label>
+                                        <input type="text" id="inputDireccionInvitado"
+                                            class="form-control buscador-input" placeholder="Av. / Calle y Número">
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <label for="inputReferenciaInvitado"
+                                            class="form-label small text-secondary fw-semibold">Referencia</label>
+                                        <input type="text" id="inputReferenciaInvitado"
+                                            class="form-control buscador-input" placeholder="Dpto, timbre, etc.">
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="my-4 p-3 rounded-3 bg-black bg-opacity-25 border border-secondary border-opacity-10">
+                                    <ul class="list-unstyled small text-secondary mb-0 d-flex flex-column gap-2">
+                                        <li class="d-flex align-items-center gap-2">
+                                            <i class="fa-solid fa-shield-halved text-ro"></i> Compra rápida sin
+                                            necesidad de contraseña previa.
+                                        </li>
+                                        <li class="d-flex align-items-center gap-2">
+                                            <i class="fa-solid fa-receipt text-ro"></i> Comprobante y notificaciones
+                                            directas a tu bandeja.
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <button type="submit"
+                                    class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small border-0">
+                                    Continuar al Pago <i class="fa-solid fa-arrow-right ms-1"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <div id="seccion-logueado"
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4 d-none">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h2 class="fw-bold fs-5 mb-0 text-white">Datos de Contacto y Entrega</h2>
+                                <span
+                                    class="badge bg-success bg-opacity-25 text-success small border border-success border-opacity-25">
+                                    <i class="fa-solid fa-user-check me-1"></i> Sesión iniciada
+                                </span>
+                            </div>
+                            <p class="text-secondary small mb-4">
+                                Estos son tus datos registrados. Puedes modificarlos si estás pidiendo para un amigo o a
+                                otra dirección.
+                            </p>
+
+                            <form id="form-logueado" onsubmit="procesarPasoEnvioLogueado(event)">
+                                <div class="row g-3">
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputNombreUser"
+                                            class="form-label small text-secondary fw-semibold">Nombre y Apellidos
+                                            *</label>
+                                        <input type="text" id="inputNombreUser" class="form-control buscador-input"
+                                            required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputCorreoUser"
+                                            class="form-label small text-secondary fw-semibold">Correo Electrónico
+                                            *</label>
+                                        <input type="email" id="inputCorreoUser" class="form-control buscador-input"
+                                            required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputTelefonoUser"
+                                            class="form-label small text-secondary fw-semibold">Teléfono / WhatsApp
+                                            *</label>
+                                        <input type="tel" id="inputTelefonoUser" class="form-control buscador-input"
+                                            placeholder="999 999 999" required>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="inputDocumentoUser"
+                                            class="form-label small text-secondary fw-semibold">DNI o Documento
+                                            *</label>
+                                        <input type="text" id="inputDocumentoUser" class="form-control buscador-input"
+                                            placeholder="N° de Documento" required>
+                                    </div>
+
+                                    <div id="campos-delivery-user" class="col-12 d-none">
+                                        <hr class="border-secondary border-opacity-25 my-2">
+                                        <div class="row g-3">
+                                            <div class="col-12 col-md-8">
+                                                <label for="inputDireccionUser"
+                                                    class="form-label small text-secondary fw-semibold">Dirección de
+                                                    entrega *</label>
+                                                <input type="text" id="inputDireccionUser"
+                                                    class="form-control buscador-input"
+                                                    placeholder="Av. / Calle y Número">
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <label for="inputReferenciaUser"
+                                                    class="form-label small text-secondary fw-semibold">Referencia</label>
+                                                <input type="text" id="inputReferenciaUser"
+                                                    class="form-control buscador-input"
+                                                    placeholder="Dpto, timbre, frente a...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <button type="submit"
+                                        class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small border-0">
+                                        Guardar y Continuar al Pago <i class="fa-solid fa-arrow-right ms-1"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 col-lg-4">
+
+                        <div
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4">
+                            <h5
+                                class="fw-bold mb-3 text-white fs-6 text-uppercase pb-2 border-bottom border-secondary border-opacity-25">
+                                Resumen de compra
+                            </h5>
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="small text-secondary"><strong class="text-white"
+                                        id="shipping-cant-articulos">0</strong> producto(s)</span>
+                                <a th:href="@{/carrito}"
+                                    class="small text-decoration-none text-ro fw-semibold">Editar</a>
+                            </div>
+
+                            <div class="d-flex flex-column gap-3 mb-4 pb-3 border-bottom border-secondary border-opacity-25 overflow-y-auto"
+                                style="max-height: 240px;" id="shipping-lista-productos">
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-2 small text-secondary">
+                                <span>Subtotal</span>
+                                <span class="text-white fw-semibold" id="shipping-subtotal">S/ 0.00</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3 small text-secondary">
+                                <span>Costo de envío</span>
+                                <span class="text-success fw-semibold" id="shipping-costo-envio">Gratis (Retiro)</span>
+                            </div>
+
+                            <div class="border-top border-secondary border-opacity-25 pt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold text-white">Total pedido</span>
+                                    <span class="fw-bold fs-5 text-ro" id="shipping-total">S/ 0.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="card-sede-info"
+                            class="card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm">
+                            <h5 class="fw-bold fs-6 mb-2 text-white"><i class="fa-solid fa-store text-ro me-1"></i> Sede
+                                de Retiro:</h5>
+                            <h6 class="fw-bold text-white mb-1" id="retiro-nombre-local">Sede Miraflores</h6>
+                            <p class="text-secondary small mb-2" id="retiro-direccion-local">
+                                Av. José Larco 850, Miraflores, Lima
+                            </p>
+                            <a href="https://maps.google.com" target="_blank"
+                                class="text-ro small text-decoration-none d-inline-flex align-items-center gap-1 mb-3"
+                                style="font-size: 11px;">
+                                <i class="fa-solid fa-diamond-turn-right"></i> ¿Cómo llegar?
+                            </a>
+                            <div class="rounded-3 overflow-hidden border border-secondary border-opacity-25"
+                                style="height: 140px;">
+                                <iframe id="retiro-mapa-iframe"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.8659691890887!2d-77.0315!3d-12.1215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDA3JzE3LjQiUyA3N8KwMDEnNTMuNCJX!5e0!3m2!1ses!2spe!4v1600000000000!5m2!1ses!2spe"
+                                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                                </iframe>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/shipping.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/banner.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <!-- Fragment de Slider Publicitario Puro (Solo Imágenes con Enlace) -->
+    <section th:fragment="sliderHero" id="banner-slider" class="position-relative w-100 overflow-hidden">
+        <div id="carouselHero" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+            <!-- Indicadores -->
+            <div class="carousel-indicators mb-2">
+                <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Menú"></button>
+                <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="1" aria-label="Promociones"></button>
+                <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="2" aria-label="Locales"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a th:href="@{/menu}" class="d-block w-100">
+                        <img th:src="@{/images/banner_menu.png}" class="d-block w-100 banner-img-slider" alt="Explora nuestro Menú">
+                    </a>
+                </div>
+
+                <div class="carousel-item">
+                    <a th:href="@{/promociones}" class="d-block w-100">
+                        <img th:src="@{/images/banner_promociones.png}" class="d-block w-100 banner-img-slider" alt="Conoce nuestras Promociones">
+                    </a>
+                </div>
+
+                <div class="carousel-item">
+                    <a th:href="@{/login}" class="d-block w-100">
+                        <img th:src="@{/images/banner_cuenta.png}" class="d-block w-100 banner-img-slider" alt="Crea tu Cuenta">
+                    </a>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselHero" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselHero" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </section>
+
+</body>
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/catalogo.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <nav th:fragment="navMenu" id="categorias" class="sticky-top py-2">
+        <div class="container">
+            <div class="d-flex flex-nowrap overflow-x-auto gap-2 py-1 categorias-scroll">
+                <button type="button" class="btn-categoria active text-nowrap"
+                    onclick="cambiarSeccion('promociones', this)">Promociones</button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="cambiarSeccion('pizzas-principales', this)">Principales</button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="cambiarSeccion('combos-secretos', this)">Combos Secretos</button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="cambiarSeccion('acompanamientos', this)">Acompañamientos</button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="cambiarSeccion('bebidas', this)">Bebidas</button>
+            </div>
+        </div>
+    </nav>
+
+    <nav th:fragment="navPromociones" id="categorias-promo" class="sticky-top py-2">
+        <div class="container">
+            <div class="d-flex flex-nowrap overflow-x-auto gap-2 py-1 categorias-scroll">
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="desplazarASeccion('promo-1persona', this)">
+                    <i class="fa-solid fa-user me-1"></i> 1 PERSONA
+                </button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="desplazarASeccion('promo-2personas', this)">
+                    <i class="fa-solid fa-user-group me-1"></i> 2 PERSONAS
+                </button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="desplazarASeccion('promo-3personas', this)">
+                    <i class="fa-solid fa-users me-1"></i> 3-4 PERSONAS
+                </button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="desplazarASeccion('promo-familiares', this)">
+                    <i class="fa-solid fa-people-group me-1"></i> 5 A MÁS
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Grilla de Productos -->
+    <section th:fragment="seccionGrilla(idSeccion, tituloSeccion, claseExtra, lista, tipo)" th:id="${idSeccion}"
+        class="py-4 seccion-scroll" th:classappend="${claseExtra}">
+        <div class="container">
+            <div th:if="${tituloSeccion != null and !tituloSeccion.isEmpty()}"
+                class="d-flex align-items-center mb-4 border-bottom border-secondary pb-2">
+                <h3 class="fw-bold text-white mb-0 text-uppercase fs-4" th:text="${tituloSeccion}">TÍTULO SECCIÓN</h3>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+                <div class="col d-flex justify-content-center" th:each="prod : ${lista}">
+                    <div class="card tarjeta-producto border-0 rounded-3 overflow-hidden shadow-sm w-100">
+                        <a
+                            th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}">
+                            <img th:src="@{${prod.imagenUrl}}" class="card-img-top object-fit-cover"
+                                th:alt="${prod.nombre}">
+                        </a>
+                        <div class="card-body d-flex flex-column text-center p-3">
+                            <a th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}"
+                                class="text-decoration-none">
+                                <h5 class="fw-bold fs-6 mb-1 text-truncate" th:text="${prod.nombre}"
+                                    th:title="${prod.nombre}">Producto</h5>
+                            </a>
+                            <p class="small flex-grow-1 mb-3 desc-clamp" th:text="${prod.descripcion}">Descripción</p>
+                            <div
+                                class="d-flex justify-content-between align-items-center pt-2 border-top border-secondary border-opacity-25 mt-auto">
+                                <a th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}"
+                                    class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center text-decoration-none flex-shrink-0"
+                                    title="Personalizar producto">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+                                <span class="fw-bold fs-6 text-nowrap ms-2"
+                                    th:text="'S/ ' + ${#numbers.formatDecimal(prod.precio, 1, 2)}">S/ 0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${#lists.isEmpty(lista)}" class="text-center py-4 text-secondary">
+                <p class="mb-0">No hay productos en esta sección por el momento.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrusel Horizontal -->
+    <section th:fragment="carruselHorizontal(idCarrusel, titulo, lista, tipo)" class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold mb-0 text-white" th:text="${titulo}">TÍTULO</h2>
+                <div class="d-flex gap-2">
+                    <button class="btn-carrusel rounded-circle d-flex align-items-center justify-content-center"
+                        th:data-target="${idCarrusel}" onclick="desplazar(this.dataset.target, -280)"
+                        aria-label="Anterior">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="btn-carrusel rounded-circle d-flex align-items-center justify-content-center"
+                        th:data-target="${idCarrusel}" onclick="desplazar(this.dataset.target, 280)"
+                        aria-label="Siguiente">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div th:id="${idCarrusel}" class="d-flex flex-nowrap overflow-x-auto gap-4 pb-3 carrusel-horizontal">
+                <div th:each="prod : ${lista}"
+                    class="tarjeta-pizza card bg-white text-dark border-0 overflow-hidden flex-shrink-0"
+                    style="width: 250px;">
+                    <a
+                        th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}">
+                        <img th:src="@{${prod.imagenUrl}}" class="card-img-top object-fit-cover"
+                            th:alt="${prod.nombre}">
+                    </a>
+                    <div class="card-body d-flex flex-column text-center p-3">
+                        <a th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}"
+                            class="text-decoration-none text-dark">
+                            <h5 class="fw-bold fs-6 mb-1 text-truncate" th:text="${prod.nombre}">Nombre</h5>
+                        </a>
+                        <p class="text-secondary small flex-grow-1 mb-3 desc-clamp" th:text="${prod.descripcion}">
+                            Descripción</p>
+                        <div class="d-flex justify-content-between align-items-center pt-2 border-top mt-auto">
+                            <a th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}"
+                                class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center text-decoration-none"
+                                title="Personalizar producto">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                            <span class="fw-bold fs-6 text-nowrap ms-2"
+                                th:text="'S/ ' + ${#numbers.formatDecimal(prod.precio, 1, 2)}">S/ 0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/footer-simple.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <footer th:fragment="footerSimple" class="py-4 text-center">
+        <div class="container">
+            <p class="small text-white-50 mb-0">&copy; 2026 La Caleta. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/footer.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <footer th:fragment="footer" class="py-5 text-start">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12 col-md-3">
+                    <img class="img-fluid mb-3" th:src="@{/images/lacaleta.png}" alt="La Caleta Logo" style="max-width: 140px;">
+                    <h6 class="fw-bold mb-2">Síguenos en</h6>
+                    <div class="d-flex gap-3 fs-5">
+                        <a href="https://www.facebook.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h6 class="fw-bold mb-3">Nuestros Productos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/menu#pizzas-principales}">Pizzas Principales</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/menu#combos-secretos}">Combos Secretos</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/menu#acompanamientos}">Acompañamientos</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/menu#bebidas}">Bebidas</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h6 class="fw-bold mb-3">Ayuda & Términos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/faq}">Preguntas Frecuentes</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/delivery}">Políticas de Delivery</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/terminos}">Términos y Condiciones</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/locales}">Nuestros Locales</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-2">Métodos de Pago</h6>
+                        <div class="d-flex align-items-center gap-2">
+                            <img th:src="@{/images/visa.jpg}" alt="Visa" class="bg-white p-1" style="height: 30px; object-fit: contain;">
+                            <img th:src="@{/images/mastercard.jpg}" alt="Mastercard" class="bg-white p-1" style="height: 30px; object-fit: contain;">
+                            <img th:src="@{/images/yape.jpg}" alt="Yape" class="bg-white p-1" style="height: 30px; object-fit: contain;">
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-2">Libro de Reclamaciones</h6>
+                        <a href="#">
+                            <img th:src="@{/images/libro_reclamaciones.jpg}" alt="Libro de Reclamaciones" style="max-height: 45px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top border-secondary">
+                <p class="small text-secondary mb-0">&copy; 2026 La Caleta. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/header-checkout.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header th:fragment="headerCheckout" class="w-100">
+    <section id="topbar" class="py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a href="tel:+51999999999" class="text-nowrap">
+                    <i class="fa-solid fa-phone me-1"></i> (+51) 999 999 999
+                </a>
+                <a href="mailto:lacaleta@gmail.com" class="d-none d-sm-inline text-nowrap">
+                    <i class="fa-regular fa-envelope me-1"></i> lacaleta@gmail.com
+                </a>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <nav id="header" class="navbar py-2 border-bottom border-secondary border-opacity-25">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a class="navbar-brand me-0" th:href="@{/}" style="width: 130px;">
+                    <img th:src="@{/images/lacaleta.png}" class="img-fluid" alt="Logo La Caleta">
+                </a>
+                <div class="d-none d-xl-block text-secondary fst-italic small">
+                    "El que come callado, come doble"
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+</body>
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/header.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <header th:fragment="header(paginaActiva)" class="w-100">
+        <section id="topbar" class="py-2">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <a href="tel:+51999999999" class="text-nowrap">
+                        <i class="fa-solid fa-phone me-1"></i> (+51) 999 999 999
+                    </a>
+                    <a href="mailto:lacaleta@gmail.com" class="d-none d-sm-inline text-nowrap">
+                        <i class="fa-regular fa-envelope me-1"></i> lacaleta@gmail.com
+                    </a>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <nav id="header" class="navbar py-2 border-bottom border-secondary border-opacity-25">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <a class="navbar-brand me-0" th:href="@{/}" style="width: 130px;">
+                        <img th:src="@{/images/lacaleta.png}" class="img-fluid" alt="Logo La Caleta">
+                    </a>
+                    <div class="d-none d-xl-block text-secondary fst-italic small">
+                        "El que come callado, come doble"
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
+                    <div id="navLinkMenu" class="d-none d-lg-flex align-items-center gap-2 me-2">
+                        <a class="nav-link nav-link-header px-3 py-1 fw-bold text-nowrap"
+                            th:classappend="${paginaActiva == 'menu'} ? 'active' : ''" th:href="@{/menu}">Menú</a>
+                        <a class="nav-link nav-link-header px-3 py-1 fw-bold text-nowrap"
+                            th:classappend="${paginaActiva == 'promociones'} ? 'active' : ''"
+                            th:href="@{/promociones}">Promociones</a>
+                        <a class="nav-link nav-link-header px-3 py-1 fw-bold text-nowrap"
+                            th:classappend="${paginaActiva == 'locales'} ? 'active' : ''"
+                            th:href="@{/locales}">Locales</a>
+                    </div>
+
+                    <button type="button"
+                        class="nav-menu-link-shop px-3 py-2 fw-bold rounded-pill d-flex align-items-center gap-2 text-nowrap border-0"
+                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="d-none d-sm-inline">S/ 0.00</span>
+                    </button>
+
+                    <div id="navUserArea">
+                        <a th:if="${usuario == null}"
+                            class="d-flex align-items-center gap-2 text-decoration-none small fw-semibold text-nowrap link-usuario"
+                            th:classappend="${paginaActiva == 'login'} ? 'active' : ''" th:href="@{/login}">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="d-none d-md-inline">Iniciar sesión</span>
+                        </a>
+
+                        <div th:if="${usuario != null}" class="dropdown">
+                            <button
+                                class="btn btn-dark text-white dropdown-toggle border-0 small fw-semibold d-flex align-items-center gap-2 shadow-none"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-circle-user text-ro fs-5"></i>
+                                <span th:text="${usuario.nombre}">Usuario</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end border-secondary shadow">
+                                <li th:if="${usuario.rol == 'ADMIN'}">
+                                    <a class="dropdown-item text-ro small fw-bold" th:href="@{/admin}">
+                                        <i class="fa-solid fa-gauge me-2"></i>Panel Admin
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-white small" th:href="@{/logout}">
+                                        <i class="fa-solid fa-right-from-bracket me-2 text-danger"></i>Cerrar sesión
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <button class="btn border-0 text-white p-1 d-lg-none shadow-none" type="button"
+                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu"
+                        aria-label="Abrir navegación">
+                        <i class="fa-solid fa-bars fs-3"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/locales.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <section th:fragment="seccionLocales(listaLocales)" id="locales" class="py-4">
+        <div class="container">
+            <div class="d-flex flex-column gap-3 mx-auto" style="max-width: 900px;" id="contenedor-locales">
+
+                <!-- CASO 1: Si se pasa una lista desde Spring Boot -->
+                <th:block th:if="${listaLocales != null and !#lists.isEmpty(listaLocales)}">
+                    <div th:each="local : ${listaLocales}"
+                        class="tarjeta-local card text-white border border-secondary border-opacity-25 rounded-3 p-3 p-md-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12 col-md-6 border-end-md border-secondary border-opacity-25">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h5 class="fw-bold mb-0 text-white" th:text="${local.nombre}">Sede</h5>
+                                </div>
+                                <p class="text-secondary small mb-3" th:text="${local.direccion}">
+                                    Dirección del local
+                                </p>
+                                <a th:href="${local.mapaUrl != null ? local.mapaUrl : 'https://maps.google.com'}"
+                                    target="_blank"
+                                    class="btn-cta px-3 py-1 fw-bold text-uppercase d-inline-block small text-decoration-none"
+                                    style="font-size: 12px;">
+                                    Ver Local
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h6 class="text-white-50 text-uppercase fw-semibold small mb-2">Disponibilidad</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span th:if="${local.delivery == null or local.delivery}"
+                                        class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-motorcycle text-warning"></i> Delivery
+                                    </span>
+                                    <span th:if="${local.retiro == null or local.retiro}"
+                                        class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-location-dot text-warning"></i> Retiro en Tienda
+                                    </span>
+                                    <span th:if="${local.salon == null or local.salon}"
+                                        class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-utensils text-warning"></i> Salón
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+
+                <!-- CASO 2: Locales por defecto (si listaLocales es null o está vacía) -->
+                <th:block th:if="${listaLocales == null or #lists.isEmpty(listaLocales)}">
+                    <div
+                        class="tarjeta-local card text-white border border-secondary border-opacity-25 rounded-3 p-3 p-md-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12 col-md-6 border-end-md border-secondary border-opacity-25">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h5 class="fw-bold mb-0 text-white">Sede Miraflores</h5>
+                                </div>
+                                <p class="text-secondary small mb-3">
+                                    Av. José Larco 850, Miraflores, Lima
+                                </p>
+                                <a href="https://maps.google.com" target="_blank"
+                                    class="btn-cta px-3 py-1 fw-bold text-uppercase d-inline-block small text-decoration-none"
+                                    style="font-size: 12px;">
+                                    Ver Local
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h6 class="text-white-50 text-uppercase fw-semibold small mb-2">Disponibilidad</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-motorcycle text-warning"></i> Delivery
+                                    </span>
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-location-dot text-warning"></i> Retiro en Tienda
+                                    </span>
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-utensils text-warning"></i> Salón
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="tarjeta-local card text-white border border-secondary border-opacity-25 rounded-3 p-3 p-md-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12 col-md-6 border-end-md border-secondary border-opacity-25">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h5 class="fw-bold mb-0 text-white">Sede Los Olivos</h5>
+                                </div>
+                                <p class="text-secondary small mb-3">
+                                    Av. Antúnez de Mayolo 1120, Los Olivos, Lima
+                                </p>
+                                <a href="https://maps.google.com" target="_blank"
+                                    class="btn-cta px-3 py-1 fw-bold text-uppercase d-inline-block small text-decoration-none"
+                                    style="font-size: 12px;">
+                                    Ver Local
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h6 class="text-white-50 text-uppercase fw-semibold small mb-2">Disponibilidad</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-motorcycle text-warning"></i> Delivery
+                                    </span>
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-location-dot text-warning"></i> Retiro en Tienda
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/modals.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <!-- Panel Lateral del Carrito -->
+    <div th:fragment="offcanvasCarrito"
+        class="offcanvas offcanvas-end text-white border-start border-secondary border-opacity-25" tabindex="-1"
+        id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
+        <div class="offcanvas-header border-bottom border-secondary border-opacity-25 py-3">
+            <h5 class="offcanvas-title fw-bold text-white fs-6 mb-0 d-flex align-items-center gap-2"
+                id="offcanvasCarritoLabel">
+                CARRITO DE COMPRAS
+            </h5>
+            <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
+                aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-4">
+            <div class="text-center my-auto">
+                <div class="mb-3">
+                    <i class="fa-solid fa-basket-shopping fs-1 text-secondary opacity-50"></i>
+                </div>
+                <h6 class="fw-bold text-white mb-2">Tu carrito está vacío</h6>
+                <p class="text-secondary small mb-4">
+                    Tu producto ha sido eliminado del carrito y es necesario que realices tu compra nuevamente.
+                </p>
+                <a th:href="@{/menu}"
+                    class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small text-decoration-none">
+                    Explorar Menú
+                </a>
+            </div>
+            <div class="border-top border-secondary border-opacity-25 pt-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-secondary small">Total estimado:</span>
+                    <span class="fw-bold fs-5 text-white">S/ 0.00</span>
+                </div>
+                <button class="btn btn-secondary w-100 fw-bold py-2 text-uppercase small disabled"
+                    style="border-radius: 30px;">
+                    Continuar con el pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menú de Navegación Móvil -->
+    <div th:fragment="offcanvasMenu"
+        class="offcanvas offcanvas-start text-white border-end border-secondary border-opacity-25" tabindex="-1"
+        id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+        <div class="offcanvas-header border-bottom border-secondary border-opacity-25 py-3">
+            <div class="d-flex align-items-center gap-2" id="offcanvasMenuLabel">
+                <img th:src="@{/images/lacaleta.png}" alt="Logo" style="max-width: 100px;">
+            </div>
+            <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
+                aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-4">
+            <ul class="nav flex-column gap-3 fs-5 fw-bold">
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3" th:href="@{/menu}">Menú</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3"
+                        th:href="@{/promociones}">Promociones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3" th:href="@{/locales}">Locales</a>
+                </li>
+            </ul>
+            <div class="border-top border-secondary border-opacity-25 pt-3">
+                <p class="text-secondary small mb-2">Pedidos directos:</p>
+                <a href="tel:+51999999999" class="text-white fw-bold text-decoration-none small d-block mb-3">
+                    <i class="fa-solid fa-phone me-2 text-white"></i> (+51) 999 999 999
+                </a>
+                <div class="d-flex gap-3 fs-5">
+                    <a href="https://www.facebook.com" target="_blank" class="text-white-50"><i
+                            class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com" target="_blank" class="text-white-50"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com" target="_blank" class="text-white-50"><i
+                            class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Flotante -->
+    <div th:fragment="toastNotificacion" class="toast-container position-fixed bottom-0 end-0 p-3"
+        style="z-index: 1100;">
+        <div id="toastCarrito" class="toast toast-caleta align-items-center shadow-lg rounded-3 border-0" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex align-items-center">
+                <div class="toast-body d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-ro fs-5"></i>
+                    <span id="toastMensaje" class="small fw-semibold text-white"></span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Cerrar"></button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/fragments/personalizador.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <div th:fragment="bloqueTamano" class="bloque-personalizacion mb-3" id="seccion-tamano">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold text-white mb-0 fs-6">Elige el tamaño</h5>
+            <span class="text-ro small fw-semibold">(Obligatorio)</span>
+        </div>
+        <div class="alerta-requerido mb-2 p-2 rounded-2" id="alerta-tamano">
+            <i class="fa-solid fa-circle-info me-2 text-warning"></i>
+            <span class="fs-xs text-warning-emphasis">Por favor selecciona el mínimo requerido.</span>
+        </div>
+        <div class="card-acordeon-caleta p-3 rounded-3">
+            <div class="d-flex justify-content-between align-items-center cursor-pointer mb-2" onclick="alternarSeccion('cuerpo-tamano', 'resumen-box-tamano')">
+                <span class="small fw-semibold text-white-50">Selecciona 1 opción</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span id="badge-tamano" class="badge-contador">Selección 0/1</span>
+                    <i class="fa-solid fa-chevron-down text-secondary fs-xs icono-flecha"></i>
+                </div>
+            </div>
+            <div class="cuerpo-acordeon" id="cuerpo-tamano">
+                <input type="radio" class="btn-check" name="tamano" id="tam-mediana" th:value="${param.precio != null ? param.precio : '36.00'}" data-label="Mediana (8 cortes)" onchange="seleccionarYContraer('tamano', this, 'cuerpo-tamano', 'resumen-box-tamano', 'alerta-tamano', 'cuerpo-masa', 'resumen-box-masa')">
+                <label class="fila-opcion" for="tam-mediana">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Mediana</span>
+                        <span class="text-secondary fs-xs">8 cortes</span>
+                    </div>
+                    <span class="small text-white fw-semibold">Incluido</span>
+                </label>
+                <input type="radio" class="btn-check" name="tamano" id="tam-familiar" value="familiar" data-label="Familiar (12 cortes) +S/ 10.00" onchange="seleccionarYContraer('tamano', this, 'cuerpo-tamano', 'resumen-box-tamano', 'alerta-tamano', 'cuerpo-masa', 'resumen-box-masa')">
+                <label class="fila-opcion" for="tam-familiar">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Familiar</span>
+                        <span class="text-secondary fs-xs">12 cortes</span>
+                    </div>
+                    <span class="small text-ro fw-bold">+S/ 10.00</span>
+                </label>
+                <input type="radio" class="btn-check" name="tamano" id="tam-mega" value="mega" data-label="Mega Caleta (16 cortes) +S/ 20.00" onchange="seleccionarYContraer('tamano', this, 'cuerpo-tamano', 'resumen-box-tamano', 'alerta-tamano', 'cuerpo-masa', 'resumen-box-masa')">
+                <label class="fila-opcion" for="tam-mega">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Mega Caleta</span>
+                        <span class="text-secondary fs-xs">16 cortes</span>
+                    </div>
+                    <span class="small text-ro fw-bold">+S/ 20.00</span>
+                </label>
+            </div>
+            <div class="caja-seleccionada d-none" id="resumen-box-tamano" onclick="alternarSeccion('cuerpo-tamano', 'resumen-box-tamano')">
+                <span class="small fw-semibold text-white" id="texto-resumen-tamano"></span>
+                <i class="fa-solid fa-circle-dot text-success"></i>
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="bloqueMasa" class="bloque-personalizacion mb-3" id="seccion-masa">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold text-white mb-0 fs-6">Elige el tipo de masa</h5>
+            <span class="text-ro small fw-semibold">(Obligatorio)</span>
+        </div>
+        <div class="alerta-requerido mb-2 p-2 rounded-2 d-none" id="alerta-masa">
+            <i class="fa-solid fa-circle-info me-2 text-warning"></i>
+            <span class="fs-xs text-warning-emphasis">Por favor selecciona el mínimo requerido.</span>
+        </div>
+        <div class="card-acordeon-caleta p-3 rounded-3">
+            <div class="d-flex justify-content-between align-items-center cursor-pointer mb-2" onclick="alternarSeccion('cuerpo-masa', 'resumen-box-masa')">
+                <span class="small fw-semibold text-white-50">Selecciona 1 opción</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span id="badge-masa" class="badge-contador">Selección 0/1</span>
+                    <i class="fa-solid fa-chevron-down text-secondary fs-xs icono-flecha"></i>
+                </div>
+            </div>
+            <div class="cuerpo-acordeon d-none" id="cuerpo-masa">
+                <input type="radio" class="btn-check" name="masa" id="masa-tradicional" value="Masa Tradicional" onchange="seleccionarYContraer('masa', this, 'cuerpo-masa', 'resumen-box-masa', 'alerta-masa', 'cuerpo-cortesias', 'resumen-box-cortesias')">
+                <label class="fila-opcion" for="masa-tradicional">
+                    <span class="small fw-bold text-white">Masa Tradicional</span>
+                    <span class="small text-secondary">Estándar</span>
+                </label>
+                <input type="radio" class="btn-check" name="masa" id="masa-delgada" value="Delgada Crocante" onchange="seleccionarYContraer('masa', this, 'cuerpo-masa', 'resumen-box-masa', 'alerta-masa', 'cuerpo-cortesias', 'resumen-box-cortesias')">
+                <label class="fila-opcion" for="masa-delgada">
+                    <span class="small fw-bold text-white">Delgada Crocante</span>
+                    <span class="small text-secondary">Sin costo extra</span>
+                </label>
+            </div>
+            <div class="caja-seleccionada d-none" id="resumen-box-masa" onclick="alternarSeccion('cuerpo-masa', 'resumen-box-masa')">
+                <span class="small fw-semibold text-white" id="texto-resumen-masa"></span>
+                <i class="fa-solid fa-circle-dot text-success"></i>
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="bloqueCortesias" class="bloque-personalizacion mb-3" id="seccion-cortesias">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold text-white mb-0 fs-6">Cortesía de la casa</h5>
+            <span class="text-ro small fw-semibold">(Obligatorio)</span>
+        </div>
+        <div class="alerta-requerido mb-2 p-2 rounded-2 d-none" id="alerta-cortesias">
+            <i class="fa-solid fa-circle-info me-2 text-warning"></i>
+            <span class="fs-xs text-warning-emphasis">Por favor selecciona el mínimo requerido.</span>
+        </div>
+        <div class="card-acordeon-caleta p-3 rounded-3">
+            <div class="d-flex justify-content-between align-items-center cursor-pointer mb-2" onclick="alternarSeccion('cuerpo-cortesias', 'resumen-box-cortesias')">
+                <span class="small fw-semibold text-white-50">Selecciona 1 salsa de cortesía</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span id="badge-cortesias" class="badge-contador">Selección 0/1</span>
+                    <i class="fa-solid fa-chevron-down text-secondary fs-xs icono-flecha"></i>
+                </div>
+            </div>
+            <div class="cuerpo-acordeon d-none" id="cuerpo-cortesias">
+                <input type="radio" class="btn-check" name="cortesia" id="cort-ajo" value="Salsa de Ajo Especial (1 unid.)" onchange="seleccionarYContraer('cortesias', this, 'cuerpo-cortesias', 'resumen-box-cortesias', 'alerta-cortesias', null, null)">
+                <label class="fila-opcion" for="cort-ajo">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Salsa de Ajo Especial</span>
+                        <span class="text-secondary fs-xs">Receta artesanal Caleta</span>
+                    </div>
+                    <span class="small text-success fw-bold">Gratis</span>
+                </label>
+                <input type="radio" class="btn-check" name="cortesia" id="cort-pepperoncini" value="Pepperoncini Caleta" onchange="seleccionarYContraer('cortesias', this, 'cuerpo-cortesias', 'resumen-box-cortesias', 'alerta-cortesias', null, null)">
+                <label class="fila-opcion" for="cort-pepperoncini">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Pepperoncini Caleta</span>
+                        <span class="text-secondary fs-xs">Ají encurtido tradicional para el borde</span>
+                    </div>
+                    <span class="small text-success fw-bold">Gratis</span>
+                </label>
+                <input type="radio" class="btn-check" name="cortesia" id="cort-oregano" value="Sobre de Orégano y Ají Seco" onchange="seleccionarYContraer('cortesias', this, 'cuerpo-cortesias', 'resumen-box-cortesias', 'alerta-cortesias', null, null)">
+                <label class="fila-opcion" for="cort-oregano">
+                    <div>
+                        <span class="small fw-bold text-white d-block">Sobre de Orégano y Ají Seco</span>
+                        <span class="text-secondary fs-xs">Condimento adicional</span>
+                    </div>
+                    <span class="small text-success fw-bold">Gratis</span>
+                </label>
+            </div>
+            <div class="caja-seleccionada d-none" id="resumen-box-cortesias" onclick="alternarSeccion('cuerpo-cortesias', 'resumen-box-cortesias')">
+                <span class="small fw-semibold text-white" id="texto-resumen-cortesias"></span>
+                <i class="fa-solid fa-circle-dot text-success"></i>
+            </div>
+        </div>
+    </div>
+
+    <div th:fragment="bloqueExtras">
+        <div class="bloque-personalizacion mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary border-opacity-10 pb-2">
+                <span class="fw-bold small text-uppercase text-white">Acompañamientos</span>
+                <span class="text-secondary fs-xs">Para compartir</span>
+            </div>
+            <div th:each="acomp : ${acompanamientos}" class="mb-2">
+                <label class="fila-opcion" th:for="${'extra-' + acomp.id}">
+                    <div>
+                        <span class="small fw-bold text-white d-block" th:text="${acomp.nombre}">Nombre</span>
+                        <span class="text-secondary fs-xs" th:text="${acomp.descripcion}">Descripción</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="small text-ro fw-bold text-nowrap" th:text="'S/ ' + ${#numbers.formatDecimal(acomp.precio, 1, 2)}">+S/ 0.00</span>
+                        <input class="form-check-input item-extra-producto m-0 cursor-pointer" type="checkbox" th:id="${'extra-' + acomp.id}" th:value="${acomp.precio}" th:data-nombre="${acomp.nombre}" th:data-img="${acomp.imagenUrl}">
+                    </div>
+                </label>
+            </div>
+            <div th:if="${#lists.isEmpty(acompanamientos)}" class="text-center py-2 text-secondary fs-xs">No hay acompañamientos disponibles por el momento.</div>
+        </div>
+
+        <div class="bloque-personalizacion">
+            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary border-opacity-10 pb-2">
+                <span class="fw-bold small text-uppercase text-white">Bebidas</span>
+                <span class="text-secondary fs-xs">Bien heladas</span>
+            </div>
+            <div th:each="beb : ${bebidas}" class="mb-2">
+                <label class="fila-opcion" th:for="${'extra-' + beb.id}">
+                    <div>
+                        <span class="small fw-bold text-white d-block" th:text="${beb.nombre}">Nombre</span>
+                        <span class="text-secondary fs-xs" th:text="${beb.descripcion}">Descripción</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="small text-ro fw-bold text-nowrap" th:text="'S/ ' + ${#numbers.formatDecimal(beb.precio, 1, 2)}">+S/ 0.00</span>
+                        <input class="form-check-input item-extra-producto m-0 cursor-pointer" type="checkbox" th:id="${'extra-' + beb.id}" th:value="${beb.precio}" th:data-nombre="${beb.nombre}" th:data-img="${beb.imagenUrl}">
+                    </div>
+                </label>
+            </div>
+            <div th:if="${#lists.isEmpty(bebidas)}" class="text-center py-2 text-secondary fs-xs">No hay bebidas disponibles por el momento.</div>
+        </div>
+    </div>
+
+</body>
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/info/delivery.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Políticas de Delivery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <main class="bg-white text-dark py-5" style="min-height: 80vh;">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Menú Lateral -->
+                <aside class="col-12 col-md-4 col-lg-3">
+                    <h5 class="fw-bold text-uppercase pb-2 border-bottom border-2 text-dark mb-3">Centro de Ayuda</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3 small">
+                        <li>
+                            <a th:href="@{/terminos}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Términos y Condiciones
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/delivery}" class="text-decoration-none fw-bold text-ro d-block border-start border-3 border-danger ps-2">
+                                Políticas de Delivery
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/faq}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Preguntas Frecuentes
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Área de Contenido -->
+                <div class="col-12 col-md-8 col-lg-9">
+                    <h2 class="fw-bold text-uppercase mb-4 text-dark border-bottom pb-2">Políticas y Condiciones de Entrega</h2>
+                    
+                    <p class="text-secondary leading-relaxed mb-4">
+                        En <strong>Pizzería La Caleta</strong> nuestro compromiso es asegurar que cada pedido llegue en el menor tiempo posible, manteniendo la temperatura ideal y la textura crocante de nuestras pizzas artesanales. A continuación, se describen los términos que regulan nuestro servicio de despacho a domicilio.
+                    </p>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">1. ZONAS DE COBERTURA Y HORARIOS</h5>
+                        <p class="text-secondary mb-2">
+                            El servicio de reparto se encuentra segmentado por radios de entrega asociados a cada sucursal para garantizar la calidad del producto.
+                        </p>
+                        <ul class="text-secondary small d-flex flex-column gap-1 mb-2">
+                            <li><strong>Horario regular:</strong> Lunes a Domingo de 12:00 m. a 10:30 p.m.</li>
+                            <li><strong>Validación de dirección:</strong> El sistema verifica de forma automática si su ubicación se encuentra dentro del rango de reparto habilitado al ingresar su dirección de entrega.</li>
+                            <li><strong>Alternativa de Recojo:</strong> Si su ubicación se encuentra fuera de cobertura, podrá optar por la modalidad de retiro en tienda (Pick Up).</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">2. TIEMPOS Y TARIFAS DE ENVÍO</h5>
+                        <p class="text-secondary mb-2">
+                            El tiempo estándar de entrega es de aproximadamente <strong>35 a 50 minutos</strong> desde la confirmación de la orden en cocina.
+                        </p>
+                        <p class="text-secondary mb-2">
+                            El costo de delivery se calcula según la distancia entre la sucursal de origen y el destino. Dicho valor se muestra claramente desglosado en el resumen de compra antes de confirmar el pago.
+                        </p>
+                        <p class="text-secondary">
+                            En días festivos, fines de semana con alta demanda o condiciones climatológicas adversas (lluvias intensas), los tiempos estimados pueden sufrir variaciones imprevistas.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">3. PROTOCOLO DE ENTREGA Y RECEPCIÓN</h5>
+                        <p class="text-secondary mb-2">
+                            Para resguardar la seguridad del cliente y del repartidor, se aplican las siguientes directrices:
+                        </p>
+                        <ul class="text-secondary small d-flex flex-column gap-2 mb-2">
+                            <li>La entrega se efectuará exclusivamente en la puerta principal de la vivienda, portería de condominios o recepción de edificios empresariales.</li>
+                            <li>El repartidor esperará un plazo máximo de <strong>10 minutos</strong> en el domicilio indicado intentando comunicarse vía llamada telefónica.</li>
+                            <li>En caso de no contactar al cliente, el pedido retornará al local de origen. La reprogramación generará un nuevo cargo de envío.</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">4. INCIDENCIAS Y ATENCIÓN POST-ENTREGA</h5>
+                        <p class="text-secondary">
+                            Es responsabilidad del cliente verificar la integridad y conformidad del pedido (sellos del empaque, bebidas y complementos) al momento de la entrega. En caso de discrepancias, repórtelo en un plazo no mayor a <strong>30 minutos</strong> a través de nuestra línea de atención para su solución inmediata.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/info/faq.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Preguntas Frecuentes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <main class="bg-white text-dark py-5" style="min-height: 80vh;">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Menú Lateral -->
+                <aside class="col-12 col-md-4 col-lg-3">
+                    <h5 class="fw-bold text-uppercase pb-2 border-bottom border-2 text-dark mb-3">Centro de Ayuda</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3 small">
+                        <li>
+                            <a th:href="@{/terminos}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Términos y Condiciones
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/delivery}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Políticas de Delivery
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/faq}" class="text-decoration-none fw-bold text-ro d-block border-start border-3 border-danger ps-2">
+                                Preguntas Frecuentes
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Área de Contenido -->
+                <div class="col-12 col-md-8 col-lg-9">
+                    <h2 class="fw-bold text-uppercase mb-4 text-dark border-bottom pb-2">Preguntas Frecuentes (FAQ)</h2>
+                    
+                    <p class="text-secondary leading-relaxed mb-4">
+                        Encuentra respuestas rápidas y claras a las consultas más comunes sobre compras, tiempos de despacho, medios de pago y modificaciones en tus pedidos.
+                    </p>
+
+                    <div class="accordion accordion-flush" id="accordionFaqBlanco">
+                        
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqOne">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqOne" aria-expanded="false" aria-controls="collapseFaqOne">
+                                    ¿Cuáles son los métodos de pago disponibles?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqOne" class="accordion-collapse collapse" aria-labelledby="faqOne" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    Aceptamos tarjetas de débito y crédito (Visa y Mastercard) mediante pasarela encriptada, pagos inmediatos por Yape, y la opción de pago contra entrega (efectivo con monto exacto o POS inalámbrico que lleva el repartidor).
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqTwo">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqTwo" aria-expanded="false" aria-controls="collapseFaqTwo">
+                                    ¿Cuál es el tiempo promedio de entrega?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwo" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    El plazo estimado comprende entre 35 y 50 minutos. Podrás conocer el avance de tu orden desde la confirmación del pago hasta que el repartidor arriba a tu dirección.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqThree">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqThree" aria-expanded="false" aria-controls="collapseFaqThree">
+                                    ¿Existe un consumo mínimo para delivery?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqThree" class="accordion-collapse collapse" aria-labelledby="faqThree" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    El monto mínimo de consumo para despachos a domicilio es de S/ 20.00 (sin incluir el costo por servicio de delivery).
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqFour">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqFour" aria-expanded="false" aria-controls="collapseFaqFour">
+                                    ¿Puedo retirar mi pedido directamente en tienda (Pick Up)?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqFour" class="accordion-collapse collapse" aria-labelledby="faqFour" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    Sí. Durante el proceso de compra selecciona "Retiro en local" y escoge la sucursal de tu preferencia. Tu pedido estará listo aproximadamente en 20 a 25 minutos sin costo adicional de envío.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqFive">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqFive" aria-expanded="false" aria-controls="collapseFaqFive">
+                                    ¿Cómo solicito factura o boleta electrónica?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqFive" class="accordion-collapse collapse" aria-labelledby="faqFive" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    En la pantalla de pago podrás seleccionar entre "Boleta" o "Factura". Para emitir factura, deberás ingresar el RUC y la Razón Social correspondiente antes de procesar la transacción.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqSix">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqSix" aria-expanded="false" aria-controls="collapseFaqSix">
+                                    ¿Qué debo hacer si mi pedido llega con algún inconveniente?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqSix" class="accordion-collapse collapse" aria-labelledby="faqSix" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    Comunícate inmediatamente dentro de los primeros 30 minutos a nuestra línea de atención (+51 999 999 999) o por correo a lacaleta@gmail.com con tu número de compra y una fotografía del producto para gestionar la reposición inmediata de tu orden.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/info/terminos.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Términos y Condiciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <main class="bg-white text-dark py-5" style="min-height: 80vh;">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Menú Lateral -->
+                <aside class="col-12 col-md-4 col-lg-3">
+                    <h5 class="fw-bold text-uppercase pb-2 border-bottom border-2 text-dark mb-3">Centro de Ayuda</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3 small">
+                        <li>
+                            <a th:href="@{/terminos}" class="text-decoration-none fw-bold text-ro d-block border-start border-3 border-danger ps-2">
+                                Términos y Condiciones
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/delivery}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Políticas de Delivery
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/faq}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Preguntas Frecuentes
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Área de Contenido -->
+                <div class="col-12 col-md-8 col-lg-9">
+                    <h2 class="fw-bold text-uppercase mb-4 text-dark border-bottom pb-2">Términos y Condiciones Generales</h2>
+                    
+                    <p class="text-secondary leading-relaxed mb-4">
+                        Bienvenido(a) a la plataforma web de <strong>Pizzería La Caleta</strong>. Al registrarse, navegar o formalizar una transacción a través de nuestros canales oficiales, usted acepta de forma plena y sin reserva los términos y condiciones aquí detallados. Le sugerimos leer con atención el presente documento.
+                    </p>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">1. CANALES DE COMPRA Y ATENCIÓN</h5>
+                        <p class="text-secondary mb-2">Los pedidos pueden gestionarse únicamente a través de los canales autorizados:</p>
+                        <ul class="text-secondary small d-flex flex-column gap-1">
+                            <li><strong>Plataforma Web:</strong> Catálogo digital con carrito de compras y pasarela integrada.</li>
+                            <li><strong>Central Telefónica:</strong> (+51) 999 999 999 en horario de atención comercial.</li>
+                            <li><strong>WhatsApp Oficial:</strong> (+51) 999 999 999 para asesoría y seguimiento de órdenes.</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">2. CONDICIONES DE PRECIOS, OFERTAS Y STOCK</h5>
+                        <p class="text-secondary mb-2">
+                            Todos los precios publicados se encuentran expresados en moneda nacional (Soles - PEN) e incluyen el Impuesto General a las Ventas (IGV).
+                        </p>
+                        <p class="text-secondary">
+                            Las ofertas y combos promocionales están sujetos a disponibilidad de masa e insumos frescos por local. Pizzería La Caleta se reserva la facultad de actualizar precios y recetas sin necesidad de comunicación previa, garantizando siempre el valor pactado al momento de emitir la orden de compra.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">3. CANCELACIONES, MODIFICACIONES Y DERECHO DE RETRACTO</h5>
+                        <p class="text-secondary mb-2">
+                            Al tratarse de alimentos preparados de consumo inmediato y perecibles, una vez confirmada la orden e iniciado el proceso de elaboración en cocina, no se admiten cancelaciones ni reembolsos por desistimiento del cliente.
+                        </p>
+                        <p class="text-secondary">
+                            Si requiere modificar datos de entrega o productos, deberá comunicarse de forma inmediata a nuestra central antes de que el pedido sea despachado.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">4. POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS</h5>
+                        <p class="text-secondary">
+                            En cumplimiento de la legislación vigente de Protección de Datos Personales, la información suministrada (nombre, número de contacto, correo y dirección) será procesada de manera confidencial y con la finalidad exclusiva de gestionar la entrega, facturación y seguimiento de su pedido.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">5. PROPIEDAD INTELECTUAL</h5>
+                        <p class="text-secondary">
+                            Las marcas, logotipos, imágenes de productos, textos y diseño web son propiedad exclusiva de Pizzería La Caleta. Queda estrictamente prohibida su reproducción, distribución o uso comercial no autorizado.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/shop/detalles.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Personalizar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="stylesheet" th:href="@{/style/detalles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header('')}"></div>
+    <main class="py-4">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb small">
+                    <li class="breadcrumb-item"><a th:href="@{/}" class="text-secondary text-decoration-none">Inicio</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/menu}" class="text-secondary text-decoration-none">Menú</a></li>
+                    <li class="breadcrumb-item active text-ro" id="breadcrumbNombre">Personalizar</li>
+                </ol>
+            </nav>
+            <div class="row g-4 align-items-start">
+                <div class="col-12 col-lg-6">
+                    <div class="contenedor-foto-completa">
+                        <img id="detalleImagen" th:src="@{/images/producto_pepperoni.jpg}" alt="Producto seleccionado">
+                        <span class="position-absolute top-0 start-0 m-3 badge bg-ro px-3 py-2 text-uppercase fw-bold rounded-pill shadow-sm">MÁS PEDIDA</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-3 mb-1">
+                        <h2 id="detalleNombre" class="fw-bold fs-3 text-white mb-0" th:text="${param.nombre != null ? param.nombre : 'Producto'}">Producto</h2>
+                        <span id="badgeCategoria" class="badge bg-secondary bg-opacity-25 text-white-50 border border-secondary border-opacity-25 px-3 py-2 text-capitalize" th:text="${param.tipo != null ? param.tipo : 'Pizza'}">Pizza</span>
+                    </div>
+                    <p id="detalleDescripcion" class="text-white-50 small mb-0 fw-medium" th:text="${param.desc != null ? param.desc : ''}"></p>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h3 id="tituloPersonalizar" class="fw-bold text-white mb-3 fs-4">Personaliza tu pedido</h3>
+                    <div class="d-flex align-items-center justify-content-center mb-4 p-3 stepper-transparente">
+                        <div id="stepIcon1" class="d-flex align-items-center cursor-pointer gap-2" onclick="irAlPaso(1)">
+                            <div id="stepCircle1" class="rounded-circle d-flex align-items-center justify-content-center fw-bold bg-ro text-white shadow-sm" style="width: 28px; height: 28px; font-size: 12px;">1</div>
+                            <span id="stepLabel1" class="small fw-bold text-ro">PIZZA</span>
+                        </div>
+                        <div id="stepLine" class="flex-grow-1 mx-3" style="height: 2px; background-color: rgba(255,255,255,0.2); max-width: 120px; transition: var(--transicion);"></div>
+                        <div id="stepIcon2" class="d-flex align-items-center cursor-pointer gap-2" onclick="irAlPaso(2)">
+                            <div id="stepCircle2" class="rounded-circle d-flex align-items-center justify-content-center fw-bold border border-secondary text-secondary bg-transparent" style="width: 28px; height: 28px; font-size: 12px;">2</div>
+                            <span id="stepLabel2" class="small fw-bold text-secondary">EXTRAS</span>
+                        </div>
+                    </div>
+                    <div id="paso1-pizza">
+                        <div th:replace="~{fragments/personalizador :: bloqueTamano}"></div>
+                        <div th:replace="~{fragments/personalizador :: bloqueMasa}"></div>
+                        <div th:replace="~{fragments/personalizador :: bloqueCortesias}"></div>
+                    </div>
+                    <div id="paso2-extras" class="d-none">
+                        <div th:replace="~{fragments/personalizador :: bloqueExtras}"></div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between gap-3 mt-3">
+                        <button id="btnAtras" type="button" class="btn btn-outline-secondary rounded-pill px-4 py-2 fw-semibold d-none" onclick="irAlPaso(1)">Atrás</button>
+                        <button id="btnSiguiente" type="button" class="btn btn-cta flex-grow-1 py-2 fw-bold text-uppercase d-flex justify-content-center align-items-center border-0" onclick="irAlPaso(2)">Siguiente</button>
+                        <button id="btnFinalizar" type="button" class="btn btn-cta flex-grow-1 py-2 fw-bold text-uppercase d-flex justify-content-center align-items-center border-0 d-none" onclick="enviarAlCarritoDesdeDetalle()">Agregar al pedido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/detalles.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+</body>
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/shop/locales.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Locales</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('locales')}"></div>
+
+    <main>
+        <section id="buscar-local" class="py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6 text-center">
+                        <h2 class="fw-bold text-white mb-2">LOCALES LA CALETA</h2>
+                        <p class="text-secondary small mb-4">
+                            Encuentra tu refugio más cercano. Contamos con 3 puntos clave en Lima para consumir en
+                            salón, delivery o recojo en tienda.
+                        </p>
+                        <div class="position-relative mx-auto mb-4" style="max-width: 480px;">
+                            <input type="text" class="form-control buscador-input ps-4 pe-5 py-2"
+                                placeholder="Ingresa tu distrito o dirección...">
+                            <button
+                                class="btn btn-buscar position-absolute top-50 end-0 translate-middle-y me-2 border-0 bg-transparent text-secondary"
+                                type="button" aria-label="Buscar">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <a th:href="@{/menu}"
+                                class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small text-decoration-none">
+                                Ver Menú Secreto
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div th:replace="~{fragments/locales :: seccionLocales(null)}"></div>
+
+        <section id="pregunta-local" class="py-5 border-top border-secondary border-opacity-10">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold text-white mb-2">PREGUNTAS SOBRE LOS LOCALES</h2>
+                    <p class="text-secondary small">Todo lo que necesitas saber antes de visitarnos o pedir tu pizza.</p>
+                </div>
+                <div class="accordion accordion-flush mx-auto d-flex flex-column gap-3" style="max-width: 900px;"
+                    id="acordeonLocales">
+                    <div class="accordion-item tarjeta-local border border-secondary border-opacity-25 rounded-3 overflow-hidden">
+                        <h3 class="accordion-header" id="headingUno">
+                            <button
+                                class="accordion-button collapsed bg-transparent text-secondary shadow-none fw-semibold p-3 p-md-4"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseUno"
+                                aria-expanded="false" aria-controls="collapseUno">
+                                ¿Cuáles son los horarios de atención en tienda?
+                            </button>
+                        </h3>
+                        <div id="collapseUno" class="accordion-collapse collapse" aria-labelledby="headingUno"
+                            data-bs-parent="#acordeonLocales">
+                            <div class="accordion-body text-secondary small pt-0 pb-4 px-3 px-md-4">
+                                Atendemos de lunes a domingo desde las 12:00 p.m. hasta las 11:00 p.m. Los días viernes
+                                y sábados el horario se extiende hasta la medianoche en salón y recojo en tienda.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item tarjeta-local border border-secondary border-opacity-25 rounded-3 overflow-hidden">
+                        <h3 class="accordion-header" id="headingDos">
+                            <button
+                                class="accordion-button collapsed bg-transparent text-secondary shadow-none fw-semibold p-3 p-md-4"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseDos"
+                                aria-expanded="false" aria-controls="collapseDos">
+                                ¿Puedo hacer mi pedido online y retirarlo en cualquier local?
+                            </button>
+                        </h3>
+                        <div id="collapseDos" class="accordion-collapse collapse" aria-labelledby="headingDos"
+                            data-bs-parent="#acordeonLocales">
+                            <div class="accordion-body text-secondary small pt-0 pb-4 px-3 px-md-4">
+                                Sí, al realizar tu compra selecciona la opción "Retiro en Tienda" y elige la sede más
+                                cercana. Tu pedido estará listo y caliente en aproximadamente 20 a 30 minutos.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item tarjeta-local border border-secondary border-opacity-25 rounded-3 overflow-hidden">
+                        <h3 class="accordion-header" id="headingTres">
+                            <button
+                                class="accordion-button collapsed bg-transparent text-secondary shadow-none fw-semibold p-3 p-md-4"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseTres"
+                                aria-expanded="false" aria-controls="collapseTres">
+                                ¿Se necesita reserva previa para comer en salón?
+                            </button>
+                        </h3>
+                        <div id="collapseTres" class="accordion-collapse collapse" aria-labelledby="headingTres"
+                            data-bs-parent="#acordeonLocales">
+                            <div class="accordion-body text-secondary small pt-0 pb-4 px-3 px-md-4">
+                                La atención en salón es por orden de llegada. Para grupos mayores a 8 personas
+                                recomendamos contactarnos vía WhatsApp o teléfono con 24 horas de anticipación.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item tarjeta-local border border-secondary border-opacity-25 rounded-3 overflow-hidden">
+                        <h3 class="accordion-header" id="headingCuatro">
+                            <button
+                                class="accordion-button collapsed bg-transparent text-secondary shadow-none fw-semibold p-3 p-md-4"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseCuatro"
+                                aria-expanded="false" aria-controls="collapseCuatro">
+                                ¿Qué métodos de pago aceptan directamente en tienda?
+                            </button>
+                        </h3>
+                        <div id="collapseCuatro" class="accordion-collapse collapse" aria-labelledby="headingCuatro"
+                            data-bs-parent="#acordeonLocales">
+                            <div class="accordion-body text-secondary small pt-0 pb-4 px-3 px-md-4">
+                                Aceptamos efectivo, tarjetas de débito/crédito (Visa, Mastercard, American Express) y
+                                pagos móviles mediante Yape y Plin sin recargo adicional.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/shop/menu.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Menu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('menu')}"></div>
+
+    <main class="py-3">
+        <div th:replace="~{fragments/catalogo :: navMenu}"></div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promociones', '', 'seccion-menu', ${promociones}, 'pizza')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('pizzas-principales', '', 'seccion-menu d-none', ${principales}, 'pizza')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('combos-secretos', '', 'seccion-menu d-none', ${combos}, 'combo')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('acompanamientos', '', 'seccion-menu d-none', ${acompanamientos}, 'simple')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('bebidas', '', 'seccion-menu d-none', ${bebidas}, 'simple')}">
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/shop/promociones.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Promociones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('promociones')}"></div>
+
+    <main class="py-3">
+        <div th:replace="~{fragments/catalogo :: navPromociones}"></div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promo-1persona', 'Para 1 Persona (Pizzas Personales)', '', ${promos1Persona}, 'pizza')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promo-2personas', 'Para 2 Personas (Dúos Clásicos)', '', ${promosDuo}, 'combo')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promo-3personas', 'Para 3 a 4 Personas (Tríos Caleta)', '', ${promosTrio}, 'combo')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promo-familiares', 'Para 5 a Más (Banquetes y Familiares)', '', ${promosFamiliares}, 'combo')}">
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/templates/index.html">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Pizzería Secreta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+    <div th:replace="~{fragments/header :: header('inicio')}"></div>
+    <main>
+        <div th:replace="~{fragments/banner :: sliderHero}"></div>
+
+        <div
+            th:replace="~{fragments/catalogo :: carruselHorizontal('carrusel-principales', 'LAS PRINCIPALES', ${clasicas}, 'pizza')}">
+        </div>
+
+        <section id="banner-promocional-1" class="py-3">
+            <div class="container">
+                <a th:href="@{/promociones}" class="d-block text-center">
+                    <img th:src="@{/images/banner_promocional.jpg}" class="img-fluid rounded-3 w-100 shadow-sm"
+                        alt="Promoción Come Caleta">
+                </a>
+            </div>
+        </section>
+
+        <div
+            th:replace="~{fragments/catalogo :: carruselHorizontal('carrusel-combos', 'COMBOS SECRETOS', ${combos}, 'combo')}">
+        </div>
+
+        <section id="descripcion" class="py-4 mt-5 mb-0">
+            <div class="container">
+                <div class="row align-items-center justify-content-center g-4 text-center text-md-start">
+                    <div class="col-8 col-sm-5 col-md-3 text-center">
+                        <img th:src="@{/images/descripcion.jpg}" class="img-fluid" style="max-height: 220px;"
+                            alt="Pizza Caleta">
+                    </div>
+                    <div class="col-12 col-md-6 text-white">
+                        <h2 class="fw-bold mb-2 fs-3">¿POR QUÉ CALETA?</h2>
+                        <p class="fs-6 opacity-75 mb-0">
+                            Porque la verdadera pasión no se anuncia, se disfruta en silencio. Nuestra receta es nuestro
+                            secreto mejor guardado.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+</body>
+
+</html>
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/main/resources/application.properties">
+spring.application.name=lacaleta
+server.port=8082
+
+# CONFIGURACIÓN NEON
+spring.datasource.url=jdbc:postgresql://ep-wandering-cell-ay8ox05o-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require
+spring.datasource.username=neondb_owner
+spring.datasource.password=npg_ULk4dAE5TuBH
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# JPA / HIBERNATE
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+# Configuración de Correo SMTP
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=soporte.lacaleta@gmail.com
+spring.mail.password=hghc cpag gzpj kxax 
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/src/test/java/com/lacaleta/LacaletaApplicationTests.java">
+package com.lacaleta;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class LacaletaApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/.gitattributes">
+/mvnw text eol=lf
+*.cmd text eol=crlf
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/.gitignore">
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/cookies.txt">
+# Netscape HTTP Cookie File
+# https://curl.se/docs/http-cookies.html
+# This file was generated by libcurl! Edit at your own risk.
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/DbChecker.java">
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class DbChecker {
+    public static void main(String[] args) {
+        String url = "jdbc:postgresql://ep-wandering-cell-ay8ox05o-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require";
+        String user = "neondb_owner";
+        String password = "npg_ULk4dAE5TuBH";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             Statement stmt = conn.createStatement()) {
+            
+            System.out.println("=== CATEGORIAS ===");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM categorias");
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") + " | " + rs.getString("codigo") + " | " + rs.getString("nombre"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/mvnw">
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# Apache Maven Wrapper startup batch script, version 3.3.4
+#
+# Optional ENV vars
+# -----------------
+#   JAVA_HOME - location of a JDK home dir, required when download maven via java source
+#   MVNW_REPOURL - repo url base for downloading maven distribution
+#   MVNW_USERNAME/MVNW_PASSWORD - user and password for downloading maven
+#   MVNW_VERBOSE - true: enable verbose log; debug: trace the mvnw script; others: silence the output
+# ----------------------------------------------------------------------------
+
+set -euf
+[ "${MVNW_VERBOSE-}" != debug ] || set -x
+
+# OS specific support.
+native_path() { printf %s\\n "$1"; }
+case "$(uname)" in
+CYGWIN* | MINGW*)
+  [ -z "${JAVA_HOME-}" ] || JAVA_HOME="$(cygpath --unix "$JAVA_HOME")"
+  native_path() { cygpath --path --windows "$1"; }
+  ;;
+esac
+
+# set JAVACMD and JAVACCMD
+set_java_home() {
+  # For Cygwin and MinGW, ensure paths are in Unix format before anything is touched
+  if [ -n "${JAVA_HOME-}" ]; then
+    if [ -x "$JAVA_HOME/jre/sh/java" ]; then
+      # IBM's JDK on AIX uses strange locations for the executables
+      JAVACMD="$JAVA_HOME/jre/sh/java"
+      JAVACCMD="$JAVA_HOME/jre/sh/javac"
+    else
+      JAVACMD="$JAVA_HOME/bin/java"
+      JAVACCMD="$JAVA_HOME/bin/javac"
+
+      if [ ! -x "$JAVACMD" ] || [ ! -x "$JAVACCMD" ]; then
+        echo "The JAVA_HOME environment variable is not defined correctly, so mvnw cannot run." >&2
+        echo "JAVA_HOME is set to \"$JAVA_HOME\", but \"\$JAVA_HOME/bin/java\" or \"\$JAVA_HOME/bin/javac\" does not exist." >&2
+        return 1
+      fi
+    fi
+  else
+    JAVACMD="$(
+      'set' +e
+      'unset' -f command 2>/dev/null
+      'command' -v java
+    )" || :
+    JAVACCMD="$(
+      'set' +e
+      'unset' -f command 2>/dev/null
+      'command' -v javac
+    )" || :
+
+    if [ ! -x "${JAVACMD-}" ] || [ ! -x "${JAVACCMD-}" ]; then
+      echo "The java/javac command does not exist in PATH nor is JAVA_HOME set, so mvnw cannot run." >&2
+      return 1
+    fi
+  fi
+}
+
+# hash string like Java String::hashCode
+hash_string() {
+  str="${1:-}" h=0
+  while [ -n "$str" ]; do
+    char="${str%"${str#?}"}"
+    h=$(((h * 31 + $(LC_CTYPE=C printf %d "'$char")) % 4294967296))
+    str="${str#?}"
+  done
+  printf %x\\n $h
+}
+
+verbose() { :; }
+[ "${MVNW_VERBOSE-}" != true ] || verbose() { printf %s\\n "${1-}"; }
+
+die() {
+  printf %s\\n "$1" >&2
+  exit 1
+}
+
+trim() {
+  # MWRAPPER-139:
+  #   Trims trailing and leading whitespace, carriage returns, tabs, and linefeeds.
+  #   Needed for removing poorly interpreted newline sequences when running in more
+  #   exotic environments such as mingw bash on Windows.
+  printf "%s" "${1}" | tr -d '[:space:]'
+}
+
+scriptDir="$(dirname "$0")"
+scriptName="$(basename "$0")"
+
+# parse distributionUrl and optional distributionSha256Sum, requires .mvn/wrapper/maven-wrapper.properties
+while IFS="=" read -r key value; do
+  case "${key-}" in
+  distributionUrl) distributionUrl=$(trim "${value-}") ;;
+  distributionSha256Sum) distributionSha256Sum=$(trim "${value-}") ;;
+  esac
+done <"$scriptDir/.mvn/wrapper/maven-wrapper.properties"
+[ -n "${distributionUrl-}" ] || die "cannot read distributionUrl property in $scriptDir/.mvn/wrapper/maven-wrapper.properties"
+
+case "${distributionUrl##*/}" in
+maven-mvnd-*bin.*)
+  MVN_CMD=mvnd.sh _MVNW_REPO_PATTERN=/maven/mvnd/
+  case "${PROCESSOR_ARCHITECTURE-}${PROCESSOR_ARCHITEW6432-}:$(uname -a)" in
+  *AMD64:CYGWIN* | *AMD64:MINGW*) distributionPlatform=windows-amd64 ;;
+  :Darwin*x86_64) distributionPlatform=darwin-amd64 ;;
+  :Darwin*arm64) distributionPlatform=darwin-aarch64 ;;
+  :Linux*x86_64*) distributionPlatform=linux-amd64 ;;
+  *)
+    echo "Cannot detect native platform for mvnd on $(uname)-$(uname -m), use pure java version" >&2
+    distributionPlatform=linux-amd64
+    ;;
+  esac
+  distributionUrl="${distributionUrl%-bin.*}-$distributionPlatform.zip"
+  ;;
+maven-mvnd-*) MVN_CMD=mvnd.sh _MVNW_REPO_PATTERN=/maven/mvnd/ ;;
+*) MVN_CMD="mvn${scriptName#mvnw}" _MVNW_REPO_PATTERN=/org/apache/maven/ ;;
+esac
+
+# apply MVNW_REPOURL and calculate MAVEN_HOME
+# maven home pattern: ~/.m2/wrapper/dists/{apache-maven-<version>,maven-mvnd-<version>-<platform>}/<hash>
+[ -z "${MVNW_REPOURL-}" ] || distributionUrl="$MVNW_REPOURL$_MVNW_REPO_PATTERN${distributionUrl#*"$_MVNW_REPO_PATTERN"}"
+distributionUrlName="${distributionUrl##*/}"
+distributionUrlNameMain="${distributionUrlName%.*}"
+distributionUrlNameMain="${distributionUrlNameMain%-bin}"
+MAVEN_USER_HOME="${MAVEN_USER_HOME:-${HOME}/.m2}"
+MAVEN_HOME="${MAVEN_USER_HOME}/wrapper/dists/${distributionUrlNameMain-}/$(hash_string "$distributionUrl")"
+
+exec_maven() {
+  unset MVNW_VERBOSE MVNW_USERNAME MVNW_PASSWORD MVNW_REPOURL || :
+  exec "$MAVEN_HOME/bin/$MVN_CMD" "$@" || die "cannot exec $MAVEN_HOME/bin/$MVN_CMD"
+}
+
+if [ -d "$MAVEN_HOME" ]; then
+  verbose "found existing MAVEN_HOME at $MAVEN_HOME"
+  exec_maven "$@"
+fi
+
+case "${distributionUrl-}" in
+*?-bin.zip | *?maven-mvnd-?*-?*.zip) ;;
+*) die "distributionUrl is not valid, must match *-bin.zip or maven-mvnd-*.zip, but found '${distributionUrl-}'" ;;
+esac
+
+# prepare tmp dir
+if TMP_DOWNLOAD_DIR="$(mktemp -d)" && [ -d "$TMP_DOWNLOAD_DIR" ]; then
+  clean() { rm -rf -- "$TMP_DOWNLOAD_DIR"; }
+  trap clean HUP INT TERM EXIT
+else
+  die "cannot create temp dir"
+fi
+
+mkdir -p -- "${MAVEN_HOME%/*}"
+
+# Download and Install Apache Maven
+verbose "Couldn't find MAVEN_HOME, downloading and installing it ..."
+verbose "Downloading from: $distributionUrl"
+verbose "Downloading to: $TMP_DOWNLOAD_DIR/$distributionUrlName"
+
+# select .zip or .tar.gz
+if ! command -v unzip >/dev/null; then
+  distributionUrl="${distributionUrl%.zip}.tar.gz"
+  distributionUrlName="${distributionUrl##*/}"
+fi
+
+# verbose opt
+__MVNW_QUIET_WGET=--quiet __MVNW_QUIET_CURL=--silent __MVNW_QUIET_UNZIP=-q __MVNW_QUIET_TAR=''
+[ "${MVNW_VERBOSE-}" != true ] || __MVNW_QUIET_WGET='' __MVNW_QUIET_CURL='' __MVNW_QUIET_UNZIP='' __MVNW_QUIET_TAR=v
+
+# normalize http auth
+case "${MVNW_PASSWORD:+has-password}" in
+'') MVNW_USERNAME='' MVNW_PASSWORD='' ;;
+has-password) [ -n "${MVNW_USERNAME-}" ] || MVNW_USERNAME='' MVNW_PASSWORD='' ;;
+esac
+
+if [ -z "${MVNW_USERNAME-}" ] && command -v wget >/dev/null; then
+  verbose "Found wget ... using wget"
+  wget ${__MVNW_QUIET_WGET:+"$__MVNW_QUIET_WGET"} "$distributionUrl" -O "$TMP_DOWNLOAD_DIR/$distributionUrlName" || die "wget: Failed to fetch $distributionUrl"
+elif [ -z "${MVNW_USERNAME-}" ] && command -v curl >/dev/null; then
+  verbose "Found curl ... using curl"
+  curl ${__MVNW_QUIET_CURL:+"$__MVNW_QUIET_CURL"} -f -L -o "$TMP_DOWNLOAD_DIR/$distributionUrlName" "$distributionUrl" || die "curl: Failed to fetch $distributionUrl"
+elif set_java_home; then
+  verbose "Falling back to use Java to download"
+  javaSource="$TMP_DOWNLOAD_DIR/Downloader.java"
+  targetZip="$TMP_DOWNLOAD_DIR/$distributionUrlName"
+  cat >"$javaSource" <<-END
+	public class Downloader extends java.net.Authenticator
+	{
+	  protected java.net.PasswordAuthentication getPasswordAuthentication()
+	  {
+	    return new java.net.PasswordAuthentication( System.getenv( "MVNW_USERNAME" ), System.getenv( "MVNW_PASSWORD" ).toCharArray() );
+	  }
+	  public static void main( String[] args ) throws Exception
+	  {
+	    setDefault( new Downloader() );
+	    java.nio.file.Files.copy( java.net.URI.create( args[0] ).toURL().openStream(), java.nio.file.Paths.get( args[1] ).toAbsolutePath().normalize() );
+	  }
+	}
+	END
+  # For Cygwin/MinGW, switch paths to Windows format before running javac and java
+  verbose " - Compiling Downloader.java ..."
+  "$(native_path "$JAVACCMD")" "$(native_path "$javaSource")" || die "Failed to compile Downloader.java"
+  verbose " - Running Downloader.java ..."
+  "$(native_path "$JAVACMD")" -cp "$(native_path "$TMP_DOWNLOAD_DIR")" Downloader "$distributionUrl" "$(native_path "$targetZip")"
+fi
+
+# If specified, validate the SHA-256 sum of the Maven distribution zip file
+if [ -n "${distributionSha256Sum-}" ]; then
+  distributionSha256Result=false
+  if [ "$MVN_CMD" = mvnd.sh ]; then
+    echo "Checksum validation is not supported for maven-mvnd." >&2
+    echo "Please disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties." >&2
+    exit 1
+  elif command -v sha256sum >/dev/null; then
+    if echo "$distributionSha256Sum  $TMP_DOWNLOAD_DIR/$distributionUrlName" | sha256sum -c - >/dev/null 2>&1; then
+      distributionSha256Result=true
+    fi
+  elif command -v shasum >/dev/null; then
+    if echo "$distributionSha256Sum  $TMP_DOWNLOAD_DIR/$distributionUrlName" | shasum -a 256 -c >/dev/null 2>&1; then
+      distributionSha256Result=true
+    fi
+  else
+    echo "Checksum validation was requested but neither 'sha256sum' or 'shasum' are available." >&2
+    echo "Please install either command, or disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties." >&2
+    exit 1
+  fi
+  if [ $distributionSha256Result = false ]; then
+    echo "Error: Failed to validate Maven distribution SHA-256, your Maven distribution might be compromised." >&2
+    echo "If you updated your Maven version, you need to update the specified distributionSha256Sum property." >&2
+    exit 1
+  fi
+fi
+
+# unzip and move
+if command -v unzip >/dev/null; then
+  unzip ${__MVNW_QUIET_UNZIP:+"$__MVNW_QUIET_UNZIP"} "$TMP_DOWNLOAD_DIR/$distributionUrlName" -d "$TMP_DOWNLOAD_DIR" || die "failed to unzip"
+else
+  tar xzf${__MVNW_QUIET_TAR:+"$__MVNW_QUIET_TAR"} "$TMP_DOWNLOAD_DIR/$distributionUrlName" -C "$TMP_DOWNLOAD_DIR" || die "failed to untar"
+fi
+
+# Find the actual extracted directory name (handles snapshots where filename != directory name)
+actualDistributionDir=""
+
+# First try the expected directory name (for regular distributions)
+if [ -d "$TMP_DOWNLOAD_DIR/$distributionUrlNameMain" ]; then
+  if [ -f "$TMP_DOWNLOAD_DIR/$distributionUrlNameMain/bin/$MVN_CMD" ]; then
+    actualDistributionDir="$distributionUrlNameMain"
+  fi
+fi
+
+# If not found, search for any directory with the Maven executable (for snapshots)
+if [ -z "$actualDistributionDir" ]; then
+  # enable globbing to iterate over items
+  set +f
+  for dir in "$TMP_DOWNLOAD_DIR"/*; do
+    if [ -d "$dir" ]; then
+      if [ -f "$dir/bin/$MVN_CMD" ]; then
+        actualDistributionDir="$(basename "$dir")"
+        break
+      fi
+    fi
+  done
+  set -f
+fi
+
+if [ -z "$actualDistributionDir" ]; then
+  verbose "Contents of $TMP_DOWNLOAD_DIR:"
+  verbose "$(ls -la "$TMP_DOWNLOAD_DIR")"
+  die "Could not find Maven distribution directory in extracted archive"
+fi
+
+verbose "Found extracted Maven distribution directory: $actualDistributionDir"
+printf %s\\n "$distributionUrl" >"$TMP_DOWNLOAD_DIR/$actualDistributionDir/mvnw.url"
+mv -- "$TMP_DOWNLOAD_DIR/$actualDistributionDir" "$MAVEN_HOME" || [ -d "$MAVEN_HOME" ] || die "fail to move MAVEN_HOME"
+
+clean || :
+exec_maven "$@"
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/mvnw.cmd">
+<# : batch portion
+@REM ----------------------------------------------------------------------------
+@REM Licensed to the Apache Software Foundation (ASF) under one
+@REM or more contributor license agreements.  See the NOTICE file
+@REM distributed with this work for additional information
+@REM regarding copyright ownership.  The ASF licenses this file
+@REM to you under the Apache License, Version 2.0 (the
+@REM "License"); you may not use this file except in compliance
+@REM with the License.  You may obtain a copy of the License at
+@REM
+@REM    http://www.apache.org/licenses/LICENSE-2.0
+@REM
+@REM Unless required by applicable law or agreed to in writing,
+@REM software distributed under the License is distributed on an
+@REM "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+@REM KIND, either express or implied.  See the License for the
+@REM specific language governing permissions and limitations
+@REM under the License.
+@REM ----------------------------------------------------------------------------
+
+@REM ----------------------------------------------------------------------------
+@REM Apache Maven Wrapper startup batch script, version 3.3.4
+@REM
+@REM Optional ENV vars
+@REM   MVNW_REPOURL - repo url base for downloading maven distribution
+@REM   MVNW_USERNAME/MVNW_PASSWORD - user and password for downloading maven
+@REM   MVNW_VERBOSE - true: enable verbose log; others: silence the output
+@REM ----------------------------------------------------------------------------
+
+@IF "%__MVNW_ARG0_NAME__%"=="" (SET __MVNW_ARG0_NAME__=%~nx0)
+@SET __MVNW_CMD__=
+@SET __MVNW_ERROR__=
+@SET __MVNW_PSMODULEP_SAVE=%PSModulePath%
+@SET PSModulePath=
+@FOR /F "usebackq tokens=1* delims==" %%A IN (`powershell -noprofile "& {$scriptDir='%~dp0'; $script='%__MVNW_ARG0_NAME__%'; icm -ScriptBlock ([Scriptblock]::Create((Get-Content -Raw '%~f0'))) -NoNewScope}"`) DO @(
+  IF "%%A"=="MVN_CMD" (set __MVNW_CMD__=%%B) ELSE IF "%%B"=="" (echo %%A) ELSE (echo %%A=%%B)
+)
+@SET PSModulePath=%__MVNW_PSMODULEP_SAVE%
+@SET __MVNW_PSMODULEP_SAVE=
+@SET __MVNW_ARG0_NAME__=
+@SET MVNW_USERNAME=
+@SET MVNW_PASSWORD=
+@IF NOT "%__MVNW_CMD__%"=="" ("%__MVNW_CMD__%" %*)
+@echo Cannot start maven from wrapper >&2 && exit /b 1
+@GOTO :EOF
+: end batch / begin powershell #>
+
+$ErrorActionPreference = "Stop"
+if ($env:MVNW_VERBOSE -eq "true") {
+  $VerbosePreference = "Continue"
+}
+
+# calculate distributionUrl, requires .mvn/wrapper/maven-wrapper.properties
+$distributionUrl = (Get-Content -Raw "$scriptDir/.mvn/wrapper/maven-wrapper.properties" | ConvertFrom-StringData).distributionUrl
+if (!$distributionUrl) {
+  Write-Error "cannot read distributionUrl property in $scriptDir/.mvn/wrapper/maven-wrapper.properties"
+}
+
+switch -wildcard -casesensitive ( $($distributionUrl -replace '^.*/','') ) {
+  "maven-mvnd-*" {
+    $USE_MVND = $true
+    $distributionUrl = $distributionUrl -replace '-bin\.[^.]*$',"-windows-amd64.zip"
+    $MVN_CMD = "mvnd.cmd"
+    break
+  }
+  default {
+    $USE_MVND = $false
+    $MVN_CMD = $script -replace '^mvnw','mvn'
+    break
+  }
+}
+
+# apply MVNW_REPOURL and calculate MAVEN_HOME
+# maven home pattern: ~/.m2/wrapper/dists/{apache-maven-<version>,maven-mvnd-<version>-<platform>}/<hash>
+if ($env:MVNW_REPOURL) {
+  $MVNW_REPO_PATTERN = if ($USE_MVND -eq $False) { "/org/apache/maven/" } else { "/maven/mvnd/" }
+  $distributionUrl = "$env:MVNW_REPOURL$MVNW_REPO_PATTERN$($distributionUrl -replace "^.*$MVNW_REPO_PATTERN",'')"
+}
+$distributionUrlName = $distributionUrl -replace '^.*/',''
+$distributionUrlNameMain = $distributionUrlName -replace '\.[^.]*$','' -replace '-bin$',''
+
+$MAVEN_M2_PATH = "$HOME/.m2"
+if ($env:MAVEN_USER_HOME) {
+  $MAVEN_M2_PATH = "$env:MAVEN_USER_HOME"
+}
+
+if (-not (Test-Path -Path $MAVEN_M2_PATH)) {
+    New-Item -Path $MAVEN_M2_PATH -ItemType Directory | Out-Null
+}
+
+$MAVEN_WRAPPER_DISTS = $null
+if ((Get-Item $MAVEN_M2_PATH).Target[0] -eq $null) {
+  $MAVEN_WRAPPER_DISTS = "$MAVEN_M2_PATH/wrapper/dists"
+} else {
+  $MAVEN_WRAPPER_DISTS = (Get-Item $MAVEN_M2_PATH).Target[0] + "/wrapper/dists"
+}
+
+$MAVEN_HOME_PARENT = "$MAVEN_WRAPPER_DISTS/$distributionUrlNameMain"
+$MAVEN_HOME_NAME = ([System.Security.Cryptography.SHA256]::Create().ComputeHash([byte[]][char[]]$distributionUrl) | ForEach-Object {$_.ToString("x2")}) -join ''
+$MAVEN_HOME = "$MAVEN_HOME_PARENT/$MAVEN_HOME_NAME"
+
+if (Test-Path -Path "$MAVEN_HOME" -PathType Container) {
+  Write-Verbose "found existing MAVEN_HOME at $MAVEN_HOME"
+  Write-Output "MVN_CMD=$MAVEN_HOME/bin/$MVN_CMD"
+  exit $?
+}
+
+if (! $distributionUrlNameMain -or ($distributionUrlName -eq $distributionUrlNameMain)) {
+  Write-Error "distributionUrl is not valid, must end with *-bin.zip, but found $distributionUrl"
+}
+
+# prepare tmp dir
+$TMP_DOWNLOAD_DIR_HOLDER = New-TemporaryFile
+$TMP_DOWNLOAD_DIR = New-Item -Itemtype Directory -Path "$TMP_DOWNLOAD_DIR_HOLDER.dir"
+$TMP_DOWNLOAD_DIR_HOLDER.Delete() | Out-Null
+trap {
+  if ($TMP_DOWNLOAD_DIR.Exists) {
+    try { Remove-Item $TMP_DOWNLOAD_DIR -Recurse -Force | Out-Null }
+    catch { Write-Warning "Cannot remove $TMP_DOWNLOAD_DIR" }
+  }
+}
+
+New-Item -Itemtype Directory -Path "$MAVEN_HOME_PARENT" -Force | Out-Null
+
+# Download and Install Apache Maven
+Write-Verbose "Couldn't find MAVEN_HOME, downloading and installing it ..."
+Write-Verbose "Downloading from: $distributionUrl"
+Write-Verbose "Downloading to: $TMP_DOWNLOAD_DIR/$distributionUrlName"
+
+$webclient = New-Object System.Net.WebClient
+if ($env:MVNW_USERNAME -and $env:MVNW_PASSWORD) {
+  $webclient.Credentials = New-Object System.Net.NetworkCredential($env:MVNW_USERNAME, $env:MVNW_PASSWORD)
+}
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$webclient.DownloadFile($distributionUrl, "$TMP_DOWNLOAD_DIR/$distributionUrlName") | Out-Null
+
+# If specified, validate the SHA-256 sum of the Maven distribution zip file
+$distributionSha256Sum = (Get-Content -Raw "$scriptDir/.mvn/wrapper/maven-wrapper.properties" | ConvertFrom-StringData).distributionSha256Sum
+if ($distributionSha256Sum) {
+  if ($USE_MVND) {
+    Write-Error "Checksum validation is not supported for maven-mvnd. `nPlease disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties."
+  }
+  Import-Module $PSHOME\Modules\Microsoft.PowerShell.Utility -Function Get-FileHash
+  if ((Get-FileHash "$TMP_DOWNLOAD_DIR/$distributionUrlName" -Algorithm SHA256).Hash.ToLower() -ne $distributionSha256Sum) {
+    Write-Error "Error: Failed to validate Maven distribution SHA-256, your Maven distribution might be compromised. If you updated your Maven version, you need to update the specified distributionSha256Sum property."
+  }
+}
+
+# unzip and move
+Expand-Archive "$TMP_DOWNLOAD_DIR/$distributionUrlName" -DestinationPath "$TMP_DOWNLOAD_DIR" | Out-Null
+
+# Find the actual extracted directory name (handles snapshots where filename != directory name)
+$actualDistributionDir = ""
+
+# First try the expected directory name (for regular distributions)
+$expectedPath = Join-Path "$TMP_DOWNLOAD_DIR" "$distributionUrlNameMain"
+$expectedMvnPath = Join-Path "$expectedPath" "bin/$MVN_CMD"
+if ((Test-Path -Path $expectedPath -PathType Container) -and (Test-Path -Path $expectedMvnPath -PathType Leaf)) {
+  $actualDistributionDir = $distributionUrlNameMain
+}
+
+# If not found, search for any directory with the Maven executable (for snapshots)
+if (!$actualDistributionDir) {
+  Get-ChildItem -Path "$TMP_DOWNLOAD_DIR" -Directory | ForEach-Object {
+    $testPath = Join-Path $_.FullName "bin/$MVN_CMD"
+    if (Test-Path -Path $testPath -PathType Leaf) {
+      $actualDistributionDir = $_.Name
+    }
+  }
+}
+
+if (!$actualDistributionDir) {
+  Write-Error "Could not find Maven distribution directory in extracted archive"
+}
+
+Write-Verbose "Found extracted Maven distribution directory: $actualDistributionDir"
+Rename-Item -Path "$TMP_DOWNLOAD_DIR/$actualDistributionDir" -NewName $MAVEN_HOME_NAME | Out-Null
+try {
+  Move-Item -Path "$TMP_DOWNLOAD_DIR/$MAVEN_HOME_NAME" -Destination $MAVEN_HOME_PARENT | Out-Null
+} catch {
+  if (! (Test-Path -Path "$MAVEN_HOME" -PathType Container)) {
+    Write-Error "fail to move MAVEN_HOME"
+  }
+} finally {
+  try { Remove-Item $TMP_DOWNLOAD_DIR -Recurse -Force | Out-Null }
+  catch { Write-Warning "Cannot remove $TMP_DOWNLOAD_DIR" }
+}
+
+Write-Output "MVN_CMD=$MAVEN_HOME/bin/$MVN_CMD"
+</file>
+
+<file path="Caleta_Guillermo/lacaleta/pom.xml">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>4.1.1</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.lacaleta</groupId>
+	<artifactId>lacaleta</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name/>
+	<description/>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+				<!-- Driver de PostgreSQL -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- Spring Data JPA -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mindrot</groupId>
+			<artifactId>jbcrypt</artifactId>
+			<version>0.4</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+</file>
+
+</files>
+```

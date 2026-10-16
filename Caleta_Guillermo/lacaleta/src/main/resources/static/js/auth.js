@@ -337,169 +337,121 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // -------------------------------------------------------------------------
-    // 4. FLUJO: OLVIDÉ MI CONTRASEÑA
+    // 4. FLUJO: OLVIDÉ MI CONTRASEÑA (SIMULACIÓN 100% LOCAL / FRONTEND)
     // -------------------------------------------------------------------------
+
+    // Función auxiliar para redirigir compatible tanto en archivos estáticos (.html) como en servidor (/ruta)
+    const redirigirA = (pagina) => {
+        const esArchivoEstatico = window.location.protocol === "file:" || window.location.pathname.endsWith(".html");
+        if (esArchivoEstatico) {
+            window.location.href = pagina;
+        } else {
+            const rutaLimpia = pagina.replace(".html", "");
+            window.location.href = rutaLimpia.startsWith("/") ? rutaLimpia : "/" + rutaLimpia;
+        }
+    };
+
+    // Flujo 1: Solicitar Código (formForgotPassword)
     const formForgotPassword = document.getElementById("formForgotPassword");
     if (formForgotPassword) {
-        formForgotPassword.addEventListener("submit", async (e) => {
+        formForgotPassword.addEventListener("submit", (e) => {
             e.preventDefault();
-            const emailInput = document.getElementById("forgotEmail");
-            const btnSubmit = formForgotPassword.querySelector("input[type='submit']") || formForgotPassword.querySelector("button[type='submit']");
-            const btnOriginal = btnSubmit ? (btnSubmit.value || btnSubmit.innerText) : "RESTABLECER MI CONTRASEÑA";
-            
-            if (emailInput && emailInput.value.trim() !== "") {
-                const email = emailInput.value.trim().toLowerCase();
-                
-                try {
-                    if (btnSubmit) {
-                        btnSubmit.disabled = true;
-                        if (btnSubmit.tagName === 'INPUT') btnSubmit.value = "ENVIANDO...";
-                        else btnSubmit.innerText = "ENVIANDO...";
-                    }
-                    
-                    const response = await fetch('/api/auth/forgot-password', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email })
-                    });
-                    
-                    const data = await response.json();
-                    
-                    if (response.ok) {
-                        localStorage.setItem("temp_reset_email", email);
-                        mostrarModalMensaje("Éxito", data.mensaje || "Se ha enviado el código a tu correo.", () => {
-                            window.location.href = "/verifycode";
-                        });
-                    } else {
-                        mostrarModalMensaje("Error", data.error || "Ocurrió un error inesperado.");
-                    }
-                } catch (error) {
-                    mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
-                } finally {
-                    if (btnSubmit) {
-                        btnSubmit.disabled = false;
-                        if (btnSubmit.tagName === 'INPUT') btnSubmit.value = btnOriginal;
-                        else btnSubmit.innerText = btnOriginal;
-                    }
-                }
-            }
-        });
-    }
 
-    const formVerifyCode = document.getElementById("formVerifyCode");
-    if (formVerifyCode) {
-        formVerifyCode.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const inputOtp = document.getElementById("otpCode")?.value.trim();
-            const email = localStorage.getItem("temp_reset_email");
-            const btnSubmit = formVerifyCode.querySelector("input[type='submit']") || formVerifyCode.querySelector("button[type='submit']");
-            const btnOriginal = btnSubmit ? (btnSubmit.value || btnSubmit.innerText) : "VERIFICAR CÓDIGO";
+            // Capturar el correo electrónico ingresado
+            const emailInput = document.getElementById("forgotEmail");
+            const email = emailInput ? emailInput.value.trim() : "";
 
             if (!email) {
-                mostrarModalMensaje("Error", "No hay una sesión de recuperación activa. Vuelve a empezar.", () => {
-                    window.location.href = "/forgotpassword";
-                });
+                alert("Por favor, ingresa tu correo electrónico.");
                 return;
             }
 
-            try {
-                if (btnSubmit) {
-                    btnSubmit.disabled = true;
-                    if (btnSubmit.tagName === 'INPUT') btnSubmit.value = "VERIFICANDO...";
-                    else btnSubmit.innerText = "VERIFICANDO...";
-                }
-                
-                const response = await fetch('/api/auth/verify-otp', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, otp: inputOtp })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    localStorage.setItem("temp_verified_otp", inputOtp);
-                    mostrarModalMensaje("Éxito", data.mensaje || "Código verificado con éxito.", () => {
-                        window.location.href = "/resetpassword";
-                    });
-                } else {
-                    mostrarModalMensaje("Error", data.error || "El código ingresado es incorrecto.");
-                }
-            } catch (error) {
-                mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
-            } finally {
-                if (btnSubmit) {
-                    btnSubmit.disabled = false;
-                    if (btnSubmit.tagName === 'INPUT') btnSubmit.value = btnOriginal;
-                    else btnSubmit.innerText = btnOriginal;
-                }
+            // Guardar en localStorage el correo y el código OTP simulado estático
+            localStorage.setItem("temp_reset_email", email);
+            localStorage.setItem("temp_otp_code", "123456");
+
+            // Mostrar alert() simulando que se envió el correo con el código
+            alert(`Se ha enviado un código de verificación a tu correo: ${email}\n(Código simulado: 123456)`);
+
+            // Redirigir a la vista de verificación (verifycode.html) usando window.location.href
+            redirigirA("verifycode.html");
+        });
+    }
+
+    // Flujo 2: Verificar Código (formVerifyCode)
+    const formVerifyCode = document.getElementById("formVerifyCode");
+    if (formVerifyCode) {
+        formVerifyCode.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            // Capturar el código OTP ingresado y compararlo con el valor guardado en localStorage
+            const otpInput = document.getElementById("otpCode");
+            const inputOtp = otpInput ? otpInput.value.trim() : "";
+            const storedOtp = localStorage.getItem("temp_otp_code");
+
+            // Si no existe el código en localStorage, alertar del error y redirigir a forgotpassword.html
+            if (!storedOtp) {
+                alert("Error: No existe un código de recuperación activo. Por favor, solicita uno nuevo.");
+                redirigirA("forgotpassword.html");
+                return;
+            }
+
+            // Si coincide, mostrar alert() de éxito y redirigir a resetpassword.html
+            if (inputOtp === storedOtp) {
+                alert("¡Código de verificación correcto!");
+                redirigirA("resetpassword.html");
+            } else {
+                // Si no coincide, mostrar alert() de error
+                alert("Error: El código ingresado es incorrecto. Por favor, inténtalo de nuevo.");
             }
         });
     }
 
+    // Flujo 3: Restablecer Contraseña (formResetPassword)
     const formResetPassword = document.getElementById("formResetPassword");
     if (formResetPassword) {
-        formResetPassword.addEventListener("submit", async (e) => {
+        formResetPassword.addEventListener("submit", (e) => {
             e.preventDefault();
+
+            // Capturar los campos de "nueva contraseña" y "confirmar contraseña"
             const newPassword = document.getElementById("newPassword")?.value || "";
             const confirmPassword = document.getElementById("confirmPassword")?.value || "";
-            const email = localStorage.getItem("temp_reset_email");
-            const otp = localStorage.getItem("temp_verified_otp");
-            const btnSubmit = formResetPassword.querySelector("input[type='submit']") || formResetPassword.querySelector("button[type='submit']");
-            const btnOriginal = btnSubmit ? (btnSubmit.value || btnSubmit.innerText) : "CONFIRMAR CONTRASEÑA";
 
-            if (!email || !otp) {
-                mostrarModalMensaje("Error", "Faltan datos de verificación. Vuelve a iniciar el proceso.", () => {
-                    window.location.href = "/forgotpassword";
-                });
-                return;
-            }
+            // Declarar contraseña antigua simulada en memoria
+            const mockOldPassword = "pizza123";
 
+            // Regla 1 (Igualdad): Validar que la nueva contraseña y la confirmación coincidan exactamente
             if (newPassword !== confirmPassword) {
-                mostrarModalMensaje("Error", "Las contraseñas no coinciden.");
+                alert("Error: Las contraseñas no coinciden. Asegúrate de que ambas sean idénticas.");
                 return;
             }
 
-            const strengthRegex = /^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
-            if (!strengthRegex.test(newPassword)) {
-                mostrarModalMensaje("Error", "La contraseña debe tener mínimo 8 caracteres, al menos 1 mayúscula y 1 carácter especial.");
+            // Regla 2 (Fuerza): Validar mediante Regex (mínimo 8 caracteres, al menos 1 mayúscula y al menos 1 carácter especial)
+            const regexFuerza = /^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
+            if (!regexFuerza.test(newPassword)) {
+                alert("Error: La contraseña debe tener mínimo 8 caracteres, al menos 1 letra mayúscula y al menos 1 carácter especial.");
                 return;
             }
 
-            try {
-                if (btnSubmit) {
-                    btnSubmit.disabled = true;
-                    if (btnSubmit.tagName === 'INPUT') btnSubmit.value = "ACTUALIZANDO...";
-                    else btnSubmit.innerText = "ACTUALIZANDO...";
-                }
-                
-                const response = await fetch('/api/auth/reset-password', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, otp, newPassword })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    localStorage.removeItem("temp_reset_email");
-                    localStorage.removeItem("temp_verified_otp");
-                    
-                    mostrarModalMensaje("Éxito", data.mensaje || "Contraseña actualizada exitosamente.", () => {
-                        window.location.href = "/login";
-                    });
-                } else {
-                    mostrarModalMensaje("Error", data.error || "No se pudo restablecer la contraseña.");
-                }
-            } catch (error) {
-                mostrarModalMensaje("Error", "No se pudo conectar con el servidor.");
-            } finally {
-                if (btnSubmit) {
-                    btnSubmit.disabled = false;
-                    if (btnSubmit.tagName === 'INPUT') btnSubmit.value = btnOriginal;
-                    else btnSubmit.innerText = btnOriginal;
-                }
+            // Regla 3 (Historial): Validar estrictamente que la nueva contraseña no sea idéntica a mockOldPassword
+            if (newPassword === mockOldPassword) {
+                alert("Error: La nueva contraseña no puede ser idéntica a tu contraseña anterior (pizza123).");
+                return;
             }
+
+            // Si pasa todas las validaciones:
+            const correoGuardado = localStorage.getItem("temp_reset_email") || "tu correo";
+
+            // Eliminar las variables temporales de localStorage
+            localStorage.removeItem("temp_reset_email");
+            localStorage.removeItem("temp_otp_code");
+            localStorage.removeItem("temp_verified_otp");
+
+            // Mostrar alert() de éxito confirmando el cambio para el correo guardado
+            alert(`¡Éxito! La contraseña ha sido restablecida correctamente para el usuario ${correoGuardado}.`);
+
+            // Redirigir a la pantalla de login (login.html)
+            redirigirA("login.html");
         });
     }
 });
