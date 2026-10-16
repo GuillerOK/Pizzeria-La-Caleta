@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Términos y Condiciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <main class="bg-white text-dark py-5" style="min-height: 80vh;">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Menú Lateral -->
+                <aside class="col-12 col-md-4 col-lg-3">
+                    <h5 class="fw-bold text-uppercase pb-2 border-bottom border-2 text-dark mb-3">Centro de Ayuda</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3 small">
+                        <li>
+                            <a th:href="@{/terminos}" class="text-decoration-none fw-bold text-ro d-block border-start border-3 border-danger ps-2">
+                                Términos y Condiciones
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/delivery}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Políticas de Delivery
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/faq}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Preguntas Frecuentes
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Área de Contenido -->
+                <div class="col-12 col-md-8 col-lg-9">
+                    <h2 class="fw-bold text-uppercase mb-4 text-dark border-bottom pb-2">Términos y Condiciones Generales</h2>
+                    
+                    <p class="text-secondary leading-relaxed mb-4">
+                        Bienvenido(a) a la plataforma web de <strong>Pizzería La Caleta</strong>. Al registrarse, navegar o formalizar una transacción a través de nuestros canales oficiales, usted acepta de forma plena y sin reserva los términos y condiciones aquí detallados. Le sugerimos leer con atención el presente documento.
+                    </p>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">1. CANALES DE COMPRA Y ATENCIÓN</h5>
+                        <p class="text-secondary mb-2">Los pedidos pueden gestionarse únicamente a través de los canales autorizados:</p>
+                        <ul class="text-secondary small d-flex flex-column gap-1">
+                            <li><strong>Plataforma Web:</strong> Catálogo digital con carrito de compras y pasarela integrada.</li>
+                            <li><strong>Central Telefónica:</strong> (+51) 999 999 999 en horario de atención comercial.</li>
+                            <li><strong>WhatsApp Oficial:</strong> (+51) 999 999 999 para asesoría y seguimiento de órdenes.</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">2. CONDICIONES DE PRECIOS, OFERTAS Y STOCK</h5>
+                        <p class="text-secondary mb-2">
+                            Todos los precios publicados se encuentran expresados en moneda nacional (Soles - PEN) e incluyen el Impuesto General a las Ventas (IGV).
+                        </p>
+                        <p class="text-secondary">
+                            Las ofertas y combos promocionales están sujetos a disponibilidad de masa e insumos frescos por local. Pizzería La Caleta se reserva la facultad de actualizar precios y recetas sin necesidad de comunicación previa, garantizando siempre el valor pactado al momento de emitir la orden de compra.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">3. CANCELACIONES, MODIFICACIONES Y DERECHO DE RETRACTO</h5>
+                        <p class="text-secondary mb-2">
+                            Al tratarse de alimentos preparados de consumo inmediato y perecibles, una vez confirmada la orden e iniciado el proceso de elaboración en cocina, no se admiten cancelaciones ni reembolsos por desistimiento del cliente.
+                        </p>
+                        <p class="text-secondary">
+                            Si requiere modificar datos de entrega o productos, deberá comunicarse de forma inmediata a nuestra central antes de que el pedido sea despachado.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">4. POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS</h5>
+                        <p class="text-secondary">
+                            En cumplimiento de la legislación vigente de Protección de Datos Personales, la información suministrada (nombre, número de contacto, correo y dirección) será procesada de manera confidencial y con la finalidad exclusiva de gestionar la entrega, facturación y seguimiento de su pedido.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">5. PROPIEDAD INTELECTUAL</h5>
+                        <p class="text-secondary">
+                            Las marcas, logotipos, imágenes de productos, textos y diseño web son propiedad exclusiva de Pizzería La Caleta. Queda estrictamente prohibida su reproducción, distribución o uso comercial no autorizado.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>

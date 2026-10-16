@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <footer th:fragment="footer" class="py-5 text-start">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12 col-md-3">
+                    <img class="img-fluid mb-3" th:src="@{/images/lacaleta.png}" alt="La Caleta Logo" style="max-width: 140px;">
+                    <h6 class="fw-bold mb-2">Síguenos en</h6>
+                    <div class="d-flex gap-3 fs-5">
+                        <a href="https://www.facebook.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com" target="_blank" class="text-white-50 text-decoration-none"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h6 class="fw-bold mb-3">Nuestros Productos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/menu#pizzas-principales}">Pizzas Principales</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/menu#combos-secretos}">Combos Secretos</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/menu#acompanamientos}">Acompañamientos</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/menu#bebidas}">Bebidas</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h6 class="fw-bold mb-3">Ayuda & Términos</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/faq}">Preguntas Frecuentes</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/delivery}">Políticas de Delivery</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/terminos}">Términos y Condiciones</a></li>
+                        <li class="mb-2"><a class="text-secondary text-decoration-none" th:href="@{/locales}">Nuestros Locales</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-2">Métodos de Pago</h6>
+                        <div class="d-flex align-items-center gap-2">
+                            <img th:src="@{/images/visa.jpg}" alt="Visa" class="bg-white p-1" style="height: 30px; object-fit: contain;">
+                            <img th:src="@{/images/mastercard.jpg}" alt="Mastercard" class="bg-white p-1" style="height: 30px; object-fit: contain;">
+                            <img th:src="@{/images/yape.jpg}" alt="Yape" class="bg-white p-1" style="height: 30px; object-fit: contain;">
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-2">Libro de Reclamaciones</h6>
+                        <a href="#">
+                            <img th:src="@{/images/libro_reclamaciones.jpg}" alt="Libro de Reclamaciones" style="max-height: 45px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top border-secondary">
+                <p class="small text-secondary mb-0">&copy; 2026 La Caleta. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

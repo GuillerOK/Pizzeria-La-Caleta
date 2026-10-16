@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <!-- Fragment de Slider Publicitario Puro (Solo Imágenes con Enlace) -->
+    <section th:fragment="sliderHero" id="banner-slider" class="position-relative w-100 overflow-hidden">
+        <div id="carouselHero" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+            <!-- Indicadores -->
+            <div class="carousel-indicators mb-2">
+                <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Menú"></button>
+                <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="1" aria-label="Promociones"></button>
+                <button type="button" data-bs-target="#carouselHero" data-bs-slide-to="2" aria-label="Locales"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a th:href="@{/menu}" class="d-block w-100">
+                        <img th:src="@{/images/banner_menu.png}" class="d-block w-100 banner-img-slider" alt="Explora nuestro Menú">
+                    </a>
+                </div>
+
+                <div class="carousel-item">
+                    <a th:href="@{/promociones}" class="d-block w-100">
+                        <img th:src="@{/images/banner_promociones.png}" class="d-block w-100 banner-img-slider" alt="Conoce nuestras Promociones">
+                    </a>
+                </div>
+
+                <div class="carousel-item">
+                    <a th:href="@{/login}" class="d-block w-100">
+                        <img th:src="@{/images/banner_cuenta.png}" class="d-block w-100 banner-img-slider" alt="Crea tu Cuenta">
+                    </a>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselHero" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselHero" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <section th:fragment="seccionLocales(listaLocales)" id="locales" class="py-4">
+        <div class="container">
+            <div class="d-flex flex-column gap-3 mx-auto" style="max-width: 900px;" id="contenedor-locales">
+
+                <!-- CASO 1: Si se pasa una lista desde Spring Boot -->
+                <th:block th:if="${listaLocales != null and !#lists.isEmpty(listaLocales)}">
+                    <div th:each="local : ${listaLocales}"
+                        class="tarjeta-local card text-white border border-secondary border-opacity-25 rounded-3 p-3 p-md-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12 col-md-6 border-end-md border-secondary border-opacity-25">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h5 class="fw-bold mb-0 text-white" th:text="${local.nombre}">Sede</h5>
+                                </div>
+                                <p class="text-secondary small mb-3" th:text="${local.direccion}">
+                                    Dirección del local
+                                </p>
+                                <a th:href="${local.mapaUrl != null ? local.mapaUrl : 'https://maps.google.com'}"
+                                    target="_blank"
+                                    class="btn-cta px-3 py-1 fw-bold text-uppercase d-inline-block small text-decoration-none"
+                                    style="font-size: 12px;">
+                                    Ver Local
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h6 class="text-white-50 text-uppercase fw-semibold small mb-2">Disponibilidad</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span th:if="${local.delivery == null or local.delivery}"
+                                        class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-motorcycle text-warning"></i> Delivery
+                                    </span>
+                                    <span th:if="${local.retiro == null or local.retiro}"
+                                        class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-location-dot text-warning"></i> Retiro en Tienda
+                                    </span>
+                                    <span th:if="${local.salon == null or local.salon}"
+                                        class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-utensils text-warning"></i> Salón
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+
+                <!-- CASO 2: Locales por defecto (si listaLocales es null o está vacía) -->
+                <th:block th:if="${listaLocales == null or #lists.isEmpty(listaLocales)}">
+                    <div
+                        class="tarjeta-local card text-white border border-secondary border-opacity-25 rounded-3 p-3 p-md-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12 col-md-6 border-end-md border-secondary border-opacity-25">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h5 class="fw-bold mb-0 text-white">Sede Miraflores</h5>
+                                </div>
+                                <p class="text-secondary small mb-3">
+                                    Av. José Larco 850, Miraflores, Lima
+                                </p>
+                                <a href="https://maps.google.com" target="_blank"
+                                    class="btn-cta px-3 py-1 fw-bold text-uppercase d-inline-block small text-decoration-none"
+                                    style="font-size: 12px;">
+                                    Ver Local
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h6 class="text-white-50 text-uppercase fw-semibold small mb-2">Disponibilidad</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-motorcycle text-warning"></i> Delivery
+                                    </span>
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-location-dot text-warning"></i> Retiro en Tienda
+                                    </span>
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-utensils text-warning"></i> Salón
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="tarjeta-local card text-white border border-secondary border-opacity-25 rounded-3 p-3 p-md-4">
+                        <div class="row align-items-center g-3">
+                            <div class="col-12 col-md-6 border-end-md border-secondary border-opacity-25">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h5 class="fw-bold mb-0 text-white">Sede Los Olivos</h5>
+                                </div>
+                                <p class="text-secondary small mb-3">
+                                    Av. Antúnez de Mayolo 1120, Los Olivos, Lima
+                                </p>
+                                <a href="https://maps.google.com" target="_blank"
+                                    class="btn-cta px-3 py-1 fw-bold text-uppercase d-inline-block small text-decoration-none"
+                                    style="font-size: 12px;">
+                                    Ver Local
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h6 class="text-white-50 text-uppercase fw-semibold small mb-2">Disponibilidad</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-motorcycle text-warning"></i> Delivery
+                                    </span>
+                                    <span class="badge badge-despacho d-flex align-items-center gap-1">
+                                        <i class="fa-solid fa-location-dot text-warning"></i> Retiro en Tienda
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

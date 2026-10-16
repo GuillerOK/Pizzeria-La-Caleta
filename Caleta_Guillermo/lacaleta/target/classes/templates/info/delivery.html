@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Políticas de Delivery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <main class="bg-white text-dark py-5" style="min-height: 80vh;">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Menú Lateral -->
+                <aside class="col-12 col-md-4 col-lg-3">
+                    <h5 class="fw-bold text-uppercase pb-2 border-bottom border-2 text-dark mb-3">Centro de Ayuda</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3 small">
+                        <li>
+                            <a th:href="@{/terminos}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Términos y Condiciones
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/delivery}" class="text-decoration-none fw-bold text-ro d-block border-start border-3 border-danger ps-2">
+                                Políticas de Delivery
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/faq}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Preguntas Frecuentes
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Área de Contenido -->
+                <div class="col-12 col-md-8 col-lg-9">
+                    <h2 class="fw-bold text-uppercase mb-4 text-dark border-bottom pb-2">Políticas y Condiciones de Entrega</h2>
+                    
+                    <p class="text-secondary leading-relaxed mb-4">
+                        En <strong>Pizzería La Caleta</strong> nuestro compromiso es asegurar que cada pedido llegue en el menor tiempo posible, manteniendo la temperatura ideal y la textura crocante de nuestras pizzas artesanales. A continuación, se describen los términos que regulan nuestro servicio de despacho a domicilio.
+                    </p>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">1. ZONAS DE COBERTURA Y HORARIOS</h5>
+                        <p class="text-secondary mb-2">
+                            El servicio de reparto se encuentra segmentado por radios de entrega asociados a cada sucursal para garantizar la calidad del producto.
+                        </p>
+                        <ul class="text-secondary small d-flex flex-column gap-1 mb-2">
+                            <li><strong>Horario regular:</strong> Lunes a Domingo de 12:00 m. a 10:30 p.m.</li>
+                            <li><strong>Validación de dirección:</strong> El sistema verifica de forma automática si su ubicación se encuentra dentro del rango de reparto habilitado al ingresar su dirección de entrega.</li>
+                            <li><strong>Alternativa de Recojo:</strong> Si su ubicación se encuentra fuera de cobertura, podrá optar por la modalidad de retiro en tienda (Pick Up).</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">2. TIEMPOS Y TARIFAS DE ENVÍO</h5>
+                        <p class="text-secondary mb-2">
+                            El tiempo estándar de entrega es de aproximadamente <strong>35 a 50 minutos</strong> desde la confirmación de la orden en cocina.
+                        </p>
+                        <p class="text-secondary mb-2">
+                            El costo de delivery se calcula según la distancia entre la sucursal de origen y el destino. Dicho valor se muestra claramente desglosado en el resumen de compra antes de confirmar el pago.
+                        </p>
+                        <p class="text-secondary">
+                            En días festivos, fines de semana con alta demanda o condiciones climatológicas adversas (lluvias intensas), los tiempos estimados pueden sufrir variaciones imprevistas.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">3. PROTOCOLO DE ENTREGA Y RECEPCIÓN</h5>
+                        <p class="text-secondary mb-2">
+                            Para resguardar la seguridad del cliente y del repartidor, se aplican las siguientes directrices:
+                        </p>
+                        <ul class="text-secondary small d-flex flex-column gap-2 mb-2">
+                            <li>La entrega se efectuará exclusivamente en la puerta principal de la vivienda, portería de condominios o recepción de edificios empresariales.</li>
+                            <li>El repartidor esperará un plazo máximo de <strong>10 minutos</strong> en el domicilio indicado intentando comunicarse vía llamada telefónica.</li>
+                            <li>En caso de no contactar al cliente, el pedido retornará al local de origen. La reprogramación generará un nuevo cargo de envío.</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="fw-bold text-dark mb-2">4. INCIDENCIAS Y ATENCIÓN POST-ENTREGA</h5>
+                        <p class="text-secondary">
+                            Es responsabilidad del cliente verificar la integridad y conformidad del pedido (sellos del empaque, bebidas y complementos) al momento de la entrega. En caso de discrepancias, repórtelo en un plazo no mayor a <strong>30 minutos</strong> a través de nuestra línea de atención para su solución inmediata.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>

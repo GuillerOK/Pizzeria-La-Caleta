@@ -1,0 +1,393 @@
+.caleta-admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f3f4f6;
+    color: #1f2937;
+}
+
+/* Sidebar: fondo blanco con borde gris sutil */
+.caleta-sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 14px;
+    flex-shrink: 0;
+}
+
+.caleta-logo-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.caleta-logo-box h2 {
+    color: var(--color-rojo-naranja);
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.caleta-logo-box p {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: #6b7280;
+    margin: 4px 0 0 0;
+}
+
+.caleta-menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.caleta-menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: #4b5563;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.caleta-menu-btn:hover {
+    background-color: #fff1ed;
+    color: var(--color-rojo-naranja);
+}
+
+.caleta-menu-btn.activo {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco) !important;
+    box-shadow: 0 4px 12px rgba(255, 69, 0, 0.25);
+}
+
+.caleta-menu-btn.highlight {
+    color: var(--color-carmesi);
+}
+
+.caleta-admin-user {
+    padding-top: 14px;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.caleta-user-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.caleta-badge-rol {
+    background-color: var(--color-carmesi);
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+/* Área de contenido: fondo gris neutro limpio */
+.caleta-admin-main {
+    flex-grow: 1;
+    background-color: #f8fafc;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.caleta-admin-main .caleta-table,
+.caleta-admin-main .caleta-table th,
+.caleta-admin-main .caleta-table td {
+    color: #212529 !important;
+}
+
+/* CORRECCIÓN DE COLISIÓN EN BADGES / INSIGNIAS */
+.caleta-badge {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Insignia genérica con fondo neutro y texto oscuro legible */
+.caleta-admin-main .caleta-table .caleta-badge {
+    background-color: #e5e7eb;
+    color: #374151 !important;
+}
+
+/* Insignias de estado con colores propios contrastados */
+.caleta-badge.success {
+    background-color: #dcfce7 !important;
+    color: #15803d !important;
+}
+
+.caleta-badge.warning {
+    background-color: #fef9c3 !important;
+    color: #a16207 !important;
+}
+
+.caleta-badge.danger {
+    background-color: #fee2e2 !important;
+    color: #b91c1c !important;
+}
+
+.caleta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.caleta-header h3 {
+    margin: 0;
+    font-weight: 800;
+    color: #111827;
+}
+
+.caleta-header-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Botones genéricos de admin */
+.caleta-btn-primary {
+    background-color: var(--color-rojo-naranja);
+    color: var(--color-blanco);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transicion);
+}
+
+.caleta-btn-primary:hover {
+    background-color: rgb(255, 95, 30);
+    color: #fff;
+}
+
+.caleta-btn-outline {
+    background: #ffffff;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transicion);
+}
+
+.caleta-btn-outline:hover {
+    border-color: var(--color-rojo-naranja);
+    color: var(--color-rojo-naranja);
+    background-color: #fff1ed;
+}
+
+/* KPIs / Tarjetas con fondo blanco y bordes suaves */
+.caleta-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.caleta-kpi-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid var(--color-rojo-naranja);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.caleta-kpi-card.carmesi {
+    border-left-color: var(--color-carmesi);
+}
+
+.caleta-kpi-card.alerta {
+    border-left-color: #eab308;
+}
+
+.caleta-kpi-card.verde {
+    border-left-color: #22c55e;
+}
+
+.caleta-kpi-label {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.caleta-kpi-val {
+    font-size: 20px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0;
+}
+
+.caleta-kpi-icon {
+    font-size: 22px;
+    color: var(--color-rojo-naranja);
+    background: rgba(255, 69, 0, 0.08);
+    padding: 10px;
+    border-radius: 50%;
+}
+
+/* Tablas y paneles */
+.caleta-panel {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 20px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.caleta-panel-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1f2937;
+}
+
+.caleta-search-input {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #1f2937;
+    padding: 8px 12px;
+    border-radius: 6px;
+    outline: none;
+    font-size: 13px;
+    width: 260px;
+    max-width: 100%;
+    margin-bottom: 14px;
+    transition: var(--transicion);
+}
+
+.caleta-search-input:focus {
+    border-color: var(--color-rojo-naranja);
+}
+
+.caleta-table-container {
+    overflow-x: auto;
+}
+
+.table.caleta-table {
+    --bs-table-bg: transparent;
+    --bs-table-color: #374151;
+    border-color: #e5e7eb;
+}
+
+.table.caleta-table thead th {
+    background-color: #f9fafb;
+    color: var(--color-rojo-naranja);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table.caleta-table tbody td {
+    font-size: 12.5px;
+    vertical-align: middle;
+    border-bottom: 1px solid #f3f4f6;
+    color: #1f2937;
+}
+
+.caleta-seccion {
+    display: none;
+}
+
+.caleta-seccion.activa {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .caleta-admin-wrapper {
+        flex-direction: column;
+    }
+
+    .caleta-sidebar {
+        display: contents;
+    }
+
+    .caleta-logo-box {
+        order: 1;
+        background-color: #ffffff;
+        padding: 16px 14px 6px 14px;
+        text-align: center;
+    }
+
+    .caleta-menu-nav {
+        order: 2;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 6px 14px 12px 14px;
+        border-bottom: 1px solid #e5e7eb;
+        gap: 6px;
+    }
+
+    .caleta-menu-btn {
+        white-space: nowrap;
+        padding: 8px 12px;
+        font-size: 12.5px;
+    }
+
+    .caleta-admin-main {
+        order: 3;
+        padding: 16px 14px;
+    }
+
+    .caleta-admin-user {
+        order: 4;
+        background-color: #ffffff;
+        border-top: 1px solid #e5e7eb;
+        padding: 20px 14px;
+        text-align: center;
+        margin-top: auto;
+    }
+
+    .caleta-admin-user .btn-crear-cuenta,
+    .caleta-admin-user .caleta-btn-outline,
+    .caleta-admin-user a,
+    .caleta-admin-user button {
+        max-width: 280px;
+        margin: 10px auto 0 auto;
+    }
+
+    .caleta-kpi-grid {
+        grid-template-columns: 1fr;
+    }
+}

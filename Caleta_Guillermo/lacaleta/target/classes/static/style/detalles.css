@@ -1,0 +1,105 @@
+.contenedor-foto-completa {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+}
+
+.contenedor-foto-completa img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.stepper-transparente {
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+}
+
+.bloque-personalizacion {
+    background-color: var(--color-negro-suave);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.fila-opcion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 14px;
+    border-radius: 8px;
+    background-color: rgba(24, 24, 24, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: var(--transicion);
+    user-select: none;
+    margin-bottom: 8px;
+}
+
+.fila-opcion:last-child {
+    margin-bottom: 0;
+}
+
+.fila-opcion:hover {
+    border-color: var(--color-rojo-naranja);
+    background-color: rgba(255, 69, 0, 0.05);
+}
+
+.btn-check:checked+.fila-opcion,
+.fila-opcion:has(.form-check-input:checked) {
+    border-color: var(--color-rojo-naranja) !important;
+    background-color: rgba(255, 69, 0, 0.12) !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--color-rojo-naranja);
+    border-color: var(--color-rojo-naranja);
+}
+
+.alerta-requerido {
+    background-color: rgba(251, 146, 60, 0.12);
+    border: 1px solid rgba(251, 146, 60, 0.3);
+    color: #fdba74;
+}
+
+.badge-contador {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+
+.badge-completado {
+    background-color: rgba(46, 125, 50, 0.18);
+    color: #4ade80;
+    border: 1px solid rgba(74, 222, 128, 0.35);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+
+.caja-seleccionada {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1.5px solid rgba(74, 222, 128, 0.45);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.caja-seleccionada:hover {
+    border-color: #4ade80;
+    background-color: rgba(74, 222, 128, 0.05);
+}
