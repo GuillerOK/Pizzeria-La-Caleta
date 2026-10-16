@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header th:fragment="headerCheckout" class="w-100">
+    <section id="topbar" class="py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a href="tel:+51999999999" class="text-nowrap">
+                    <i class="fa-solid fa-phone me-1"></i> (+51) 999 999 999
+                </a>
+                <a href="mailto:lacaleta@gmail.com" class="d-none d-sm-inline text-nowrap">
+                    <i class="fa-regular fa-envelope me-1"></i> lacaleta@gmail.com
+                </a>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <nav id="header" class="navbar py-2 border-bottom border-secondary border-opacity-25">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a class="navbar-brand me-0" th:href="@{/}" style="width: 130px;">
+                    <img th:src="@{/images/lacaleta.png}" class="img-fluid" alt="Logo La Caleta">
+                </a>
+                <div class="d-none d-xl-block text-secondary fst-italic small">
+                    "El que come callado, come doble"
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+</body>
+</html>

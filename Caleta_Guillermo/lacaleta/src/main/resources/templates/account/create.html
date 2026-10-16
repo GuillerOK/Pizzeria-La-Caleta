@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Crear Cuenta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+    <style>
+        /* Estilos para feedback de validación inline */
+        .msg-feedback {
+            font-size: 12px;
+            margin-top: 4px;
+            display: block;
+            transition: all 0.2s ease-in-out;
+        }
+        .is-invalid-custom {
+            border-color: #dc3545 !important;
+            box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <main>
+        <div class="contenedor-login">
+            <div class="login-seccion login-izq w-100 rounded shadow" style="max-width: 650px;">
+                <h2 class="login-titulo mb-4">¿AÚN NO TIENES CUENTA? REGÍSTRATE</h2>
+
+                <form id="formRegistro" th:action="@{/registro}" method="post" novalidate>
+                    <!-- Alerta de Error devuelta por Spring Boot -->
+                    <div th:if="${error}" class="alert alert-danger py-2 px-3 small mb-3 border-0 rounded-3 shadow-sm" role="alert" th:text="${error}"></div>
+                    <!-- Alerta de Error en pantalla (JS) -->
+                    <div id="jsErrorAlert" class="alert alert-danger py-2 px-3 small mb-3 border-0 rounded-3 shadow-sm d-none" role="alert"></div>
+
+                    <!-- Información personal -->
+                    <div class="beneficios-subtitulo border-bottom pb-2 mb-3">Información personal</div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 username">
+                            <label>Nombre <span>*</span></label>
+                            <input type="text" id="regNombre" name="nombre" placeholder="Ej. Camila"
+                                   th:value="${nombre}" required>
+                            <small id="feedNombre" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                        <div class="col-12 col-md-6 username">
+                            <label>Apellidos <span>*</span></label>
+                            <input type="text" id="regApellido" name="apellidos" placeholder="Ej. Torres"
+                                   th:value="${apellidos}" required>
+                            <small id="feedApellido" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 username">
+                            <label>Tipo de Documento <span>*</span></label>
+                            <select id="regTipoDoc" name="tipoDocumento" class="form-select" style="height: 42px; font-size: 14px;" required onchange="ajustarValidacionDoc()">
+                                <option value="DNI" th:selected="${tipoDocumento == 'DNI' || tipoDocumento == null}">DNI</option>
+                                <option value="CE" th:selected="${tipoDocumento == 'CE'}">Carnet de Extranjería</option>
+                                <option value="PAS" th:selected="${tipoDocumento == 'PAS'}">Pasaporte</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6 username">
+                            <label>Número de Documento <span>*</span></label>
+                            <input type="text" id="regNumDoc" name="numeroDocumento" placeholder="8 dígitos (Ej. 72839401)"
+                                   th:value="${numeroDocumento}" oninput="validarDocEnTiempoReal(this)" required>
+                            <small id="feedNumDoc" class="msg-feedback text-warning d-none"></small>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 username">
+                            <label>Número de teléfono <span>*</span></label>
+                            <input type="tel" id="regTelefono" name="telefono" placeholder="Ej. 987654321"
+                                   th:value="${telefono}" oninput="validarTelefonoEnTiempoReal(this)" required>
+                            <small id="feedTelefono" class="msg-feedback text-warning d-none"></small>
+                        </div>
+                        <div class="col-12 col-md-6 username">
+                            <label>Fecha de nacimiento <span>*</span></label>
+                            <input type="date" id="regFechaNac" name="fechaNacimiento"
+                                   th:value="${fechaNacimiento}" max="2012-12-31" min="1930-01-01" required>
+                            <small id="feedFechaNac" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                    </div>
+
+                    <!-- Información de inicio de sesión -->
+                    <div class="beneficios-subtitulo border-bottom pb-2 mb-3 mt-4">Información de inicio de sesión</div>
+
+                    <div class="username">
+                        <label>Correo electrónico <span>*</span></label>
+                        <input type="email" id="regEmail" name="email" placeholder="Ej. nombre@mail.com"
+                               th:value="${email}" required>
+                        <small id="feedEmail" class="msg-feedback text-danger d-none"></small>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 username">
+                            <label>Contraseña (mínimo 8 caracteres) <span>*</span></label>
+                            <div class="input-relative">
+                                <input type="password" id="regPassword" name="password" placeholder="••••••••" required>
+                            </div>
+                            <small id="feedPassword" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                        <div class="col-12 col-md-6 username">
+                            <label>Confirmar contraseña <span>*</span></label>
+                            <div class="input-relative">
+                                <input type="password" id="regPasswordConfirm" name="confirmPassword" placeholder="••••••••" required>
+                            </div>
+                            <small id="feedPasswordConfirm" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                    </div>
+
+                    <!-- Términos y condiciones -->
+                    <div class="d-flex flex-column gap-2 my-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkPromo" name="aceptaPromo" value="true">
+                            <label class="form-check-label text-dark small" for="checkPromo">
+                                Acepto recibir <strong>promociones y novedades</strong>.
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkTerminos" name="aceptaTerminos" value="true" required>
+                            <label class="form-check-label text-dark small" for="checkTerminos">
+                                Acepto los <a th:href="@{/terminos}" class="recordar p-0 d-inline text-decoration-underline">términos y condiciones</a> y la política de privacidad. <span>*</span>
+                            </label>
+                            <small id="feedTerminos" class="msg-feedback text-danger d-none"></small>
+                        </div>
+                    </div>
+
+                    <!-- Acciones -->
+                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 pt-2">
+                        <a th:href="@{/login}" class="recordar m-0"><i class="fa-solid fa-arrow-left me-1"></i> Ya tengo cuenta</a>
+                        <button type="submit" class="btn-login w-auto px-4 border-0">CREAR CUENTA</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer-simple :: footerSimple}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+
+    <script>
+        // 1. Cambiar Placeholders según Tipo de Documento
+        function ajustarValidacionDoc() {
+            const tipo = document.getElementById('regTipoDoc').value;
+            const inputDoc = document.getElementById('regNumDoc');
+            const feedDoc = document.getElementById('feedNumDoc');
+
+            feedDoc.classList.add('d-none');
+            inputDoc.classList.remove('is-invalid-custom');
+            inputDoc.value = "";
+
+            if (tipo === 'DNI') {
+                inputDoc.placeholder = "8 dígitos (Ej. 72839401)";
+            } else if (tipo === 'CE') {
+                inputDoc.placeholder = "Carnet de Extranjería (Ej. 000123456)";
+            } else {
+                inputDoc.placeholder = "Pasaporte (Ej. A12345678)";
+            }
+        }
+
+        // 2. Validación y aviso inmediato en el Documento
+        function validarDocEnTiempoReal(input) {
+            const tipo = document.getElementById('regTipoDoc').value;
+            const feedDoc = document.getElementById('feedNumDoc');
+            let valorLimpio = input.value;
+
+            if (tipo === 'DNI') {
+                valorLimpio = valorLimpio.replace(/[^0-9]/g, '');
+                
+                if (input.value !== valorLimpio) {
+                    feedDoc.innerText = '⚠️ El DNI solo puede contener números.';
+                    feedDoc.className = 'msg-feedback text-warning';
+                    feedDoc.classList.remove('d-none');
+                } else if (valorLimpio.length >= 8) {
+                    if (valorLimpio.length > 8) {
+                        valorLimpio = valorLimpio.slice(0, 8);
+                        feedDoc.innerText = 'ℹ️ Máximo 8 dígitos permitidos para DNI.';
+                        feedDoc.className = 'msg-feedback text-info';
+                        feedDoc.classList.remove('d-none');
+                    } else {
+                        feedDoc.classList.add('d-none');
+                    }
+                } else {
+                    feedDoc.innerText = `Llevas ${valorLimpio.length} de 8 dígitos.`;
+                    feedDoc.className = 'msg-feedback text-secondary';
+                    feedDoc.classList.remove('d-none');
+                }
+            } else {
+                valorLimpio = valorLimpio.replace(/[^a-zA-Z0-9]/g, '');
+                if (valorLimpio.length > 12) {
+                    valorLimpio = valorLimpio.slice(0, 12);
+                    feedDoc.innerText = 'ℹ️ Máximo 12 caracteres permitidos.';
+                    feedDoc.className = 'msg-feedback text-info';
+                    feedDoc.classList.remove('d-none');
+                } else {
+                    feedDoc.classList.add('d-none');
+                }
+            }
+            input.value = valorLimpio;
+        }
+
+        // 3. Validación y aviso inmediato en el Teléfono
+        function validarTelefonoEnTiempoReal(input) {
+            const feedTel = document.getElementById('feedTelefono');
+            let valorLimpio = input.value.replace(/[^0-9]/g, '');
+
+            if (valorLimpio.length > 0 && !valorLimpio.startsWith('9')) {
+                feedTel.innerText = '⚠️ El número de celular en Perú debe empezar con 9.';
+                feedTel.className = 'msg-feedback text-danger';
+                feedTel.classList.remove('d-none');
+            } else if (valorLimpio.length > 9) {
+                valorLimpio = valorLimpio.slice(0, 9);
+                feedTel.innerText = 'ℹ️ El número celular debe tener exactamente 9 dígitos.';
+                feedTel.className = 'msg-feedback text-info';
+                feedTel.classList.remove('d-none');
+            } else if (valorLimpio.length > 0 && valorLimpio.length < 9) {
+                feedTel.innerText = `Llevas ${valorLimpio.length} de 9 dígitos.`;
+                feedTel.className = 'msg-feedback text-secondary';
+                feedTel.classList.remove('d-none');
+            } else {
+                feedTel.classList.add('d-none');
+            }
+
+            input.value = valorLimpio;
+        }
+    </script>
+</body>
+
+</html>

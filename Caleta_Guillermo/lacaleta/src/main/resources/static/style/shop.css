@@ -1,0 +1,266 @@
+.banner-img-slider {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+#carouselHero .carousel-indicators [data-bs-target] {
+    width: 26px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: none;
+    transition: var(--t);
+}
+
+#carouselHero .carousel-indicators .active {
+    background-color: var(--ro);
+    width: 36px;
+}
+
+#carouselHero .carousel-control-prev,
+#carouselHero .carousel-control-next {
+    width: 4%;
+}
+
+.carrusel-horizontal, 
+.categorias-scroll {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+.carrusel-horizontal::-webkit-scrollbar, 
+.categorias-scroll::-webkit-scrollbar { 
+    display: none; 
+}
+
+#categorias, 
+#categorias-promo {
+    background-color: var(--bg-negro) !important;
+}
+
+.btn-categoria {
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.75);
+    background-color: var(--bg-suave);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+}
+
+.btn-categoria:hover, 
+.btn-categoria.active {
+    background-color: var(--ro);
+    color: #fff;
+    border-color: var(--ro);
+}
+
+.contenedor-foto-completa { 
+    border-radius: 16px; 
+    overflow: hidden; 
+}
+
+.contenedor-foto-completa img { 
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    border-radius: 16px; 
+}
+
+.stepper-transparente { 
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    border-radius: 10px; 
+}
+
+.bloque-personalizacion, 
+.card-acordeon-caleta {
+    background-color: var(--bg-suave);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fila-opcion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(24, 24, 24, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    margin-bottom: 8px;
+    user-select: none;
+}
+
+.fila-opcion:hover { 
+    border-color: var(--ro); 
+}
+
+.btn-check:checked + .fila-opcion, 
+.fila-opcion:has(.form-check-input:checked) {
+    border-color: var(--ro) !important;
+    background-color: rgba(255, 69, 0, 0.12) !important;
+}
+
+.form-check-input:checked { 
+    background-color: var(--ro); 
+    border-color: var(--ro); 
+}
+
+.alerta-requerido { 
+    background: rgba(251, 146, 60, 0.12); 
+    border: 1px solid rgba(251, 146, 60, 0.3); 
+    color: #fdba74; 
+}
+
+.badge-contador { 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    font-size: 11px; 
+    padding: 2px 10px; 
+    border-radius: 20px; 
+}
+
+.badge-completado { 
+    background: rgba(46, 125, 50, 0.18); 
+    color: #4ade80; 
+    border: 1px solid rgba(74, 222, 128, 0.35); 
+    font-size: 11px; 
+    padding: 2px 10px; 
+    border-radius: 20px; 
+}
+
+.caja-seleccionada { 
+    border: 1.5px solid rgba(74, 222, 128, 0.45); 
+    border-radius: 8px; 
+    padding: 10px 14px; 
+    cursor: pointer; 
+}
+
+.tarjeta-opcion-pago:has(input:checked) { 
+    border-color: var(--ro) !important; 
+    background: rgba(255, 69, 0, 0.08); 
+}
+
+#descripcion { 
+    background-color: rgb(146, 31, 2) !important; 
+}
+
+.btn-carrusel {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--bg-suave);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--t);
+    padding: 0;
+}
+
+.btn-carrusel:hover {
+    background-color: var(--ro);
+    border-color: var(--ro);
+    color: #fff;
+}
+
+.tarjeta-producto, 
+.tarjeta-pizza, 
+.tarjeta-catalogo {
+    background-color: var(--bg-suave) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    width: 100%;
+}
+
+.carrusel-horizontal .tarjeta-pizza,
+.carrusel-horizontal .tarjeta-producto {
+    flex: 0 0 260px;
+    width: 260px;
+}
+
+.tarjeta-producto .card-img-top, 
+.tarjeta-pizza .card-img-top, 
+.tarjeta-catalogo .card-img-top {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: auto !important;
+    object-fit: cover;
+    display: block;
+}
+
+.tarjeta-producto h5, 
+.tarjeta-pizza h5, 
+.tarjeta-catalogo h5,
+.tarjeta-producto a, 
+.tarjeta-pizza a, 
+.tarjeta-catalogo a,
+.tarjeta-producto span.fw-bold, 
+.tarjeta-pizza span.fw-bold, 
+.tarjeta-catalogo span.fw-bold {
+    color: #ffffff !important;
+}
+
+.tarjeta-producto p, 
+.tarjeta-pizza p, 
+.tarjeta-catalogo p {
+    color: rgba(255, 255, 255, 0.65) !important;
+    font-size: 12px;
+}
+
+.tarjeta-producto .border-top, 
+.tarjeta-pizza .border-top, 
+.tarjeta-catalogo .border-top {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+section[id], 
+.seccion-scroll {
+    scroll-margin-top: 140px;
+}
+
+.tabla-caleta {
+    --bs-table-bg: transparent;
+    --bs-table-color: #fff;
+    color: #fff !important;
+}
+
+.tabla-caleta th,
+.tabla-caleta td {
+    background-color: transparent !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.link-volver:hover {
+    color: var(--ro) !important;
+}
+
+.text-ro {
+    color: var(--ro) !important;
+}
+
+.toast-caleta {
+    background-color: var(--bg-suave, #1a1a1a) !important;
+    border: 1px solid var(--ro) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 12px rgba(227, 30, 36, 0.2) !important;
+}
+
+.opcion-pago-wrapper {
+    background-color: rgba(0, 0, 0, 0.25);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.opcion-pago-wrapper.activo {
+    border-color: var(--ro) !important;
+    box-shadow: 0 0 10px rgba(227, 30, 36, 0.15);
+}
+
+.fs-xs {
+    font-size: 0.75rem;
+}
+
+.form-check-input:checked {
+    background-color: var(--ro);
+    border-color: var(--ro);
+}

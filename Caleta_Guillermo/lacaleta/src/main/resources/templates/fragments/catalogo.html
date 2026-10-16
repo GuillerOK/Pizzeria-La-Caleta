@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <nav th:fragment="navMenu" id="categorias" class="sticky-top py-2">
+        <div class="container">
+            <div class="d-flex flex-nowrap overflow-x-auto gap-2 py-1 categorias-scroll">
+                <button type="button" class="btn-categoria active text-nowrap"
+                    onclick="cambiarSeccion('promociones', this)">Promociones</button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="cambiarSeccion('pizzas-principales', this)">Principales</button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="cambiarSeccion('combos-secretos', this)">Combos Secretos</button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="cambiarSeccion('acompanamientos', this)">Acompañamientos</button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="cambiarSeccion('bebidas', this)">Bebidas</button>
+            </div>
+        </div>
+    </nav>
+
+    <nav th:fragment="navPromociones" id="categorias-promo" class="sticky-top py-2">
+        <div class="container">
+            <div class="d-flex flex-nowrap overflow-x-auto gap-2 py-1 categorias-scroll">
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="desplazarASeccion('promo-1persona', this)">
+                    <i class="fa-solid fa-user me-1"></i> 1 PERSONA
+                </button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="desplazarASeccion('promo-2personas', this)">
+                    <i class="fa-solid fa-user-group me-1"></i> 2 PERSONAS
+                </button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="desplazarASeccion('promo-3personas', this)">
+                    <i class="fa-solid fa-users me-1"></i> 3-4 PERSONAS
+                </button>
+                <button type="button" class="btn-categoria text-nowrap"
+                    onclick="desplazarASeccion('promo-familiares', this)">
+                    <i class="fa-solid fa-people-group me-1"></i> 5 A MÁS
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Grilla de Productos -->
+    <section th:fragment="seccionGrilla(idSeccion, tituloSeccion, claseExtra, lista, tipo)" th:id="${idSeccion}"
+        class="py-4 seccion-scroll" th:classappend="${claseExtra}">
+        <div class="container">
+            <div th:if="${tituloSeccion != null and !tituloSeccion.isEmpty()}"
+                class="d-flex align-items-center mb-4 border-bottom border-secondary pb-2">
+                <h3 class="fw-bold text-white mb-0 text-uppercase fs-4" th:text="${tituloSeccion}">TÍTULO SECCIÓN</h3>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+                <div class="col d-flex justify-content-center" th:each="prod : ${lista}">
+                    <div class="card tarjeta-producto border-0 rounded-3 overflow-hidden shadow-sm w-100">
+                        <a
+                            th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}">
+                            <img th:src="@{${prod.imagenUrl}}" class="card-img-top object-fit-cover"
+                                th:alt="${prod.nombre}">
+                        </a>
+                        <div class="card-body d-flex flex-column text-center p-3">
+                            <a th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}"
+                                class="text-decoration-none">
+                                <h5 class="fw-bold fs-6 mb-1 text-truncate" th:text="${prod.nombre}"
+                                    th:title="${prod.nombre}">Producto</h5>
+                            </a>
+                            <p class="small flex-grow-1 mb-3 desc-clamp" th:text="${prod.descripcion}">Descripción</p>
+                            <div
+                                class="d-flex justify-content-between align-items-center pt-2 border-top border-secondary border-opacity-25 mt-auto">
+                                <a th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}"
+                                    class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center text-decoration-none flex-shrink-0"
+                                    title="Personalizar producto">
+                                    <i class="fa-solid fa-plus"></i>
+                                </a>
+                                <span class="fw-bold fs-6 text-nowrap ms-2"
+                                    th:text="'S/ ' + ${#numbers.formatDecimal(prod.precio, 1, 2)}">S/ 0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${#lists.isEmpty(lista)}" class="text-center py-4 text-secondary">
+                <p class="mb-0">No hay productos en esta sección por el momento.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrusel Horizontal -->
+    <section th:fragment="carruselHorizontal(idCarrusel, titulo, lista, tipo)" class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold mb-0 text-white" th:text="${titulo}">TÍTULO</h2>
+                <div class="d-flex gap-2">
+                    <button class="btn-carrusel rounded-circle d-flex align-items-center justify-content-center"
+                        th:data-target="${idCarrusel}" onclick="desplazar(this.dataset.target, -280)"
+                        aria-label="Anterior">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="btn-carrusel rounded-circle d-flex align-items-center justify-content-center"
+                        th:data-target="${idCarrusel}" onclick="desplazar(this.dataset.target, 280)"
+                        aria-label="Siguiente">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div th:id="${idCarrusel}" class="d-flex flex-nowrap overflow-x-auto gap-4 pb-3 carrusel-horizontal">
+                <div th:each="prod : ${lista}"
+                    class="tarjeta-pizza card bg-white text-dark border-0 overflow-hidden flex-shrink-0"
+                    style="width: 250px;">
+                    <a
+                        th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}">
+                        <img th:src="@{${prod.imagenUrl}}" class="card-img-top object-fit-cover"
+                            th:alt="${prod.nombre}">
+                    </a>
+                    <div class="card-body d-flex flex-column text-center p-3">
+                        <a th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}"
+                            class="text-decoration-none text-dark">
+                            <h5 class="fw-bold fs-6 mb-1 text-truncate" th:text="${prod.nombre}">Nombre</h5>
+                        </a>
+                        <p class="text-secondary small flex-grow-1 mb-3 desc-clamp" th:text="${prod.descripcion}">
+                            Descripción</p>
+                        <div class="d-flex justify-content-between align-items-center pt-2 border-top mt-auto">
+                            <a th:href="@{/detalles(nombre=${prod.nombre}, precio=${#numbers.formatDecimal(prod.precio, 1, 2)}, img=${prod.imagenUrl}, desc=${prod.descripcion}, tipo=${tipo})}"
+                                class="btn-add-caleta rounded-circle d-flex align-items-center justify-content-center text-decoration-none"
+                                title="Personalizar producto">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                            <span class="fw-bold fs-6 text-nowrap ms-2"
+                                th:text="'S/ ' + ${#numbers.formatDecimal(prod.precio, 1, 2)}">S/ 0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

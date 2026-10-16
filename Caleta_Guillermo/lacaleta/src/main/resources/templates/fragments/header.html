@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header th:fragment="header(paginaActiva)" class="w-100">
+    <!-- Topbar -->
+    <section id="topbar" class="py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a href="tel:+51999999999" class="text-nowrap">
+                    <i class="fa-solid fa-phone me-1"></i> (+51) 999 999 999
+                </a>
+                <a href="mailto:lacaleta@gmail.com" class="d-none d-sm-inline text-nowrap">
+                    <i class="fa-regular fa-envelope me-1"></i> lacaleta@gmail.com
+                </a>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navbar principal -->
+    <nav id="header" class="navbar py-2 border-bottom border-secondary border-opacity-25">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a class="navbar-brand me-0" th:href="@{/}" style="width: 130px;">
+                    <img th:src="@{/images/lacaleta.png}" class="img-fluid" alt="Logo La Caleta">
+                </a>
+                <div class="d-none d-xl-block text-secondary fst-italic small">
+                    "El que come callado, come doble"
+                </div>
+            </div>
+
+            <!-- Lado Derecho: Menú, Carrito e Inicio de Sesión -->
+            <div class="d-flex align-items-center gap-3">
+                <!-- Enlaces de navegación con condicionales -->
+                <div id="navLinkMenu" class="d-none d-lg-flex align-items-center gap-2 me-2">
+                    <a class="nav-link px-3 py-1 fw-bold text-nowrap"
+                        th:classappend="${paginaActiva == 'menu'} ? 'active text-warning border-bottom border-warning' : 'text-white'"
+                        th:href="@{/menu}">Menú</a>
+                    <a class="nav-link px-3 py-1 fw-bold text-nowrap"
+                        th:classappend="${paginaActiva == 'promociones'} ? 'active text-warning border-bottom border-warning' : 'text-white'"
+                        th:href="@{/promociones}">Promociones</a>
+                    <a class="nav-link px-3 py-1 fw-bold text-nowrap"
+                        th:classappend="${paginaActiva == 'locales'} ? 'active text-warning border-bottom border-warning' : 'text-white'"
+                        th:href="@{/locales}">Locales</a>
+                    <a th:if="${usuario != null and usuario.esAdmin() and paginaActiva != 'admin'}"
+                        class="nav-link px-3 py-1 fw-bold text-warning text-nowrap"
+                        th:href="@{/admin}">
+                        <i class="fa-solid fa-lock me-1"></i> Administración
+                    </a>
+                </div>
+
+                <!-- Botón Carrito -->
+                <button type="button"
+                    class="nav-menu-link-shop px-3 py-2 fw-bold rounded-pill d-flex align-items-center gap-2 text-nowrap border-0"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="d-none d-sm-inline">S/ 0.00</span>
+                </button>
+
+                <!-- Área de Usuario / Sesión -->
+                <div id="navUserArea" class="d-flex align-items-center">
+    <!-- Si hay usuario en la sesión de Spring Boot -->
+    <div th:if="${session.usuarioLogueado != null or usuario != null}" class="dropdown">
+        <button class="btn btn-dark text-white dropdown-toggle border-0 small fw-semibold d-flex align-items-center gap-2 shadow-none" 
+                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user-check text-success fs-5"></i>
+            <span th:text="${session.usuarioLogueado != null ? session.usuarioLogueado.nombre : usuario.nombre}">Usuario</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary shadow">
+            <li>
+                <a class="dropdown-item text-white small" th:href="@{/perfil}">
+                    <i class="fa-solid fa-user me-2 text-danger"></i>Mi Perfil & Pedidos
+                </a>
+            </li>
+            <li th:if="${(session.usuarioLogueado != null and session.usuarioLogueado.esAdmin()) or (usuario != null and usuario.esAdmin())}">
+                <a class="dropdown-item text-warning small fw-bold" th:href="@{/admin}">
+                    <i class="fa-solid fa-gauge me-2"></i>Panel Admin
+                </a>
+            </li>
+            <li><hr class="dropdown-divider border-secondary"></li>
+            <li>
+                <a class="dropdown-item text-white small" th:href="@{/logout}" onclick="localStorage.clear();">
+                    <i class="fa-solid fa-right-from-bracket me-2 text-danger"></i>Cerrar sesión
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Si no hay sesión activa -->
+    <a th:unless="${session.usuarioLogueado != null or usuario != null}" th:href="@{/login}" class="btn-login-header">
+        <i class="fa-solid fa-user me-1"></i> Iniciar sesión
+    </a>
+</div>
+                <!-- Botón Hamburguesa Móvil -->
+                <button class="btn border-0 text-white p-1 d-lg-none shadow-none" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu"
+                    aria-label="Abrir navegación">
+                    <i class="fa-solid fa-bars fs-3"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+</body>
+</html>

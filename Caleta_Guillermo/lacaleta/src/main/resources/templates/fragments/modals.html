@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <!-- Panel Lateral del Carrito -->
+    <div th:fragment="offcanvasCarrito"
+        class="offcanvas offcanvas-end text-white border-start border-secondary border-opacity-25" tabindex="-1"
+        id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
+        <div class="offcanvas-header border-bottom border-secondary border-opacity-25 py-3">
+            <h5 class="offcanvas-title fw-bold text-white fs-6 mb-0 d-flex align-items-center gap-2"
+                id="offcanvasCarritoLabel">
+                CARRITO DE COMPRAS
+            </h5>
+            <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
+                aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-4">
+            <div class="text-center my-auto">
+                <div class="mb-3">
+                    <i class="fa-solid fa-basket-shopping fs-1 text-secondary opacity-50"></i>
+                </div>
+                <h6 class="fw-bold text-white mb-2">Tu carrito está vacío</h6>
+                <p class="text-secondary small mb-4">
+                    Tu producto ha sido eliminado del carrito y es necesario que realices tu compra nuevamente.
+                </p>
+                <a th:href="@{/menu}"
+                    class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small text-decoration-none">
+                    Explorar Menú
+                </a>
+            </div>
+            <div class="border-top border-secondary border-opacity-25 pt-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-secondary small">Total estimado:</span>
+                    <span class="fw-bold fs-5 text-white">S/ 0.00</span>
+                </div>
+                <button class="btn btn-secondary w-100 fw-bold py-2 text-uppercase small disabled"
+                    style="border-radius: 30px;">
+                    Continuar con el pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menú de Navegación Móvil -->
+    <div th:fragment="offcanvasMenu"
+        class="offcanvas offcanvas-start text-white border-end border-secondary border-opacity-25" tabindex="-1"
+        id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+        <div class="offcanvas-header border-bottom border-secondary border-opacity-25 py-3">
+            <div class="d-flex align-items-center gap-2" id="offcanvasMenuLabel">
+                <img th:src="@{/images/lacaleta.png}" alt="Logo" style="max-width: 100px;">
+            </div>
+            <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas"
+                aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-4">
+            <ul class="nav flex-column gap-3 fs-5 fw-bold">
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3" th:href="@{/menu}">Menú</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3"
+                        th:href="@{/promociones}">Promociones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0 d-flex align-items-center gap-3" th:href="@{/locales}">Locales</a>
+                </li>
+            </ul>
+            <div class="border-top border-secondary border-opacity-25 pt-3">
+                <p class="text-secondary small mb-2">Pedidos directos:</p>
+                <a href="tel:+51999999999" class="text-white fw-bold text-decoration-none small d-block mb-3">
+                    <i class="fa-solid fa-phone me-2 text-white"></i> (+51) 999 999 999
+                </a>
+                <div class="d-flex gap-3 fs-5">
+                    <a href="https://www.facebook.com" target="_blank" class="text-white-50"><i
+                            class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com" target="_blank" class="text-white-50"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com" target="_blank" class="text-white-50"><i
+                            class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Flotante -->
+    <div th:fragment="toastNotificacion" class="toast-container position-fixed bottom-0 end-0 p-3"
+        style="z-index: 1100;">
+        <div id="toastCarrito" class="toast toast-caleta align-items-center shadow-lg rounded-3 border-0" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex align-items-center">
+                <div class="toast-body d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-ro fs-5"></i>
+                    <span id="toastMensaje" class="small fw-semibold text-white"></span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Cerrar"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Notificación Global -->
+    <div th:fragment="modalNotificacionGlobal" class="modal fade" id="modalNotificacionGlobal" tabindex="-1"
+        aria-labelledby="modalNotificacionGlobalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-white border border-secondary border-opacity-25"
+                style="background-color: #232323; border-radius: 12px;">
+                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
+                    <h5 class="modal-title fw-bold fs-5 text-white mb-0 d-flex align-items-center gap-2" id="modalNotificacionGlobalLabel"
+                        th:text="${modalTitulo != null ? modalTitulo : 'Notificación'}">
+                        Notificación
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <p class="mb-0 text-white-50 fs-6" id="modalNotificacionGlobalMensaje"
+                        th:text="${modalMensaje != null ? modalMensaje : ''}">
+                        Mensaje del sistema
+                    </p>
+                </div>
+                <div class="modal-footer border-top border-secondary border-opacity-25 py-2">
+                    <button type="button" class="btn btn-secondary px-4 fw-bold text-uppercase small"
+                        data-bs-dismiss="modal" style="border-radius: 30px;">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fragmento con todos los modales y offcanvas globales -->
+    <div th:fragment="todosLosModals">
+        <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+        <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+        <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+        <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+    </div>
+
+</body>
+
+</html>

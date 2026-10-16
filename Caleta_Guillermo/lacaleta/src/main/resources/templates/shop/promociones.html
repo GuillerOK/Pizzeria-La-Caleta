@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Promociones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/main.css}">
+    <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('promociones')}"></div>
+
+    <main class="py-3">
+        <div th:replace="~{fragments/catalogo :: navPromociones}"></div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promo-1persona', 'Para 1 Persona (Pizzas Personales)', '', ${promos1Persona}, 'pizza')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promo-2personas', 'Para 2 Personas (Dúos Clásicos)', '', ${promosDuo}, 'combo')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promo-3personas', 'Para 3 a 4 Personas (Tríos Caleta)', '', ${promosTrio}, 'combo')}">
+        </div>
+
+        <div
+            th:replace="~{fragments/catalogo :: seccionGrilla('promo-familiares', 'Para 5 a Más (Banquetes y Familiares)', '', ${promosFamiliares}, 'combo')}">
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/ui.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+    <script th:src="@{/js/auth.js}"></script>
+</body>
+
+</html>

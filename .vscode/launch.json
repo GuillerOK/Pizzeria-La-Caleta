@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LacaletaApplication<lacaleta>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.lacaleta.LacaletaApplication",
+            "projectName": "lacaleta",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

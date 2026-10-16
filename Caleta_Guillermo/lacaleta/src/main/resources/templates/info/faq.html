@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Caleta | Preguntas Frecuentes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/style/styles.css}">
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/header :: header('')}"></div>
+
+    <main class="bg-white text-dark py-5" style="min-height: 80vh;">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Menú Lateral -->
+                <aside class="col-12 col-md-4 col-lg-3">
+                    <h5 class="fw-bold text-uppercase pb-2 border-bottom border-2 text-dark mb-3">Centro de Ayuda</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3 small">
+                        <li>
+                            <a th:href="@{/terminos}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Términos y Condiciones
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/delivery}" class="text-decoration-none text-secondary d-block ps-2 hover-rojo">
+                                Políticas de Delivery
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/faq}" class="text-decoration-none fw-bold text-ro d-block border-start border-3 border-danger ps-2">
+                                Preguntas Frecuentes
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Área de Contenido -->
+                <div class="col-12 col-md-8 col-lg-9">
+                    <h2 class="fw-bold text-uppercase mb-4 text-dark border-bottom pb-2">Preguntas Frecuentes (FAQ)</h2>
+                    
+                    <p class="text-secondary leading-relaxed mb-4">
+                        Encuentra respuestas rápidas y claras a las consultas más comunes sobre compras, tiempos de despacho, medios de pago y modificaciones en tus pedidos.
+                    </p>
+
+                    <div class="accordion accordion-flush" id="accordionFaqBlanco">
+                        
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqOne">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqOne" aria-expanded="false" aria-controls="collapseFaqOne">
+                                    ¿Cuáles son los métodos de pago disponibles?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqOne" class="accordion-collapse collapse" aria-labelledby="faqOne" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    Aceptamos tarjetas de débito y crédito (Visa y Mastercard) mediante pasarela encriptada, pagos inmediatos por Yape, y la opción de pago contra entrega (efectivo con monto exacto o POS inalámbrico que lleva el repartidor).
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqTwo">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqTwo" aria-expanded="false" aria-controls="collapseFaqTwo">
+                                    ¿Cuál es el tiempo promedio de entrega?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwo" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    El plazo estimado comprende entre 35 y 50 minutos. Podrás conocer el avance de tu orden desde la confirmación del pago hasta que el repartidor arriba a tu dirección.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqThree">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqThree" aria-expanded="false" aria-controls="collapseFaqThree">
+                                    ¿Existe un consumo mínimo para delivery?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqThree" class="accordion-collapse collapse" aria-labelledby="faqThree" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    El monto mínimo de consumo para despachos a domicilio es de S/ 20.00 (sin incluir el costo por servicio de delivery).
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqFour">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqFour" aria-expanded="false" aria-controls="collapseFaqFour">
+                                    ¿Puedo retirar mi pedido directamente en tienda (Pick Up)?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqFour" class="accordion-collapse collapse" aria-labelledby="faqFour" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    Sí. Durante el proceso de compra selecciona "Retiro en local" y escoge la sucursal de tu preferencia. Tu pedido estará listo aproximadamente en 20 a 25 minutos sin costo adicional de envío.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqFive">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqFive" aria-expanded="false" aria-controls="collapseFaqFive">
+                                    ¿Cómo solicito factura o boleta electrónica?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqFive" class="accordion-collapse collapse" aria-labelledby="faqFive" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    En la pantalla de pago podrás seleccionar entre "Boleta" o "Factura". Para emitir factura, deberás ingresar el RUC y la Razón Social correspondiente antes de procesar la transacción.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-bottom">
+                            <h2 class="accordion-header" id="faqSix">
+                                <button class="accordion-button collapsed fw-bold text-dark bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqSix" aria-expanded="false" aria-controls="collapseFaqSix">
+                                    ¿Qué debo hacer si mi pedido llega con algún inconveniente?
+                                </button>
+                            </h2>
+                            <div id="collapseFaqSix" class="accordion-collapse collapse" aria-labelledby="faqSix" data-bs-parent="#accordionFaqBlanco">
+                                <div class="accordion-body text-secondary small">
+                                    Comunícate inmediatamente dentro de los primeros 30 minutos a nuestra línea de atención (+51 999 999 999) o por correo a lacaleta@gmail.com con tu número de compra y una fotografía del producto para gestionar la reposición inmediata de tu orden.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals / Offcanvas / Toasts Fragments -->
+    <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+    <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+
+</html>
