@@ -211,4 +211,63 @@ public class PageController {
         return "info/delivery";
     }
 
+    @GetMapping("/perfil")
+    public String perfil(Model model, HttpSession session) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+        
+        // Si el usuario no ha iniciado sesión, lo redirige al login
+        if (usuarioLogueado == null) {
+            return "redirect:/login";
+        }
+
+        cargarUsuarioEnModelo(model, session);
+
+        // Obtener historial de pedidos del usuario conectado
+        var misPedidos = pedidoRepository.findAll().stream()
+                .filter(p -> p.getUsuario() != null && usuarioLogueado.getId().equals(p.getUsuario().getId()))
+                .sorted((p1, p2) -> p2.getFecha().compareTo(p1.getFecha()))
+                .toList();
+
+        double totalGastado = misPedidos.stream().mapToDouble(p -> p.getTotal() != null ? p.getTotal() : 0.0).sum();
+        int puntosCaleta = (int) (totalGastado / 5.0); // 1 punto por cada S/ 5 de consumo
+
+        var ultimoPedido = misPedidos.isEmpty() ? null : misPedidos.get(0);
+
+        model.addAttribute("pedidos", misPedidos);
+        model.addAttribute("totalPedidos", misPedidos.size());
+        model.addAttribute("totalGastado", totalGastado);
+        model.addAttribute("puntosCaleta", puntosCaleta);
+        model.addAttribute("ultimoPedido", ultimoPedido);
+
+        return "account/perfil";
+    }
+
+    @PostMapping("/perfil/actualizar")
+    public String actualizarPerfil(@RequestParam("nombre") String nombre,
+                                   @RequestParam("telefono") String telefono,
+                                   @RequestParam(value = "dni", required = false) String dni,
+                                   HttpSession session,
+                                   org.springframework.web.servlet.mvc.support.RedirectAttributes redirectAttributes) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuarioLogueado == null) {
+            return "redirect:/login";
+        }
+
+        usuarioLogueado.setNombre(nombre);
+        usuarioLogueado.setTelefono(telefono);
+        if (dni != null) {
+            usuarioLogueado.setDni(dni);
+        }
+
+        boolean actualizado = usuarioService.guardar(usuarioLogueado);
+        if (actualizado) {
+            session.setAttribute("usuarioLogueado", usuarioLogueado);
+            redirectAttributes.addFlashAttribute("exito", "¡Tus datos personales se actualizaron correctamente!");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Ocurrió un error al intentar actualizar tus datos.");
+        }
+
+        return "redirect:/perfil";
+    }
+
 }

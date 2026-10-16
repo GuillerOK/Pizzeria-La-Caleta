@@ -33,34 +33,57 @@ function filtrarTabla(inputId, tablaId) {
 }
 
 function abrirModalEditar(btn) {
-    document.getElementById('edit-id').value = btn.getAttribute('data-id');
-    document.getElementById('edit-nombre').value = btn.getAttribute('data-nombre');
-    document.getElementById('edit-precio').value = btn.getAttribute('data-precio');
-    document.getElementById('edit-img').value = btn.getAttribute('data-img');
+    if (!btn) return;
+    const editId = document.getElementById('edit-id');
+    const editNombre = document.getElementById('edit-nombre');
+    const editPrecio = document.getElementById('edit-precio');
+    const editImg = document.getElementById('edit-img');
+    const editTamano = document.getElementById('edit-tamano');
+    const editCategoria = document.getElementById('edit-categoria');
+    const editDisponible = document.getElementById('edit-disponible');
 
-    if (document.getElementById('edit-tamano')) {
-        document.getElementById('edit-tamano').value = btn.getAttribute('data-tamano') || 'Familiar';
+    if (editId) editId.value = btn.getAttribute('data-id') || '';
+    if (editNombre) editNombre.value = btn.getAttribute('data-nombre') || '';
+    if (editPrecio) editPrecio.value = btn.getAttribute('data-precio') || '';
+    if (editImg) editImg.value = btn.getAttribute('data-img') || '';
+
+    if (editTamano) {
+        editTamano.value = btn.getAttribute('data-tamano') || 'Familiar';
     }
-    if (document.getElementById('edit-categoria')) {
-        document.getElementById('edit-categoria').value = btn.getAttribute('data-categoria') || 'clasicas';
+    if (editCategoria) {
+        editCategoria.value = btn.getAttribute('data-categoria') || 'clasicas';
     }
-    if (document.getElementById('edit-disponible')) {
-        document.getElementById('edit-disponible').value = btn.getAttribute('data-disponible');
+    if (editDisponible) {
+        const disp = btn.getAttribute('data-disponible');
+        editDisponible.value = (disp === 'false') ? 'false' : 'true';
     }
 
-    const modal = new bootstrap.Modal(document.getElementById('modalEditarPizza'));
-    modal.show();
+    const modalEl = document.getElementById('modalEditarPizza');
+    if (modalEl) {
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.show();
+    }
 }
 
 function abrirModalEditarInsumo(btn) {
-    document.getElementById('edit-insumo-id').value = btn.getAttribute('data-id');
-    document.getElementById('edit-insumo-nombre').value = btn.getAttribute('data-nombre');
-    document.getElementById('edit-insumo-stock').value = btn.getAttribute('data-stock');
-    document.getElementById('edit-insumo-unidad').value = btn.getAttribute('data-unidad');
-    document.getElementById('edit-insumo-minimo').value = btn.getAttribute('data-minimo');
+    if (!btn) return;
+    const editId = document.getElementById('edit-insumo-id');
+    const editNombre = document.getElementById('edit-insumo-nombre');
+    const editStock = document.getElementById('edit-insumo-stock');
+    const editUnidad = document.getElementById('edit-insumo-unidad');
+    const editMinimo = document.getElementById('edit-insumo-minimo');
 
-    const modal = new bootstrap.Modal(document.getElementById('modalEditarInsumo'));
-    modal.show();
+    if (editId) editId.value = btn.getAttribute('data-id') || '';
+    if (editNombre) editNombre.value = btn.getAttribute('data-nombre') || '';
+    if (editStock) editStock.value = btn.getAttribute('data-stock') || '';
+    if (editUnidad) editUnidad.value = btn.getAttribute('data-unidad') || '';
+    if (editMinimo) editMinimo.value = btn.getAttribute('data-minimo') || '';
+
+    const modalEl = document.getElementById('modalEditarInsumo');
+    if (modalEl) {
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.show();
+    }
 }
 
 

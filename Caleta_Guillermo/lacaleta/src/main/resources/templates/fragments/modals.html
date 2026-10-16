@@ -106,7 +106,7 @@
             <div class="modal-content text-white border border-secondary border-opacity-25"
                 style="background-color: #232323; border-radius: 12px;">
                 <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
-                    <h5 class="modal-title fw-bold fs-5 text-white mb-0" id="modalNotificacionGlobalLabel"
+                    <h5 class="modal-title fw-bold fs-5 text-white mb-0 d-flex align-items-center gap-2" id="modalNotificacionGlobalLabel"
                         th:text="${modalTitulo != null ? modalTitulo : 'Notificación'}">
                         Notificación
                     </h5>
@@ -127,6 +127,14 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Fragmento con todos los modales y offcanvas globales -->
+    <div th:fragment="todosLosModals">
+        <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
+        <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
+        <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
+        <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
     </div>
 
 </body>
