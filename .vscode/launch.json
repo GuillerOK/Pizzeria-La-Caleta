@@ -4,11 +4,11 @@
             "type": "java",
             "name": "Spring Boot-LacaletaApplication<lacaleta>",
             "request": "launch",
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/Caleta_Guillermo/lacaleta",
             "mainClass": "com.lacaleta.LacaletaApplication",
             "projectName": "lacaleta",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/Caleta_Guillermo/lacaleta/.env"
         }
     ]
 }

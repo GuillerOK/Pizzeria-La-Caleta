@@ -17,7 +17,7 @@ La rama vacía creada inicialmente en el proyecto homónimo `Pizzeria-Caleta` se
 
 ## Preparar y arrancar de una vez
 
-Desde esta carpeta, con Node.js y un JDK 17 o superior:
+Desde la raíz del repositorio (`caleta-guille`) o desde esta carpeta, con Node.js y un JDK 17 o superior:
 
 ```powershell
 .\Preparar-Demo.ps1 -Iniciar
@@ -30,6 +30,8 @@ El script regenera el SQL, aplica migración y datos en una transacción usando 
 ```
 
 La instalación ya se aplicó. Repetir el comando no duplica insumos ni recetas, no reinicia el stock consumido y conserva una receta editada por el administrador. La primera instalación eleva el inventario de los ingredientes reutilizados al mínimo ficticio definido; nunca reduce las existencias previas.
+
+Los lanzadores de la raíz delegan en los scripts de `Caleta_Guillermo/lacaleta`, que cambian a esa carpeta antes de ejecutar Java o Maven. La configuración de ejecución de VS Code también usa esa carpeta y su `.env`. El JAR admite iniciarse tanto desde la raíz del repositorio como desde la carpeta del proyecto.
 
 El SQL complementa el esquema existente copiado de la aplicación; no es un instalador de todas las tablas para una base completamente vacía. Está destinado a la rama de demostración. Si agregas un alimento nuevo sin receta, el script falla y revierte la transacción, en lugar de dejar una instalación incompleta.
 
@@ -91,7 +93,7 @@ Las personales consumen el 45 % de la receta familiar. Los combos y promociones 
 
 ## Variables y correo
 
-La aplicación importa el `.env` local desde `application.properties` con `spring.config.import=optional:file:.env[.properties]`. Es un archivo en formato Java Properties: no requiere `export` ni ejecutar su contenido como código. [Documentación de configuración externa de Spring Boot](https://docs.spring.io/spring-boot/4.1-SNAPSHOT/reference/features/external-config.html).
+La aplicación importa el `.env` local desde `application.properties`: busca `Caleta_Guillermo/lacaleta/.env` cuando se arranca desde la raíz y `.env` cuando se arranca desde la carpeta del proyecto. Es un archivo en formato Java Properties: no requiere `export` ni ejecutar su contenido como código. [Documentación de configuración externa de Spring Boot](https://docs.spring.io/spring-boot/4.1-SNAPSHOT/reference/features/external-config.html).
 
 Variables principales:
 
