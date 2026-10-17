@@ -39,12 +39,12 @@ window.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             // Valores por defecto en caso de no haber data
-            const pizzasLabels = data.pizzasLabels && data.pizzasLabels.length > 0 ? data.pizzasLabels : ['Pepperoni', 'Hawaiana', 'Americana', 'Meat Lovers', 'Vegetariana'];
-            const pizzasData = data.pizzasData && data.pizzasData.length > 0 ? data.pizzasData : [0, 0, 0, 0, 0];
+            const pizzasLabels = data.pizzasLabels || [];
+            const pizzasData = data.pizzasData || [];
             const ingresosSemanales = data.graficoIngresosSemanales || [0, 0, 0, 0];
             const graficoPagos = data.graficoPagos || [0, 0, 0];
-            const insumosLabels = data.insumosLabels && data.insumosLabels.length > 0 ? data.insumosLabels : ['Mozzarella', 'Salsa Tomate', 'Pepperoni', 'Harina'];
-            const insumosData = data.insumosData && data.insumosData.length > 0 ? data.insumosData : [0, 0, 0, 0];
+            const insumosLabels = data.insumosLabels || [];
+            const insumosData = data.insumosData || [];
 
             // 1. Barras: Pizzas
             new Chart(document.getElementById('chartBarrasPizzas').getContext('2d'), {

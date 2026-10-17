@@ -76,7 +76,7 @@ function actualizarNavbar() {
     if (!navUserArea) return;
 
     if (sesion && sesion.nombre) {
-        const esAdmin = sesion.rol === "ADMIN";
+        const esAdmin = Number(sesion.rolId) === 2;
         const iconoRol = esAdmin ? "fa-user-shield text-warning" : "fa-user-check text-success";
         
         navUserArea.innerHTML = `
@@ -107,6 +107,8 @@ function actualizarNavbar() {
 
 document.addEventListener("DOMContentLoaded", () => {
     actualizarNavbar();
+    const flash = document.getElementById('notificacionFlash');
+    if (flash) mostrarModalMensaje(flash.dataset.titulo, flash.dataset.mensaje);
 
     // -------------------------------------------------------------------------
     // 1. REGISTRO DE USUARIO (formRegistro)

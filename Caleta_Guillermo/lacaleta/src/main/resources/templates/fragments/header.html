@@ -2,9 +2,9 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <body>
 
-<header th:fragment="header(paginaActiva)" class="w-100">
+<header th:fragment="header(paginaActiva)" class="w-100 position-relative" style="z-index: 1050;">
     <!-- Topbar -->
-    <section id="topbar" class="py-2">
+    <section id="topbar" class="py-2 position-relative" style="z-index: 1050;">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-3">
                 <a href="tel:+51999999999" class="text-nowrap">
@@ -24,7 +24,7 @@
     </section>
 
     <!-- Navbar principal -->
-    <nav id="header" class="navbar py-2 border-bottom border-secondary border-opacity-25">
+    <nav id="header" class="navbar py-2 border-bottom border-secondary border-opacity-25 position-relative" style="z-index: 1050;">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-3">
                 <a class="navbar-brand me-0" th:href="@{/}" style="width: 130px;">
@@ -72,7 +72,7 @@
             <i class="fa-solid fa-user-check text-success fs-5"></i>
             <span th:text="${session.usuarioLogueado != null ? session.usuarioLogueado.nombre : usuario.nombre}">Usuario</span>
         </button>
-        <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary shadow">
+        <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary shadow" style="z-index: 1060;">
             <li>
                 <a class="dropdown-item text-white small" th:href="@{/perfil}">
                     <i class="fa-solid fa-user me-2 text-danger"></i>Mi Perfil & Pedidos

@@ -9,124 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" th:href="@{/style/main.css}">
     <link rel="stylesheet" th:href="@{/style/styles.css}">
     <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="stylesheet" th:href="@{/style/perfil.css}">
     <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
-
-    <style>
-        .perfil-wrapper {
-            background-color: #121212;
-            color: #f3f4f6;
-            min-height: calc(100vh - 180px);
-            padding: 40px 0;
-        }
-
-        .perfil-card {
-            background-color: #1e1e1e;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .perfil-nav-btn {
-            background: transparent;
-            color: #a1a1aa;
-            border: none;
-            width: 100%;
-            text-align: left;
-            padding: 12px 18px;
-            border-radius: 10px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.25s ease;
-            margin-bottom: 6px;
-        }
-
-        .perfil-nav-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
-        }
-
-        .perfil-nav-btn.active {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            color: #ffffff;
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
-        }
-
-        .kpi-client-card {
-            background-color: #262626;
-            border-radius: 12px;
-            padding: 20px;
-            border-left: 4px solid #dc2626;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .badge-estado {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .badge-recibido { background-color: #1e3a8a; color: #93c5fd; }
-        .badge-preparacion { background-color: #854d0e; color: #fef08a; }
-        .badge-camino { background-color: #065f46; color: #a7f3d0; }
-        .badge-entregado { background-color: #14532d; color: #86efac; }
-        .badge-cancelado { background-color: #7f1d1d; color: #fca5a5; }
-
-        .form-control-dark {
-            background-color: #2d2d2d !important;
-            border: 1px solid #404040 !important;
-            color: #ffffff !important;
-            border-radius: 8px;
-            padding: 10px 14px;
-        }
-
-        .form-control-dark:focus {
-            border-color: #dc2626 !important;
-            box-shadow: 0 0 0 0.25rem rgba(220, 38, 38, 0.25) !important;
-        }
-
-        .table-dark-custom {
-            color: #e5e7eb;
-            vertical-align: middle;
-        }
-
-        .table-dark-custom thead th {
-            background-color: #262626;
-            color: #a1a1aa;
-            border-bottom: 2px solid #333;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .table-dark-custom tbody tr {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .avatar-box {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #e11d48, #9f1239);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
-        }
-    </style>
 </head>
 
 <body>
@@ -138,14 +26,6 @@
         <div class="container">
 
             <!-- MENSAJES DE ESTADO FLASH -->
-            <div th:if="${exito}" class="alert alert-success alert-dismissible fade show mb-4 border-0 rounded-3 shadow" role="alert" style="background-color: #14532d; color: #86efac;">
-                <i class="bi bi-check-circle-fill me-2"></i> <span th:text="${exito}"></span>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
-            </div>
-            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mb-4 border-0 rounded-3 shadow" role="alert" style="background-color: #7f1d1d; color: #fca5a5;">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i> <span th:text="${error}"></span>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
-            </div>
 
             <div class="row g-4">
 
@@ -159,7 +39,7 @@
                         </div>
                         <h4 class="fw-bold text-white mb-1" th:text="${usuario != null ? usuario.nombre : 'Cliente Caleta'}">Guillermo Cliente</h4>
                         <p class="text-secondary small mb-2" th:text="${usuario != null ? usuario.email : 'cliente@gmail.com'}">cliente@gmail.com</p>
-                        
+
                         <span class="badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-50 px-3 py-1 rounded-pill small fw-bold">
                             CLIENTE EXCLUSIVO
                         </span>
@@ -168,8 +48,8 @@
                     <!-- MENÚ DEL CLIENTE -->
                     <div class="perfil-card">
                         <h6 class="text-secondary text-uppercase fs-xs fw-bold mb-3 px-2">Mi Cuenta</h6>
-                        <nav>
-                            <button class="perfil-nav-btn active" id="btn-tab-resumen" onclick="cambiarPestanaCliente('resumen', this)">
+                        <nav class="d-flex flex-column gap-1">
+                            <button class="perfil-nav-btn" id="btn-tab-resumen" onclick="cambiarPestanaCliente('resumen', this)">
                                 <i class="bi bi-grid-fill text-danger"></i> Resumen General
                             </button>
                             <button class="perfil-nav-btn" id="btn-tab-pedidos" onclick="cambiarPestanaCliente('pedidos', this)">
@@ -178,9 +58,26 @@
                             <button class="perfil-nav-btn" id="btn-tab-datos" onclick="cambiarPestanaCliente('datos', this)">
                                 <i class="bi bi-person-bounding-box text-info"></i> Mis Datos Personales
                             </button>
-                            <a th:href="@{/logout}" class="perfil-nav-btn text-danger mt-3" onclick="localStorage.clear();">
-                                <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
-                            </a>
+                            <button class="perfil-nav-btn" id="btn-tab-cupones" onclick="cambiarPestanaCliente('cupones', this)">
+                                <i class="bi bi-ticket-perforated-fill text-success"></i> Tus Cupones
+                                <span class="badge bg-success ms-auto" th:text="${cuponesActivos != null ? cuponesActivos.size() : 0}">0</span>
+                            </button>
+                            <button class="perfil-nav-btn" id="btn-tab-canjear" onclick="cambiarPestanaCliente('canjear', this)">
+                                <i class="bi bi-gift-fill text-warning"></i> Canjear Puntos Caleta
+                                <span class="badge bg-warning text-dark ms-auto fw-bold" th:text="${puntosCaleta != null ? puntosCaleta + ' PTS' : '0 PTS'}">0 PTS</span>
+                            </button>
+
+                            <hr class="border-secondary border-opacity-25 my-3">
+
+                            <!-- ACCIONES DE SESIÓN Y CUENTA -->
+                            <div class="d-flex flex-column gap-1">
+                                <a th:href="@{/logout}" class="perfil-nav-btn text-white-50" onclick="localStorage.clear();">
+                                    <i class="bi bi-box-arrow-right text-secondary"></i> Cerrar Sesión
+                                </a>
+                                <button type="button" class="perfil-nav-btn btn-eliminar-cuenta" data-bs-toggle="modal" data-bs-target="#modalEliminarCuenta">
+                                    <i class="bi bi-trash3-fill"></i> Eliminar Cuenta
+                                </button>
+                            </div>
                         </nav>
                     </div>
                 </div>
@@ -210,10 +107,10 @@
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
-                                <div class="kpi-client-card" style="border-left-color: #eab308;">
+                                <div class="kpi-client-card" style="border-left-color: #eab308; cursor: pointer;" onclick="cambiarPestanaCliente('canjear', document.getElementById('btn-tab-canjear'))">
                                     <div>
                                         <span class="text-secondary small d-block">Puntos Caleta</span>
-                                        <h3 class="fw-bold text-warning mb-0" th:text="${puntosCaleta != null ? puntosCaleta : 0}">0 PTS</h3>
+                                        <h3 class="fw-bold text-warning mb-0" th:text="${puntosCaleta != null ? puntosCaleta : 0} + ' PTS'">0 PTS</h3>
                                     </div>
                                     <i class="bi bi-star-fill fs-2 text-warning opacity-75"></i>
                                 </div>
@@ -298,6 +195,11 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <nav th:if="${paginaPedidos.totalPages > 1}" class="d-flex gap-3 align-items-center" aria-label="Páginas de pedidos">
+                                  <a th:if="${paginaPedidos.hasPrevious()}" th:href="@{/perfil(tab='pedidos',pagina=${paginaPedidos.number - 1})}">Anterior</a>
+                                  <span th:text="|${paginaPedidos.number + 1} / ${paginaPedidos.totalPages}|"></span>
+                                  <a th:if="${paginaPedidos.hasNext()}" th:href="@{/perfil(tab='pedidos',pagina=${paginaPedidos.number + 1})}">Siguiente</a>
+                                </nav>
                             </div>
                         </div>
                     </section>
@@ -305,36 +207,208 @@
                     <!-- SECCIÓN 3: DATOS PERSONALES DEL USUARIO -->
                     <section id="seccion-datos" class="pestana-cliente-contenido d-none">
                         <div class="perfil-card">
-                            <h5 class="fw-bold text-white mb-4">
-                                <i class="bi bi-person-gear me-2 text-info"></i>Mis Datos Registrados
-                            </h5>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="fw-bold text-white m-0">
+                                    <i class="bi bi-person-gear me-2 text-info"></i>Mis Datos Registrados
+                                </h5>
+                                <span class="badge bg-secondary bg-opacity-25 text-light small px-3 py-1 rounded-pill">
+                                    <i class="fa-solid fa-flag text-danger me-1"></i> Formato Perú
+                                </span>
+                            </div>
 
-                            <form th:action="@{/perfil/actualizar}" method="post">
+                            <form id="formActualizarPerfil" th:action="@{/perfil/actualizar}" method="post" novalidate onsubmit="return validarFormularioPerfil(event)">
                                 <div class="row g-3">
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label text-secondary small">Nombre Completo</label>
-                                        <input type="text" name="nombre" class="form-control form-control-dark" th:value="${usuario != null ? usuario.nombre : ''}" required>
+                                        <label class="form-label text-secondary small">Nombre Completo <span class="text-danger">*</span></label>
+                                        <input type="text" id="perfilNombre" name="nombre" class="form-control form-control-dark"
+                                               th:value="${usuario != null ? usuario.nombre : ''}"
+                                               placeholder="Ej. Guillermo Gómez"
+                                               oninput="validarNombrePerfil(this)" required>
+                                        <small id="feedPerfilNombre" class="msg-perfil-feed text-danger d-none"></small>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label text-secondary small">Correo Electrónico (Usuario)</label>
-                                        <input type="email" class="form-control form-control-dark opacity-75" th:value="${usuario != null ? usuario.email : ''}" readonly>
+                                        <label class="form-label text-secondary small">Correo Electrónico (No modificable)</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-dark border-secondary border-opacity-25 text-secondary"><i class="bi bi-lock-fill"></i></span>
+                                            <input type="email" class="form-control form-control-dark opacity-75" th:value="${usuario != null ? usuario.email : ''}" readonly>
+                                        </div>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label text-secondary small">Número de Teléfono / Celular</label>
-                                        <input type="text" name="telefono" class="form-control form-control-dark" th:value="${usuario != null ? usuario.telefono : ''}" required>
+                                        <label class="form-label text-secondary small">Número Celular / Teléfono (9 dígitos) <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-dark border-secondary border-opacity-25 text-secondary fw-bold">+51</span>
+                                            <input type="tel" id="perfilTelefono" name="telefono" class="form-control form-control-dark"
+                                                   th:value="${usuario != null ? usuario.telefono : ''}"
+                                                   placeholder="Ej. 987654321"
+                                                   maxlength="9"
+                                                   oninput="validarTelefonoPerfil(this)" required>
+                                        </div>
+                                        <small id="feedPerfilTelefono" class="msg-perfil-feed text-danger d-none"></small>
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label text-secondary small">Documento de Identidad (DNI/CE)</label>
-                                        <input type="text" name="dni" class="form-control form-control-dark" th:value="${usuario != null ? usuario.dni : ''}" placeholder="Ej. 72819203">
+                                        <label class="form-label text-secondary small">DNI / Documento de Identidad (8 dígitos)</label>
+                                        <input type="text" id="perfilDni" name="dni" class="form-control form-control-dark"
+                                               th:value="${usuario != null ? usuario.dni : ''}"
+                                               placeholder="Ej. 72819203"
+                                               maxlength="8"
+                                               oninput="validarDniPerfil(this)">
+                                        <small id="feedPerfilDni" class="msg-perfil-feed text-danger d-none"></small>
                                     </div>
                                 </div>
 
                                 <div class="text-end mt-4 pt-3 border-top border-secondary border-opacity-25">
-                                    <button type="submit" class="btn btn-danger px-4 rounded-3 fw-bold">
+                                    <button type="submit" id="btnGuardarPerfil" class="btn btn-danger px-4 rounded-3 fw-bold">
                                         <i class="bi bi-save me-1"></i> Guardar Cambios
                                     </button>
                                 </div>
                             </form>
+                        </div>
+                    </section>
+
+                    <!-- SECCIÓN 4: TUS CUPONES (NUEVA SECCIÓN) -->
+                    <section id="seccion-cupones" class="pestana-cliente-contenido d-none">
+                        <div class="perfil-card">
+                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                                <div>
+                                    <h5 class="fw-bold text-white m-0">
+                                        <i class="bi bi-ticket-perforated-fill me-2 text-success"></i>Tus Cupones Disponibles
+                                    </h5>
+                                    <p class="text-secondary small mb-0">Copia tu código y úsalo al pagar para obtener tu descuento.</p>
+                                </div>
+                                <button class="btn btn-sm btn-outline-warning rounded-pill px-3" onclick="cambiarPestanaCliente('canjear', document.getElementById('btn-tab-canjear'))">
+                                    <i class="bi bi-plus-circle me-1"></i> Canjear más cupones
+                                </button>
+                            </div>
+
+                            <!-- Si no tiene cupones -->
+                            <div th:if="${misCupones == null or misCupones.isEmpty()}" class="text-center py-5">
+                                <div class="mb-3">
+                                    <i class="bi bi-ticket-detailed fs-1 text-secondary opacity-50"></i>
+                                </div>
+                                <h6 class="text-white fw-bold">Aún no tienes cupones canjeados</h6>
+                                <p class="text-secondary small mb-4" style="max-width: 450px; margin: 0 auto;">
+                                    Acumula Puntos Caleta con cada compra y canjéalos por descuentos en pizzas, promociones y delivery gratis.
+                                </p>
+                                <button type="button" class="btn btn-warning fw-bold px-4 rounded-pill text-dark" onclick="cambiarPestanaCliente('canjear', document.getElementById('btn-tab-canjear'))">
+                                    <i class="bi bi-gift-fill me-1"></i> Ir a Canjear Puntos Caleta
+                                </button>
+                            </div>
+
+                            <!-- Listado de Cupones -->
+                            <div th:if="${misCupones != null and !misCupones.isEmpty()}" class="row g-3">
+                                <div class="col-12 col-md-6" th:each="cupon : ${misCupones}">
+                                    <div class="cupon-ticket-card h-100">
+                                        <div class="cupon-ticket-header">
+                                            <span class="cupon-badge-dscto" th:text="${cupon.tipo == 'DELIVERY_GRATIS' ? 'DELIVERY' : (cupon.tipo == 'PORCENTAJE' ? cupon.descuento + '% OFF' : 'S/ ' + #numbers.formatDecimal(cupon.descuento, 1, 2) + ' OFF')}">
+                                                15% OFF
+                                            </span>
+                                            <span th:class="'badge rounded-pill small ' + ${cupon.estado == 'ACTIVO' ? 'bg-success bg-opacity-25 text-success border border-success' : 'bg-secondary bg-opacity-25 text-secondary border border-secondary'}"
+                                                  th:text="${cupon.estado}">
+                                                ACTIVO
+                                            </span>
+                                        </div>
+
+                                        <div class="p-3">
+                                            <h6 class="fw-bold text-white mb-1" th:text="${cupon.titulo}">Cupón 15% Descuento</h6>
+                                            <p class="text-secondary small mb-3" th:text="${cupon.descripcion}">Válido en tu próxima orden.</p>
+
+                                            <!-- Caja del Código -->
+                                            <div class="cupon-codigo-box mb-2">
+                                                <span th:text="${cupon.codigo}">CALETA-1234</span>
+                                                <button type="button" class="btn-copiar-cupon" th:attr="onclick='copiarCodigo(\'' + ${cupon.codigo} + '\', this)'">
+                                                    <i class="bi bi-clipboard me-1"></i> Copiar
+                                                </button>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between align-items-center text-secondary" style="font-size: 11px;">
+                                                <span><i class="bi bi-calendar-event me-1"></i> Canjeado: <span th:text="${#temporals.format(cupon.fechaCanje, 'dd/MM/yyyy')}">15/10/2026</span></span>
+                                                <span><i class="bi bi-hourglass-split me-1"></i> Vence: <span th:text="${cupon.fechaVencimiento != null ? #temporals.format(cupon.fechaVencimiento, 'dd/MM/yyyy') : 'Sin fecha'}">15/11/2026</span></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="p-3 pt-0 text-end">
+                                            <a th:href="@{/menu}" class="btn btn-sm btn-outline-danger w-100 rounded-pill fw-bold">
+                                                Usar en el Menú <i class="bi bi-arrow-right ms-1"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SECCIÓN 5: CANJEAR PUNTOS CALETA (NUEVA SECCIÓN) -->
+                    <section id="seccion-canjear" class="pestana-cliente-contenido d-none">
+                        <div class="perfil-card">
+
+                            <!-- Hero Card de Puntos -->
+                            <div class="puntos-banner-hero mb-4">
+                                <div class="row align-items-center g-3">
+                                    <div class="col-12 col-md-7">
+                                        <span class="text-warning text-uppercase fw-bold fs-xs letter-spacing-1 d-block mb-1">PROGRAMA DE LEALTAD LA CALETA</span>
+                                        <h4 class="fw-bold text-white mb-2">Canjea tus Puntos Caleta</h4>
+                                        <p class="text-white-50 small mb-0">
+                                            Ganas <strong>1 Punto Caleta</strong> por cada <strong>S/ 5.00</strong> de consumo en todos tus pedidos. ¡Disfruta de increíbles descuentos!
+                                        </p>
+                                    </div>
+                                    <div class="col-12 col-md-5 text-md-end">
+                                        <div class="puntos-badge-glow">
+                                            <i class="bi bi-star-fill text-dark"></i>
+                                            <span th:text="${puntosCaleta != null ? puntosCaleta : 0}">0</span>
+                                            <span class="fs-6 text-dark opacity-75">PTS DISPONIBLES</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5 class="fw-bold text-white mb-3">
+                                <i class="bi bi-gift-fill me-2 text-warning"></i>Catálogo de Cupones Disponibles
+                            </h5>
+
+                            <!-- Recompensas Disponibles para Canje -->
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6" th:each="item : ${catalogoCupones}">
+                                    <div class="recompensa-card">
+                                        <div>
+                                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                                <div class="recompensa-icono-box">
+                                                    <i th:class="${item.icono}"></i>
+                                                </div>
+                                                <span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-50 px-3 py-1 rounded-pill small fw-bold" th:text="${item.badge}">
+                                                    S/ 5 OFF
+                                                </span>
+                                            </div>
+
+                                            <h6 class="fw-bold text-white mb-1" th:text="${item.titulo}">Cupón S/ 5.00</h6>
+                                            <p class="text-secondary small mb-3" th:text="${item.descripcion}">Descuento directo en tu orden.</p>
+                                        </div>
+
+                                        <div>
+                                            <div class="d-flex justify-content-between align-items-center mb-3 pt-2 border-top border-secondary border-opacity-25">
+                                                <span class="text-secondary small">Costo del canje:</span>
+                                                <span class="fw-bold fs-5 text-warning" th:text="${item.puntosRequeridos} + ' PTS'">20 PTS</span>
+                                            </div>
+
+                                            <!-- Botón habilitado si tiene puntos suficientes -->
+                                            <button th:if="${puntosCaleta >= item.puntosRequeridos}"
+                                                    type="button"
+                                                    class="btn-canjear-recompensa"
+                                                    th:attr="onclick='abrirModalCanje(\'' + ${item.key} + '\', \'' + ${item.titulo} + '\', ' + ${item.puntosRequeridos} + ')'">
+                                                <i class="bi bi-gift me-1"></i> Canjear Cupón
+                                            </button>
+
+                                            <!-- Botón deshabilitado si faltan puntos -->
+                                            <button th:unless="${puntosCaleta >= item.puntosRequeridos}"
+                                                    type="button"
+                                                    class="btn-canjear-recompensa"
+                                                    disabled>
+                                                <i class="bi bi-lock-fill me-1"></i> Te faltan <span th:text="${item.puntosRequeridos - puntosCaleta}"></span> pts
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </section>
 
@@ -343,21 +417,98 @@
         </div>
     </main>
 
+    <!-- =========================================================================
+         MODAL: CONFIRMAR CANJE DE CUPÓN CON PUNTOS
+         ========================================================================= -->
+    <div class="modal fade" id="modalConfirmarCanje" tabindex="-1" aria-labelledby="modalConfirmarCanjeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-caleta">
+                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
+                    <h5 class="modal-title fw-bold fs-5 text-white mb-0" id="modalConfirmarCanjeLabel">
+                        <i class="bi bi-gift-fill text-warning me-2"></i> Confirmar Canje de Cupón
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal"></button>
+                </div>
+                <form th:action="@{/perfil/canjear-cupon}" method="post">
+                    <div class="modal-body py-4 text-center">
+                        <input type="hidden" name="tipoCupon" id="canjeInputTipo">
+                        <div class="mb-3">
+                            <i class="bi bi-stars text-warning fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold text-white mb-2" id="canjeModalTitulo">Cupón</h5>
+                        <p class="text-white-50 mb-3">
+                            ¿Estás seguro de que deseas canjear este cupón? Se descontarán <strong class="text-warning" id="canjeModalPuntos">0</strong> Puntos Caleta de tu saldo acumulado.
+                        </p>
+                        <div class="alert alert-dark border-secondary border-opacity-25 small text-secondary mb-0">
+                            El cupón generado tendrá una validez de 30 días para aplicarse en tus compras de La Caleta.
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3 d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary px-4 rounded-pill small fw-bold" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-warning px-4 rounded-pill small fw-bold text-dark">
+                            <i class="bi bi-check2-circle me-1"></i> Sí, Canjear Ahora
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         MODAL: ADVERTENCIA Y CONFIRMACIÓN DE ELIMINAR CUENTA
+         ========================================================================= -->
+    <div class="modal fade" id="modalEliminarCuenta" tabindex="-1" aria-labelledby="modalEliminarCuentaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-caleta border border-danger border-opacity-50">
+                <div class="modal-header border-bottom border-danger border-opacity-25 py-3 bg-danger bg-opacity-10">
+                    <h5 class="modal-title fw-bold fs-5 text-danger mb-0" id="modalEliminarCuentaLabel">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i> Eliminar Cuenta Permanentemente
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal"></button>
+                </div>
+                <form th:action="@{/perfil/eliminar}" method="post">
+                    <div class="modal-body py-4 text-center">
+                        <div class="mb-3">
+                            <i class="bi bi-shield-x text-danger" style="font-size: 3.5rem;"></i>
+                        </div>
+                        <h5 class="fw-bold text-white mb-2">¿Estás completamente seguro?</h5>
+                        <p class="text-white-50 mb-3">
+                            Esta acción es <strong class="text-danger">irreversible</strong>. Se eliminará tu cuenta de usuario, tus cupones activos y tus puntos Caleta acumulados de nuestra base de datos.
+                        </p>
+                        <div class="p-3 bg-black bg-opacity-50 rounded-3 border border-secondary border-opacity-25 text-start small text-secondary">
+                            <i class="bi bi-info-circle text-warning me-1"></i> Tu historial de pedidos pasados quedará archivado como anónimo en nuestros registros de venta.
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3 d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary px-4 rounded-pill small fw-bold" data-bs-dismiss="modal">
+                            No, mantener mi cuenta
+                        </button>
+                        <button type="submit" class="btn btn-danger px-4 rounded-pill small fw-bold">
+                            <i class="bi bi-trash3-fill me-1"></i> Sí, Eliminar Definitivamente
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer Público de La Caleta -->
     <footer th:replace="~{fragments/footer :: footer}"></footer>
 
     <div th:replace="~{fragments/modals :: offcanvasCarrito}"></div>
     <div th:replace="~{fragments/modals :: offcanvasMenu}"></div>
-    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
     <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
+    <div th:replace="~{fragments/modals :: toastNotificacion}"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script th:src="@{/js/ui.js}"></script>
     <script th:src="@{/js/main.js}"></script>
     <script th:src="@{/js/cart.js}"></script>
+    <div th:replace="~{fragments/modals :: notificacionFlash}"></div>
     <script th:src="@{/js/auth.js}"></script>
 
-    <script>
+    <script th:inline="javascript">
+        // 1. Cambio de Pestañas dinámico
         function cambiarPestanaCliente(idSeccion, boton) {
             document.querySelectorAll('.pestana-cliente-contenido').forEach(sec => sec.classList.add('d-none'));
             document.querySelectorAll('.perfil-nav-btn').forEach(btn => btn.classList.remove('active'));
@@ -369,7 +520,144 @@
             if (boton) {
                 boton.classList.add('active');
             }
+
+            // Actualizar URL sin recargar
+            const url = new URL(window.location);
+            url.searchParams.set('tab', idSeccion);
+            window.history.replaceState({}, '', url);
         }
+
+        // 2. Copiar Código de Cupón con feedback
+        function copiarCodigo(codigo, btn) {
+            if (!navigator.clipboard) {
+                mostrarModalMensaje("Aviso", "Código: " + codigo);
+                return;
+            }
+            navigator.clipboard.writeText(codigo).then(() => {
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = '<i class="bi bi-check2"></i> ¡Copiado!';
+                btn.style.backgroundColor = '#16a34a';
+                btn.style.borderColor = '#16a34a';
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.style.backgroundColor = '';
+                    btn.style.borderColor = '';
+                }, 2000);
+            }).catch(() => {
+                mostrarModalMensaje("Aviso", "No se pudo copiar. Código: " + codigo);
+            });
+        }
+
+        // 3. Abrir Modal de Confirmación de Canje
+        function abrirModalCanje(key, titulo, puntos) {
+            document.getElementById('canjeInputTipo').value = key;
+            document.getElementById('canjeModalTitulo').innerText = titulo;
+            document.getElementById('canjeModalPuntos').innerText = puntos + ' PTS';
+
+            const modalEl = document.getElementById('modalConfirmarCanje');
+            const modalInstance = new bootstrap.Modal(modalEl);
+            modalInstance.show();
+        }
+
+        // 4. Validaciones Perfil (Público Peruano)
+        function validarNombrePerfil(input) {
+            const feed = document.getElementById('feedPerfilNombre');
+            const val = input.value;
+            // Solo letras, tildes y espacios
+            const limpio = val.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+            if (val !== limpio) {
+                feed.innerText = '⚠️ El nombre solo puede contener letras y espacios.';
+                feed.classList.remove('d-none');
+            } else if (limpio.trim().length < 2) {
+                feed.innerText = '⚠️ El nombre debe tener al menos 2 caracteres.';
+                feed.classList.remove('d-none');
+            } else {
+                feed.classList.add('d-none');
+            }
+            input.value = limpio;
+        }
+
+        function validarTelefonoPerfil(input) {
+            const feed = document.getElementById('feedPerfilTelefono');
+            let limpio = input.value.replace(/[^0-9]/g, '');
+
+            if (limpio.length > 9) {
+                limpio = limpio.slice(0, 9);
+            }
+
+            if (limpio.length > 0 && !limpio.startsWith('9')) {
+                feed.innerText = '⚠️ En Perú el celular debe comenzar con el dígito 9.';
+                feed.classList.remove('d-none');
+                input.classList.add('is-invalid-custom');
+            } else if (limpio.length > 0 && limpio.length < 9) {
+                feed.innerText = `Llevas ${limpio.length} de 9 dígitos.`;
+                feed.classList.remove('d-none');
+                input.classList.remove('is-invalid-custom');
+            } else if (limpio.length === 9) {
+                feed.classList.add('d-none');
+                input.classList.remove('is-invalid-custom');
+            } else {
+                feed.classList.add('d-none');
+                input.classList.remove('is-invalid-custom');
+            }
+
+            input.value = limpio;
+        }
+
+        function validarDniPerfil(input) {
+            const feed = document.getElementById('feedPerfilDni');
+            let limpio = input.value.replace(/[^0-9]/g, '');
+
+            if (limpio.length > 8) {
+                limpio = limpio.slice(0, 8);
+            }
+
+            if (limpio.length > 0 && limpio.length < 8) {
+                feed.innerText = `Llevas ${limpio.length} de 8 dígitos de DNI.`;
+                feed.classList.remove('d-none');
+            } else {
+                feed.classList.add('d-none');
+            }
+
+            input.value = limpio;
+        }
+
+        function validarFormularioPerfil(e) {
+            const nombre = document.getElementById('perfilNombre').value.trim();
+            const tel = document.getElementById('perfilTelefono').value.trim();
+            const dni = document.getElementById('perfilDni').value.trim();
+
+            if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,50}$/.test(nombre)) {
+                mostrarModalMensaje("Aviso", 'Por favor ingresa un nombre válido (solo letras, mín. 2 caracteres).');
+                document.getElementById('perfilNombre').focus();
+                e.preventDefault();
+                return false;
+            }
+
+            if (!/^9\d{8}$/.test(tel)) {
+                mostrarModalMensaje("Aviso", 'El número celular en Perú debe tener exactamente 9 dígitos y comenzar con 9.');
+                document.getElementById('perfilTelefono').focus();
+                e.preventDefault();
+                return false;
+            }
+
+            if (dni.length > 0 && !/^\d{8}$/.test(dni)) {
+                mostrarModalMensaje("Aviso", 'El DNI debe contener exactamente 8 dígitos numéricos.');
+                document.getElementById('perfilDni').focus();
+                e.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+
+        // 5. Inicializar Pestaña Activa al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tabParam = urlParams.get('tab') || /*[[${tabActiva}]]*/ 'resumen';
+            const botonTarget = document.getElementById('btn-tab-' + tabParam) || document.getElementById('btn-tab-resumen');
+            cambiarPestanaCliente(tabParam, botonTarget);
+        });
     </script>
 </body>
 

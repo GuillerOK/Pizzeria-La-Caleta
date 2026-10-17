@@ -24,11 +24,20 @@ a {
 #topbar {
     background-color: var(--color-carmesi);
     font-size: 14px;
+    position: relative;
+    z-index: 1050;
 }
 
-#header {
+header:not(.caleta-header), #header {
     background-color: var(--color-negro);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 1050;
+}
+
+#header .dropdown-menu,
+#navUserArea .dropdown-menu {
+    z-index: 1060 !important;
 }
 
 #descripcion {

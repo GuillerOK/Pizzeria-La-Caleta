@@ -2,6 +2,7 @@ package com.lacaleta.controller;
 
 import com.lacaleta.model.Usuario;
 import com.lacaleta.service.CategoriaService;
+import com.lacaleta.service.CuponService;
 import com.lacaleta.service.InsumoService;
 import com.lacaleta.service.ProductoService;
 import com.lacaleta.service.UsuarioService;
@@ -36,6 +37,12 @@ public class PageController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private CuponService cuponService;
+
+    @Autowired
+    private com.lacaleta.repository.UsuarioRepository usuarioRepository;
 
     // Patrones de validación Regex
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-zA-Z]{2,}$");
@@ -113,17 +120,17 @@ public class PageController {
         return "account/create";
     }
 
-    @GetMapping("/forgotpassword")
+    @GetMapping({ "/forgotpassword", "/forgot-password" })
     public String forgotPassword() {
         return "account/forgotpassword";
     }
 
-    @GetMapping("/verifycode")
+    @GetMapping({ "/verifycode", "/verify-code" })
     public String verifyCode() {
         return "account/verifycode";
     }
 
-    @GetMapping("/resetpassword")
+    @GetMapping({ "/resetpassword", "/reset-password" })
     public String resetPassword() {
         return "account/resetpassword";
     }
@@ -166,10 +173,11 @@ public class PageController {
         model.addAttribute("pizzas", listaPizzas);
         model.addAttribute("productos", listaPizzas);
         model.addAttribute("insumos", listaInsumos);
+        model.addAttribute("insumosReceta", insumoService.listar());
         model.addAttribute("totalPizzas", productoService.listar().size());
         model.addAttribute("categorias", categoriaService.listar());
 
-        var listaPedidos = pedidoRepository.findAll();
+        var listaPedidos = pedidoRepository.findAllByOrderByFechaDesc();
         var listaClientes = usuarioService.listar().stream()
                 .filter(u -> Integer.valueOf(1).equals(u.getRolId()))
                 .toList();
@@ -188,12 +196,14 @@ public class PageController {
 
     @GetMapping("/envio")
     public String envio(Model model, HttpSession session) {
+        if (session.getAttribute("usuarioLogueado") == null) return "redirect:/login";
         cargarUsuarioEnModelo(model, session);
         return "checkout/shipping";
     }
 
     @GetMapping("/pago")
     public String pago(Model model, HttpSession session) {
+        if (session.getAttribute("usuarioLogueado") == null) return "redirect:/login";
         cargarUsuarioEnModelo(model, session);
         return "checkout/payment";
     }
@@ -217,32 +227,52 @@ public class PageController {
     }
 
     @GetMapping("/perfil")
-    public String perfil(Model model, HttpSession session) {
+    public String perfil(@RequestParam(value = "tab", required = false) String tab,
+                         @RequestParam(defaultValue = "0") int pagina,
+                         Model model,
+                         HttpSession session) {
         Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
-        
+
         // Si el usuario no ha iniciado sesión, lo redirige al login
         if (usuarioLogueado == null) {
             return "redirect:/login";
         }
 
+        // Refrescar usuario desde la BD
+        var cuenta = usuarioService.buscarPorId(usuarioLogueado.getId());
+        if (cuenta.isEmpty() || !Boolean.TRUE.equals(cuenta.get().getVerificado())) {
+            session.invalidate();
+            return "redirect:/login";
+        }
+        Usuario usuarioActualizado = cuenta.get();
+        session.setAttribute("usuarioLogueado", usuarioActualizado);
+
         cargarUsuarioEnModelo(model, session);
 
         // Obtener historial de pedidos del usuario conectado
-        var misPedidos = pedidoRepository.findAll().stream()
-                .filter(p -> p.getUsuario() != null && usuarioLogueado.getId().equals(p.getUsuario().getId()))
-                .sorted((p1, p2) -> p2.getFecha().compareTo(p1.getFecha()))
-                .toList();
+        var paginaPedidos = pedidoRepository.findByUsuarioId(usuarioActualizado.getId(),
+                org.springframework.data.domain.PageRequest.of(Math.max(0, pagina), 20,
+                        org.springframework.data.domain.Sort.by("fecha", "id").descending()));
+        var misPedidos = paginaPedidos.getContent();
 
-        double totalGastado = misPedidos.stream().mapToDouble(p -> p.getTotal() != null ? p.getTotal() : 0.0).sum();
-        int puntosCaleta = (int) (totalGastado / 5.0); // 1 punto por cada S/ 5 de consumo
+        double totalGastado = pedidoRepository.totalPorUsuario(usuarioActualizado.getId());
+        int puntosCaleta = cuponService.calcularPuntosDisponibles(usuarioActualizado, totalGastado);
 
-        var ultimoPedido = misPedidos.isEmpty() ? null : misPedidos.get(0);
+        var ultimoPedido = pedidoRepository.findFirstByUsuarioIdOrderByFechaDesc(usuarioActualizado.getId()).orElse(null);
+        var misCupones = cuponService.listarPorUsuario(usuarioActualizado);
+        var cuponesActivos = cuponService.listarActivos(usuarioActualizado);
+        var catalogo = cuponService.obtenerCatalogo();
 
         model.addAttribute("pedidos", misPedidos);
-        model.addAttribute("totalPedidos", misPedidos.size());
+        model.addAttribute("totalPedidos", paginaPedidos.getTotalElements());
+        model.addAttribute("paginaPedidos", paginaPedidos);
         model.addAttribute("totalGastado", totalGastado);
         model.addAttribute("puntosCaleta", puntosCaleta);
         model.addAttribute("ultimoPedido", ultimoPedido);
+        model.addAttribute("misCupones", misCupones);
+        model.addAttribute("cuponesActivos", cuponesActivos);
+        model.addAttribute("catalogoCupones", catalogo);
+        model.addAttribute("tabActiva", (tab != null && !tab.isBlank()) ? tab : "resumen");
 
         return "account/perfil";
     }
@@ -258,11 +288,33 @@ public class PageController {
             return "redirect:/login";
         }
 
-        usuarioLogueado.setNombre(nombre);
-        usuarioLogueado.setTelefono(telefono);
-        if (dni != null) {
-            usuarioLogueado.setDni(dni);
+        String nomClean = (nombre != null) ? nombre.trim() : "";
+        String telClean = (telefono != null) ? telefono.trim() : "";
+        String dniClean = (dni != null) ? dni.trim() : "";
+
+        // Validaciones para público peruano
+        if (!NAME_PATTERN.matcher(nomClean).matches()) {
+            redirectAttributes.addFlashAttribute("error", "El nombre completo debe contener solo letras (entre 2 y 50 caracteres).");
+            return "redirect:/perfil?tab=datos";
         }
+
+        if (!PHONE_PERU_PATTERN.matcher(telClean).matches()) {
+            redirectAttributes.addFlashAttribute("error", "El número de teléfono celular debe tener 9 dígitos y empezar con 9 (formato peruano).");
+            return "redirect:/perfil?tab=datos";
+        }
+
+        if (!dniClean.isEmpty()) {
+            if (!DNI_PATTERN.matcher(dniClean).matches()) {
+                redirectAttributes.addFlashAttribute("error", "El DNI debe contener exactamente 8 dígitos numéricos.");
+                return "redirect:/perfil?tab=datos";
+            }
+            usuarioLogueado.setDni(dniClean);
+        } else {
+            usuarioLogueado.setDni(null);
+        }
+
+        usuarioLogueado.setNombre(nomClean);
+        usuarioLogueado.setTelefono(telClean);
 
         boolean actualizado = usuarioService.guardar(usuarioLogueado);
         if (actualizado) {
@@ -272,7 +324,71 @@ public class PageController {
             redirectAttributes.addFlashAttribute("error", "Ocurrió un error al intentar actualizar tus datos.");
         }
 
-        return "redirect:/perfil";
+        return "redirect:/perfil?tab=datos";
     }
 
+    @PostMapping("/perfil/canjear-cupon")
+    public String canjearCupon(@RequestParam("tipoCupon") String tipoCupon,
+                               HttpSession session,
+                               org.springframework.web.servlet.mvc.support.RedirectAttributes redirectAttributes) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuarioLogueado == null) {
+            return "redirect:/login";
+        }
+
+        double totalGastado = pedidoRepository.totalPorUsuario(usuarioLogueado.getId());
+
+        var cuponCanjeado = cuponService.canjearCupon(usuarioLogueado, tipoCupon, totalGastado);
+        if (cuponCanjeado != null) {
+            redirectAttributes.addFlashAttribute("exito", "¡Felicitaciones! Canjeaste el '" + cuponCanjeado.getTitulo() + "' con éxito. Tu código promocional es: " + cuponCanjeado.getCodigo());
+            return "redirect:/perfil?tab=cupones";
+        } else {
+            redirectAttributes.addFlashAttribute("error", "No cuentas con suficientes Puntos Caleta o el cupón seleccionado no es válido.");
+            return "redirect:/perfil?tab=canjear";
+        }
+    }
+
+    @PostMapping("/perfil/eliminar")
+    public String eliminarPerfil(HttpSession session,
+                                 org.springframework.web.servlet.mvc.support.RedirectAttributes redirectAttributes) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuarioLogueado == null) {
+            return "redirect:/login";
+        }
+
+        try {
+            usuarioService.eliminarCuenta(usuarioLogueado.getId());
+
+            // 4. Invalidar sesión
+            session.invalidate();
+
+            redirectAttributes.addFlashAttribute("mensaje", "Tu cuenta ha sido eliminada permanentemente. Esperamos volver a verte pronto en La Caleta.");
+            return "redirect:/login";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Ocurrió un error al intentar eliminar la cuenta. Vuelve a intentarlo.");
+            return "redirect:/perfil";
+        }
+    }
+
+    @PostMapping("/admin/clientes/eliminar/{id}")
+    public String eliminarCliente(@org.springframework.web.bind.annotation.PathVariable("id") Integer id,
+                                  org.springframework.web.servlet.mvc.support.RedirectAttributes flash,
+                                  jakarta.servlet.http.HttpSession session) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuarioLogueado == null || !usuarioLogueado.esAdmin()) {
+            return "redirect:/login";
+        }
+
+        try {
+            if (usuarioRepository.existsById(id)) {
+                usuarioRepository.deleteById(id);
+                flash.addFlashAttribute("exito", "Cliente eliminado correctamente de la base de datos.");
+            } else {
+                flash.addFlashAttribute("error", "No se encontró el cliente que deseas eliminar.");
+            }
+        } catch (Exception e) {
+            flash.addFlashAttribute("error", "No se pudo eliminar el cliente. Puede tener pedidos asociados en la base de datos.");
+        }
+        return "redirect:/admin#clientes";
+    }
 }

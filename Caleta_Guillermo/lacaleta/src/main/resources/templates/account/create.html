@@ -35,7 +35,6 @@
 
                 <form id="formRegistro" th:action="@{/api/auth/register}" method="post" novalidate>
                     <!-- Alerta de Error devuelta por Spring Boot -->
-                    <div th:if="${error}" class="alert alert-danger py-2 px-3 small mb-3 border-0 rounded-3 shadow-sm" role="alert" th:text="${error}"></div>
                     <!-- Alerta de Error en pantalla (JS) -->
                     <div id="jsErrorAlert" class="alert alert-danger py-2 px-3 small mb-3 border-0 rounded-3 shadow-sm d-none" role="alert"></div>
 
@@ -154,6 +153,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script th:src="@{/js/main.js}"></script>
+    <div th:replace="~{fragments/modals :: notificacionFlash}"></div>
     <script th:src="@{/js/auth.js}"></script>
 
     <script>

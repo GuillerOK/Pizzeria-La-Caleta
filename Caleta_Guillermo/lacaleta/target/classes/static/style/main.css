@@ -13,8 +13,9 @@ body {
 }
 
 a { text-decoration: none; color: inherit; transition: var(--t); }
-#topbar { background-color: var(--carmesi); font-size: 14px; }
-#header { background-color: var(--bg-negro); border-bottom: 1px solid rgba(255,255,255,0.08); }
+#topbar { background-color: var(--carmesi); font-size: 14px; position: relative; z-index: 1050; }
+header:not(.caleta-header), #header { background-color: var(--bg-negro); border-bottom: 1px solid rgba(255,255,255,0.08); position: relative; z-index: 1050; }
+#header .dropdown-menu, #navUserArea .dropdown-menu { z-index: 1060 !important; }
 footer { background-color: var(--bg-suave); border-top: 1px solid rgba(255,255,255,0.05); }
 
 .text-ro { color: var(--ro) !important; }

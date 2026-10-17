@@ -29,9 +29,9 @@ function cargarResumenPago() {
         return `
             <div class="d-flex align-items-center justify-content-between gap-2">
                 <div class="d-flex align-items-center gap-2 min-w-0">
-                    <img src="${item.imagenUrl}" alt="${nombreSimple}" class="rounded-2 object-fit-cover flex-shrink-0" style="width: 44px; height: 44px;">
+                    <img src="${escaparHtml(item.imagenUrl)}" alt="${escaparHtml(nombreSimple)}" class="rounded-2 object-fit-cover flex-shrink-0" style="width: 44px; height: 44px;">
                     <div class="min-w-0">
-                        <h6 class="fw-bold mb-0 text-white small text-truncate" style="max-width: 170px;">${nombreSimple}</h6>
+                        <h6 class="fw-bold mb-0 text-white small text-truncate" style="max-width: 170px;">${escaparHtml(nombreSimple)}</h6>
                         <span class="text-secondary d-block" style="font-size: 11px;">Cant: ${item.cantidad}</span>
                     </div>
                 </div>
@@ -57,6 +57,8 @@ function cargarDatosEnvioConfirmados() {
     const datosEnvio = JSON.parse(localStorage.getItem('pedido_envio_caleta'));
     
     if (datosEnvio) {
+        const metodo = document.getElementById('textoMetodoPago');
+        if (metodo) metodo.textContent = datosEnvio.tipoEntrega === 'delivery' ? 'Pago contra entrega' : 'Pago al retirar en tienda';
         if (datosEnvio.nombre) document.getElementById('pago-contacto-nombre').innerText = datosEnvio.nombre;
         if (datosEnvio.correo) document.getElementById('pago-contacto-correo').innerText = datosEnvio.correo;
         if (datosEnvio.telefono) document.getElementById('pago-contacto-telefono').innerText = datosEnvio.telefono;
@@ -75,51 +77,52 @@ function cargarDatosEnvioConfirmados() {
     }
 }
 
-function alternarCamposFactura(mostrar) {
-    const box = document.getElementById('campos-factura');
-    const ruc = document.getElementById('factura-ruc');
-    const razon = document.getElementById('factura-razon');
-    
-    if (mostrar) {
-        box.classList.remove('d-none');
-        ruc.setAttribute('required', 'true');
-        razon.setAttribute('required', 'true');
-    } else {
-        box.classList.add('d-none');
-        ruc.removeAttribute('required');
-        razon.removeAttribute('required');
-    }
-}
-
-function alternarDetalleMetodoPago(metodo) {
-    const boxTarjeta = document.getElementById('box-formulario-tarjeta');
-    const boxYape = document.getElementById('box-formulario-yape');
-    const wrapTarjeta = document.getElementById('wrapper-tarjeta');
-    const wrapYape = document.getElementById('wrapper-yape');
-
-    if (metodo === 'tarjeta') {
-        boxTarjeta.classList.remove('d-none');
-        boxYape.classList.add('d-none');
-        wrapTarjeta.classList.add('activo');
-        wrapYape.classList.remove('activo');
-    } else {
-        boxTarjeta.classList.add('d-none');
-        boxYape.classList.remove('d-none');
-        wrapTarjeta.classList.remove('activo');
-        wrapYape.classList.add('activo');
-    }
-}
-
-function procesarPagoFinal(e) {
+async function procesarPagoFinal(e) {
     e.preventDefault();
-
     const btn = document.getElementById('btnFinalizarPedido');
+    if (btn.disabled) return;
+    const texto = btn.textContent;
     btn.disabled = true;
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Procesando pedido...';
-
-    setTimeout(() => {
+    btn.textContent = 'Registrando pedido...';
+    try {
+        const carrito = obtenerCarrito();
+        const envio = JSON.parse(localStorage.getItem('pedido_envio_caleta') || '{}');
+        if (!btn.dataset.email) throw new Error('Inicia sesión para comprar.');
+        if (!carrito.length || carrito.some(i => !Number.isInteger(i.productoId) || i.productoId <= 0)) {
+            throw new Error('Actualiza tu carrito desde el menú antes de comprar.');
+        }
+        if (!envio.tipoEntrega) throw new Error('Completa los datos de envío antes de comprar.');
+        const datos = {
+            email: btn.dataset.email,
+            items: carrito.map(i => ({ productoId: i.productoId, cantidad: i.cantidad })),
+            tipoEntrega: envio.tipoEntrega === 'delivery' ? 'DELIVERY' : 'RETIRO',
+            direccionEntrega: envio.direccion || null,
+            metodoPago: envio.tipoEntrega === 'delivery' ? 'CONTRA_ENTREGA' : 'PAGO_EN_TIENDA'
+        };
+        // Mantener la clave al reintentar tras perder una respuesta del servidor.
+        const firma = JSON.stringify(datos);
+        let intento = JSON.parse(sessionStorage.getItem('checkout_intento') || 'null');
+        if (!intento || intento.firma !== firma) {
+            intento = { firma, clave: crypto.randomUUID() };
+            sessionStorage.setItem('checkout_intento', JSON.stringify(intento));
+        }
+        const respuesta = await fetch('/api/checkout', {
+            method: 'POST', credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...datos, claveCompra: intento.clave })
+        });
+        const resultado = await respuesta.json().catch(() => ({}));
+        if (!respuesta.ok) throw new Error(resultado.error || 'No se pudo registrar la compra.');
         localStorage.removeItem('carrito_caleta');
         localStorage.removeItem('pedido_envio_caleta');
-        window.location.href = '/pedido-confirmado'; 
-    }, 1800);
+        sessionStorage.removeItem('checkout_intento');
+        mostrarModalMensaje('Pedido registrado', 'Pedido #' + resultado.pedidoId +
+            '. Tu boleta está pendiente de envío al correo. ' + (datos.tipoEntrega === 'DELIVERY' ? 'Paga al recibir tu pedido.' : 'Paga al retirar tu pedido en tienda.'),
+            () => { window.location.href = '/perfil?tab=pedidos'; });
+    } catch (error) {
+        mostrarModalMensaje('Error de compra', error instanceof TypeError
+            ? 'No se pudo confirmar la respuesta. Revisa tu historial o reintenta con el mismo carrito.' : error.message);
+        btn.disabled = false;
+        btn.textContent = texto;
+    }
 }

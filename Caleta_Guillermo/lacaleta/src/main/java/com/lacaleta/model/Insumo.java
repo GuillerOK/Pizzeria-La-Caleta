@@ -8,6 +8,9 @@ public class Insumo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Version
+    private Long version;
     
     @Column(nullable = false, unique = true, length = 50)
     private String codigo;
@@ -54,6 +57,6 @@ public class Insumo {
     public void setStockMinimo(Double stockMinimo) { this.stockMinimo = stockMinimo; }
 
     public boolean isCritico() {
-        return this.stockActual <= this.stockMinimo;
+        return this.stockActual != null && this.stockMinimo != null && this.stockActual <= this.stockMinimo;
     }
 }

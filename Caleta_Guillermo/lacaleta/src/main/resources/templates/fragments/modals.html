@@ -2,6 +2,10 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <body>
+    <div th:fragment="notificacionFlash" id="notificacionFlash" hidden
+         th:if="${exito != null or error != null or mensaje != null}"
+         th:data-titulo="${error != null ? 'Error' : 'Notificación'}"
+         th:data-mensaje="${error != null ? error : (exito != null ? exito : mensaje)}"></div>
 
     <!-- Panel Lateral del Carrito -->
     <div th:fragment="offcanvasCarrito"

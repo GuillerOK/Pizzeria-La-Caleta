@@ -24,14 +24,24 @@ public class InsumoService {
             return listar();
         }
         String filtro = buscar.toLowerCase().trim();
-        return insumoRepository.findAll().stream()
-                .filter(i -> i.getNombre().toLowerCase().contains(filtro)
-                        || i.getCodigo().toLowerCase().contains(filtro))
-                .collect(Collectors.toList());
+        return insumoRepository.findByNombreContainingIgnoreCaseOrCodigoContainingIgnoreCase(filtro, filtro);
     }
 
-    public void guardar(Insumo insumo) {
-        insumoRepository.save(insumo);
+    public Insumo guardar(Insumo insumo) {
+        return insumoRepository.save(insumo);
+    }
+
+    public String generarCodigo() {
+        int siguiente = insumoRepository.findAll().stream()
+                .map(Insumo::getCodigo)
+                .filter(codigo -> codigo != null && codigo.matches("INS-\\d+"))
+                .mapToInt(codigo -> Integer.parseInt(codigo.substring(4)))
+                .max().orElse(0) + 1;
+        String codigo;
+        do {
+            codigo = String.format("INS-%02d", siguiente++);
+        } while (insumoRepository.existsByCodigoIgnoreCase(codigo));
+        return codigo;
     }
 
     public Optional<Insumo> buscarPorId(Integer id) {

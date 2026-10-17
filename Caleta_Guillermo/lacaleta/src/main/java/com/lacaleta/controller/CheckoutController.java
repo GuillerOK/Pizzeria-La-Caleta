@@ -21,7 +21,7 @@ public class CheckoutController {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
         if (usuario == null) return ResponseEntity.status(401).body(Map.of("error", "Inicia sesión para comprar."));
         var pedido = pedidos.procesarCompra(solicitud, usuario.getId());
-        return ResponseEntity.ok(Map.of("pedidoId", pedido.getId(), "total", pedido.getTotal()));
+        return ResponseEntity.ok(Map.of("pedidoId", pedido.getId(), "total", pedido.getTotal(), "boleta", "PENDIENTE"));
     }
 
     @ExceptionHandler(ResponseStatusException.class)
@@ -32,6 +32,6 @@ public class CheckoutController {
     @ExceptionHandler(CorreoException.class)
     public ResponseEntity<?> correoNoDisponible(CorreoException error) {
         return ResponseEntity.status(503).body(Map.of("error",
-                "No se pudo enviar la boleta. La compra no se guardó; tu carrito sigue disponible."));
+                "No se pudo preparar la boleta. La compra no se guardó; tu carrito sigue disponible."));
     }
 }

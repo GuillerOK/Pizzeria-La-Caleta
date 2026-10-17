@@ -1,0 +1,348 @@
+/* ==========================================================================
+   LA CALETA - ESTILOS DE PERFIL DE USUARIO (perfil.css)
+   ========================================================================== */
+
+:root {
+    --caleta-rojo: #dc2626;
+    --caleta-rojo-oscuro: #991b1b;
+    --caleta-dorado: #eab308;
+    --caleta-dorado-brillante: #facc15;
+    --caleta-bg-card: #1e1e1e;
+    --caleta-bg-card-sub: #262626;
+    --caleta-border: rgba(255, 255, 255, 0.08);
+}
+
+.perfil-wrapper {
+    background-color: #121212;
+    color: #f3f4f6;
+    min-height: calc(100vh - 180px);
+    padding: 40px 0 60px 0;
+}
+
+/* Tarjetas Principales */
+.perfil-card {
+    background-color: var(--caleta-bg-card);
+    border: 1px solid var(--caleta-border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Avatar Box */
+.avatar-box {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ef4444, #991b1b);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+    border: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Navegación Lateral */
+.perfil-nav-btn {
+    background: transparent;
+    color: #a1a1aa;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.25s ease;
+    margin-bottom: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.perfil-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    transform: translateX(3px);
+}
+
+.perfil-nav-btn.active {
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);
+}
+
+.perfil-nav-btn.btn-eliminar-cuenta {
+    color: #f87171;
+    border: 1px dashed rgba(239, 68, 68, 0.3);
+    margin-top: 10px;
+    background: rgba(239, 68, 68, 0.04);
+}
+
+.perfil-nav-btn.btn-eliminar-cuenta:hover {
+    background: rgba(239, 68, 68, 0.18);
+    color: #fca5a5;
+    border-color: rgba(239, 68, 68, 0.6);
+}
+
+/* KPI Cards */
+.kpi-client-card {
+    background-color: var(--caleta-bg-card-sub);
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 4px solid var(--caleta-rojo);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estados de Pedidos */
+.badge-estado {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-recibido { background-color: #1e3a8a; color: #93c5fd; }
+.badge-preparacion { background-color: #854d0e; color: #fef08a; }
+.badge-camino { background-color: #065f46; color: #a7f3d0; }
+.badge-entregado { background-color: #14532d; color: #86efac; }
+.badge-cancelado { background-color: #7f1d1d; color: #fca5a5; }
+
+/* Controles de Formulario */
+.form-control-dark {
+    background-color: #2b2b2b !important;
+    border: 1px solid #404040 !important;
+    color: #ffffff !important;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control-dark:focus {
+    border-color: var(--caleta-rojo) !important;
+    box-shadow: 0 0 0 0.25rem rgba(220, 38, 38, 0.25) !important;
+}
+
+.form-control-dark.is-invalid-custom {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 0.2rem rgba(239, 68, 68, 0.25) !important;
+}
+
+.form-control-dark:disabled, 
+.form-control-dark[readonly] {
+    background-color: #202020 !important;
+    color: #9ca3af !important;
+    cursor: not-allowed;
+}
+
+.msg-perfil-feed {
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Tablas */
+.table-dark-custom {
+    color: #e5e7eb;
+    vertical-align: middle;
+    margin-bottom: 0;
+}
+
+.table-dark-custom thead th {
+    background-color: var(--caleta-bg-card-sub);
+    color: #a1a1aa;
+    border-bottom: 2px solid #333;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px 14px;
+}
+
+.table-dark-custom tbody tr {
+    border-bottom: 1px solid var(--caleta-border);
+}
+
+.table-dark-custom tbody td {
+    padding: 14px;
+}
+
+/* ==========================================================================
+   SECCIÓN: TUS CUPONES (Ticket Card Styles)
+   ========================================================================== */
+.cupon-ticket-card {
+    background: #252525;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cupon-ticket-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+    border-color: rgba(220, 38, 38, 0.4);
+}
+
+.cupon-ticket-header {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(153, 27, 27, 0.1) 100%);
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cupon-badge-dscto {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+}
+
+.cupon-codigo-box {
+    background-color: #1a1a1a;
+    border: 1px dashed #dc2626;
+    border-radius: 8px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: #facc15;
+    letter-spacing: 1px;
+}
+
+.btn-copiar-cupon {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-copiar-cupon:hover {
+    background: #dc2626;
+    color: #ffffff;
+    border-color: #dc2626;
+}
+
+/* ==========================================================================
+   SECCIÓN: CANJEAR PUNTOS CALETA (Catalogue Rewards Grid)
+   ========================================================================== */
+.puntos-banner-hero {
+    background: linear-gradient(135deg, #1f1d13 0%, #291b0f 50%, #1e1e1e 100%);
+    border: 1px solid rgba(234, 179, 8, 0.35);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 6px 20px rgba(234, 179, 8, 0.1);
+}
+
+.puntos-badge-glow {
+    background: linear-gradient(135deg, #facc15, #ca8a04);
+    color: #1c1917;
+    font-weight: 800;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 18px;
+    box-shadow: 0 0 16px rgba(250, 204, 21, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.recompensa-card {
+    background: #232323;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recompensa-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(234, 179, 8, 0.4);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.recompensa-icono-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(234, 179, 8, 0.12);
+    border: 1px solid rgba(234, 179, 8, 0.25);
+    color: #facc15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.btn-canjear-recompensa {
+    background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+    color: #1c1917;
+    font-weight: 700;
+    font-size: 13px;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.btn-canjear-recompensa:hover:not(:disabled) {
+    background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+    color: #000;
+    box-shadow: 0 4px 14px rgba(250, 204, 21, 0.4);
+    transform: translateY(-1px);
+}
+
+.btn-canjear-recompensa:disabled {
+    background: #333333;
+    color: #71717a;
+    cursor: not-allowed;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Modales Oscuros */
+.modal-content-caleta {
+    background-color: #212121;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    color: #ffffff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}

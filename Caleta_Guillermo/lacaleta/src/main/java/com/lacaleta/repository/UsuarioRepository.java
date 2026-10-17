@@ -18,4 +18,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query("select u from Usuario u where u.email = :email")
     Optional<Usuario> buscarPorEmailParaVerificacion(@Param("email") String email);
     boolean existsByEmail(String email);
+    long countByRolId(Integer rolId);
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("select u from Usuario u where u.id = :id")
+    Optional<Usuario> bloquearPorId(@Param("id") Integer id);
 }

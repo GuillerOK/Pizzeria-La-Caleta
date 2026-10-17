@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
+@org.springframework.context.annotation.Profile("demo")
 public class TestQuery implements CommandLineRunner {
     private final CategoriaRepository catRepo;
     private final ProductoRepository prodRepo;

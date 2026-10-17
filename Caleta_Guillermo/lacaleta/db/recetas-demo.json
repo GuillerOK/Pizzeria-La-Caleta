@@ -1,0 +1,432 @@
+{
+  "aviso": "Datos ficticios de demostración. Cantidades por SKU vendido; combos tienen receta consolidada.",
+  "ingredientes": [
+    {
+      "codigo": "HARINA",
+      "nombre": "Harina de Trigo",
+      "stockInicial": 80,
+      "unidad": "kg",
+      "stockMinimo": 10
+    },
+    {
+      "codigo": "MOZZARELLA",
+      "nombre": "Queso Mozzarella",
+      "stockInicial": 40,
+      "unidad": "kg",
+      "stockMinimo": 5
+    },
+    {
+      "codigo": "TOMATE",
+      "nombre": "Salsa de Tomate",
+      "stockInicial": 35,
+      "unidad": "kg",
+      "stockMinimo": 5
+    },
+    {
+      "codigo": "PEPPERONI",
+      "nombre": "Pepperoni Laminado",
+      "stockInicial": 15,
+      "unidad": "kg",
+      "stockMinimo": 2
+    },
+    {
+      "codigo": "JAMON",
+      "nombre": "Jamón",
+      "stockInicial": 15,
+      "unidad": "kg",
+      "stockMinimo": 2
+    },
+    {
+      "codigo": "PINA",
+      "nombre": "Piña",
+      "stockInicial": 12,
+      "unidad": "kg",
+      "stockMinimo": 2
+    },
+    {
+      "codigo": "TOCINO",
+      "nombre": "Tocino",
+      "stockInicial": 12,
+      "unidad": "kg",
+      "stockMinimo": 2
+    },
+    {
+      "codigo": "CARNE",
+      "nombre": "Carne de Res",
+      "stockInicial": 12,
+      "unidad": "kg",
+      "stockMinimo": 2
+    },
+    {
+      "codigo": "PIMIENTO",
+      "nombre": "Pimiento",
+      "stockInicial": 8,
+      "unidad": "kg",
+      "stockMinimo": 1
+    },
+    {
+      "codigo": "CHAMPINON",
+      "nombre": "Champiñones",
+      "stockInicial": 8,
+      "unidad": "kg",
+      "stockMinimo": 1
+    },
+    {
+      "codigo": "ACEITUNA",
+      "nombre": "Aceituna",
+      "stockInicial": 5,
+      "unidad": "kg",
+      "stockMinimo": 1
+    },
+    {
+      "codigo": "ALBAHACA",
+      "nombre": "Albahaca",
+      "stockInicial": 1,
+      "unidad": "kg",
+      "stockMinimo": 0.2
+    },
+    {
+      "codigo": "ACEITE",
+      "nombre": "Aceite de Oliva",
+      "stockInicial": 8,
+      "unidad": "litros",
+      "stockMinimo": 1
+    },
+    {
+      "codigo": "LEVADURA",
+      "nombre": "Levadura",
+      "stockInicial": 2,
+      "unidad": "kg",
+      "stockMinimo": 0.25
+    },
+    {
+      "codigo": "SAL",
+      "nombre": "Sal",
+      "stockInicial": 5,
+      "unidad": "kg",
+      "stockMinimo": 0.5
+    },
+    {
+      "codigo": "AGUA",
+      "nombre": "Agua Filtrada",
+      "stockInicial": 100,
+      "unidad": "litros",
+      "stockMinimo": 10
+    },
+    {
+      "codigo": "MANTEQUILLA",
+      "nombre": "Mantequilla",
+      "stockInicial": 6,
+      "unidad": "kg",
+      "stockMinimo": 1
+    },
+    {
+      "codigo": "AJO",
+      "nombre": "Ajo",
+      "stockInicial": 3,
+      "unidad": "kg",
+      "stockMinimo": 0.5
+    },
+    {
+      "codigo": "PARMESANO",
+      "nombre": "Queso Parmesano",
+      "stockInicial": 5,
+      "unidad": "kg",
+      "stockMinimo": 0.5
+    },
+    {
+      "codigo": "POLLO",
+      "nombre": "Alitas de Pollo",
+      "stockInicial": 20,
+      "unidad": "kg",
+      "stockMinimo": 3
+    },
+    {
+      "codigo": "BBQ",
+      "nombre": "Salsa BBQ",
+      "stockInicial": 8,
+      "unidad": "kg",
+      "stockMinimo": 1
+    },
+    {
+      "codigo": "FRESCO",
+      "nombre": "Queso Fresco",
+      "stockInicial": 10,
+      "unidad": "kg",
+      "stockMinimo": 2
+    }
+  ],
+  "recetas": {
+    "La Cómplice": {
+      "HARINA": 0.3,
+      "AGUA": 0.18,
+      "LEVADURA": 0.005,
+      "SAL": 0.006,
+      "ACEITE": 0.01,
+      "MOZZARELLA": 0.2,
+      "TOMATE": 0.12,
+      "PEPPERONI": 0.09
+    },
+    "El Pacto": {
+      "HARINA": 0.3,
+      "AGUA": 0.18,
+      "LEVADURA": 0.005,
+      "SAL": 0.006,
+      "ACEITE": 0.01,
+      "MOZZARELLA": 0.2,
+      "TOMATE": 0.12,
+      "JAMON": 0.08,
+      "TOCINO": 0.06
+    },
+    "La Coartada": {
+      "HARINA": 0.3,
+      "AGUA": 0.18,
+      "LEVADURA": 0.005,
+      "SAL": 0.006,
+      "ACEITE": 0.01,
+      "MOZZARELLA": 0.2,
+      "TOMATE": 0.12,
+      "JAMON": 0.08,
+      "PINA": 0.1
+    },
+    "La Confesión": {
+      "HARINA": 0.3,
+      "AGUA": 0.18,
+      "LEVADURA": 0.005,
+      "SAL": 0.006,
+      "ACEITE": 0.01,
+      "MOZZARELLA": 0.2,
+      "TOMATE": 0.12,
+      "PIMIENTO": 0.05,
+      "CHAMPINON": 0.06,
+      "ACEITUNA": 0.025,
+      "ALBAHACA": 0.003
+    },
+    "La Cofradía": {
+      "HARINA": 0.3,
+      "AGUA": 0.18,
+      "LEVADURA": 0.005,
+      "SAL": 0.006,
+      "ACEITE": 0.01,
+      "MOZZARELLA": 0.2,
+      "TOMATE": 0.12,
+      "PEPPERONI": 0.06,
+      "CARNE": 0.08,
+      "TOCINO": 0.05
+    },
+    "La Cómplice Personal": {
+      "HARINA": 0.135,
+      "AGUA": 0.081,
+      "LEVADURA": 0.00225,
+      "SAL": 0.0027,
+      "ACEITE": 0.0045,
+      "MOZZARELLA": 0.09,
+      "TOMATE": 0.054,
+      "PEPPERONI": 0.0405
+    },
+    "El Pacto Personal": {
+      "HARINA": 0.135,
+      "AGUA": 0.081,
+      "LEVADURA": 0.00225,
+      "SAL": 0.0027,
+      "ACEITE": 0.0045,
+      "MOZZARELLA": 0.09,
+      "TOMATE": 0.054,
+      "JAMON": 0.036,
+      "TOCINO": 0.027
+    },
+    "La Coartada Personal": {
+      "HARINA": 0.135,
+      "AGUA": 0.081,
+      "LEVADURA": 0.00225,
+      "SAL": 0.0027,
+      "ACEITE": 0.0045,
+      "MOZZARELLA": 0.09,
+      "TOMATE": 0.054,
+      "JAMON": 0.036,
+      "PINA": 0.045
+    },
+    "Palitos de Ajo": {
+      "HARINA": 0.15,
+      "AGUA": 0.09,
+      "LEVADURA": 0.003,
+      "SAL": 0.003,
+      "MANTEQUILLA": 0.03,
+      "AJO": 0.01,
+      "PARMESANO": 0.025
+    },
+    "Alitas BBQ": {
+      "POLLO": 0.45,
+      "BBQ": 0.08,
+      "SAL": 0.004
+    },
+    "Tequeños de Queso": {
+      "HARINA": 0.15,
+      "AGUA": 0.05,
+      "SAL": 0.003,
+      "FRESCO": 0.16,
+      "ACEITE": 0.025
+    },
+    "Dúo Clandestino": {
+      "HARINA": 0.51,
+      "AGUA": 0.306,
+      "LEVADURA": 0.0085,
+      "SAL": 0.0102,
+      "ACEITE": 0.017,
+      "MOZZARELLA": 0.34,
+      "TOMATE": 0.204,
+      "PEPPERONI": 0.153
+    },
+    "Trío en Secreto": {
+      "HARINA": 0.63,
+      "AGUA": 0.378,
+      "LEVADURA": 0.0105,
+      "SAL": 0.0126,
+      "ACEITE": 0.021,
+      "MOZZARELLA": 0.42,
+      "TOMATE": 0.252,
+      "PEPPERONI": 0.063,
+      "JAMON": 0.112,
+      "TOCINO": 0.042,
+      "PINA": 0.07
+    },
+    "El Silencio": {
+      "HARINA": 0.45,
+      "AGUA": 0.27,
+      "LEVADURA": 0.008,
+      "SAL": 0.009,
+      "ACEITE": 0.01,
+      "MOZZARELLA": 0.2,
+      "TOMATE": 0.12,
+      "PEPPERONI": 0.09,
+      "MANTEQUILLA": 0.03,
+      "AJO": 0.01,
+      "PARMESANO": 0.025
+    },
+    "Pacto Caleta": {
+      "HARINA": 0.6,
+      "AGUA": 0.36,
+      "LEVADURA": 0.01,
+      "SAL": 0.016,
+      "ACEITE": 0.02,
+      "MOZZARELLA": 0.4,
+      "TOMATE": 0.24,
+      "PEPPERONI": 0.09,
+      "JAMON": 0.08,
+      "TOCINO": 0.06,
+      "POLLO": 0.45,
+      "BBQ": 0.08
+    },
+    "Dúo Cómplice": {
+      "HARINA": 0.42,
+      "AGUA": 0.252,
+      "LEVADURA": 0.007,
+      "SAL": 0.0084,
+      "ACEITE": 0.014,
+      "MOZZARELLA": 0.28,
+      "TOMATE": 0.168,
+      "PEPPERONI": 0.126
+    },
+    "Dúo Pacto Clásico": {
+      "HARINA": 0.42,
+      "AGUA": 0.252,
+      "LEVADURA": 0.007,
+      "SAL": 0.0084,
+      "ACEITE": 0.014,
+      "MOZZARELLA": 0.28,
+      "TOMATE": 0.168,
+      "JAMON": 0.112,
+      "TOCINO": 0.084
+    },
+    "Trilogía Caleta": {
+      "HARINA": 0.63,
+      "AGUA": 0.378,
+      "LEVADURA": 0.0105,
+      "SAL": 0.0126,
+      "ACEITE": 0.021,
+      "MOZZARELLA": 0.42,
+      "TOMATE": 0.252,
+      "PEPPERONI": 0.063,
+      "JAMON": 0.112,
+      "TOCINO": 0.042,
+      "PINA": 0.07
+    },
+    "Banquete Clandestino": {
+      "HARINA": 0.6,
+      "AGUA": 0.36,
+      "LEVADURA": 0.01,
+      "SAL": 0.016,
+      "ACEITE": 0.02,
+      "MOZZARELLA": 0.4,
+      "TOMATE": 0.24,
+      "PEPPERONI": 0.09,
+      "JAMON": 0.08,
+      "PINA": 0.1,
+      "POLLO": 0.45,
+      "BBQ": 0.08
+    },
+    "Trío con Acompañamiento": {
+      "HARINA": 0.78,
+      "AGUA": 0.468,
+      "LEVADURA": 0.0135,
+      "SAL": 0.0156,
+      "ACEITE": 0.021,
+      "MOZZARELLA": 0.42,
+      "TOMATE": 0.252,
+      "PEPPERONI": 0.063,
+      "JAMON": 0.112,
+      "TOCINO": 0.042,
+      "PINA": 0.07,
+      "MANTEQUILLA": 0.03,
+      "AJO": 0.01,
+      "PARMESANO": 0.025
+    },
+    "Dúo Carnívoro": {
+      "HARINA": 0.42,
+      "AGUA": 0.252,
+      "LEVADURA": 0.007,
+      "SAL": 0.0084,
+      "ACEITE": 0.014,
+      "MOZZARELLA": 0.28,
+      "TOMATE": 0.168,
+      "PEPPERONI": 0.084,
+      "CARNE": 0.112,
+      "TOCINO": 0.07
+    },
+    "Fiesta en La Caleta": {
+      "HARINA": 0.9,
+      "AGUA": 0.54,
+      "LEVADURA": 0.015,
+      "SAL": 0.018,
+      "ACEITE": 0.03,
+      "MOZZARELLA": 0.6,
+      "TOMATE": 0.36,
+      "PEPPERONI": 0.09,
+      "JAMON": 0.16,
+      "TOCINO": 0.06,
+      "PINA": 0.1
+    },
+    "Trío Cómplices": {
+      "HARINA": 0.63,
+      "AGUA": 0.378,
+      "LEVADURA": 0.0105,
+      "SAL": 0.0126,
+      "ACEITE": 0.021,
+      "MOZZARELLA": 0.42,
+      "TOMATE": 0.252,
+      "PEPPERONI": 0.189
+    },
+    "Gran Cofradía Familiar": {
+      "HARINA": 0.45,
+      "AGUA": 0.27,
+      "LEVADURA": 0.0075,
+      "SAL": 0.009,
+      "ACEITE": 0.015,
+      "MOZZARELLA": 0.3,
+      "TOMATE": 0.18,
+      "PEPPERONI": 0.09,
+      "CARNE": 0.12,
+      "TOCINO": 0.075
+    }
+  }
+}

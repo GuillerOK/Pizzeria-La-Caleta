@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
+@org.springframework.context.annotation.Profile("demo")
 public class DatabaseSeeder implements CommandLineRunner {
 
     @Autowired

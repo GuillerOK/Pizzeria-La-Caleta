@@ -19,6 +19,7 @@ public class Usuario {
 
     // Mapea exactamente la columna 'password_hash' de PostgreSQL
     @Column(name = "password_hash", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private String password;
 
     @Column(length = 15)
@@ -31,6 +32,9 @@ public class Usuario {
     // 2 = ADMIN, 1 = CLIENTE segun tabla 'roles'
     @Column(name = "rol_id", nullable = false)
     private Integer rolId;
+
+    @Column(name = "puntos")
+    private Integer puntos = 50;
 
     @Column(name = "fecha_registro")
     private LocalDateTime fechaRegistro;
@@ -52,6 +56,14 @@ public class Usuario {
         this.dni = dni;
         this.rolId = (rolId != null) ? rolId : 1;
         this.fechaRegistro = LocalDateTime.now();
+    }
+
+    public Integer getPuntos() {
+        return puntos != null ? puntos : 0;
+    }
+
+    public void setPuntos(Integer puntos) {
+        this.puntos = puntos;
     }
 
     public Boolean getVerificado() {

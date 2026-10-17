@@ -5,9 +5,9 @@ import java.sql.Statement;
 
 public class DbChecker {
     public static void main(String[] args) {
-        String url = "jdbc:postgresql://ep-wandering-cell-ay8ox05o-pooler.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require";
-        String user = "neondb_owner";
-        String password = "npg_ULk4dAE5TuBH";
+        String url = System.getenv("DB_URL");
+        String user = System.getenv("DB_USERNAME");
+        String password = System.getenv("DB_PASSWORD");
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              Statement stmt = conn.createStatement()) {

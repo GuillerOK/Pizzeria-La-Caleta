@@ -8,6 +8,8 @@
 <h2>Boleta de compra — Pedido #<span th:text="${pedido.id}"></span></h2>
 <p>Hola, <span th:text="${pedido.usuario.nombre}"></span>. Gracias por tu compra.</p>
 <p>Fecha (Lima): <span th:text="${fecha}"></span></p>
+<p>Pago pendiente: <span th:text="${pedido.metodoPago == 'PAGO_EN_TIENDA' ? 'Pago al retirar en tienda' : 'Pago contra entrega'}"></span>.</p>
+<p>Entrega: <span th:text="${pedido.direccionEntrega}"></span></p>
 <table style="width:100%;border-collapse:collapse;text-align:left" cellpadding="8">
 <thead><tr style="background:#eee"><th>Producto</th><th>Cant.</th><th>Precio</th><th>Subtotal</th></tr></thead>
 <tbody><tr th:each="item : ${items}">

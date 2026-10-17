@@ -167,7 +167,7 @@ class AccountVerificationTests {
         for (Boolean estado : new Boolean[]{false, null}) {
             usuario.setVerificado(estado);
             assertEquals(HttpStatus.FORBIDDEN,
-                    controller.login(Map.of("email", EMAIL, "password", "clave"), session).getStatusCode());
+                    controller.login(Map.of("email", EMAIL, "password", "clave"), session, solicitud(session)).getStatusCode());
             assertNull(session.getAttribute("usuarioLogueado"));
         }
     }
@@ -179,7 +179,7 @@ class AccountVerificationTests {
         MockHttpSession session = new MockHttpSession();
         when(usuarios.autenticar(EMAIL, "clave")).thenReturn(Optional.of(usuario));
         assertEquals(HttpStatus.OK,
-                controller.login(Map.of("email", EMAIL, "password", "clave"), session).getStatusCode());
+                controller.login(Map.of("email", EMAIL, "password", "clave"), session, solicitud(session)).getStatusCode());
         assertSame(usuario, session.getAttribute("usuarioLogueado"));
     }
 
@@ -188,5 +188,10 @@ class AccountVerificationTests {
         assertEquals(HttpStatus.BAD_REQUEST, controller.register(Map.of()).getStatusCode());
         assertEquals(HttpStatus.BAD_REQUEST, controller.verifyAccount(Map.of()).getStatusCode());
         verifyNoInteractions(emails);
+    }
+    private org.springframework.mock.web.MockHttpServletRequest solicitud(MockHttpSession session) {
+        var request = new org.springframework.mock.web.MockHttpServletRequest();
+        request.setSession(session);
+        return request;
     }
 }

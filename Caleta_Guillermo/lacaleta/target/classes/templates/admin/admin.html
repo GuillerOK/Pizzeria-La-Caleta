@@ -75,16 +75,6 @@
             </header>
 
             <!-- MENSAJES DE ESTADO FLASH -->
-            <div th:if="${exito}" class="alert alert-success alert-dismissible fade show m-3" role="alert"
-                style="background-color: #166534; color: #fff; border: none;">
-                <i class="bi bi-check-circle-fill me-2"></i> <span th:text="${exito}"></span>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
-            </div>
-            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show m-3" role="alert"
-                style="background-color: #991b1b; color: #fff; border: none;">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i> <span th:text="${error}"></span>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
-            </div>
 
             <!-- 1. DASHBOARD -->
             <section id="dashboard" class="caleta-seccion activa">
@@ -100,7 +90,8 @@
                     <div class="caleta-kpi-card carmesi">
                         <div>
                             <div class="caleta-kpi-label">Pizzas en Catálogo</div>
-                            <h4 class="caleta-kpi-val" id="kpi-pizzas-catalogo" th:text="${totalPizzas} + ' Variedades'">5 Variedades</h4>
+                            <h4 class="caleta-kpi-val" id="kpi-pizzas-catalogo"
+                                th:text="${totalPizzas} + ' Variedades'">5 Variedades</h4>
                         </div>
                         <i class="bi bi-fire caleta-kpi-icon" style="color: var(--color-carmesi);"></i>
                     </div>
@@ -138,19 +129,23 @@
                                     <th>Estado</th>
                                 </tr>
                             </thead>
-                                <tr th:if="${pedidos == null or pedidos.isEmpty()}">
-                                    <td colspan="6" class="text-center text-muted py-4">No hay pedidos recientes.</td>
-                                </tr>
-                                <tr th:each="pedido : ${pedidos}">
-                                    <td><strong th:text="'#ORD-' + ${pedido.id}">#ORD-001</strong></td>
-                                    <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}">Fecha</td>
-                                    <td th:text="${pedido.usuario != null ? pedido.usuario.nombre : 'Cliente Anónimo'}">Cliente</td>
-                                    <td th:text="${pedido.metodoPago}">Método Pago</td>
-                                    <td class="text-ro"><strong th:text="'S/ ' + ${#numbers.formatDecimal(pedido.total, 1, 2)}">S/ 0.00</strong></td>
-                                    <td>
-                                        <span class="caleta-badge success" th:text="${pedido.estado != null ? pedido.estado : 'Recibido'}">Estado</span>
-                                    </td>
-                                </tr>
+                            <tr th:if="${pedidos == null or pedidos.isEmpty()}">
+                                <td colspan="6" class="text-center text-muted py-4">No hay pedidos recientes.</td>
+                            </tr>
+                            <tr th:each="pedido : ${pedidos}">
+                                <td><strong th:text="'#ORD-' + ${pedido.id}">#ORD-001</strong></td>
+                                <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy HH:mm')}">Fecha</td>
+                                <td th:text="${pedido.usuario != null ? pedido.usuario.nombre : 'Cliente Anónimo'}">
+                                    Cliente</td>
+                                <td th:text="${pedido.metodoPago}">Método Pago</td>
+                                <td class="text-ro"><strong
+                                        th:text="'S/ ' + ${#numbers.formatDecimal(pedido.total, 1, 2)}">S/ 0.00</strong>
+                                </td>
+                                <td>
+                                    <span class="caleta-badge success"
+                                        th:text="${pedido.estado != null ? pedido.estado : 'Recibido'}">Estado</span>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -209,19 +204,17 @@
                                     <td style="text-align: center;">
                                         <button class="caleta-btn-outline" style="padding: 4px 10px;"
                                             title="Editar o Inhabilitar" th:data-id="${p.id}"
-                                            th:data-nombre="${p.nombre}" th:data-precio="${p.precio}"
+                                            th:data-nombre="${p.nombre}" th:data-precio="${p.precio}" th:data-stock="${p.stock}"
                                             th:data-tamano="${p.tamano != null ? p.tamano : 'Familiar'}"
                                             th:data-categoria="${p.categoria != null ? p.categoria.codigo : 'clasicas'}"
                                             th:data-disponible="${p.disponible != null ? p.disponible : true}"
                                             th:data-img="${p.imagenUrl}" onclick="abrirModalEditar(this)">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
-                                        <a th:href="@{/admin/pizzas/eliminar/{id}(id=${p.id})}"
-                                            class="caleta-btn-outline" style="padding: 4px 10px; color: #dc2626;"
-                                            title="Eliminar del catálogo"
-                                            onclick="return confirm('¿Seguro que deseas eliminar esta pizza del menú?')">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
+                                        <button type="button" class="caleta-btn-outline" th:data-id="${p.id}" onclick="abrirReceta(this.dataset.id)">Receta</button>
+                                        <form th:action="@{/admin/pizzas/eliminar/{id}(id=${p.id})}" method="post" class="d-inline" data-confirmar="¿Eliminar esta pizza del catálogo?">
+                                            <button type="submit" class="caleta-btn-outline" title="Eliminar"><i class="bi bi-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             </tbody>
@@ -274,9 +267,9 @@
                                 <tr th:each="ins : ${insumos}">
                                     <td th:text="${ins.codigo}">INS-01</td>
                                     <td class="fw-bold" th:text="${ins.nombre}">Queso Mozzarella</td>
-                                    <td><strong th:text="${ins.stockActual} + ' ' + ${ins.unidadMedida}">4 kg</strong>
+                                    <td><strong th:text="|${ins.stockActual} ${ins.unidadMedida}|">4 kg</strong>
                                     </td>
-                                    <td th:text="${ins.stockMinimo} + ' ' + ${ins.unidadMedida}">5 kg</td>
+                                    <td th:text="|${ins.stockMinimo} ${ins.unidadMedida}|">5 kg</td>
                                     <td>
                                         <span th:if="${ins.critico}" class="caleta-badge danger">CRÍTICO (&le; <span
                                                 th:text="${ins.stockMinimo}"></span>)</span>
@@ -290,12 +283,14 @@
                                             onclick="abrirModalEditarInsumo(this)">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
-                                        <a th:href="@{/admin/insumos/eliminar/{id}(id=${ins.id})}"
-                                            class="caleta-btn-outline" style="padding: 4px 10px; color: #dc2626;"
-                                            title="Eliminar Insumo"
-                                            onclick="return confirm('¿Seguro que deseas eliminar este insumo?')">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
+                                        <form th:action="@{/admin/insumos/eliminar/{id}(id=${ins.id})}" method="post"
+                                            style="display:inline;"
+                                            data-confirmar="¿Seguro que deseas eliminar este insumo?">
+                                            <button type="submit" class="caleta-btn-outline"
+                                                style="padding: 4px 10px; color: #dc2626;" title="Eliminar Insumo">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             </tbody>
@@ -328,7 +323,8 @@
                                 <tr th:each="pedido : ${pedidos}">
                                     <td th:text="'B001-' + ${#numbers.formatInteger(pedido.id, 4)}">B001-0001</td>
                                     <td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy')}">Fecha</td>
-                                    <td th:text="${pedido.usuario != null ? pedido.usuario.nombre : 'Cliente Anónimo'}">Cliente</td>
+                                    <td th:text="${pedido.usuario != null ? pedido.usuario.nombre : 'Cliente Anónimo'}">
+                                        Cliente</td>
                                     <td th:text="${pedido.metodoPago}">Pago</td>
                                     <td th:text="'S/ ' + ${#numbers.formatDecimal(pedido.total, 1, 2)}">Monto</td>
                                 </tr>
@@ -356,13 +352,27 @@
                             </thead>
                             <tbody>
                                 <tr th:if="${clientes == null or clientes.isEmpty()}">
-                                    <td colspan="4" class="text-center text-muted py-4">Aún no hay clientes registrados en la base de datos.</td>
+                                    <td colspan="5" class="text-center text-muted py-4">Aún no hay clientes registrados
+                                        en la base de datos.</td>
                                 </tr>
                                 <tr th:each="c : ${clientes}">
-                                    <td th:text="${c.dni != null and !c.dni.isEmpty() ? c.dni : 'No especificado'}" th:class="${c.dni == null or c.dni.isEmpty() ? 'text-muted' : ''}">No especificado</td>
+                                    <td th:text="${c.dni != null and !c.dni.isEmpty() ? c.dni : 'No especificado'}"
+                                        th:class="${c.dni == null or c.dni.isEmpty() ? 'text-muted' : ''}">No
+                                        especificado</td>
                                     <td class="fw-bold" th:text="${c.nombre}">Nombre</td>
                                     <td th:text="${c.telefono}">Teléfono</td>
-                                    <td class="text-muted">Registrado el <span th:text="${#temporals.format(c.fechaRegistro, 'dd/MM/yyyy')}"></span></td>
+                                    <td class="text-muted">Registrado el <span
+                                            th:text="${#temporals.format(c.fechaRegistro, 'dd/MM/yyyy')}"></span></td>
+                                    <td style="text-align: center;">
+                                        <form th:action="@{/admin/clientes/eliminar/{id}(id=${c.id})}" method="post"
+                                            style="display:inline;"
+                                            data-confirmar="¿Seguro que deseas eliminar este cliente? Se borrará de la base de datos.">
+                                            <button type="submit" class="caleta-btn-outline"
+                                                style="padding: 4px 10px; color: #dc2626;" title="Eliminar Cliente">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -374,59 +384,57 @@
     </div>
 
     <!-- MODAL 1: REGISTRAR NUEVA PIZZA -->
-    <div class="modal fade" id="modalNuevaPizza" tabindex="-1" aria-labelledby="modalNuevaPizzaLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-white border border-secondary border-opacity-25"
-                style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
-                    <h5 class="modal-title fw-bold fs-5 mb-0" id="modalNuevaPizzaLabel" style="color: var(--color-rojo-naranja);">
+    <div class="modal fade" id="modalNuevaPizza" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"
+                style="background-color: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
+                <div
+                    style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
                         <i class="bi bi-plus-circle me-2"></i>Registrar Pizza en Menú
                     </h5>
-                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <form th:action="@{/admin/pizzas/guardar}" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="stock" value="10">
-                    <div class="modal-body p-4">
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Nombre de la Pizza *</label>
-                            <input type="text" name="nombre" class="form-control text-white" 
-                                style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. Americana Suprema" required>
+                    <label class="text-white">Stock inicial</label><input type="number" name="stock" value="0" min="0" required class="form-control">
+                    <div style="padding: 20px;">
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Nombre de la Pizza</label>
+                            <input type="text" name="nombre" class="form-control" placeholder="Ej. Americana Suprema"
+                                required>
                         </div>
-                        <div class="row g-3 mb-3">
+                        <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label text-secondary small fw-semibold">Categoría</label>
-                                <select name="codigoCategoria" class="form-select text-white"
-                                    style="background-color: #1b1b1b; border: 1px solid #444;">
-                                    <option th:each="cat : ${categorias}" th:value="${cat.codigo}" th:text="${cat.nombre}">Categoría Dinámica</option>
+                                <label style="color: #d1d5db;">Categoría</label>
+                                <select name="codigoCategoria" class="form-select"
+                                    style="background:#222; color:#fff; border:1px solid #444;">
+                                    <option th:each="cat : ${categorias}" th:value="${cat.codigo}"
+                                        th:text="${cat.nombre}">Categoría Dinámica</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label text-secondary small fw-semibold">Tamaño</label>
-                                <select name="tamano" class="form-select text-white"
-                                    style="background-color: #1b1b1b; border: 1px solid #444;">
+                                <label style="color: #d1d5db;">Tamaño</label>
+                                <select name="tamano" class="form-select"
+                                    style="background:#222; color:#fff; border:1px solid #444;">
                                     <option value="Personal">Personal</option>
                                     <option value="Mediana">Mediana</option>
                                     <option value="Familiar" selected>Familiar</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Precio de Venta (S/) *</label>
-                            <input type="number" step="0.50" min="1" name="precio" class="form-control text-white" 
-                                style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. 42.00" required>
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Precio de Venta (S/)</label>
+                            <input type="number" step="0.50" name="precio" class="form-control" placeholder="Ej. 42.00"
+                                required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Subir Archivo de Imagen (PNG/JPG)</label>
-                            <input type="file" name="imagenArchivo" class="form-control text-white" 
-                                style="background-color: #1b1b1b; border: 1px solid #444;" accept="image/png, image/jpeg">
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Subir Archivo de Imagen (PNG/JPG)</label>
+                            <input type="file" name="imagenArchivo" class="form-control" accept="image/png, image/jpeg">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">O usar URL externa / estática</label>
-                            <input type="text" name="imagenUrl" class="form-control text-white"
-                                style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="/images/producto_americana.jpg">
-                        </div>
+
                     </div>
-                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3">
+                    <div
+                        style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: flex-end; gap: 10px;">
                         <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cerrar</button>
                         <button type="submit" class="caleta-btn-primary">Guardar Pizza</button>
                     </div>
@@ -436,42 +444,49 @@
     </div>
 
     <!-- MODAL NUEVO INSUMO -->
-    <div class="modal fade" id="modalNuevoInsumo" tabindex="-1" aria-labelledby="modalNuevoInsumoLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-white border border-secondary border-opacity-25"
-                style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
-                    <h5 class="modal-title fw-bold fs-5 mb-0" id="modalNuevoInsumoLabel" style="color: var(--color-rojo-naranja);">
+    <div class="modal fade" id="modalNuevoInsumo" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"
+                style="background-color: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
+                <div
+                    style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
                         <i class="bi bi-box-seam me-2"></i>Registrar Nuevo Insumo
                     </h5>
-                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <form th:action="@{/admin/insumos/guardar}" method="post">
-                    <div class="modal-body p-4">
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Nombre del Insumo *</label>
-                            <input type="text" name="nombre" class="form-control text-white" 
-                                style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. Aceitunas Rodajas" required>
+                    <div style="padding: 20px;">
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Nombre del Insumo</label>
+                            <input type="text" name="nombre" class="form-control" placeholder="Ej. Aceitunas Rodajas"
+                                required>
                         </div>
-                        <div class="row g-3 mb-3">
+                        <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label text-secondary small fw-semibold">Stock Actual *</label>
-                                <input type="number" step="0.1" min="0" name="stockActual" class="form-control text-white"
-                                    style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. 10.0" required>
+                                <label style="color: #d1d5db;">Stock Actual</label>
+                                <input type="number" step="0.1" name="stockActual" class="form-control"
+                                    placeholder="Ej. 10.0" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label text-secondary small fw-semibold">Unidad de Medida *</label>
-                                <input type="text" name="unidadMedida" class="form-control text-white"
-                                    style="background-color: #1b1b1b; border: 1px solid #444;" placeholder="Ej. kg, Litros, und" required>
+                                <label style="color: #d1d5db;">Unidad de Medida</label>
+                                <select name="unidadMedida" class="form-select" required>
+                                    <option value="" selected disabled>Selecciona una unidad</option>
+                                    <option value="kg">Kilogramos (kg)</option>
+                                    <option value="g">Gramos (g)</option>
+                                    <option value="litros">Litros (L)</option>
+                                    <option value="unidades">Unidades</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Stock Mínimo (Alerta Crítica) *</label>
-                            <input type="number" step="0.1" min="0" name="stockMinimo" class="form-control text-white" 
-                                style="background-color: #1b1b1b; border: 1px solid #444;" value="5.0" required>
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Stock Mínimo (Alerta Crítica)</label>
+                            <input type="number" step="0.1" name="stockMinimo" class="form-control" value="5.0"
+                                required>
                         </div>
                     </div>
-                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3">
+                    <div
+                        style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: flex-end; gap: 10px;">
                         <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cancelar</button>
                         <button type="submit" class="caleta-btn-primary">Guardar Insumo</button>
                     </div>
@@ -481,43 +496,48 @@
     </div>
 
     <!-- MODAL EDITAR INSUMO -->
-    <div class="modal fade" id="modalEditarInsumo" tabindex="-1" aria-labelledby="modalEditarInsumoLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-white border border-secondary border-opacity-25"
-                style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
-                    <h5 class="modal-title fw-bold fs-5 mb-0" id="modalEditarInsumoLabel" style="color: var(--color-rojo-naranja);">
+    <div class="modal fade" id="modalEditarInsumo" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"
+                style="background-color: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
+                <div
+                    style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
                         <i class="bi bi-pencil-square me-2"></i>Modificar Insumo
                     </h5>
-                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <form th:action="@{/admin/insumos/guardar}" method="post">
                     <input type="hidden" id="edit-insumo-id" name="id">
-                    <div class="modal-body p-4">
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Nombre del Insumo *</label>
-                            <input type="text" id="edit-insumo-nombre" name="nombre" class="form-control text-white" 
-                                style="background-color: #1b1b1b; border: 1px solid #444;" required>
+                    <div style="padding: 20px;">
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Nombre del Insumo</label>
+                            <input type="text" id="edit-insumo-nombre" name="nombre" class="form-control" required>
                         </div>
-                        <div class="row g-3 mb-3">
+                        <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label text-secondary small fw-semibold">Stock Actual *</label>
-                                <input type="number" step="0.1" min="0" id="edit-insumo-stock" name="stockActual"
-                                    class="form-control text-white" style="background-color: #1b1b1b; border: 1px solid #444;" required>
+                                <label style="color: #d1d5db;">Stock Actual</label>
+                                <input type="number" step="0.1" id="edit-insumo-stock" name="stockActual"
+                                    class="form-control" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label text-secondary small fw-semibold">Unidad de Medida *</label>
-                                <input type="text" id="edit-insumo-unidad" name="unidadMedida" class="form-control text-white"
-                                    style="background-color: #1b1b1b; border: 1px solid #444;" required>
+                                <label style="color: #d1d5db;">Unidad de Medida</label>
+                                <select id="edit-insumo-unidad" name="unidadMedida" class="form-select" required>
+                                    <option value="kg">Kilogramos (kg)</option>
+                                    <option value="g">Gramos (g)</option>
+                                    <option value="litros">Litros (L)</option>
+                                    <option value="unidades">Unidades</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Stock Mínimo *</label>
-                            <input type="number" step="0.1" min="0" id="edit-insumo-minimo" name="stockMinimo"
-                                class="form-control text-white" style="background-color: #1b1b1b; border: 1px solid #444;" required>
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Stock Mínimo</label>
+                            <input type="number" step="0.1" id="edit-insumo-minimo" name="stockMinimo"
+                                class="form-control" required>
                         </div>
                     </div>
-                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3">
+                    <div
+                        style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: flex-end; gap: 10px;">
                         <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cancelar</button>
                         <button type="submit" class="caleta-btn-primary">Actualizar Insumo</button>
                     </div>
@@ -527,38 +547,39 @@
     </div>
 
     <!-- MODAL 2: MODIFICAR / INHABILITAR PIZZA -->
-    <div class="modal fade" id="modalEditarPizza" tabindex="-1" aria-labelledby="modalEditarPizzaLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-white border border-secondary border-opacity-25"
-                style="background-color: #232323; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                <div class="modal-header border-bottom border-secondary border-opacity-25 py-3">
-                    <h5 class="modal-title fw-bold fs-5 mb-0" id="modalEditarPizzaLabel" style="color: var(--color-rojo-naranja);">
+    <div class="modal fade" id="modalEditarPizza" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"
+                style="background-color: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
+                <div
+                    style="padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
                         <i class="bi bi-pencil-square me-2"></i>Modificar / Inhabilitar Pizza
                     </h5>
-                    <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <form th:action="@{/admin/pizzas/editar}" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="edit-id" name="id">
-                    <input type="hidden" id="edit-stock" name="stock" value="10">
+                    <label class="text-white">Stock disponible</label><input type="number" id="edit-stock" name="stock" min="0" required class="form-control">
 
-                    <div class="modal-body p-4">
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Nombre de la Pizza *</label>
-                            <input type="text" id="edit-nombre" name="nombre" class="form-control text-white" 
-                                style="background-color: #1b1b1b; border: 1px solid #444;" required>
+                    <div style="padding: 20px;">
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Nombre de la Pizza</label>
+                            <input type="text" id="edit-nombre" name="nombre" class="form-control" required>
                         </div>
-                        <div class="row g-3 mb-3">
+                        <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label text-secondary small fw-semibold">Categoría</label>
-                                <select id="edit-categoria" name="codigoCategoria" class="form-select text-white"
-                                    style="background-color: #1b1b1b; border: 1px solid #444;">
-                                    <option th:each="cat : ${categorias}" th:value="${cat.codigo}" th:text="${cat.nombre}">Categoría Dinámica</option>
+                                <label style="color: #d1d5db;">Categoría</label>
+                                <select id="edit-categoria" name="codigoCategoria" class="form-select"
+                                    style="background:#222; color:#fff; border:1px solid #444;">
+                                    <option th:each="cat : ${categorias}" th:value="${cat.codigo}"
+                                        th:text="${cat.nombre}">Categoría Dinámica</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label text-secondary small fw-semibold">Tamaño</label>
-                                <select id="edit-tamano" name="tamano" class="form-select text-white"
-                                    style="background-color: #1b1b1b; border: 1px solid #444;">
+                                <label style="color: #d1d5db;">Tamaño</label>
+                                <select id="edit-tamano" name="tamano" class="form-select"
+                                    style="background:#222; color:#fff; border:1px solid #444;">
                                     <option value="Personal">Personal</option>
                                     <option value="Mediana">Mediana</option>
                                     <option value="Familiar">Familiar</option>
@@ -567,32 +588,28 @@
                         </div>
 
                         <!-- CONTROL DE DISPONIBILIDAD -->
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Estado en Menú Web</label>
-                            <select id="edit-disponible" name="disponible" class="form-select text-white"
-                                style="background-color: #1b1b1b; border: 1px solid #444;">
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Estado en Menú Web</label>
+                            <select id="edit-disponible" name="disponible" class="form-select"
+                                style="background:#222; color:#fff; border:1px solid #444;">
                                 <option value="true">Disponible (Visible para clientes)</option>
                                 <option value="false">Agotado / Inhabilitada (Oculta del menú)</option>
                             </select>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Precio (S/) *</label>
-                            <input type="number" step="0.50" min="1" id="edit-precio" name="precio" class="form-control text-white"
-                                style="background-color: #1b1b1b; border: 1px solid #444;" required>
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Precio (S/)</label>
+                            <input type="number" step="0.50" id="edit-precio" name="precio" class="form-control"
+                                required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Subir Nuevo Archivo (PNG/JPG)</label>
-                            <input type="file" name="imagenArchivo" class="form-control text-white" 
-                                style="background-color: #1b1b1b; border: 1px solid #444;" accept="image/png, image/jpeg">
+                        <div class="username mb-3">
+                            <label style="color: #d1d5db;">Subir Nuevo Archivo (PNG/JPG)</label>
+                            <input type="file" name="imagenArchivo" class="form-control" accept="image/png, image/jpeg">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">O cambiar URL externa / estática</label>
-                            <input type="text" id="edit-img" name="imagenUrl" class="form-control text-white" 
-                                style="background-color: #1b1b1b; border: 1px solid #444;">
-                        </div>
+
                     </div>
-                    <div class="modal-footer border-top border-secondary border-opacity-25 py-3">
+                    <div
+                        style="padding: 16px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: flex-end; gap: 10px;">
                         <button type="button" class="caleta-btn-outline" data-bs-dismiss="modal">Cancelar</button>
                         <button type="submit" class="caleta-btn-primary">Actualizar Cambios</button>
                     </div>
@@ -601,13 +618,30 @@
         </div>
     </div>
 
-    <!-- Modal Global de Notificaciones -->
-    <div th:replace="~{fragments/modals :: modalNotificacionGlobal}"></div>
-
+    <div class="modal fade" id="modalConfirmarAdmin" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered"><div class="modal-content bg-dark text-white">
+        <div class="modal-header"><h5 class="modal-title">Confirmar operación</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+        <div class="modal-body" id="mensajeConfirmarAdmin"></div>
+        <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button type="button" class="btn btn-danger" id="aceptarConfirmarAdmin">Eliminar</button></div>
+      </div></div>
+    </div>
+    <div class="modal fade" id="modalReceta" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered"><div class="modal-content bg-dark text-white">
+        <form id="formReceta"><div class="modal-header"><h5 class="modal-title">Insumos por unidad vendida</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+        <div class="modal-body"><p>Ingresa el consumo por producto; deja en cero los insumos que no utiliza.</p>
+          <label th:each="ins : ${insumosReceta}" class="d-block mb-2">
+            <span th:text="|${ins.nombre} (${ins.unidadMedida})|"></span>
+            <input type="number" min="0" max="1000000" step="0.000001" value="0" required class="form-control" th:data-insumo-id="${ins.id}">
+          </label>
+        </div><div class="modal-footer"><button type="submit" id="guardarReceta" class="btn btn-primary">Guardar receta</button></div></form>
+      </div></div>
+    </div>
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div th:replace="~{fragments/modals :: notificacionFlash}"></div>
     <script th:src="@{/js/auth.js}"></script>
     <script th:src="@{/js/admi.js}"></script>
 
 </body>
+
 </html>

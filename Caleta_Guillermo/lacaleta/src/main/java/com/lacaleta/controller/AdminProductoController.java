@@ -41,13 +41,14 @@ public class AdminProductoController {
             @RequestParam(value = "tamano", defaultValue = "Familiar") String tamano,
             RedirectAttributes flash) {
 
-        if (nombre == null || nombre.isBlank()) {
+        if (nombre == null || nombre.isBlank() || nombre.trim().length() > 100) {
             flash.addFlashAttribute("error", "El nombre de la pizza es obligatorio.");
-            return "redirect:/admin";
+            return "redirect:/admin#productos";
         }
-        if (precio == null || precio <= 0) {
+        if (precio == null || !Double.isFinite(precio) || precio <= 0 || stock == null || stock < 0
+                || !com.lacaleta.service.ImagenProductoStorage.urlValida(imagenUrl)) {
             flash.addFlashAttribute("error", "El precio debe ser mayor a 0.");
-            return "redirect:/admin";
+            return "redirect:/admin#productos";
         }
 
         var catOpt = categoriaService.buscarPorCodigo(codigoCategoria);
@@ -65,29 +66,11 @@ public class AdminProductoController {
 
         if (imagenArchivo != null && !imagenArchivo.isEmpty()) {
             try {
-                // Crear carpeta si no existe
-                File directorio = new File("uploads/pizzas");
-                if (!directorio.exists()) {
-                    directorio.mkdirs();
-                }
-                
-                // Generar nombre unico seguro
-                String nombreOriginal = imagenArchivo.getOriginalFilename();
-                String extension = "";
-                if (nombreOriginal != null && nombreOriginal.contains(".")) {
-                    extension = nombreOriginal.substring(nombreOriginal.lastIndexOf("."));
-                }
-                String nombreArchivo = System.currentTimeMillis() + extension;
-                Path ruta = Paths.get("uploads/pizzas", nombreArchivo);
-                
-                // Escribir el archivo
-                Files.write(ruta, imagenArchivo.getBytes());
-                
-                rutaImagenFinal = "/uploads/pizzas/" + nombreArchivo;
+                rutaImagenFinal = com.lacaleta.service.ImagenProductoStorage.guardar(imagenArchivo);
             } catch (IOException e) {
                 e.printStackTrace();
                 flash.addFlashAttribute("error", "Error al procesar la subida de la imagen.");
-                return "redirect:/admin";
+                return "redirect:/admin#productos";
             }
         } else if (imagenUrl != null && !imagenUrl.isBlank()) {
             rutaImagenFinal = imagenUrl.trim();
@@ -97,7 +80,7 @@ public class AdminProductoController {
 
         productoService.guardar(pizza);
         flash.addFlashAttribute("exito", "Pizza registrada correctamente.");
-        return "redirect:/admin";
+        return "redirect:/admin#productos";
     }
 
     // POST: /admin/pizzas/editar (Modificar pizza desde el modal de edición)
@@ -114,10 +97,16 @@ public class AdminProductoController {
             @RequestParam(value = "disponible", defaultValue = "true") Boolean disponible,
             RedirectAttributes flash) {
 
+        if (nombre == null || nombre.isBlank() || nombre.trim().length() > 100
+                || precio == null || !Double.isFinite(precio) || precio <= 0 || stock == null || stock < 0
+                || !com.lacaleta.service.ImagenProductoStorage.urlValida(imagenUrl)) {
+            flash.addFlashAttribute("error", "Nombre, precio o stock inválidos.");
+            return "redirect:/admin#productos";
+        }
         var existente = productoService.buscarPorId(id);
         if (existente.isEmpty()) {
             flash.addFlashAttribute("error", "No se encontró la pizza a editar.");
-            return "redirect:/admin";
+            return "redirect:/admin#productos";
         }
 
         Producto pizza = existente.get();
@@ -136,24 +125,11 @@ public class AdminProductoController {
         // Si sube un archivo nuevo, lo procesamos
         if (imagenArchivo != null && !imagenArchivo.isEmpty()) {
             try {
-                File directorio = new File("uploads/pizzas");
-                if (!directorio.exists()) {
-                    directorio.mkdirs();
-                }
-                String nombreOriginal = imagenArchivo.getOriginalFilename();
-                String extension = "";
-                if (nombreOriginal != null && nombreOriginal.contains(".")) {
-                    extension = nombreOriginal.substring(nombreOriginal.lastIndexOf("."));
-                }
-                String nombreArchivo = System.currentTimeMillis() + extension;
-                Path ruta = Paths.get("uploads/pizzas", nombreArchivo);
-                Files.write(ruta, imagenArchivo.getBytes());
-                
-                pizza.setImagenUrl("/uploads/pizzas/" + nombreArchivo);
+                pizza.setImagenUrl(com.lacaleta.service.ImagenProductoStorage.guardar(imagenArchivo));
             } catch (IOException e) {
                 e.printStackTrace();
                 flash.addFlashAttribute("error", "Error al procesar la nueva imagen.");
-                return "redirect:/admin";
+                return "redirect:/admin#productos";
             }
         } else if (imagenUrl != null && !imagenUrl.isBlank()) {
             // Solo se actualiza si pasaron una URL de imagen válida
@@ -162,17 +138,17 @@ public class AdminProductoController {
 
         productoService.guardar(pizza);
         flash.addFlashAttribute("exito", "Pizza actualizada correctamente.");
-        return "redirect:/admin";
+        return "redirect:/admin#productos";
     }
 
-    // GET: /admin/pizzas/eliminar/{id} (Eliminar según el botón del HTML)
-    @GetMapping("/eliminar/{id}")
+    // POST: eliminar desde el formulario de confirmación.
+    @PostMapping("/eliminar/{id}")
     public String eliminar(@PathVariable Integer id, RedirectAttributes flash) {
         if (productoService.eliminar(id)) {
             flash.addFlashAttribute("exito", "Pizza eliminada correctamente.");
         } else {
             flash.addFlashAttribute("error", "No se pudo encontrar la pizza a eliminar.");
         }
-        return "redirect:/admin";
+        return "redirect:/admin#productos";
     }
 }

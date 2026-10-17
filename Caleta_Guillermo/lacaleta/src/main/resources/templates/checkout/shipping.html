@@ -16,6 +16,8 @@
 
     <div th:replace="~{fragments/header-checkout :: headerCheckout}"></div>
 
+    <div id="usuarioCheckout" hidden th:data-nombre="${usuario.nombre}" th:data-email="${usuario.email}"
+         th:data-telefono="${usuario.telefono}" th:data-dni="${usuario.dni}"></div>
     <main>
         <section class="py-3 border-bottom border-secondary border-opacity-25 bg-negro">
             <div class="container">

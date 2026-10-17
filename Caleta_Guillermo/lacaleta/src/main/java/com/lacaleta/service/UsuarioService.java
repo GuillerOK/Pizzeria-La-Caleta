@@ -15,6 +15,10 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
 
+    @Autowired private com.lacaleta.repository.CuponRepository cupones;
+    @Autowired private com.lacaleta.repository.PedidoRepository pedidos;
+    @Autowired private com.lacaleta.repository.VerificacionCuentaRepository verificaciones;
+
     @Autowired
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
@@ -122,12 +126,30 @@ public class UsuarioService {
         return false;
     }
 
+    public Optional<Usuario> buscarPorId(Integer id) {
+        if (id == null) return Optional.empty();
+        return usuarioRepository.findById(id);
+    }
+
+    public void eliminar(Usuario usuario) {
+        if (usuario != null && usuario.getId() != null) {
+            usuarioRepository.delete(usuario);
+        }
+    }
+
+    @org.springframework.transaction.annotation.Transactional
+    public void eliminarCuenta(Integer id) {
+        Usuario usuario = usuarioRepository.bloquearPorId(id).orElseThrow();
+        cupones.deleteByUsuario(usuario);
+        verificaciones.deleteById(usuario.getEmail());
+        pedidos.anonimizarPorUsuario(id);
+        usuarioRepository.delete(usuario);
+    }
+
     /**
      * Cuenta los usuarios con rolId == 1 (CLIENTE).
      */
     public long contarClientes() {
-        return usuarioRepository.findAll().stream()
-                .filter(u -> Integer.valueOf(1).equals(u.getRolId()))
-                .count();
+        return usuarioRepository.countByRolId(1);
     }
-}
+}

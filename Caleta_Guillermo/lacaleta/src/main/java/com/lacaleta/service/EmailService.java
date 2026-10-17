@@ -35,20 +35,28 @@ public class EmailService {
 
     public void enviarBoleta(com.lacaleta.model.Pedido pedido, java.math.BigDecimal subtotal,
                              java.math.BigDecimal envio) {
-        if (mailSender == null) throw new CorreoException(CorreoException.Motivo.CONFIGURACION, null);
-        try {
+        enviarHtml(pedido.getUsuario().getEmail(), pedido.getId(), renderizarBoleta(pedido, subtotal, envio));
+    }
+
+    public String renderizarBoleta(com.lacaleta.model.Pedido pedido, java.math.BigDecimal subtotal,
+                                   java.math.BigDecimal envio) {
             var contexto = new org.thymeleaf.context.Context(Locale.forLanguageTag("es-PE"));
             contexto.setVariable("pedido", pedido);
             contexto.setVariable("fecha", pedido.getFecha().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
             contexto.setVariable("items", pedido.getDetalles());
             contexto.setVariable("subtotal", subtotal);
             contexto.setVariable("envio", envio);
-            String html = templateEngine.process("boleta-email", contexto);
+            return templateEngine.process("boleta-email", contexto);
+    }
+
+    public void enviarHtml(String destinatario, Integer pedidoId, String html) {
+        if (mailSender == null) throw new CorreoException(CorreoException.Motivo.CONFIGURACION, null);
+        try {
             var mensaje = mailSender.createMimeMessage();
             var helper = new org.springframework.mail.javamail.MimeMessageHelper(mensaje, "UTF-8");
             if (remitente != null && !remitente.isBlank()) helper.setFrom(remitente);
-            helper.setTo(pedido.getUsuario().getEmail());
-            helper.setSubject("La Caleta - Boleta del pedido #" + pedido.getId());
+            helper.setTo(destinatario);
+            helper.setSubject("La Caleta - Boleta del pedido #" + pedidoId);
             helper.setText(html, true);
             mailSender.send(mensaje);
         } catch (Exception error) {

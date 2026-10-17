@@ -31,3 +31,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Configuración local y artefactos de diagnóstico
+.env
+.env.*
+!.env.example
+*.class
+cookies.txt
+audit-*.log
+demo-*.log

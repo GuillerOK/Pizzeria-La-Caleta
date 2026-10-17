@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
+    long countByDisponibleTrue();
     @org.springframework.data.jpa.repository.Lock(jakarta.persistence.LockModeType.PESSIMISTIC_WRITE)
     @org.springframework.data.jpa.repository.Query("select p from Producto p where p.id = :id")
     java.util.Optional<Producto> bloquearPorId(@org.springframework.data.repository.query.Param("id") Integer id);

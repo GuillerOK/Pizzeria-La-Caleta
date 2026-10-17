@@ -1,3 +1,10 @@
+// Escapar datos de catálogo, URL y almacenamiento antes de interpolarlos en HTML.
+function escaparHtml(valor) {
+    return String(valor ?? '').replace(/[&<>"']/g, caracter => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[caracter]);
+}
+
 function obtenerCarrito() {
     return JSON.parse(localStorage.getItem('carrito_caleta')) || [];
 }
@@ -100,7 +107,7 @@ function formatearDetallesComoLista(detallesTexto) {
     if (partes && partes.length > 0) {
         return partes.map(parte => {
             const limpio = parte.replace(/[()\[\]]/g, '').trim();
-            return `<div class="py-0.5">• ${limpio}</div>`;
+            return `<div class="py-0.5">• ${escaparHtml(limpio)}</div>`;
         }).join('');
     }
 
@@ -109,7 +116,7 @@ function formatearDetallesComoLista(detallesTexto) {
         .split(',')
         .map(item => item.trim())
         .filter(item => item.length > 0)
-        .map(item => `<div class="py-0.5">• ${item}</div>`)
+        .map(item => `<div class="py-0.5">• ${escaparHtml(item)}</div>`)
         .join('');
 }
 
@@ -154,9 +161,9 @@ function actualizarVistasCarrito() {
 
                 return `
                     <div class="d-flex align-items-start justify-content-between py-3 border-bottom border-secondary border-opacity-25 gap-2">
-                        <img src="${item.imagenUrl}" alt="${info.nombre}" class="rounded object-fit-cover flex-shrink-0" style="width: 48px; height: 48px;">
+                        <img src="${escaparHtml(item.imagenUrl)}" alt="${escaparHtml(info.nombre)}" class="rounded object-fit-cover flex-shrink-0" style="width: 48px; height: 48px;">
                         <div class="flex-grow-1 ms-2 min-w-0">
-                            <h6 class="mb-1 text-white small fw-bold text-truncate">${info.nombre}</h6>
+                            <h6 class="mb-1 text-white small fw-bold text-truncate">${escaparHtml(info.nombre)}</h6>
                             
                             ${info.detalles ? `
                                 <div class="mb-1 d-flex align-items-center gap-2">
@@ -223,9 +230,9 @@ function actualizarVistasCarrito() {
                     <tr>
                         <td class="ps-4 py-3">
                             <div class="d-flex align-items-center gap-3">
-                                <img src="${item.imagenUrl}" alt="${info.nombre}" class="rounded-2 object-fit-cover" style="width: 55px; height: 55px;">
+                                <img src="${escaparHtml(item.imagenUrl)}" alt="${escaparHtml(info.nombre)}" class="rounded-2 object-fit-cover" style="width: 55px; height: 55px;">
                                 <div>
-                                    <h6 class="fw-bold mb-1 text-white">${info.nombre}</h6>
+                                    <h6 class="fw-bold mb-1 text-white">${escaparHtml(info.nombre)}</h6>
                                     
                                     ${info.detalles ? `
                                         <div class="mb-1 d-flex align-items-center gap-2">
@@ -268,14 +275,8 @@ function actualizarVistasCarrito() {
 document.addEventListener("DOMContentLoaded", actualizarVistasCarrito);
 
 function mostrarNotificacionCarrito(nombreProducto) {
-    const toastEl = document.getElementById('toastCarrito');
-    const toastMensaje = document.getElementById('toastMensaje');
-    if (toastEl && toastMensaje) {
-        const info = parsearNombreProducto(nombreProducto);
-        toastMensaje.innerHTML = `<strong>${info.nombre}</strong> se agregó al pedido.`;
-        const toast = bootstrap.Toast.getOrCreateInstance(toastEl, { delay: 2500 });
-        toast.show();
-    }
+    const info = parsearNombreProducto(nombreProducto);
+    mostrarModalMensaje("Producto agregado", info.nombre + " se agregó al pedido.");
 }
 
 function editarProductoCarrito(indice) {
@@ -297,50 +298,19 @@ function editarProductoCarrito(indice) {
 }
 
 
-// El servidor valida la sesión, el stock y los precios; nunca se envían importes.
+// El carrito continúa al formulario de envío; la compra se confirma en /pago.
 document.addEventListener('DOMContentLoaded', () => {
     const boton = document.getElementById('btnComprar');
     if (!boton) return;
-    let procesando = false;
-    boton.addEventListener('click', async () => {
-        if (procesando) return;
-        procesando = true;
-        boton.disabled = true;
-        boton.textContent = 'Procesando pago...';
-        let completado = false;
-        try {
-            const carrito = obtenerCarrito();
-            if (!boton.dataset.email) throw new Error('Inicia sesión para comprar.');
-            if (!Array.isArray(carrito) || !carrito.length) throw new Error('Tu carrito está vacío.');
-            if (carrito.some(item => !Number.isInteger(item.productoId) || item.productoId <= 0)) {
-                throw new Error('Hay productos de un carrito anterior. Elimínalos y agrégalos nuevamente desde el menú.');
-            }
-            const respuesta = await fetch('/api/checkout', {
-                method: 'POST',
-                credentials: 'same-origin',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email: boton.dataset.email,
-                    items: carrito.map(item => ({ productoId: item.productoId, cantidad: item.cantidad }))
-                })
-            });
-            const datos = await respuesta.json().catch(() => ({}));
-            if (!respuesta.ok) throw new Error(datos.error || 'No se pudo procesar el pedido.');
-            completado = true;
-            vaciarCarrito();
-            mostrarModalMensaje('¡Compra Exitosa!', 'Tu pedido ha sido procesado y hemos enviado la boleta a tu correo.', () => {
-                window.location.href = '/perfil';
-            });
-        } catch (error) {
-            mostrarModalMensaje('Error de compra', error instanceof TypeError
-                ? 'No se pudo confirmar la respuesta. Revisa tu historial antes de volver a comprar.'
-                : error.message);
-        } finally {
-            if (!completado) {
-                procesando = false;
-                boton.disabled = false;
-                boton.textContent = 'Comprar';
-            }
+    boton.addEventListener('click', () => {
+        if (!boton.dataset.email) {
+            mostrarModalMensaje('Inicia sesión', 'Inicia sesión para comprar.', () => { window.location.href = '/login'; });
+            return;
         }
+        if (!obtenerCarrito().length) {
+            mostrarModalMensaje('Carrito vacío', 'Agrega productos para continuar.');
+            return;
+        }
+        window.location.href = '/envio';
     });
 });

@@ -8,7 +8,8 @@ let subtotalPedido = 0;
 // 1. Alterna entre vista Invitado y Usuario Logeado
 function verificarEstadoUsuario() {
     // Revisa usuario guardado en localStorage (o tu clave de auth.js ej: 'usuario_caleta', 'usuario_actual')
-    const usuarioLogeado = JSON.parse(localStorage.getItem('usuario_caleta')) || JSON.parse(localStorage.getItem('usuario_actual'));
+    const datos = document.getElementById("usuarioCheckout")?.dataset;
+    const usuarioLogeado = datos ? { ...datos, documento: datos.dni } : null;
     const seccionInvitado = document.getElementById('seccion-invitado');
     const seccionLogueado = document.getElementById('seccion-logueado');
 
@@ -107,9 +108,9 @@ function cargarResumenEnvio() {
         return `
             <div class="d-flex align-items-center justify-content-between gap-2">
                 <div class="d-flex align-items-center gap-2 min-w-0">
-                    <img src="${item.imagenUrl}" alt="${nombreSimple}" class="rounded-2 object-fit-cover flex-shrink-0" style="width: 44px; height: 44px;">
+                    <img src="${escaparHtml(item.imagenUrl)}" alt="${escaparHtml(nombreSimple)}" class="rounded-2 object-fit-cover flex-shrink-0" style="width: 44px; height: 44px;">
                     <div class="min-w-0">
-                        <h6 class="fw-bold mb-0 text-white small text-truncate" style="max-width: 170px;">${nombreSimple}</h6>
+                        <h6 class="fw-bold mb-0 text-white small text-truncate" style="max-width: 170px;">${escaparHtml(nombreSimple)}</h6>
                         <span class="text-secondary d-block" style="font-size: 11px;">Cant: ${item.cantidad}</span>
                     </div>
                 </div>

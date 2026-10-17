@@ -41,6 +41,12 @@ public class VerificacionCuentaService {
         if (usuario.isEmpty() || Boolean.TRUE.equals(usuario.get().getVerificado())) {
             return false;
         }
+        var anterior = verificaciones.findById(destino);
+        if (anterior.isPresent() && Instant.now().isBefore(
+                anterior.get().getVencimiento().minus(VIGENCIA).plusSeconds(60))) {
+            throw new org.springframework.web.server.ResponseStatusException(
+                    org.springframework.http.HttpStatus.TOO_MANY_REQUESTS, "Espera 60 segundos antes de solicitar otro código.");
+        }
         String codigo = String.format(Locale.ROOT, "%06d", random.nextInt(1_000_000));
         VerificacionCuenta verificacion = new VerificacionCuenta(destino,
                 BCrypt.hashpw(codigo, BCrypt.gensalt()), Instant.now().plus(VIGENCIA));

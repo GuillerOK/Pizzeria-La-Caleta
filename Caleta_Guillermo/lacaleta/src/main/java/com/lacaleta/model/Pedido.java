@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "pedidos")
+@Table(name = "pedidos", indexes = @Index(name = "idx_pedidos_usuario_fecha", columnList = "usuario_id,fecha"),
+       uniqueConstraints = @UniqueConstraint(columnNames = {"usuario_id", "clave_compra"}))
 public class Pedido {
 
     @Id
@@ -31,6 +32,11 @@ public class Pedido {
     
     @Column(nullable = false)
     private Double total;
+
+    @Column(name = "clave_compra", length = 36)
+    private String claveCompra;
+    public String getClaveCompra() { return claveCompra; }
+    public void setClaveCompra(String claveCompra) { this.claveCompra = claveCompra; }
     
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetallePedido> detalles = new ArrayList<>();

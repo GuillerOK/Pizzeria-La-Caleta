@@ -29,6 +29,11 @@ import java.time.Period;
 @RequestMapping("/api/auth")
 public class PasswordResetController {
 
+    @ExceptionHandler(org.springframework.web.server.ResponseStatusException.class)
+    public ResponseEntity<?> solicitudInvalida(org.springframework.web.server.ResponseStatusException error) {
+        return ResponseEntity.status(error.getStatusCode()).body(Map.of("error", error.getReason()));
+    }
+
     @Autowired
     private UsuarioRepository usuarioRepository;
 
@@ -64,7 +69,8 @@ public class PasswordResetController {
     private static final Pattern NAME_PATTERN = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]{2,50}$");
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> payload, HttpSession session) {
+    public ResponseEntity<?> login(@RequestBody Map<String, String> payload, HttpSession session,
+                                   jakarta.servlet.http.HttpServletRequest request) {
         String email = payload.get("email");
         String password = payload.get("password");
 
@@ -79,6 +85,7 @@ public class PasswordResetController {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN)
                         .body(Map.of("error", "Debes verificar tu correo para iniciar sesión"));
             }
+            request.changeSessionId();
             session.setAttribute("usuarioLogueado", usuario);
 
             String redirectUrl = usuario.esAdmin() ? "/admin" : "/";
@@ -166,6 +173,9 @@ public class PasswordResetController {
         }
 
         String nombreCompleto = nomClean + " " + apeClean;
+        if (nombreCompleto.length() > 100 || emailClean.length() > 100) {
+            return ResponseEntity.badRequest().body(Map.of("error", "El nombre completo y el correo admiten hasta 100 caracteres."));
+        }
         Usuario nuevoUsuario = new Usuario(null, nombreCompleto, emailClean, passClean, telClean, docClean, 1);
 
         boolean exito;
