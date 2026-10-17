@@ -147,7 +147,7 @@ function actualizarVistasCarrito() {
                     <p class="text-secondary small mb-4">Aún no has agregado productos. Explora nuestras pizzas secretas.</p>
                     <a href="/menu" class="btn-cta px-4 py-2 fw-bold text-uppercase d-inline-block small text-decoration-none">Explorar Menú</a>
                 </div>
-                <div class="border-top border-secondary border-opacity-25 pt-3">
+                <div class="carrito-resumen border-top border-secondary border-opacity-25 pt-3">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-secondary small">Total estimado:</span>
                         <span class="fw-bold fs-5 text-white">S/ 0.00</span>
@@ -194,10 +194,10 @@ function actualizarVistasCarrito() {
             }).join('');
 
             offcanvasBody.innerHTML = `
-                <div class="overflow-auto flex-grow-1 mb-3 pe-1">
+                <div class="carrito-productos flex-grow-1 mb-3 pe-1">
                     ${itemsHtml}
                 </div>
-                <div class="border-top border-secondary border-opacity-25 pt-3">
+                <div class="carrito-resumen border-top border-secondary border-opacity-25 pt-3">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-secondary small">Subtotal:</span>
                         <span class="fw-bold fs-5 text-white">S/ ${subtotal.toFixed(2)}</span>

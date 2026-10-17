@@ -13,8 +13,8 @@ body {
 }
 
 a { text-decoration: none; color: inherit; transition: var(--t); }
-#topbar { background-color: var(--carmesi); font-size: 14px; position: relative; z-index: 1050; }
-header:not(.caleta-header), #header { background-color: var(--bg-negro); border-bottom: 1px solid rgba(255,255,255,0.08); position: relative; z-index: 1050; }
+#topbar { background-color: var(--carmesi); font-size: 14px; position: relative; z-index: 1030; }
+header:not(.caleta-header), #header { background-color: var(--bg-negro); border-bottom: 1px solid rgba(255,255,255,0.08); position: relative; z-index: 1030; }
 #header .dropdown-menu, #navUserArea .dropdown-menu { z-index: 1060 !important; }
 footer { background-color: var(--bg-suave); border-top: 1px solid rgba(255,255,255,0.05); }
 
@@ -135,4 +135,19 @@ a[data-bs-toggle="offcanvas"][data-bs-target="#offcanvasCarrito"]:hover {
 
 .text-ro {
     color: var(--ro) !important;
+}
+
+/* La lista se desplaza dentro del panel; el resumen permanece visible. */
+#offcanvasCarrito .offcanvas-header,
+#offcanvasCarrito .carrito-resumen {
+    flex-shrink: 0;
+}
+
+#offcanvasCarrito .offcanvas-body {
+    min-height: 0;
+}
+
+#offcanvasCarrito .carrito-productos {
+    min-height: 0;
+    overflow-y: auto;
 }

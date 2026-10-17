@@ -25,14 +25,14 @@ a {
     background-color: var(--color-carmesi);
     font-size: 14px;
     position: relative;
-    z-index: 1050;
+    z-index: 1030;
 }
 
 header:not(.caleta-header), #header {
     background-color: var(--color-negro);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     position: relative;
-    z-index: 1050;
+    z-index: 1030;
 }
 
 #header .dropdown-menu,
@@ -479,4 +479,19 @@ section[id] {
 
 .required {
     color: var(--color-primary, #b31312);
+}
+
+/* La lista se desplaza dentro del panel; el resumen permanece visible. */
+#offcanvasCarrito .offcanvas-header,
+#offcanvasCarrito .carrito-resumen {
+    flex-shrink: 0;
+}
+
+#offcanvasCarrito .offcanvas-body {
+    min-height: 0;
+}
+
+#offcanvasCarrito .carrito-productos {
+    min-height: 0;
+    overflow-y: auto;
 }
