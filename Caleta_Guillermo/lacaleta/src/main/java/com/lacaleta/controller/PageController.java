@@ -226,7 +226,8 @@ public class PageController {
         return "info/delivery";
     }
 
-    @GetMapping("/perfil")
+    @GetMapping({"/perfil", "/profile", "/account/profile"})
+    @org.springframework.transaction.annotation.Transactional(readOnly = true)
     public String perfil(@RequestParam(value = "tab", required = false) String tab,
                          @RequestParam(defaultValue = "0") int pagina,
                          Model model,
@@ -254,13 +255,12 @@ public class PageController {
                 org.springframework.data.domain.PageRequest.of(Math.max(0, pagina), 20,
                         org.springframework.data.domain.Sort.by("fecha", "id").descending()));
         var misPedidos = paginaPedidos.getContent();
+        if (!misPedidos.isEmpty()) {
+            pedidoRepository.cargarDetalles(misPedidos.stream().map(com.lacaleta.model.Pedido::getId).toList());
+        }
 
         double totalGastado = pedidoRepository.totalPorUsuario(usuarioActualizado.getId());
         int puntosCaleta = cuponService.calcularPuntosDisponibles(usuarioActualizado, totalGastado);
-        if (usuarioActualizado.getPuntos() == null || !usuarioActualizado.getPuntos().equals(puntosCaleta)) {
-            usuarioActualizado.setPuntos(puntosCaleta);
-            usuarioRepository.save(usuarioActualizado);
-        }
 
         var ultimoPedido = pedidoRepository.findFirstByUsuarioIdOrderByFechaDesc(usuarioActualizado.getId()).orElse(null);
         var misCupones = cuponService.listarPorUsuario(usuarioActualizado);

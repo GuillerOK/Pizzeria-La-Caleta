@@ -21,7 +21,7 @@ public class CheckoutController {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
         if (usuario == null) return ResponseEntity.status(401).body(Map.of("error", "Inicia sesión para comprar."));
         var pedido = pedidos.procesarCompra(solicitud, usuario.getId());
-        return ResponseEntity.ok(Map.of("pedidoId", pedido.getId(), "total", pedido.getTotal(), "boleta", "PENDIENTE"));
+        return ResponseEntity.ok(Map.of("pedidoId", pedido.getId(), "total", pedido.getTotal(), "boleta", "ENVIADA"));
     }
 
     @ExceptionHandler(ResponseStatusException.class)

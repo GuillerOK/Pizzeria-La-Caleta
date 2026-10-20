@@ -49,17 +49,19 @@ function cargarResumenPago() {
     const valorDescuentoDOM = document.getElementById('pago-descuento');
 
     if (cupon && subtotal > 0) {
-        if (cupon.tipo === 'DELIVERY_GRATIS') {
+        if (cupon.tipo === 'REGALO') {
+            descuento = 0;
+        } else if (cupon.tipo === 'DELIVERY_GRATIS') {
             descuento = costoEnvio;
         } else if (cupon.tipo === 'PORCENTAJE') {
             descuento = Math.round((subtotal * ((cupon.valorDescuento || cupon.descuento) / 100.0)) * 100) / 100;
         } else {
-            descuento = Math.min(subtotal, cupon.descuento || cupon.valorDescuento || 0);
+            descuento = Math.min(subtotal, cupon.valorDescuento ?? cupon.descuento ?? 0);
         }
 
         if (filaDescuento) {
             filaDescuento.classList.remove('d-none');
-            if (valorDescuentoDOM) valorDescuentoDOM.innerText = `- S/ ${descuento.toFixed(2)}`;
+            if (valorDescuentoDOM) valorDescuentoDOM.innerText = cupon.tipo === 'REGALO' ? `${cupon.titulo} (CUPÓN REGALO) — S/ 0.00` : `- S/ ${descuento.toFixed(2)}`;
             if (labelDescuento) labelDescuento.innerHTML = `<i class="fa-solid fa-tag me-1"></i>${cupon.titulo || 'Cupón'}`;
         }
     } else {
@@ -144,7 +146,7 @@ async function procesarPagoFinal(e) {
         localStorage.removeItem('cupon_caleta');
         sessionStorage.removeItem('checkout_intento');
         mostrarModalMensaje('Pedido registrado', 'Pedido #' + resultado.pedidoId +
-            '. Tu boleta está pendiente de envío al correo. ' + (datos.tipoEntrega === 'DELIVERY' ? 'Paga al recibir tu pedido.' : 'Paga al retirar tu pedido en tienda.'),
+            '. Tu boleta fue enviada al correo. ' + (datos.tipoEntrega === 'DELIVERY' ? 'Paga al recibir tu pedido.' : 'Paga al retirar tu pedido en tienda.'),
             () => { window.location.href = '/perfil?tab=pedidos'; });
     } catch (error) {
         mostrarModalMensaje('Error de compra', error instanceof TypeError

@@ -182,7 +182,16 @@
                                             <td colspan="5" class="text-center text-secondary py-4">No tienes pedidos registrados en tu historial.</td>
                                         </tr>
                                         <tr th:each="p : ${pedidos}">
-                                            <td><strong class="text-white" th:text="'#ORD-' + ${p.id}">#ORD-001</strong></td>
+                                            <td><strong class="text-white" th:text="'#ORD-' + ${p.id}">#ORD-001</strong>
+<details><summary>Ver detalle</summary>
+<div th:each="d : ${p.detalles}"><span th:text="${d.producto.nombre}"></span>
+<strong th:if="${d.cuponRegalo}">(CUPÓN REGALO)</strong>
+<span th:text="${d.cantidad + ' × S/ ' + #numbers.formatDecimal(d.precioUnitario,1,2,'POINT')}"></span></div>
+<div th:if="${p.subtotal != null}" th:text="${'Subtotal: S/ ' + #numbers.formatDecimal(p.subtotal,1,2,'POINT')}"></div>
+<div th:if="${p.envio != null}" th:text="${'Envío: S/ ' + #numbers.formatDecimal(p.envio,1,2,'POINT')}"></div>
+<div th:if="${p.codigoCupon != null}"><span th:text="${p.tituloCupon + ' (' + p.codigoCupon + ')'}"></span>
+<div th:if="${p.tipoCupon != 'REGALO'}" th:text="${'Cupón Aplicado: -S/ ' + #numbers.formatDecimal(p.descuentoCupon,1,2,'POINT')}"></div></div>
+</details></td>
                                             <td th:text="${#temporals.format(p.fecha, 'dd/MM/yyyy HH:mm')}">14/10/2026 19:20</td>
                                             <td th:text="${p.metodoPago}">Tarjeta</td>
                                             <td class="fw-bold text-danger" th:text="'S/ ' + ${#numbers.formatDecimal(p.total, 1, 2)}">S/ 58.00</td>
@@ -299,7 +308,7 @@
                                 <div class="col-12 col-md-6" th:each="cupon : ${misCupones}">
                                     <div class="cupon-ticket-card h-100">
                                         <div class="cupon-ticket-header">
-                                            <span class="cupon-badge-dscto" th:text="${cupon.tipo == 'DELIVERY_GRATIS' ? 'DELIVERY' : (cupon.tipo == 'PORCENTAJE' ? cupon.descuento + '% OFF' : 'S/ ' + #numbers.formatDecimal(cupon.descuento, 1, 2) + ' OFF')}">
+                                            <span class="cupon-badge-dscto" th:text="${cupon.tipo == 'REGALO' ? 'REGALO' : cupon.tipo == 'DELIVERY_GRATIS' ? 'DELIVERY' : (cupon.tipo == 'PORCENTAJE' ? cupon.descuento + '% OFF' : 'S/ ' + #numbers.formatDecimal(cupon.descuento, 1, 2) + ' OFF')}">
                                                 15% OFF
                                             </span>
                                             <span th:class="'badge rounded-pill small ' + ${cupon.estado == 'ACTIVO' ? 'bg-success bg-opacity-25 text-success border border-success' : 'bg-secondary bg-opacity-25 text-secondary border border-secondary'}"

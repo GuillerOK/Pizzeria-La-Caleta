@@ -15,7 +15,7 @@ public class CuponService {
 
     private final CuponRepository cuponRepository;
     @Autowired private com.lacaleta.repository.UsuarioRepository usuarios;
-    @Autowired private com.lacaleta.repository.PedidoRepository pedidos;
+    @Autowired private com.lacaleta.repository.ProductoRepository productos;
 
     public static class CatalogoOpcion {
         private final String key;
@@ -76,33 +76,21 @@ public class CuponService {
         return cuponRepository.findByUsuarioAndEstadoOrderByFechaCanjeDesc(usuario, "ACTIVO");
     }
 
-    /**
-     * Calcula los Puntos Caleta disponibles restando los puntos ya gastados en canjes.
-     */
+    /** El saldo persistido es la única fuente de verdad; nunca resta canjes al leer. */
+    @Transactional(readOnly = true)
     public int calcularPuntosDisponibles(Usuario usuario, double totalGastado) {
-        if (usuario == null) return 0;
-        int puntosBase = (usuario.getPuntos() != null) ? usuario.getPuntos() : 50;
-        int puntosPorConsumo = (int) (totalGastado / 5.0);
-        int totalPuntosGanados = puntosBase + puntosPorConsumo;
-
-        List<Cupon> canjeados = cuponRepository.findByUsuarioOrderByFechaCanjeDesc(usuario);
-        int puntosGastados = canjeados.stream()
-                .mapToInt(c -> c.getPuntosRequeridos() != null ? c.getPuntosRequeridos() : 0)
-                .sum();
-
-        return Math.max(0, totalPuntosGanados - puntosGastados);
+        return usuario == null || usuario.getPuntos() == null ? 0 : usuario.getPuntos();
     }
 
     /**
      * Canjea un cupón del catálogo si el usuario tiene suficientes puntos.
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public Cupon canjearCupon(Usuario usuario, String keyOpcion, double totalGastado) {
         if (usuario == null || keyOpcion == null) return null;
-        // Serializa canjes y checkout por cliente; recalcula el saldo dentro de la transacción.
+        // Serializa canjes y checkout y lee el saldo persistido bajo bloqueo.
         usuario = usuarios.bloquearPorId(usuario.getId()).orElse(null);
         if (usuario == null || !Boolean.TRUE.equals(usuario.getVerificado())) return null;
-        totalGastado = pedidos.totalPorUsuario(usuario.getId());
 
         CatalogoOpcion opcion = CATALOGO.stream()
                 .filter(o -> o.getKey().equalsIgnoreCase(keyOpcion.trim()))
@@ -141,6 +129,13 @@ public class CuponService {
                 LocalDateTime.now().plusDays(30)
         );
 
+        if ("REGALO".equals(opcion.getTipo())) {
+            String nombre = "GASEOSA".equals(opcion.getKey()) ? "Inca Kola 1.5L" : "La Cómplice Personal";
+            var regalo = productos.findByNombreIgnoreCase(nombre).orElse(null);
+            if (regalo == null || !Boolean.TRUE.equals(regalo.getDisponible())
+                    || regalo.getStock() == null || regalo.getStock() < 1) return null;
+            cupon.setProductoRegalo(regalo);
+        }
         Cupon cuponGuardado = cuponRepository.save(cupon);
 
         // Actualizar y persistir saldo de puntos en Neon DB (tabla usuarios)

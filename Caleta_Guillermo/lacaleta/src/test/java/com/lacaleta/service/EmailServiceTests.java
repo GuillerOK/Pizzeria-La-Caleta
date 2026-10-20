@@ -15,6 +15,29 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class EmailServiceTests {
+    @Test void boletaRenderizaDescuentoYRegaloConImportesPersistidos() {
+        var resolver = new org.thymeleaf.templateresolver.ClassLoaderTemplateResolver();
+        resolver.setPrefix("templates/"); resolver.setSuffix(".html"); resolver.setCharacterEncoding("UTF-8");
+        var engine = new org.thymeleaf.spring6.SpringTemplateEngine();
+        engine.setTemplateResolver(resolver);
+        var service = new EmailService();
+        ReflectionTestUtils.setField(service, "templateEngine", engine);
+        var usuario = new com.lacaleta.model.Usuario(); usuario.setNombre("Cliente");
+        var pedido = new com.lacaleta.model.Pedido(); pedido.setId(1); pedido.setUsuario(usuario);
+        pedido.setSubtotal(25.0); pedido.setEnvio(5.0); pedido.setDescuentoCupon(5.0);
+        pedido.setTotal(25.0); pedido.setCodigoCupon("CAL5-TEST");
+        pedido.setTituloCupon("Descuento de cinco"); pedido.setTipoCupon("MONTO_FIJO");
+        String html = service.renderizarBoleta(pedido, java.math.BigDecimal.ZERO, java.math.BigDecimal.ZERO);
+        assertTrue(html.contains("Cupón Aplicado: -S/ 5.00"));
+        assertTrue(html.contains("CAL5-TEST")); assertTrue(html.contains("S/ 25.00"));
+        var producto = new com.lacaleta.model.Producto(); producto.setNombre("Inca Kola 1.5L");
+        var detalle = new com.lacaleta.model.DetallePedido(pedido, producto, 1, 0.0);
+        detalle.setCuponRegalo(true); pedido.getDetalles().add(detalle);
+        pedido.setTipoCupon("REGALO"); pedido.setDescuentoCupon(0.0); pedido.setTotal(30.0);
+        html = service.renderizarBoleta(pedido, java.math.BigDecimal.ZERO, java.math.BigDecimal.ZERO);
+        assertTrue(html.contains("(CUPÓN REGALO)")); assertTrue(html.contains("Inca Kola 1.5L"));
+        assertTrue(html.contains("S/ 0.00")); assertFalse(html.contains("Cupón Aplicado: -S/"));
+    }
     @Test
     void registroEnviaCodigoPorSmtpAlDestinatarioReal() {
         JavaMailSender sender = mock(JavaMailSender.class);

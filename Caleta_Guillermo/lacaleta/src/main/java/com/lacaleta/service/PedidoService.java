@@ -19,28 +19,21 @@ public class PedidoService {
     private final ProductoRepository productos;
     private final PedidoRepository pedidos;
     private final UsuarioRepository usuarios;
-    private final BoletaOutboxService boletas;
+    private final EmailService boletas;
     private final RecetaInsumoRepository recetas;
     private final InsumoRepository insumos;
-    @org.springframework.beans.factory.annotation.Autowired(required = false)
-    private CuponRepository cupones;
+    private final CuponRepository cupones;
 
     public PedidoService(ProductoRepository productos, PedidoRepository pedidos,
-                         UsuarioRepository usuarios, BoletaOutboxService boletas,
-                         RecetaInsumoRepository recetas, InsumoRepository insumos) {
+                         UsuarioRepository usuarios, EmailService boletas,
+                         RecetaInsumoRepository recetas, InsumoRepository insumos,
+                         CuponRepository cupones) {
         this.productos = productos;
         this.pedidos = pedidos;
         this.usuarios = usuarios;
         this.boletas = boletas;
         this.recetas = recetas;
         this.insumos = insumos;
-    }
-    @org.springframework.beans.factory.annotation.Autowired
-    public PedidoService(ProductoRepository productos, PedidoRepository pedidos,
-                         UsuarioRepository usuarios, BoletaOutboxService boletas,
-                         RecetaInsumoRepository recetas, InsumoRepository insumos,
-                         CuponRepository cupones) {
-        this(productos, pedidos, usuarios, boletas, recetas, insumos);
         this.cupones = cupones;
     }
 
@@ -88,6 +81,27 @@ public class PedidoService {
             }
             cantidades.merge(item.productoId(), item.cantidad(), Integer::sum);
         }
+        Cupon cupon = null;
+        Integer regaloId = null;
+        if (solicitud.codigoCupon() != null && !solicitud.codigoCupon().isBlank()) {
+            cupon = cupones.bloquearPorCodigo(solicitud.codigoCupon().trim())
+                    .orElseThrow(() -> new ResponseStatusException(BAD_REQUEST, "El cupón no existe en la base de datos."));
+            if (!"ACTIVO".equalsIgnoreCase(cupon.getEstado())) {
+                throw new ResponseStatusException(BAD_REQUEST, "El cupón ya ha sido utilizado o no se encuentra activo.");
+            }
+            if (cupon.getFechaVencimiento() != null && cupon.getFechaVencimiento().isBefore(LocalDateTime.now())) {
+                throw new ResponseStatusException(BAD_REQUEST, "El cupón ha expirado.");
+            }
+            if (cupon.getUsuario() == null || !cupon.getUsuario().getId().equals(usuario.getId())) {
+                throw new ResponseStatusException(FORBIDDEN, "El cupón no pertenece a tu cuenta.");
+            }
+            if ("REGALO".equalsIgnoreCase(cupon.getTipo())) {
+                if (cupon.getProductoRegalo() == null)
+                    throw new ResponseStatusException(CONFLICT, "El cupón no tiene un producto de regalo configurado.");
+                regaloId = cupon.getProductoRegalo().getId();
+                cantidades.merge(regaloId, 1, Integer::sum);
+            }
+        }
         Pedido pedido = new Pedido();
         pedido.setUsuario(usuario);
         pedido.setClaveCompra(solicitud.claveCompra());
@@ -110,11 +124,18 @@ public class PedidoService {
                 throw new ResponseStatusException(CONFLICT, "El producto no tiene un precio válido.");
             }
             BigDecimal precio = BigDecimal.valueOf(producto.getPrecio()).setScale(2, RoundingMode.HALF_UP);
-            BigDecimal importe = precio.multiply(BigDecimal.valueOf(cantidad));
+            boolean incluyeRegalo = entrada.getKey().equals(regaloId);
+            int cantidadPagada = cantidad - (incluyeRegalo ? 1 : 0);
+            BigDecimal importe = precio.multiply(BigDecimal.valueOf(cantidadPagada));
             producto.setStock(producto.getStock() - cantidad);
-            DetallePedido detalle = new DetallePedido(pedido, producto, cantidad, precio.doubleValue());
+            DetallePedido detalle = new DetallePedido(pedido, producto, cantidadPagada, precio.doubleValue());
             detalle.setSubtotal(importe.doubleValue());
-            pedido.getDetalles().add(detalle);
+            if (cantidadPagada > 0) pedido.getDetalles().add(detalle);
+            if (incluyeRegalo) {
+                var regalo = new DetallePedido(pedido, producto, 1, 0.0);
+                regalo.setCuponRegalo(true);
+                pedido.getDetalles().add(regalo);
+            }
             subtotal = subtotal.add(importe);
         }
         var consumos = new TreeMap<Integer, BigDecimal>();
@@ -146,17 +167,11 @@ public class PedidoService {
         }
         BigDecimal envio = delivery ? COSTO_ENVIO : BigDecimal.ZERO;
         BigDecimal descuentoCupon = BigDecimal.ZERO;
-        if (cupones != null && solicitud.codigoCupon() != null && !solicitud.codigoCupon().isBlank()) {
-            Cupon cupon = cupones.findByCodigoIgnoreCase(solicitud.codigoCupon().trim())
-                    .orElseThrow(() -> new ResponseStatusException(BAD_REQUEST, "El cupón no existe en la base de datos."));
-            if (!"ACTIVO".equalsIgnoreCase(cupon.getEstado())) {
-                throw new ResponseStatusException(BAD_REQUEST, "El cupón ya ha sido utilizado o no se encuentra activo.");
-            }
-            if (cupon.getFechaVencimiento() != null && cupon.getFechaVencimiento().isBefore(LocalDateTime.now())) {
-                throw new ResponseStatusException(BAD_REQUEST, "El cupón ha expirado.");
-            }
-            if (cupon.getUsuario() != null && !cupon.getUsuario().getId().equals(usuario.getId())) {
-                throw new ResponseStatusException(FORBIDDEN, "El cupón no pertenece a tu cuenta.");
+        if (cupon != null) {
+            if (cupon.getDescuento() == null || !Double.isFinite(cupon.getDescuento())
+                    || cupon.getDescuento() < 0
+                    || ("PORCENTAJE".equalsIgnoreCase(cupon.getTipo()) && cupon.getDescuento() > 100)) {
+                throw new ResponseStatusException(CONFLICT, "El cupón tiene un descuento inválido.");
             }
             if (cupon.getCodigo().startsWith("CAL10") && subtotal.compareTo(new BigDecimal("40.00")) < 0) {
                 throw new ResponseStatusException(BAD_REQUEST, "Este cupón requiere un consumo mínimo de S/ 40.00.");
@@ -166,30 +181,33 @@ public class PedidoService {
             } else if ("PORCENTAJE".equalsIgnoreCase(cupon.getTipo())) {
                 descuentoCupon = subtotal.multiply(BigDecimal.valueOf(cupon.getDescuento()))
                         .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
-            } else {
-                descuentoCupon = BigDecimal.valueOf(cupon.getDescuento()).min(subtotal);
+            } else if ("REGALO".equalsIgnoreCase(cupon.getTipo())) {
+                descuentoCupon = BigDecimal.ZERO;
+            } else if ("MONTO_FIJO".equalsIgnoreCase(cupon.getTipo())) {
+                descuentoCupon = BigDecimal.valueOf(cupon.getDescuento()).setScale(2, RoundingMode.HALF_UP).min(subtotal);
             }
+            else throw new ResponseStatusException(BAD_REQUEST, "Tipo de cupón no válido.");
+            pedido.setCodigoCupon(cupon.getCodigo());
+            pedido.setTipoCupon(cupon.getTipo());
+            pedido.setTituloCupon(cupon.getTitulo());
             cupon.setEstado("USADO");
             cupones.save(cupon);
         }
+        pedido.setSubtotal(subtotal.doubleValue());
+        pedido.setEnvio(envio.doubleValue());
+        pedido.setDescuentoCupon(descuentoCupon.doubleValue());
         BigDecimal totalFinal = subtotal.add(envio).subtract(descuentoCupon).max(BigDecimal.ZERO);
         pedido.setTotal(totalFinal.setScale(2, RoundingMode.HALF_UP).doubleValue());
         pedidos.saveAndFlush(pedido); // Incluye detalles por CascadeType.ALL y stock por dirty checking.
 
-        try {
-            double nuevoTotalGastado = pedidos.totalPorUsuario(usuario.getId());
-            int puntosGastados = 0;
-            if (cupones != null) {
-                var canjeados = cupones.findByUsuarioOrderByFechaCanjeDesc(usuario);
-                puntosGastados = canjeados.stream()
-                        .mapToInt(c -> c.getPuntosRequeridos() != null ? c.getPuntosRequeridos() : 0)
-                        .sum();
-            }
-            int saldoPuntos = Math.max(0, 50 + (int) (nuevoTotalGastado / 5.0) - puntosGastados);
-            usuario.setPuntos(saldoPuntos);
-            usuarios.save(usuario);
-        } catch (Exception ignored) {}
-        boletas.encolar(pedido, subtotal, envio);
+        // Acredita solo el incremento de consumo: nunca reconstruye el saldo ni resta canjes otra vez.
+        BigDecimal consumoActual = BigDecimal.valueOf(pedidos.totalPorUsuario(usuario.getId()));
+        BigDecimal consumoPrevio = consumoActual.subtract(totalFinal).max(BigDecimal.ZERO);
+        int ganados = consumoActual.divideToIntegralValue(new BigDecimal("5")).intValue()
+                - consumoPrevio.divideToIntegralValue(new BigDecimal("5")).intValue();
+        usuario.setPuntos(Math.addExact(usuario.getPuntos() == null ? 0 : usuario.getPuntos(), ganados));
+        usuarios.saveAndFlush(usuario);
+        boletas.enviarBoleta(pedido, subtotal, envio);
         return pedido;
     }
 }

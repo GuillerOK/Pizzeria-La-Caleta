@@ -6,6 +6,12 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "cupones")
 public class Cupon {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "producto_regalo_id")
+    private Producto productoRegalo;
+
+    public Producto getProductoRegalo() { return productoRegalo; }
+    public void setProductoRegalo(Producto productoRegalo) { this.productoRegalo = productoRegalo; }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -126,6 +126,7 @@ public class UsuarioService {
         return false;
     }
 
+    @org.springframework.transaction.annotation.Transactional(readOnly = true)
     public Optional<Usuario> buscarPorId(Integer id) {
         if (id == null) return Optional.empty();
         return usuarioRepository.findById(id);

@@ -16,10 +16,10 @@ class PedidoServiceTests {
     PedidoRepository pedidos = mock(PedidoRepository.class);
     UsuarioRepository usuarios = mock(UsuarioRepository.class);
     EmailService email = mock(EmailService.class);
-    BoletaOutboxService boletas = mock(BoletaOutboxService.class);
+    EmailService boletas = mock(EmailService.class);
     RecetaInsumoRepository recetas = mock(RecetaInsumoRepository.class);
     InsumoRepository insumos = mock(InsumoRepository.class);
-    PedidoService service = new PedidoService(productos, pedidos, usuarios, boletas, recetas, insumos);
+    PedidoService service = new PedidoService(productos, pedidos, usuarios, boletas, recetas, insumos, mock(CuponRepository.class));
     Producto pizza;
     Insumo harina;
 
@@ -59,7 +59,7 @@ class PedidoServiceTests {
         assertSame(resultado, resultado.getDetalles().get(0).getPedido());
         var orden = inOrder(pedidos, boletas);
         orden.verify(pedidos).saveAndFlush(resultado);
-        orden.verify(boletas).encolar(eq(resultado), any(), any());
+        orden.verify(boletas).enviarBoleta(eq(resultado), any(), any());
         verifyNoInteractions(email);
     }
 
@@ -84,7 +84,7 @@ class PedidoServiceTests {
 
     @Test void propagaFalloDePreparacionDeBoletaParaRevertirLaTransaccion() {
         doThrow(new CorreoException(CorreoException.Motivo.CONEXION, null))
-                .when(boletas).encolar(any(), any(), any());
+                .when(boletas).enviarBoleta(any(), any(), any());
         assertThrows(CorreoException.class, () -> service.procesarCompra(solicitud(1), 1));
     }
 

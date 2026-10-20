@@ -5,6 +5,10 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "detalle_pedidos")
 public class DetallePedido {
+    @Column(name = "cupon_regalo", nullable = false)
+    private boolean cuponRegalo;
+    public boolean isCuponRegalo() { return cuponRegalo; }
+    public void setCuponRegalo(boolean cuponRegalo) { this.cuponRegalo = cuponRegalo; }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

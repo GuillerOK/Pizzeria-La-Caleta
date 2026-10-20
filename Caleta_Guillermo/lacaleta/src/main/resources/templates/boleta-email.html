@@ -13,13 +13,17 @@
 <table style="width:100%;border-collapse:collapse;text-align:left" cellpadding="8">
 <thead><tr style="background:#eee"><th>Producto</th><th>Cant.</th><th>Precio</th><th>Subtotal</th></tr></thead>
 <tbody><tr th:each="item : ${items}">
-<td><span th:text="${item.producto.nombre}"></span> <span th:text="${item.producto.tamano}"></span></td>
+<td><span th:text="${item.producto.nombre}"></span> <span th:text="${item.producto.tamano}"></span> <strong th:if="${item.cuponRegalo}">(CUPÓN REGALO)</strong></td>
 <td th:text="${item.cantidad}"></td>
-<td style="white-space:nowrap" th:text="${'S/ ' + #numbers.formatDecimal(item.precioUnitario,1,2)}"></td>
-<td style="white-space:nowrap" th:text="${'S/ ' + #numbers.formatDecimal(item.subtotal,1,2)}"></td>
+<td style="white-space:nowrap" th:text="${'S/ ' + #numbers.formatDecimal(item.precioUnitario,1,2,'POINT')}"></td>
+<td style="white-space:nowrap" th:text="${'S/ ' + #numbers.formatDecimal(item.subtotal,1,2,'POINT')}"></td>
 </tr></tbody></table>
-<p style="text-align:right">Subtotal: <span th:text="${'S/ ' + #numbers.formatDecimal(subtotal,1,2)}"></span></p>
-<p style="text-align:right">Envío: <span th:text="${'S/ ' + #numbers.formatDecimal(envio,1,2)}"></span></p>
-<p style="text-align:right;font-size:20px"><strong>Total: <span th:text="${'S/ ' + #numbers.formatDecimal(pedido.total,1,2)}"></span></strong></p>
+<p style="text-align:right">Subtotal: <span th:text="${'S/ ' + #numbers.formatDecimal(subtotal,1,2,'POINT')}"></span></p>
+<p style="text-align:right">Envío: <span th:text="${'S/ ' + #numbers.formatDecimal(envio,1,2,'POINT')}"></span></p>
+<p th:if="${pedido.codigoCupon != null}" style="text-align:right">
+<span th:text="${pedido.tituloCupon}"></span> (<span th:text="${pedido.codigoCupon}"></span>)<br>
+<span th:if="${pedido.tipoCupon != 'REGALO'}" th:text="${'Cupón Aplicado: -S/ ' + #numbers.formatDecimal(pedido.descuentoCupon,1,2,'POINT')}"></span>
+<span th:if="${pedido.tipoCupon == 'REGALO'}">Cupón regalo aplicado: producto incluido a S/ 0.00</span></p>
+<p style="text-align:right;font-size:20px"><strong>Total: <span th:text="${'S/ ' + #numbers.formatDecimal(pedido.total,1,2,'POINT')}"></span></strong></p>
 <p>Puedes consultar tu pedido en tu perfil de La Caleta.</p>
 </td></tr></table></body></html>

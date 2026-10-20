@@ -26,7 +26,7 @@ class CheckoutIntegrationTests {
     @Autowired RecetaInsumoRepository recetas;
     @Autowired PedidoRepository pedidos;
     @Autowired BoletaPendienteRepository boletas;
-    @Autowired BoletaOutboxService outbox;
+    @Autowired com.lacaleta.controller.PageController perfil;
     @Autowired UsuarioService cuentas;
     @Autowired CuponService canjes;
     @Autowired CuponRepository cupones;
@@ -54,7 +54,7 @@ class CheckoutIntegrationTests {
             var receta = new RecetaInsumo(); receta.setProducto(pizza); receta.setInsumo(harina);
             receta.setCantidad(new BigDecimal("0.25")); recetas.saveAndFlush(receta);
         });
-        when(correo.renderizarBoleta(any(), any(), any())).thenReturn("<html>Boleta</html>");
+
     }
     CheckoutRequest solicitud(int cantidad) {
         return new CheckoutRequest(usuario.getEmail(), List.of(new CheckoutRequest.Item(pizza.getId(), cantidad)),
@@ -65,14 +65,12 @@ class CheckoutIntegrationTests {
         assertEquals(55.0, pedido.getTotal());
         assertEquals(8, productos.findById(pizza.getId()).orElseThrow().getStock());
         assertEquals(1.5, insumos.findById(harina.getId()).orElseThrow().getStockActual());
-        assertEquals(1, pedidos.count()); assertEquals(1, boletas.count());
-        verify(correo, never()).enviarHtml(any(), any(), any());
-        outbox.enviarPendientes();
-        assertEquals(0, boletas.count());
-        verify(correo).enviarHtml(usuario.getEmail(), pedido.getId(), "<html>Boleta</html>");
+        assertEquals(1, pedidos.count()); assertEquals(0, boletas.count());
+        verify(correo).enviarBoleta(eq(pedido), eq(new BigDecimal("50.00")), eq(new BigDecimal("5.00")));
+
     }
     @Test void falloTardioReviertePedidoDetallesStockEInsumos() {
-        when(correo.renderizarBoleta(any(), any(), any())).thenThrow(new IllegalStateException("Plantilla inválida"));
+        doThrow(new IllegalStateException("Plantilla inválida")).when(correo).enviarBoleta(any(), any(), any());
         assertThrows(IllegalStateException.class, () -> checkout.procesarCompra(solicitud(2), usuario.getId()));
         assertEquals(10, productos.findById(pizza.getId()).orElseThrow().getStock());
         assertEquals(2.0, insumos.findById(harina.getId()).orElseThrow().getStockActual());
@@ -84,13 +82,57 @@ class CheckoutIntegrationTests {
         assertEquals(10, productos.findById(pizza.getId()).orElseThrow().getStock());
         assertEquals(0, pedidos.count());
     }
-    @Test void falloSmtpConservaPedidoYDejaBoletaParaReintento() {
-        checkout.procesarCompra(solicitud(1), usuario.getId());
-        doThrow(new CorreoException(CorreoException.Motivo.CONEXION, null)).when(correo).enviarHtml(any(), any(), any());
-        outbox.enviarPendientes();
-        assertEquals(1, pedidos.count());
-        assertEquals(1, boletas.count());
-        assertEquals(1, boletas.findAll().get(0).getIntentos());
+    @Test void falloSmtpReviertePedidoCuponPuntosStockEInsumos() {
+        var cupon = canjes.canjearCupon(usuario, "DSCTO_5", 0);
+        int saldo = usuarios.findById(usuario.getId()).orElseThrow().getPuntos();
+        doThrow(new CorreoException(CorreoException.Motivo.CONEXION, null)).when(correo).enviarBoleta(any(), any(), any());
+        assertThrows(CorreoException.class, () -> checkout.procesarCompra(conCupon(cupon), usuario.getId()));
+        assertEquals(0, pedidos.count());
+        assertEquals(0, boletas.count());
+        assertEquals("ACTIVO", cupones.findById(cupon.getId()).orElseThrow().getEstado());
+        assertEquals(saldo, usuarios.findById(usuario.getId()).orElseThrow().getPuntos());
+        assertEquals(10, productos.findById(pizza.getId()).orElseThrow().getStock());
+        assertEquals(2.0, insumos.findById(harina.getId()).orElseThrow().getStockActual());
+    }
+    CheckoutRequest conCupon(Cupon cupon) {
+        var s = solicitud(1);
+        return new CheckoutRequest(s.email(), s.items(), s.metodoPago(), s.tipoEntrega(), s.direccionEntrega(), s.claveCompra(), cupon.getCodigo());
+    }
+    @Test void refrescarPerfilNoModificaSaldoNiDescuentaCanjesDeNuevo() {
+        assertNotNull(canjes.canjearCupon(usuario, "DSCTO_5", 0));
+        var session = new org.springframework.mock.web.MockHttpSession();
+        session.setAttribute("usuarioLogueado", usuario);
+        for (int i = 0; i < 3; i++) {
+            var model = new org.springframework.ui.ExtendedModelMap();
+            assertEquals("account/perfil", perfil.perfil(null, 0, model, session));
+            assertEquals(30, model.get("puntosCaleta"));
+            assertEquals(30, usuarios.findById(usuario.getId()).orElseThrow().getPuntos());
+        }
+    }
+    @Test void descuentoPersistidoYCuponConsumidoUnaSolaVez() {
+        var cupon = canjes.canjearCupon(usuario, "DSCTO_5", 0);
+        var request = conCupon(cupon);
+        var pedido = checkout.procesarCompra(request, usuario.getId());
+        assertEquals(25.0, pedido.getSubtotal()); assertEquals(5.0, pedido.getEnvio());
+        assertEquals(5.0, pedido.getDescuentoCupon()); assertEquals(25.0, pedido.getTotal());
+        assertEquals(cupon.getCodigo(), pedidos.findById(pedido.getId()).orElseThrow().getCodigoCupon());
+        assertEquals("USADO", cupones.findById(cupon.getId()).orElseThrow().getEstado());
+        assertEquals(pedido.getId(), checkout.procesarCompra(request, usuario.getId()).getId());
+        assertThrows(org.springframework.web.server.ResponseStatusException.class,
+                () -> checkout.procesarCompra(conCupon(cupon), usuario.getId()));
+        verify(correo, times(1)).enviarBoleta(any(), any(), any());
+    }
+    @Test void regaloDelMismoProductoEsLineaGratisYConsumeStockEInsumos() {
+        var cupon = new Cupon("PIZZA-TEST", "Pizza gratis", "Regalo", "REGALO", 18.0, 100, usuario, null);
+        cupon.setProductoRegalo(pizza); cupon = cupones.saveAndFlush(cupon);
+        var pedido = checkout.procesarCompra(conCupon(cupon), usuario.getId());
+        assertEquals(30.0, pedido.getTotal()); assertEquals(0.0, pedido.getDescuentoCupon());
+        assertEquals(2, pedido.getDetalles().size());
+        var regalo = pedido.getDetalles().stream().filter(DetallePedido::isCuponRegalo).findFirst().orElseThrow();
+        assertEquals(1, regalo.getCantidad()); assertEquals(0.0, regalo.getPrecioUnitario());
+        assertEquals(0.0, regalo.getSubtotal());
+        assertEquals(8, productos.findById(pizza.getId()).orElseThrow().getStock());
+        assertEquals(1.5, insumos.findById(harina.getId()).orElseThrow().getStockActual());
     }
     @Test void mismaClaveNoDuplicaPedidoNiStock() {
         var solicitud = solicitud(2);
@@ -99,6 +141,25 @@ class CheckoutIntegrationTests {
         assertEquals(1, pedidos.count());
         assertEquals(8, productos.findById(pizza.getId()).orElseThrow().getStock());
     }
+    @Test void regaloSinStockRevierteCompraYConservaCupon() {
+        pizza.setStock(1); productos.saveAndFlush(pizza);
+        var cupon = new Cupon("PIZZA-SINSTOCK", "Pizza gratis", "Regalo", "REGALO", 18.0, 100, usuario, null);
+        cupon.setProductoRegalo(pizza);
+        var guardado = cupones.saveAndFlush(cupon);
+        assertThrows(org.springframework.web.server.ResponseStatusException.class,
+                () -> checkout.procesarCompra(conCupon(guardado), usuario.getId()));
+        assertEquals(0, pedidos.count());
+        assertEquals(1, productos.findById(pizza.getId()).orElseThrow().getStock());
+        assertEquals("ACTIVO", cupones.findById(guardado.getId()).orElseThrow().getEstado());
+        verify(correo, never()).enviarBoleta(any(), any(), any());
+    }
+    @Test void porcentajeCalculaTotalYNoRepiteElDescuentoDePuntos() {
+        var cupon = canjes.canjearCupon(usuario, "DSCTO_15", 0);
+        assertEquals(0, usuarios.findById(usuario.getId()).orElseThrow().getPuntos());
+        var pedido = checkout.procesarCompra(conCupon(cupon), usuario.getId());
+        assertEquals(3.75, pedido.getDescuentoCupon()); assertEquals(26.25, pedido.getTotal());
+        assertEquals(5, usuarios.findById(usuario.getId()).orElseThrow().getPuntos());
+    }
     @Test void eliminarCuentaConservaPedidosAnonimosYEliminaCupones() {
         var pedido = checkout.procesarCompra(solicitud(1), usuario.getId());
         assertNotNull(canjes.canjearCupon(usuario, "DSCTO_5", 0));
@@ -106,7 +167,7 @@ class CheckoutIntegrationTests {
         assertFalse(usuarios.existsById(usuario.getId()));
         assertEquals(0, cupones.count());
         assertNull(pedidos.findById(pedido.getId()).orElseThrow().getUsuario());
-        assertEquals(1, boletas.count());
+        assertEquals(0, boletas.count());
     }
     @Test void canjesRecalculanSaldoAunqueClienteEnvieConsumoFalso() {
         assertNotNull(canjes.canjearCupon(usuario, "DSCTO_15", 1_000_000));

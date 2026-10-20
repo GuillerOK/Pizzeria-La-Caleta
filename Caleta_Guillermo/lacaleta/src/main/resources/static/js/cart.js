@@ -281,23 +281,27 @@ function actualizarVistasCarrito() {
     const grupoInputCupon = document.getElementById('grupoInputCupon');
 
     if (cuponGuardado && carrito.length > 0) {
-        if (cuponGuardado.tipo === 'DELIVERY_GRATIS') {
+        if (cuponGuardado.tipo === 'REGALO') {
+            descuento = 0;
+        } else if (cuponGuardado.tipo === 'DELIVERY_GRATIS') {
             descuento = costoEnvio;
         } else if (cuponGuardado.tipo === 'PORCENTAJE') {
             descuento = Math.round((subtotal * ((cuponGuardado.valorDescuento || cuponGuardado.descuento) / 100.0)) * 100) / 100;
         } else {
-            descuento = Math.min(subtotal, cuponGuardado.descuento || cuponGuardado.valorDescuento || 0);
+            descuento = Math.min(subtotal, cuponGuardado.valorDescuento ?? cuponGuardado.descuento ?? 0);
         }
 
         if (filaDescuento) {
             filaDescuento.classList.remove('d-none');
-            if (valorDescuentoDOM) valorDescuentoDOM.innerText = `- S/ ${descuento.toFixed(2)}`;
+            if (valorDescuentoDOM) valorDescuentoDOM.innerText = cuponGuardado.tipo === 'REGALO' ? `${cuponGuardado.titulo} (CUPÓN REGALO) — S/ 0.00` : `- S/ ${descuento.toFixed(2)}`;
             if (labelDescuento) labelDescuento.innerHTML = `<i class="fa-solid fa-tag me-1"></i>${escaparHtml(cuponGuardado.titulo || 'Cupón')}`;
         }
         if (cardCuponAplicado) {
             cardCuponAplicado.classList.remove('d-none');
             if (tituloCuponAplicado) tituloCuponAplicado.innerText = cuponGuardado.titulo || 'Cupón aplicado';
-            if (detalleCuponAplicado) detalleCuponAplicado.innerText = `Código: ${cuponGuardado.codigo} (-S/ ${descuento.toFixed(2)})`;
+            if (detalleCuponAplicado) detalleCuponAplicado.innerText = cuponGuardado.tipo === 'REGALO'
+                ? `Código: ${cuponGuardado.codigo} — Producto de regalo a S/ 0.00`
+                : `Código: ${cuponGuardado.codigo} (-S/ ${descuento.toFixed(2)})`;
         }
         if (grupoInputCupon) {
             grupoInputCupon.classList.add('d-none');

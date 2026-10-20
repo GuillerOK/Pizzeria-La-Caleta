@@ -48,11 +48,16 @@ public class CuponRestController {
             return ResponseEntity.badRequest().body(Map.of("valido", false, "error", "Este cupón ha vencido."));
         }
 
-        if (cupon.getUsuario() != null && !cupon.getUsuario().getId().equals(usuario.getId())) {
+        if (cupon.getUsuario() == null || !cupon.getUsuario().getId().equals(usuario.getId())) {
             return ResponseEntity.status(403).body(Map.of("valido", false, "error", "Este cupón pertenece a otra cuenta de usuario."));
         }
 
         double subtotal = solicitud.subtotal() != null ? solicitud.subtotal() : 0.0;
+        if (!Double.isFinite(subtotal) || subtotal < 0 || cupon.getDescuento() == null
+                || !Double.isFinite(cupon.getDescuento()) || cupon.getDescuento() < 0
+                || ("PORCENTAJE".equalsIgnoreCase(cupon.getTipo()) && cupon.getDescuento() > 100)) {
+            return ResponseEntity.badRequest().body(Map.of("valido", false, "error", "Importe o descuento inválido."));
+        }
         if (cupon.getCodigo().startsWith("CAL10") && subtotal < 40.0) {
             return ResponseEntity.badRequest().body(Map.of("valido", false, "error", "Este cupón requiere un consumo mínimo de S/ 40.00."));
         }
@@ -62,8 +67,15 @@ public class CuponRestController {
             descuento = 5.00;
         } else if ("PORCENTAJE".equalsIgnoreCase(cupon.getTipo())) {
             descuento = Math.round((subtotal * (cupon.getDescuento() / 100.0)) * 100.0) / 100.0;
-        } else {
+        } else if ("REGALO".equalsIgnoreCase(cupon.getTipo())) {
+            if (cupon.getProductoRegalo() == null) {
+                return ResponseEntity.badRequest().body(Map.of("valido", false, "error", "El cupón no tiene un producto de regalo configurado."));
+            }
+            descuento = 0;
+        } else if ("MONTO_FIJO".equalsIgnoreCase(cupon.getTipo())) {
             descuento = Math.min(subtotal, cupon.getDescuento());
+        } else {
+            return ResponseEntity.badRequest().body(Map.of("valido", false, "error", "Tipo de cupón inválido."));
         }
 
         return ResponseEntity.ok(Map.of(

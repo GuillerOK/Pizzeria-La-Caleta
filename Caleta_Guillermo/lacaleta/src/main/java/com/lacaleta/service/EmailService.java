@@ -44,8 +44,8 @@ public class EmailService {
             contexto.setVariable("pedido", pedido);
             contexto.setVariable("fecha", pedido.getFecha().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
             contexto.setVariable("items", pedido.getDetalles());
-            contexto.setVariable("subtotal", subtotal);
-            contexto.setVariable("envio", envio);
+            contexto.setVariable("subtotal", pedido.getSubtotal() != null ? pedido.getSubtotal() : subtotal);
+            contexto.setVariable("envio", pedido.getEnvio() != null ? pedido.getEnvio() : envio);
             return templateEngine.process("boleta-email", contexto);
     }
 

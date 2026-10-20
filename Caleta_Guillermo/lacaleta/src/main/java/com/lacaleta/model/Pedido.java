@@ -9,6 +9,25 @@ import java.util.List;
 @Table(name = "pedidos", indexes = @Index(name = "idx_pedidos_usuario_fecha", columnList = "usuario_id,fecha"),
        uniqueConstraints = @UniqueConstraint(columnNames = {"usuario_id", "clave_compra"}))
 public class Pedido {
+    private Double subtotal;
+    private Double envio;
+    private Double descuentoCupon;
+    private String codigoCupon;
+    private String tipoCupon;
+    private String tituloCupon;
+
+    public Double getSubtotal() { return subtotal; }
+    public void setSubtotal(Double subtotal) { this.subtotal = subtotal; }
+    public Double getEnvio() { return envio; }
+    public void setEnvio(Double envio) { this.envio = envio; }
+    public Double getDescuentoCupon() { return descuentoCupon; }
+    public void setDescuentoCupon(Double descuentoCupon) { this.descuentoCupon = descuentoCupon; }
+    public String getCodigoCupon() { return codigoCupon; }
+    public void setCodigoCupon(String codigoCupon) { this.codigoCupon = codigoCupon; }
+    public String getTipoCupon() { return tipoCupon; }
+    public void setTipoCupon(String tipoCupon) { this.tipoCupon = tipoCupon; }
+    public String getTituloCupon() { return tituloCupon; }
+    public void setTituloCupon(String tituloCupon) { this.tituloCupon = tituloCupon; }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
