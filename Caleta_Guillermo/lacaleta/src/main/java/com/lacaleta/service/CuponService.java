@@ -128,7 +128,7 @@ public class CuponService {
             case "PIZZA_GRATIS" -> "PIZZA";
             default -> "CALETA";
         };
-        String codigoGenerado = prefijo + "-" + UUID.randomUUID();
+        String codigoGenerado = (prefijo + "-" + UUID.randomUUID()).toUpperCase();
 
         Cupon cupon = new Cupon(
                 codigoGenerado,
@@ -141,7 +141,14 @@ public class CuponService {
                 LocalDateTime.now().plusDays(30)
         );
 
-        return cuponRepository.save(cupon);
+        Cupon cuponGuardado = cuponRepository.save(cupon);
+
+        // Actualizar y persistir saldo de puntos en Neon DB (tabla usuarios)
+        int saldoPuntos = Math.max(0, puntosDisponibles - opcion.getPuntosRequeridos());
+        usuario.setPuntos(saldoPuntos);
+        usuarios.save(usuario);
+
+        return cuponGuardado;
     }
 
     @Transactional

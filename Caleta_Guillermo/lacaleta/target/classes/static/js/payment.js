@@ -42,7 +42,31 @@ function cargarResumenPago() {
 
     const datosEnvio = JSON.parse(localStorage.getItem('pedido_envio_caleta')) || {};
     const costoEnvio = datosEnvio.tipoEntrega === 'delivery' ? 5.00 : 0.00;
-    const total = subtotal + costoEnvio;
+    const cupon = JSON.parse(localStorage.getItem('cupon_caleta') || 'null');
+    let descuento = 0;
+    const filaDescuento = document.getElementById('pago-fila-descuento');
+    const labelDescuento = document.getElementById('pago-descuento-label');
+    const valorDescuentoDOM = document.getElementById('pago-descuento');
+
+    if (cupon && subtotal > 0) {
+        if (cupon.tipo === 'DELIVERY_GRATIS') {
+            descuento = costoEnvio;
+        } else if (cupon.tipo === 'PORCENTAJE') {
+            descuento = Math.round((subtotal * ((cupon.valorDescuento || cupon.descuento) / 100.0)) * 100) / 100;
+        } else {
+            descuento = Math.min(subtotal, cupon.descuento || cupon.valorDescuento || 0);
+        }
+
+        if (filaDescuento) {
+            filaDescuento.classList.remove('d-none');
+            if (valorDescuentoDOM) valorDescuentoDOM.innerText = `- S/ ${descuento.toFixed(2)}`;
+            if (labelDescuento) labelDescuento.innerHTML = `<i class="fa-solid fa-tag me-1"></i>${cupon.titulo || 'Cupón'}`;
+        }
+    } else {
+        if (filaDescuento) filaDescuento.classList.add('d-none');
+    }
+
+    const total = Math.max(0, subtotal + costoEnvio - descuento);
 
     if (badgeCant) badgeCant.innerText = cantidadTotal;
     if (subtotalDOM) subtotalDOM.innerText = `S/ ${subtotal.toFixed(2)}`;
@@ -92,12 +116,14 @@ async function procesarPagoFinal(e) {
             throw new Error('Actualiza tu carrito desde el menú antes de comprar.');
         }
         if (!envio.tipoEntrega) throw new Error('Completa los datos de envío antes de comprar.');
+        const cupon = JSON.parse(localStorage.getItem('cupon_caleta') || 'null');
         const datos = {
             email: btn.dataset.email,
             items: carrito.map(i => ({ productoId: i.productoId, cantidad: i.cantidad })),
             tipoEntrega: envio.tipoEntrega === 'delivery' ? 'DELIVERY' : 'RETIRO',
             direccionEntrega: envio.direccion || null,
-            metodoPago: envio.tipoEntrega === 'delivery' ? 'CONTRA_ENTREGA' : 'PAGO_EN_TIENDA'
+            metodoPago: envio.tipoEntrega === 'delivery' ? 'CONTRA_ENTREGA' : 'PAGO_EN_TIENDA',
+            codigoCupon: cupon ? cupon.codigo : null
         };
         // Mantener la clave al reintentar tras perder una respuesta del servidor.
         const firma = JSON.stringify(datos);
@@ -115,6 +141,7 @@ async function procesarPagoFinal(e) {
         if (!respuesta.ok) throw new Error(resultado.error || 'No se pudo registrar la compra.');
         localStorage.removeItem('carrito_caleta');
         localStorage.removeItem('pedido_envio_caleta');
+        localStorage.removeItem('cupon_caleta');
         sessionStorage.removeItem('checkout_intento');
         mostrarModalMensaje('Pedido registrado', 'Pedido #' + resultado.pedidoId +
             '. Tu boleta está pendiente de envío al correo. ' + (datos.tipoEntrega === 'DELIVERY' ? 'Paga al recibir tu pedido.' : 'Paga al retirar tu pedido en tienda.'),

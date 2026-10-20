@@ -22,6 +22,8 @@ public class PedidoService {
     private final BoletaOutboxService boletas;
     private final RecetaInsumoRepository recetas;
     private final InsumoRepository insumos;
+    @org.springframework.beans.factory.annotation.Autowired(required = false)
+    private CuponRepository cupones;
 
     public PedidoService(ProductoRepository productos, PedidoRepository pedidos,
                          UsuarioRepository usuarios, BoletaOutboxService boletas,
@@ -32,6 +34,14 @@ public class PedidoService {
         this.boletas = boletas;
         this.recetas = recetas;
         this.insumos = insumos;
+    }
+    @org.springframework.beans.factory.annotation.Autowired
+    public PedidoService(ProductoRepository productos, PedidoRepository pedidos,
+                         UsuarioRepository usuarios, BoletaOutboxService boletas,
+                         RecetaInsumoRepository recetas, InsumoRepository insumos,
+                         CuponRepository cupones) {
+        this(productos, pedidos, usuarios, boletas, recetas, insumos);
+        this.cupones = cupones;
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -135,8 +145,50 @@ public class PedidoService {
             insumo.setStockActual(BigDecimal.valueOf(stock).subtract(consumo.getValue()).doubleValue());
         }
         BigDecimal envio = delivery ? COSTO_ENVIO : BigDecimal.ZERO;
-        pedido.setTotal(subtotal.add(envio).doubleValue());
+        BigDecimal descuentoCupon = BigDecimal.ZERO;
+        if (cupones != null && solicitud.codigoCupon() != null && !solicitud.codigoCupon().isBlank()) {
+            Cupon cupon = cupones.findByCodigoIgnoreCase(solicitud.codigoCupon().trim())
+                    .orElseThrow(() -> new ResponseStatusException(BAD_REQUEST, "El cupón no existe en la base de datos."));
+            if (!"ACTIVO".equalsIgnoreCase(cupon.getEstado())) {
+                throw new ResponseStatusException(BAD_REQUEST, "El cupón ya ha sido utilizado o no se encuentra activo.");
+            }
+            if (cupon.getFechaVencimiento() != null && cupon.getFechaVencimiento().isBefore(LocalDateTime.now())) {
+                throw new ResponseStatusException(BAD_REQUEST, "El cupón ha expirado.");
+            }
+            if (cupon.getUsuario() != null && !cupon.getUsuario().getId().equals(usuario.getId())) {
+                throw new ResponseStatusException(FORBIDDEN, "El cupón no pertenece a tu cuenta.");
+            }
+            if (cupon.getCodigo().startsWith("CAL10") && subtotal.compareTo(new BigDecimal("40.00")) < 0) {
+                throw new ResponseStatusException(BAD_REQUEST, "Este cupón requiere un consumo mínimo de S/ 40.00.");
+            }
+            if ("DELIVERY_GRATIS".equalsIgnoreCase(cupon.getTipo())) {
+                descuentoCupon = envio;
+            } else if ("PORCENTAJE".equalsIgnoreCase(cupon.getTipo())) {
+                descuentoCupon = subtotal.multiply(BigDecimal.valueOf(cupon.getDescuento()))
+                        .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+            } else {
+                descuentoCupon = BigDecimal.valueOf(cupon.getDescuento()).min(subtotal);
+            }
+            cupon.setEstado("USADO");
+            cupones.save(cupon);
+        }
+        BigDecimal totalFinal = subtotal.add(envio).subtract(descuentoCupon).max(BigDecimal.ZERO);
+        pedido.setTotal(totalFinal.setScale(2, RoundingMode.HALF_UP).doubleValue());
         pedidos.saveAndFlush(pedido); // Incluye detalles por CascadeType.ALL y stock por dirty checking.
+
+        try {
+            double nuevoTotalGastado = pedidos.totalPorUsuario(usuario.getId());
+            int puntosGastados = 0;
+            if (cupones != null) {
+                var canjeados = cupones.findByUsuarioOrderByFechaCanjeDesc(usuario);
+                puntosGastados = canjeados.stream()
+                        .mapToInt(c -> c.getPuntosRequeridos() != null ? c.getPuntosRequeridos() : 0)
+                        .sum();
+            }
+            int saldoPuntos = Math.max(0, 50 + (int) (nuevoTotalGastado / 5.0) - puntosGastados);
+            usuario.setPuntos(saldoPuntos);
+            usuarios.save(usuario);
+        } catch (Exception ignored) {}
         boletas.encolar(pedido, subtotal, envio);
         return pedido;
     }

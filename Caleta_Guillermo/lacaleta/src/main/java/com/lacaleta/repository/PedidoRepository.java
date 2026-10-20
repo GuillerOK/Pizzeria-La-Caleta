@@ -6,6 +6,18 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
+    @org.springframework.data.jpa.repository.Query("select p.estado, count(p), coalesce(sum(p.total), 0) from Pedido p where p.fecha >= :inicio and p.fecha < :fin group by p.estado")
+    java.util.List<Object[]> resumenReporte(java.time.LocalDateTime inicio, java.time.LocalDateTime fin);
+
+    @org.springframework.data.jpa.repository.Query("select year(p.fecha), month(p.fecha), day(p.fecha), sum(p.total) from Pedido p where p.fecha >= :inicio and p.fecha < :fin and p.estado = 'ENTREGADO' group by year(p.fecha), month(p.fecha), day(p.fecha) order by year(p.fecha), month(p.fecha), day(p.fecha)")
+    java.util.List<Object[]> tendenciaReporte(java.time.LocalDateTime inicio, java.time.LocalDateTime fin);
+
+    @org.springframework.data.jpa.repository.Query("select p.metodoPago, count(p), sum(p.total) from Pedido p where p.fecha >= :inicio and p.fecha < :fin and p.estado = 'ENTREGADO' group by p.metodoPago")
+    java.util.List<Object[]> pagosReporte(java.time.LocalDateTime inicio, java.time.LocalDateTime fin);
+
+    @org.springframework.data.jpa.repository.Query("select d.producto.id, d.producto.nombre, sum(d.cantidad), sum(d.subtotal) from DetallePedido d where d.pedido.fecha >= :inicio and d.pedido.fecha < :fin and d.pedido.estado = 'ENTREGADO' group by d.producto.id, d.producto.nombre order by sum(d.subtotal) desc, d.producto.id asc")
+    java.util.List<Object[]> productosReporte(java.time.LocalDateTime inicio, java.time.LocalDateTime fin, org.springframework.data.domain.Pageable limite);
+
     java.util.Optional<Pedido> findByUsuarioIdAndClaveCompra(Integer usuarioId, String claveCompra);
     @org.springframework.data.jpa.repository.EntityGraph(attributePaths = {"usuario"})
     org.springframework.data.domain.Page<Pedido> findByUsuarioId(Integer usuarioId, org.springframework.data.domain.Pageable pagina);

@@ -269,10 +269,161 @@ function actualizarVistasCarrito() {
         }
     }
     if (subtotalDOM) subtotalDOM.innerText = `S/ ${subtotal.toFixed(2)}`;
-    if (totalDOM) totalDOM.innerText = `S/ ${total.toFixed(2)}`;
+    // Manejo de cupón aplicado en el carrito
+    const cuponGuardado = JSON.parse(localStorage.getItem('cupon_caleta') || 'null');
+    let descuento = 0;
+    const filaDescuento = document.getElementById('resumen-fila-descuento');
+    const labelDescuento = document.getElementById('resumen-descuento-label');
+    const valorDescuentoDOM = document.getElementById('resumen-descuento');
+    const cardCuponAplicado = document.getElementById('cuponAplicadoCard');
+    const tituloCuponAplicado = document.getElementById('cuponAplicadoTitulo');
+    const detalleCuponAplicado = document.getElementById('cuponAplicadoDetalle');
+    const grupoInputCupon = document.getElementById('grupoInputCupon');
+
+    if (cuponGuardado && carrito.length > 0) {
+        if (cuponGuardado.tipo === 'DELIVERY_GRATIS') {
+            descuento = costoEnvio;
+        } else if (cuponGuardado.tipo === 'PORCENTAJE') {
+            descuento = Math.round((subtotal * ((cuponGuardado.valorDescuento || cuponGuardado.descuento) / 100.0)) * 100) / 100;
+        } else {
+            descuento = Math.min(subtotal, cuponGuardado.descuento || cuponGuardado.valorDescuento || 0);
+        }
+
+        if (filaDescuento) {
+            filaDescuento.classList.remove('d-none');
+            if (valorDescuentoDOM) valorDescuentoDOM.innerText = `- S/ ${descuento.toFixed(2)}`;
+            if (labelDescuento) labelDescuento.innerHTML = `<i class="fa-solid fa-tag me-1"></i>${escaparHtml(cuponGuardado.titulo || 'Cupón')}`;
+        }
+        if (cardCuponAplicado) {
+            cardCuponAplicado.classList.remove('d-none');
+            if (tituloCuponAplicado) tituloCuponAplicado.innerText = cuponGuardado.titulo || 'Cupón aplicado';
+            if (detalleCuponAplicado) detalleCuponAplicado.innerText = `Código: ${cuponGuardado.codigo} (-S/ ${descuento.toFixed(2)})`;
+        }
+        if (grupoInputCupon) {
+            grupoInputCupon.classList.add('d-none');
+        }
+    } else {
+        if (filaDescuento) filaDescuento.classList.add('d-none');
+        if (cardCuponAplicado) cardCuponAplicado.classList.add('d-none');
+        if (grupoInputCupon) grupoInputCupon.classList.remove('d-none');
+    }
+
+    const totalFinal = Math.max(0, subtotal + costoEnvio - descuento);
+    if (totalDOM) totalDOM.innerText = `S/ ${totalFinal.toFixed(2)}`;
 }
 
-document.addEventListener("DOMContentLoaded", actualizarVistasCarrito);
+async function aplicarCupon() {
+    const input = document.getElementById('inputCupon');
+    const mensajeError = document.getElementById('cuponMensajeError');
+    if (!input) return;
+    const codigo = input.value.trim();
+
+    if (!codigo) {
+        if (mensajeError) {
+            mensajeError.innerText = 'Por favor ingresa un código de cupón.';
+            mensajeError.classList.remove('d-none');
+        }
+        return;
+    }
+
+    const carrito = obtenerCarrito();
+    if (!carrito.length) {
+        if (mensajeError) {
+            mensajeError.innerText = 'Agrega productos a tu carrito antes de aplicar un cupón.';
+            mensajeError.classList.remove('d-none');
+        }
+        return;
+    }
+
+    let subtotal = 0;
+    carrito.forEach(i => subtotal += i.precio * i.cantidad);
+
+    const btnAplicar = document.getElementById('btnAplicarCupon');
+    if (btnAplicar) {
+        btnAplicar.disabled = true;
+        btnAplicar.innerText = 'Validando...';
+    }
+    if (mensajeError) mensajeError.classList.add('d-none');
+
+    try {
+        const respuesta = await fetch('/api/cupones/validar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ codigo, subtotal })
+        });
+
+        const data = await respuesta.json().catch(() => ({}));
+
+        if (!respuesta.ok || !data.valido) {
+            throw new Error(data.error || 'Cupón inválido o no disponible.');
+        }
+
+        localStorage.setItem('cupon_caleta', JSON.stringify({
+            codigo: data.codigo,
+            titulo: data.titulo,
+            descripcion: data.descripcion,
+            tipo: data.tipo,
+            descuento: data.descuento,
+            valorDescuento: data.valorDescuento
+        }));
+
+        input.value = '';
+        actualizarVistasCarrito();
+        mostrarModalMensaje('¡Cupón aplicado!', data.mensaje || 'Se ha aplicado el descuento a tu pedido.');
+    } catch (err) {
+        if (mensajeError) {
+            mensajeError.innerText = err.message;
+            mensajeError.classList.remove('d-none');
+        } else {
+            mostrarModalMensaje('Cupón no válido', err.message);
+        }
+    } finally {
+        if (btnAplicar) {
+            btnAplicar.disabled = false;
+            btnAplicar.innerText = 'Aplicar';
+        }
+    }
+}
+
+function removerCupon() {
+    localStorage.removeItem('cupon_caleta');
+    const mensajeError = document.getElementById('cuponMensajeError');
+    if (mensajeError) mensajeError.classList.add('d-none');
+    actualizarVistasCarrito();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    actualizarVistasCarrito();
+
+    const btnAplicar = document.getElementById('btnAplicarCupon');
+    if (btnAplicar) {
+        btnAplicar.addEventListener('click', aplicarCupon);
+    }
+
+    const inputCupon = document.getElementById('inputCupon');
+    if (inputCupon) {
+        inputCupon.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                aplicarCupon();
+            }
+        });
+    }
+
+    const btnRemover = document.getElementById('btnRemoverCupon');
+    if (btnRemover) {
+        btnRemover.addEventListener('click', removerCupon);
+    }
+
+    const precargado = localStorage.getItem('cupon_precargado_caleta');
+    if (precargado) {
+        localStorage.removeItem('cupon_precargado_caleta');
+        if (inputCupon && !localStorage.getItem('cupon_caleta')) {
+            inputCupon.value = precargado;
+            aplicarCupon();
+        }
+    }
+});
 
 function mostrarNotificacionCarrito(nombreProducto) {
     const info = parsearNombreProducto(nombreProducto);

@@ -136,6 +136,11 @@
                                 <span class="text-success fw-semibold" id="pago-envio-costo">Gratis</span>
                             </div>
 
+                            <div class="d-flex justify-content-between mb-3 small text-success d-none" id="pago-fila-descuento">
+                                <span id="pago-descuento-label"><i class="fa-solid fa-tag me-1"></i>Descuento Cupón</span>
+                                <span class="fw-semibold" id="pago-descuento">- S/ 0.00</span>
+                            </div>
+
                             <button type="submit" form="formCheckoutPago" id="btnFinalizarPedido"
                                 th:data-email="${usuario != null ? usuario.email : ''}"
                                 class="btn-cta w-100 mb-3">Confirmar pedido</button>

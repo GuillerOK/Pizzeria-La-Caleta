@@ -326,10 +326,16 @@
                                             </div>
                                         </div>
 
-                                        <div class="p-3 pt-0 text-end">
-                                            <a th:href="@{/menu}" class="btn btn-sm btn-outline-danger w-100 rounded-pill fw-bold">
-                                                Usar en el Menú <i class="bi bi-arrow-right ms-1"></i>
-                                            </a>
+                                        <div class="p-3 pt-0 text-end" th:if="${cupon.estado == 'ACTIVO'}">
+                                            <button type="button" class="btn btn-sm btn-outline-danger w-100 rounded-pill fw-bold"
+                                                    th:attr="onclick='usarCuponEnCarrito(\'' + ${cupon.codigo} + '\')'">
+                                                Usar en el Carrito <i class="bi bi-cart-check ms-1"></i>
+                                            </button>
+                                        </div>
+                                        <div class="p-3 pt-0 text-end" th:unless="${cupon.estado == 'ACTIVO'}">
+                                            <button type="button" class="btn btn-sm btn-secondary w-100 rounded-pill fw-bold disabled" disabled>
+                                                Cupón Utilizado <i class="bi bi-check-circle ms-1"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -546,6 +552,11 @@
             }).catch(() => {
                 mostrarModalMensaje("Aviso", "No se pudo copiar. Código: " + codigo);
             });
+        }
+
+        function usarCuponEnCarrito(codigo) {
+            localStorage.setItem('cupon_precargado_caleta', codigo);
+            window.location.href = '/carrito';
         }
 
         // 3. Abrir Modal de Confirmación de Canje

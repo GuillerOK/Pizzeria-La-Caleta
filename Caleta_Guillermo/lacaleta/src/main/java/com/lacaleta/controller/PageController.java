@@ -257,6 +257,10 @@ public class PageController {
 
         double totalGastado = pedidoRepository.totalPorUsuario(usuarioActualizado.getId());
         int puntosCaleta = cuponService.calcularPuntosDisponibles(usuarioActualizado, totalGastado);
+        if (usuarioActualizado.getPuntos() == null || !usuarioActualizado.getPuntos().equals(puntosCaleta)) {
+            usuarioActualizado.setPuntos(puntosCaleta);
+            usuarioRepository.save(usuarioActualizado);
+        }
 
         var ultimoPedido = pedidoRepository.findFirstByUsuarioIdOrderByFechaDesc(usuarioActualizado.getId()).orElse(null);
         var misCupones = cuponService.listarPorUsuario(usuarioActualizado);

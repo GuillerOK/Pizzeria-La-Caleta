@@ -14,6 +14,9 @@ public interface CuponRepository extends JpaRepository<Cupon, Integer> {
     List<Cupon> findByUsuarioOrderByFechaCanjeDesc(Usuario usuario);
     List<Cupon> findByUsuarioAndEstadoOrderByFechaCanjeDesc(Usuario usuario, String estado);
     Optional<Cupon> findByCodigo(String codigo);
+
+    @org.springframework.data.jpa.repository.Query("select c from Cupon c where lower(trim(c.codigo)) = lower(trim(:codigo))")
+    Optional<Cupon> findByCodigoIgnoreCase(@org.springframework.data.repository.query.Param("codigo") String codigo);
     long countByUsuarioAndEstado(Usuario usuario, String estado);
 
     @Transactional

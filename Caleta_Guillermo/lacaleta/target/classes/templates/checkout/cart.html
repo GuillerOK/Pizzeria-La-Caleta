@@ -93,9 +93,41 @@
                                 <span class="text-white fw-semibold" id="resumen-subtotal">S/ 0.00</span>
                             </div>
 
-                            <div class="d-flex justify-content-between mb-3 small text-secondary">
+                            <div class="d-flex justify-content-between mb-2 small text-secondary">
                                 <span>Costo de envío</span>
                                 <span class="text-white fw-semibold" id="resumen-envio">S/ 5.00</span>
+                            </div>
+
+                            <!-- Fila Descuento de Cupón -->
+                            <div class="d-flex justify-content-between mb-3 small text-success d-none" id="resumen-fila-descuento">
+                                <span id="resumen-descuento-label"><i class="fa-solid fa-tag me-1"></i>Descuento Cupón</span>
+                                <span class="fw-semibold" id="resumen-descuento">- S/ 0.00</span>
+                            </div>
+
+                            <!-- Sección Cupón / Código Promocional -->
+                            <div class="border-top border-secondary border-opacity-25 pt-3 pb-2 mb-3">
+                                <label for="inputCupon" class="form-label small text-secondary fw-semibold mb-2 d-flex align-items-center gap-1">
+                                    <i class="fa-solid fa-ticket text-ro"></i> Cupón / Código Promocional
+                                </label>
+                                <div class="input-group input-group-sm mb-1" id="grupoInputCupon">
+                                    <input type="text" id="inputCupon" class="form-control bg-dark text-white border-secondary border-opacity-50 text-uppercase" placeholder="Ej. CAL5-..." style="letter-spacing: 0.5px;">
+                                    <button class="btn btn-ro px-3 fw-bold" type="button" id="btnAplicarCupon">Aplicar</button>
+                                </div>
+                                <div id="cuponMensajeError" class="small text-danger mt-1 d-none"></div>
+
+                                <!-- Card Cupón Aplicado -->
+                                <div id="cuponAplicadoCard" class="mt-2 p-2 rounded-2 bg-success bg-opacity-10 border border-success border-opacity-25 d-none">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center gap-2 min-w-0">
+                                            <span class="badge bg-success text-white"><i class="fa-solid fa-check me-1"></i>Activo</span>
+                                            <span class="small text-white fw-bold text-truncate" id="cuponAplicadoTitulo">Cupón</span>
+                                        </div>
+                                        <button type="button" class="btn btn-sm text-danger p-0 border-0 shadow-none flex-shrink-0 ms-2" id="btnRemoverCupon" title="Quitar cupón">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </div>
+                                    <div class="text-white-50 mt-1" id="cuponAplicadoDetalle" style="font-size: 11px;"></div>
+                                </div>
                             </div>
 
                             <div class="border-top border-secondary border-opacity-25 pt-3 mb-4">

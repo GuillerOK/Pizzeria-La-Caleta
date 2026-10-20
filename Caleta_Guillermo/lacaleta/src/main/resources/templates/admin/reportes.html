@@ -1,138 +1,92 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Caleta Pizza | Reportes y Gráficos</title>
-
-    <!-- BOOTSTRAP -->
+    <title>La Caleta Pizza | Reportes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- CHART.JS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- CSS PROPIO -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js" defer></script>
     <link rel="stylesheet" th:href="@{/style/styles.css}">
     <link rel="stylesheet" th:href="@{/style/admin.css}">
+    <link rel="stylesheet" th:href="@{/style/reportes.css}">
+    <script th:src="@{/js/reporte.js}" defer></script>
 </head>
-
 <body>
-
-    <div class="caleta-admin-wrapper">
-
-        <!-- SIDEBAR -->
-        <aside class="caleta-sidebar">
-            <div>
-                <div class="caleta-logo-box">
-                    <h2>LA CALETA</h2>
-                    <p>ESTADÍSTICAS Y MÉTRICAS</p>
-                </div>
-
-                <nav class="caleta-menu-nav">
-                    <a th:href="@{/admin}" class="caleta-menu-btn">
-                        <i class="bi bi-arrow-left-circle"></i> Volver al Panel
-                    </a>
-                    <button class="caleta-menu-btn activo" id="tab1-link" onclick="mostrarPaginaGraficos(1)">
-                        <i class="bi bi-bar-chart-line"></i> Pág 1: Pizzas & Tendencia
-                    </button>
-                    <button class="caleta-menu-btn" id="tab2-link" onclick="mostrarPaginaGraficos(2)">
-                        <i class="bi bi-pie-chart"></i> Pág 2: Pagos & Stock
-                    </button>
-                </nav>
+<div class="caleta-admin-wrapper">
+    <aside class="caleta-sidebar">
+        <div>
+            <div class="caleta-logo-box"><h2>LA CALETA</h2><p>RENDIMIENTO DEL NEGOCIO</p></div>
+            <nav class="caleta-menu-nav" aria-label="Reportes">
+                <a th:href="@{/admin}" class="caleta-menu-btn"><i class="bi bi-arrow-left-circle"></i> Volver al panel</a>
+                <a href="#ventas" class="caleta-menu-btn activo"><i class="bi bi-bar-chart-line"></i> Ventas y productos</a>
+                <a href="#pagos" class="caleta-menu-btn"><i class="bi bi-wallet2"></i> Métodos de pago</a>
+                <a href="#inventario" class="caleta-menu-btn"><i class="bi bi-box-seam"></i> Inventario actual</a>
+            </nav>
+        </div>
+        <div class="caleta-admin-user">
+            <p class="caleta-user-name" th:text="${usuario.nombre}">Administrador</p>
+            <span class="caleta-badge-rol">ADMINISTRADOR</span>
+            <a th:href="@{/logout}" class="caleta-menu-btn mt-3"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</a>
+        </div>
+    </aside>
+    <main class="caleta-admin-main reportes-main">
+        <header class="caleta-header">
+            <div><p class="reporte-eyebrow">LA CALETA / ADMINISTRACIÓN</p><h1>Reportes del negocio</h1>
+                <p class="reporte-muted">Conoce tus ventas, identifica tendencias y revisa qué productos destacan.</p></div>
+            <a th:href="@{/admin}" class="caleta-btn-outline"><i class="bi bi-house"></i> Ir al panel</a>
+        </header>
+        <section class="caleta-panel reporte-filtros" aria-label="Filtros del reporte">
+            <form id="filtrosReporte">
+                <div><label for="periodo">Período</label><select id="periodo" name="periodo" class="form-select">
+                    <option value="hoy">Hoy</option><option value="semana">Esta semana</option>
+                    <option value="mes" selected>Este mes</option><option value="anio">Este año</option>
+                    <option value="personalizado">Fechas personalizadas</option>
+                </select></div>
+                <div><label for="desde">Desde</label><input type="date" id="desde" class="form-control" required disabled min="2000-01-01"></div>
+                <div><label for="hasta">Hasta</label><input type="date" id="hasta" class="form-control" required disabled min="2000-01-01"></div>
+                <button type="submit" id="aplicarReporte" class="caleta-btn-primary"><i class="bi bi-funnel"></i> Aplicar filtros</button>
+            </form>
+            <p class="reporte-muted mb-0 mt-3">Hora de Lima · Los períodos rápidos llegan hasta hoy. Rango personalizado de hasta cinco años.</p>
+        </section>
+        <p id="estadoReporte" role="status" aria-live="polite" class="reporte-estado">Cargando reporte…</p>
+        <section id="resultadoReporte" hidden aria-busy="false">
+            <div class="reporte-periodo"><h2 id="tituloPeriodo">Resumen del período</h2><span class="reporte-chip">Pedidos entregados</span></div>
+            <p id="comparacionPeriodo" class="reporte-muted"></p>
+            <div class="reporte-kpis">
+                <article class="caleta-panel"><p>Ventas del período</p><strong id="kpiVentas">—</strong><small id="variacionVentas"></small></article>
+                <article class="caleta-panel"><p>Pedidos entregados</p><strong id="kpiEntregados">—</strong><small id="totalPedidos"></small></article>
+                <article class="caleta-panel"><p>Ticket promedio</p><strong id="kpiTicket">—</strong><small>Ventas ÷ pedidos entregados</small></article>
+                <article class="caleta-panel"><p>Pedidos cancelados</p><strong id="kpiCancelados">—</strong><small id="tasaCancelacion"></small></article>
             </div>
-
-            <!-- PERFIL DEL ADMINISTRADOR CONECTADO DINÁMICAMENTE -->
-            <div class="caleta-admin-user">
-                <p class="caleta-user-name" id="adminNombreDisplay" th:text="${usuario.nombre}">Guillermo Admin</p>
-                <span class="caleta-badge-rol">ADMINISTRADOR</span>
-                <div style="margin-top: 15px;">
-                    <a href="#" onclick="cerrarSesion()" class="caleta-btn-outline"
-                        style="width: 100%; justify-content: center;">
-                        <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
-                    </a>
-                </div>
+            <p class="reporte-criterio"><i class="bi bi-info-circle"></i> Ventas calculadas con el total de pedidos en estado ENTREGADO, según su fecha de creación. Incluyen los cargos y descuentos del pedido; no acreditan cobro confirmado ni utilidad. Los pendientes y cancelados no se suman a ventas.</p>
+            <p id="sinDatos" class="reporte-vacio" hidden>No hay pedidos en este período. Prueba con otras fechas.</p>
+            <p id="sinVentas" class="reporte-vacio" hidden>Hay pedidos, pero ninguno está entregado. Las ventas del período son S/ 0.00.</p>
+            <section id="ventas" class="caleta-panel">
+                <div class="reporte-panel-header"><h2>Evolución de ventas</h2><span id="agrupacion" class="reporte-muted"></span></div>
+                <div class="reporte-chart"><canvas id="chartTendencia" role="img" aria-label="Evolución del importe de ventas por fecha"></canvas></div>
+                <details><summary>Ver cifras de la tendencia</summary><div class="reporte-table-wrap"><table class="table"><thead><tr><th>Inicio del intervalo</th><th>Ventas</th></tr></thead><tbody id="tablaTendencia"></tbody></table></div></details>
+            </section>
+            <div class="reporte-grid">
+                <section class="caleta-panel">
+                    <h2>Productos más vendidos</h2><p class="reporte-muted">Hasta 10 productos, ordenados por importe de sus líneas. Puede diferir del total del pedido por cargos y descuentos.</p>
+                    <div class="reporte-table-wrap"><table class="table align-middle"><thead><tr><th>Producto</th><th>Unidades</th><th>Importe</th></tr></thead><tbody id="tablaProductos"></tbody></table></div>
+                </section>
+                <section id="pagos" class="caleta-panel">
+                    <h2>Métodos de pago</h2><p class="reporte-muted">Método registrado en pedidos entregados.</p>
+                    <div class="reporte-chart reporte-chart-pagos"><canvas id="chartPagos" role="img" aria-label="Importe de ventas por método de pago"></canvas></div>
+                    <div class="reporte-table-wrap"><table class="table align-middle"><thead><tr><th>Método</th><th>Pedidos</th><th>Importe</th></tr></thead><tbody id="tablaPagos"></tbody></table></div>
+                </section>
             </div>
-        </aside>
-
-        <!-- CONTENIDO GRÁFICOS -->
-        <main class="caleta-admin-main">
-
-            <header class="caleta-header">
-                <div>
-                    <h3>Métricas y Reportes Estadísticos</h3>
-                    <p style="color: #6b7280; font-size: 13px; margin: 0;">Análisis visual del rendimiento y ventas de
-                        La Caleta</p>
-                </div>
-                <a th:href="@{/admin}" class="caleta-btn-outline">
-                    <i class="bi bi-house"></i> Regresar al Panel
-                </a>
-            </header>
-
-            <!-- PÁGINA 1: BARRAS & LINEAL -->
-            <div id="paginaGraficos1">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
-                        <i class="bi bi-1-circle-fill me-2"></i> Ventas por Categoría y Tendencia
-                    </h5>
-                    <button class="caleta-btn-primary" onclick="mostrarPaginaGraficos(2)">Ir a Página 2 &rarr;</button>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
-                    <div class="caleta-panel">
-                        <div class="caleta-panel-title">
-                            <i class="bi bi-bar-chart-fill text-ro"></i> Ventas Totales por Especialidad
-                        </div>
-                        <canvas id="chartBarrasPizzas" style="max-height: 320px;"></canvas>
-                    </div>
-
-                    <div class="caleta-panel">
-                        <div class="caleta-panel-title">
-                            <i class="bi bi-graph-up text-ro"></i> Evolución de Ventas Semanales (S/)
-                        </div>
-                        <canvas id="chartLinealMensual" style="max-height: 320px;"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PÁGINA 2: CIRCULAR & STOCK -->
-            <div id="paginaGraficos2" style="display: none;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h5 style="margin: 0; font-weight: 700; color: var(--color-rojo-naranja);">
-                        <i class="bi bi-2-circle-fill me-2"></i> Medios de Pago y Nivel de Insumos
-                    </h5>
-                    <button class="caleta-btn-primary" onclick="mostrarPaginaGraficos(1)">&larr; Volver a Página
-                        1</button>
-                </div>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
-                    <div class="caleta-panel">
-                        <div class="caleta-panel-title">
-                            <i class="bi bi-pie-chart-fill text-ro"></i> Preferencia de Canales de Pago
-                        </div>
-                        <div style="display: flex; justify-content: center;">
-                            <canvas id="chartCircularPagos" style="max-height: 300px; max-width: 300px;"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="caleta-panel">
-                        <div class="caleta-panel-title">
-                            <i class="bi bi-box-seam text-ro"></i> Disponibilidad de Insumos Críticos
-                        </div>
-                        <canvas id="chartStockInsumos" style="max-height: 320px;"></canvas>
-                    </div>
-                </div>
-            </div>
-
-        </main>
-    </div>
-
-    <!-- BOOTSTRAP JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- CONEXIONES JS DE LA APLICACIÓN -->
-    <script th:src="@{/js/auth.js}"></script>
-    <script th:src="@{/js/main.js}"></script>
-    <script th:src="@{/js/reporte.js}"></script>
-
+        </section>
+        <section id="inventario" class="caleta-panel reporte-inventario">
+            <div class="reporte-panel-header"><h2>Inventario actual</h2><span class="reporte-chip">Existencias al consultar</span></div>
+            <p class="reporte-muted">Cuatro insumos con menor cantidad registrada. Cada cantidad conserva su unidad. Este bloque es independiente del período de ventas.</p>
+            <p id="estadoInventario" role="status">Cargando inventario…</p>
+            <button id="actualizarInventario" type="button" class="caleta-btn-outline">Actualizar inventario</button>
+            <div class="reporte-table-wrap"><table class="table align-middle"><thead><tr><th>Insumo</th><th>Disponible</th><th>Mínimo</th><th>Estado</th></tr></thead><tbody id="tablaInventario"></tbody></table></div>
+        </section>
+    </main>
+</div>
 </body>
 </html>

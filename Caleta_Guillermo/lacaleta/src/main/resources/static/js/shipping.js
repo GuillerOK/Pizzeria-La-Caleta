@@ -74,7 +74,31 @@ function actualizarTotalesEnvio(tipo) {
     const totalDOM = document.getElementById('shipping-total');
 
     const costoEnvio = tipo === 'delivery' ? 5.00 : 0.00;
-    const total = subtotalPedido + costoEnvio;
+    const filaDescuento = document.getElementById('shipping-fila-descuento');
+    const labelDescuento = document.getElementById('shipping-descuento-label');
+    const valorDescuentoDOM = document.getElementById('shipping-descuento');
+    const cupon = JSON.parse(localStorage.getItem('cupon_caleta') || 'null');
+    let descuento = 0;
+
+    if (cupon && subtotalPedido > 0) {
+        if (cupon.tipo === 'DELIVERY_GRATIS') {
+            descuento = costoEnvio;
+        } else if (cupon.tipo === 'PORCENTAJE') {
+            descuento = Math.round((subtotalPedido * ((cupon.valorDescuento || cupon.descuento) / 100.0)) * 100) / 100;
+        } else {
+            descuento = Math.min(subtotalPedido, cupon.descuento || cupon.valorDescuento || 0);
+        }
+
+        if (filaDescuento) {
+            filaDescuento.classList.remove('d-none');
+            if (valorDescuentoDOM) valorDescuentoDOM.innerText = `- S/ ${descuento.toFixed(2)}`;
+            if (labelDescuento) labelDescuento.innerHTML = `<i class="fa-solid fa-tag me-1"></i>${cupon.titulo || 'Cupón'}`;
+        }
+    } else {
+        if (filaDescuento) filaDescuento.classList.add('d-none');
+    }
+
+    const total = Math.max(0, subtotalPedido + costoEnvio - descuento);
 
     if (costoEnvioDOM) {
         costoEnvioDOM.innerText = costoEnvio > 0 ? `S/ ${costoEnvio.toFixed(2)}` : "Gratis (Retiro)";
