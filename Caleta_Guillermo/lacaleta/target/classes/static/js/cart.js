@@ -281,23 +281,27 @@ function actualizarVistasCarrito() {
     const grupoInputCupon = document.getElementById('grupoInputCupon');
 
     if (cuponGuardado && carrito.length > 0) {
-        if (cuponGuardado.tipo === 'DELIVERY_GRATIS') {
+        if (cuponGuardado.tipo === 'REGALO') {
+            descuento = 0;
+        } else if (cuponGuardado.tipo === 'DELIVERY_GRATIS') {
             descuento = costoEnvio;
         } else if (cuponGuardado.tipo === 'PORCENTAJE') {
             descuento = Math.round((subtotal * ((cuponGuardado.valorDescuento || cuponGuardado.descuento) / 100.0)) * 100) / 100;
         } else {
-            descuento = Math.min(subtotal, cuponGuardado.descuento || cuponGuardado.valorDescuento || 0);
+            descuento = Math.min(subtotal, cuponGuardado.valorDescuento ?? cuponGuardado.descuento ?? 0);
         }
 
         if (filaDescuento) {
             filaDescuento.classList.remove('d-none');
-            if (valorDescuentoDOM) valorDescuentoDOM.innerText = `- S/ ${descuento.toFixed(2)}`;
+            if (valorDescuentoDOM) valorDescuentoDOM.innerText = cuponGuardado.tipo === 'REGALO' ? `${cuponGuardado.titulo} (CUPÓN REGALO) — S/ 0.00` : `- S/ ${descuento.toFixed(2)}`;
             if (labelDescuento) labelDescuento.innerHTML = `<i class="fa-solid fa-tag me-1"></i>${escaparHtml(cuponGuardado.titulo || 'Cupón')}`;
         }
         if (cardCuponAplicado) {
             cardCuponAplicado.classList.remove('d-none');
             if (tituloCuponAplicado) tituloCuponAplicado.innerText = cuponGuardado.titulo || 'Cupón aplicado';
-            if (detalleCuponAplicado) detalleCuponAplicado.innerText = `Código: ${cuponGuardado.codigo} (-S/ ${descuento.toFixed(2)})`;
+            if (detalleCuponAplicado) detalleCuponAplicado.innerText = cuponGuardado.tipo === 'REGALO'
+                ? `Código: ${cuponGuardado.codigo} — Producto de regalo a S/ 0.00`
+                : `Código: ${cuponGuardado.codigo} (-S/ ${descuento.toFixed(2)})`;
         }
         if (grupoInputCupon) {
             grupoInputCupon.classList.add('d-none');
@@ -310,6 +314,23 @@ function actualizarVistasCarrito() {
 
     const totalFinal = Math.max(0, subtotal + costoEnvio - descuento);
     if (totalDOM) totalDOM.innerText = `S/ ${totalFinal.toFixed(2)}`;
+}
+
+function usarCuponEnCarrito(codigo) {
+    localStorage.setItem('cupon_precargado_caleta', codigo);
+    document.getElementById('inputCupon').value = codigo;
+    const modal = document.getElementById('modalMisCupones');
+    if (modal && window.bootstrap) bootstrap.Modal.getInstance(modal)?.hide();
+    aplicarCupon();
+}
+
+async function copiarCodigoCupon(boton) {
+    try {
+        await navigator.clipboard.writeText(boton.dataset.codigo);
+        boton.textContent = 'Copiado';
+    } catch (_) {
+        mostrarModalMensaje('Copiar cupón', 'Selecciona el código para copiarlo manualmente.');
+    }
 }
 
 async function aplicarCupon() {
@@ -367,6 +388,7 @@ async function aplicarCupon() {
             valorDescuento: data.valorDescuento
         }));
 
+        localStorage.removeItem('cupon_precargado_caleta');
         input.value = '';
         actualizarVistasCarrito();
         mostrarModalMensaje('¡Cupón aplicado!', data.mensaje || 'Se ha aplicado el descuento a tu pedido.');
@@ -386,6 +408,7 @@ async function aplicarCupon() {
 }
 
 function removerCupon() {
+    localStorage.removeItem('cupon_precargado_caleta');
     localStorage.removeItem('cupon_caleta');
     const mensajeError = document.getElementById('cuponMensajeError');
     if (mensajeError) mensajeError.classList.add('d-none');
@@ -417,8 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const precargado = localStorage.getItem('cupon_precargado_caleta');
     if (precargado) {
-        localStorage.removeItem('cupon_precargado_caleta');
-        if (inputCupon && !localStorage.getItem('cupon_caleta')) {
+        if (inputCupon) {
             inputCupon.value = precargado;
             aplicarCupon();
         }

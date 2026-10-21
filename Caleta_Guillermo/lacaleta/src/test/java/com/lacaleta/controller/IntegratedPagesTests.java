@@ -80,6 +80,33 @@ class IntegratedPagesTests {
         mvc.perform(get("/perfil").session(session)).andExpect(status().isOk())
                 .andExpect(model().attribute("totalPedidos", 0L));
     }
+
+    @Test
+    void pagoExitosoMuestraSoloPedidoConfirmadoDeLaSesion() throws Exception {
+        Pedido pedido = new Pedido(); pedido.setId(101); pedido.setUsuario(cliente);
+        pedido.setEstado("REALIZADO"); pedido.setMetodoPago("ONLINE_SIMULADO");
+        pedido.setSubtotal(25.0); pedido.setEnvio(5.0); pedido.setTotal(30.0);
+        pedido.setDireccionEntrega("Av. Lima 123");
+        Producto pizza = new Producto(); pizza.setNombre("Pizza demo");
+        pedido.getDetalles().add(new DetallePedido(pedido, pizza, 1, 25.0));
+        when(pedidos.findByIdAndUsuarioId(101, 10)).thenReturn(Optional.of(pedido));
+        mvc.perform(get("/pago/exitoso").param("pedidoId", "101").session(session))
+                .andExpect(status().isOk()).andExpect(content().string(containsString("¡Pago exitoso!")))
+                .andExpect(content().string(containsString("REALIZADO")))
+                .andExpect(content().string(containsString("Pizza demo")));
+        mvc.perform(get("/pago/exitoso").param("pedidoId", "202").session(session)).andExpect(status().isNotFound());
+        pedido.setEstado("PENDIENTE");
+        mvc.perform(get("/pago/exitoso").param("pedidoId", "101").session(session)).andExpect(status().isNotFound());
+        mvc.perform(get("/pago/exitoso").param("pedidoId", "101")).andExpect(redirectedUrl("/login"));
+    }
+
+    @Test
+    void pasarelaRenderizaCamposDeTarjetaYVersionDelScript() throws Exception {
+        mvc.perform(get("/pago").session(session)).andExpect(status().isOk())
+                .andExpect(content().string(containsString("id=\"numeroTarjeta\"")))
+                .andExpect(content().string(containsString("id=\"cvvTarjeta\"")))
+                .andExpect(content().string(containsString("payment.js?v=20261021-2")));
+    }
     @Test
     void carritoRenderizaModalCompartidoConCuponActivoYLargo() throws Exception {
         var cupon = new Cupon("CAL5-12345678-1234-1234-1234-123456789abc", "Mi descuento", "Cinco soles", "MONTO_FIJO", 5.0, 20, cliente, LocalDateTime.now().plusDays(1));

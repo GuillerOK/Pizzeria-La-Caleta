@@ -216,6 +216,19 @@ public class PageController {
         return "info/faq";
     }
 
+    @GetMapping("/pago/exitoso")
+    public String pagoExitoso(@RequestParam Integer pedidoId, Model model, HttpSession session) {
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
+        if (usuario == null) return "redirect:/login";
+        var pedido = pedidoRepository.findByIdAndUsuarioId(pedidoId, usuario.getId())
+                .filter(p -> "REALIZADO".equals(p.getEstado()) || "ENTREGADO".equals(p.getEstado()))
+                .orElseThrow(() -> new org.springframework.web.server.ResponseStatusException(
+                        org.springframework.http.HttpStatus.NOT_FOUND, "Pedido confirmado no encontrado."));
+        cargarUsuarioEnModelo(model, session);
+        model.addAttribute("pedido", pedido);
+        return "checkout/success";
+    }
+
     @GetMapping("/terminos")
     public String terminos(Model model, HttpSession session) {
         cargarUsuarioEnModelo(model, session);

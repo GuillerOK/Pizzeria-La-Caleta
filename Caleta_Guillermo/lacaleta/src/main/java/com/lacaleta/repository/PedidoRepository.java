@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
+    @org.springframework.data.jpa.repository.EntityGraph(attributePaths = {"usuario", "detalles", "detalles.producto"})
+    java.util.Optional<Pedido> findByIdAndUsuarioId(Integer id, Integer usuarioId);
     @org.springframework.data.jpa.repository.Query("select distinct p from Pedido p left join fetch p.detalles d left join fetch d.producto where p.id in :ids")
     java.util.List<Pedido> cargarDetalles(@org.springframework.data.repository.query.Param("ids") java.util.Collection<Integer> ids);
     @org.springframework.data.jpa.repository.Query("select p.estado, count(p), coalesce(sum(p.total), 0) from Pedido p where p.fecha >= :inicio and p.fecha < :fin group by p.estado")

@@ -45,11 +45,24 @@ function entorno() {
     const intentos = new Map();
     const storage = mapa => ({ getItem: key => mapa.get(key) ?? null, setItem: (k, v) => mapa.set(k, v), removeItem: k => mapa.delete(k) });
     const boton = { disabled: false, textContent: 'Confirmar pedido', dataset: { email: 'cliente@example.com' } };
+    const elementos = new Map();
+    const nodo = id => {
+        if (id === 'btnFinalizarPedido') return boton;
+        if (!elementos.has(id)) elementos.set(id, { value: '', textContent: '', setAttribute() {}, focus() {}, reset() {}, classList: { toggle() {} } });
+        return elementos.get(id);
+    };
+    nodo('numeroTarjeta').value = '4242 4242 4242 4242';
+    nodo('titularTarjeta').value = 'CLIENTE DEMO';
+    nodo('expiracionTarjeta').value = '12/99';
+    nodo('cvvTarjeta').value = '123';
+    const demoras = [];
+    let temporizador = fn => fn();
     const modales = [];
     const requests = [];
     let fallo = null;
     const context = vm.createContext({
-        document: { addEventListener() {}, getElementById: () => boton, querySelector: () => ({ value: 'EFECTIVO' }) },
+        document: { addEventListener() {}, getElementById: nodo },
+        setTimeout: (fn, ms) => { demoras.push(ms); temporizador(fn); },
         localStorage: storage(memoria), sessionStorage: storage(intentos),
         obtenerCarrito: () => JSON.parse(memoria.get('carrito_caleta') || '[]'),
         crypto: { randomUUID: () => 'a1234567-1234-1234-1234-123456789abc' },
@@ -57,11 +70,11 @@ function entorno() {
         fetch: async (url, options) => {
             requests.push({ url, datos: JSON.parse(options.body) });
             if (fallo === 'red') throw new TypeError('sin conexión');
-            return { ok: !fallo, json: async () => fallo ? { error: 'Stock insuficiente' } : { pedidoId: 42, total: 55 } };
+            return { ok: !fallo, json: async () => fallo ? { error: 'Stock insuficiente' } : { pedidoId: 42, total: 55, estado: 'REALIZADO' } };
         }, TypeError
     });
     vm.runInContext(fs.readFileSync(path.join(recursos, 'static/js/payment.js'), 'utf8'), context);
-    return { context, memoria, intentos, boton, modales, requests, fallar: valor => { fallo = valor; }, comprar: () => context.procesarPagoFinal({ preventDefault() {} }) };
+    return { context, memoria, intentos, boton, modales, requests, nodo, demoras, temporizar: fn => { temporizador = fn; }, fallar: valor => { fallo = valor; }, comprar: () => context.procesarPagoFinal({ preventDefault() {} }) };
 }
 test('el pago llama al backend sin precios y limpia el carrito solo tras confirmar', async () => {
     const e = entorno();
@@ -72,7 +85,36 @@ test('el pago llama al backend sin precios y limpia el carrito solo tras confirm
     assert.equal(e.requests[0].datos.direccionEntrega, 'Av. Lima 123');
     assert.equal(e.memoria.has('carrito_caleta'), false);
     assert.equal(e.intentos.size, 0);
-    assert.match(e.modales[0][1], /REALIZADA/);
+    assert.equal(e.context.window.location.href, '/pago/exitoso?pedidoId=42');
+    assert.deepEqual(e.demoras, [2000]);
+    assert.doesNotMatch(JSON.stringify(e.requests), /4242|CLIENTE DEMO|cvv|numeroTarjeta/);
+});
+
+test('rechaza datos vacíos, tarjeta corta, CVV inválido y vencimiento pasado', async () => {
+    const e = entorno();
+    const errores = e.context.erroresTarjeta({ numero: '1234', titular: ' ', expiracion: '01/20', cvv: '12x' }, new Date(2026, 9, 21));
+    assert.equal(Object.keys(errores).length, 4);
+    assert.equal(Object.keys(e.context.erroresTarjeta({ numero: '4242424242424242', titular: 'Demo', expiracion: '10/26', cvv: '1234' }, new Date(2026, 9, 21))).length, 0);
+    e.nodo('numeroTarjeta').value = '';
+    await e.comprar();
+    assert.equal(e.requests.length, 0);
+    assert.equal(e.demoras.length, 0);
+    assert.ok(e.memoria.has('carrito_caleta'));
+});
+
+test('espera dos segundos, bloquea doble clic y solo después confirma en backend', async () => {
+    const e = entorno();
+    let terminar;
+    e.temporizar(fn => { terminar = fn; });
+    const pago = e.comprar();
+    assert.equal(e.boton.disabled, true);
+    assert.equal(e.nodo('textoBotonPago').textContent, 'Procesando pago...');
+    assert.equal(e.requests.length, 0);
+    await e.comprar();
+    assert.equal(e.demoras.length, 1);
+    terminar();
+    await pago;
+    assert.equal(e.requests.length, 1);
 });
 test('respuesta de error conserva el carrito y permite reintentar', async () => {
     const e = entorno(); e.fallar('stock');

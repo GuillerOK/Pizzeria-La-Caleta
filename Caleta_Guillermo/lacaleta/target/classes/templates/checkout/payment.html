@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" th:href="@{/style/main.css}">
     <link rel="stylesheet" th:href="@{/style/shop.css}">
+    <link rel="stylesheet" th:href="@{/style/payment.css(v='20261021-2')}">
     <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
 </head>
 
@@ -48,7 +49,7 @@
             <div class="container">
                 <div class="row g-4">
 
-                    <div class="col-12 col-lg-8 order-2 order-lg-1">
+                    <div class="col-12 col-lg-8">
 
                         <div
                             class="tarjeta-local card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm mb-4">
@@ -86,27 +87,33 @@
                             </div>
                         </div>
 
-                        <form id="formCheckoutPago" onsubmit="procesarPagoFinal(event)"
+                        <form id="formCheckoutPago" onsubmit="procesarPagoFinal(event)" novalidate autocomplete="off"
                             class="tarjeta-local card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm">
 
-                            <div class="mb-4">
-                                <h5 class="fw-bold text-white fs-6 text-uppercase mb-2">1. Comprobante de Pago</h5>
-<p class="text-secondary small">Se enviará un comprobante HTML del pedido a tu correo.</p>
+                            <div class="gateway-heading"><div><span class="gateway-eyebrow">ÚLTIMO PASO</span><h2>Completa tu pago</h2></div><span class="gateway-demo">DEMO · SIN COBROS</span></div>
+                            <p class="gateway-muted">Tu próxima pizza está a un paso. Prueba el pago con datos ficticios.</p>
+                            <div class="demo-card" aria-hidden="true">
+                                <div class="demo-card-top"><strong>CALETA <span>PAY</span></strong><i class="fa-solid fa-wifi"></i></div>
+                                <div class="demo-chip"></div>
+                                <div class="demo-card-number">•••• &nbsp; •••• &nbsp; •••• &nbsp; 4242</div>
+                                <div class="demo-card-bottom"><span>TARJETA DE DEMOSTRACIÓN</span><span>ONLINE</span></div>
                             </div>
-
-                            <hr class="border-secondary border-opacity-25 my-4">
-
-                            <div class="mb-4">
-                                <h5 class="fw-bold text-white fs-6 text-uppercase mb-3">2. Selecciona tu método de pago
-                                </h5>
-
-                                <p class="text-white fw-semibold" id="textoMetodoPago">Pago contra entrega o al retirar en tienda</p>
-                                <p class="text-secondary small mt-2">Coordina el pago con el local al recibir tu pedido.</p>
-                            </div>
+                            <div class="demo-helper"><i class="fa-solid fa-flask" aria-hidden="true"></i><span>No uses datos reales. Puedes completar el formulario con nuestra tarjeta de prueba.</span><button type="button" id="btnDatosPrueba">Usar datos de prueba</button></div>
+                            <fieldset id="camposPago" class="gateway-fields">
+                                <legend class="visually-hidden">Datos de tarjeta simulada</legend>
+                                <div class="gateway-field"><label for="numeroTarjeta">Número de tarjeta</label><input id="numeroTarjeta" type="text" inputmode="numeric" maxlength="19" placeholder="4242 4242 4242 4242" aria-describedby="error-numeroTarjeta" required><small id="error-numeroTarjeta" class="gateway-error"></small></div>
+                                <div class="gateway-field"><label for="titularTarjeta">Nombre del titular</label><input id="titularTarjeta" type="text" maxlength="80" placeholder="Como aparece en la tarjeta" aria-describedby="error-titularTarjeta" required><small id="error-titularTarjeta" class="gateway-error"></small></div>
+                                <div class="gateway-row">
+                                    <div class="gateway-field"><label for="expiracionTarjeta">Fecha de expiración</label><input id="expiracionTarjeta" type="text" inputmode="numeric" maxlength="5" placeholder="MM/YY" aria-describedby="error-expiracionTarjeta" required><small id="error-expiracionTarjeta" class="gateway-error"></small></div>
+                                    <div class="gateway-field"><label for="cvvTarjeta">CVV</label><input id="cvvTarjeta" type="password" inputmode="numeric" maxlength="4" placeholder="123" aria-describedby="error-cvvTarjeta" required><small id="error-cvvTarjeta" class="gateway-error"></small></div>
+                                </div>
+                            </fieldset>
+                            <p id="estadoPasarela" class="gateway-status" role="status" aria-live="polite">Simulación lista. No se realizará ningún cargo.</p>
+                            <p class="gateway-footnote"><i class="fa-solid fa-lock" aria-hidden="true"></i> Los datos de tarjeta no se guardan ni se envían al servidor. Tu comprobante llegará al correo registrado.</p>
                         </form>
                     </div>
 
-                    <div class="col-12 col-lg-4 order-1 order-lg-2">
+                    <div class="col-12 col-lg-4">
                         <div class="tarjeta-local card bg-dark text-white border border-secondary border-opacity-25 rounded-3 p-4 shadow-sm sticky-top"
                             style="top: 20px;">
 
@@ -143,7 +150,7 @@
 
                             <button type="submit" form="formCheckoutPago" id="btnFinalizarPedido"
                                 th:data-email="${usuario != null ? usuario.email : ''}"
-                                class="btn-cta w-100 mb-3">Confirmar pedido</button>
+                                class="btn-cta w-100 mb-3"><span id="spinnerPago" class="spinner-border spinner-border-sm me-2 d-none" aria-hidden="true"></span><span id="textoBotonPago">Pagar</span></button>
                             <div class="border-top border-secondary border-opacity-25 pt-3">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="fw-bold text-white">Total a pagar</span>
@@ -171,7 +178,7 @@
     <script th:src="@{/js/main.js}"></script>
     <script th:src="@{/js/cart.js}"></script>
     <script th:src="@{/js/auth.js}"></script>
-    <script th:src="@{/js/payment.js}"></script>
+    <script th:src="@{/js/payment.js(v='20261021-2')}"></script>
 </body>
 
 </html>
