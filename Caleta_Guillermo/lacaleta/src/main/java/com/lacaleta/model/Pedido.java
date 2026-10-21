@@ -41,10 +41,10 @@ public class Pedido {
     private LocalDateTime fecha = LocalDateTime.now();
     
     @Column(nullable = false, length = 20)
-    private String estado = "PENDIENTE"; // PENDIENTE, EN_CAMINO, ENTREGADO
+    private String estado = "PENDIENTE"; // REALIZADO confirma el pago online simulado.
     
     @Column(name = "metodo_pago", length = 20)
-    private String metodoPago; // YAPE, TARJETA, EFECTIVO
+    private String metodoPago; // ONLINE_SIMULADO para compras nuevas; conserva métodos históricos.
     
     @Column(name = "direccion_entrega")
     private String direccionEntrega;

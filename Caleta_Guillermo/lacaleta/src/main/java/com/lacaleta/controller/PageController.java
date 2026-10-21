@@ -191,6 +191,8 @@ public class PageController {
     @GetMapping({ "/carrito", "/cart" })
     public String carrito(Model model, HttpSession session) {
         cargarUsuarioEnModelo(model, session);
+        model.addAttribute("misCupones", cuponService.listarPorUsuario(
+                (Usuario) session.getAttribute("usuarioLogueado")));
         return "checkout/cart";
     }
 

@@ -142,7 +142,7 @@
                                         th:text="'S/ ' + ${#numbers.formatDecimal(pedido.total, 1, 2)}">S/ 0.00</strong>
                                 </td>
                                 <td>
-                                    <span class="caleta-badge success"
+                                    <span th:class="${pedido.estado == 'REALIZADO' or pedido.estado == 'ENTREGADO' ? 'caleta-badge success' : 'caleta-badge'}"
                                         th:text="${pedido.estado != null ? pedido.estado : 'Recibido'}">Estado</span>
                                 </td>
                             </tr>

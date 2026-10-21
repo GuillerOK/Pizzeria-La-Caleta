@@ -68,25 +68,53 @@ test('el pago llama al backend sin precios y limpia el carrito solo tras confirm
     await e.comprar();
     assert.equal(e.requests[0].url, '/api/checkout');
     assert.deepEqual(e.requests[0].datos.items, [{ productoId: 7, cantidad: 2 }]);
-    assert.equal(e.requests[0].datos.metodoPago, 'CONTRA_ENTREGA');
+    assert.equal(e.requests[0].datos.metodoPago, 'ONLINE_SIMULADO');
     assert.equal(e.requests[0].datos.direccionEntrega, 'Av. Lima 123');
     assert.equal(e.memoria.has('carrito_caleta'), false);
     assert.equal(e.intentos.size, 0);
-    assert.match(e.modales[0][1], /pendiente de envío/);
+    assert.match(e.modales[0][1], /REALIZADA/);
 });
 test('respuesta de error conserva el carrito y permite reintentar', async () => {
     const e = entorno(); e.fallar('stock');
+    e.memoria.set('cupon_caleta', JSON.stringify({ codigo: 'CAL5-ABCDEFGH' }));
     await e.comprar();
     assert.ok(e.memoria.has('carrito_caleta'));
+    assert.ok(e.memoria.has('cupon_caleta'));
     assert.equal(e.boton.disabled, false);
     assert.match(e.modales[0][1], /Stock insuficiente/);
 });
-test('retiro envía pago en tienda y no depende de una pasarela', async () => {
+
+test('selección del perfil sobrevive a páginas intermedias y a un carrito vacío', async () => {
+    const memoria = new Map([['cupon_precargado_caleta', 'CAL5-ABCDEFGH']]);
+    const eventos = [];
+    let input = null;
+    let llamadas = 0;
+    const context = vm.createContext({
+        document: { addEventListener: (_, fn) => eventos.push(fn), getElementById: id => id === 'inputCupon' ? input : null, querySelector: () => null },
+        localStorage: { getItem: k => memoria.get(k) ?? null, setItem: (k,v) => memoria.set(k,v), removeItem: k => memoria.delete(k) },
+        fetch: async () => { llamadas++; return { ok: true, json: async () => ({ valido: true, codigo: 'CAL5-ABCDEFGH', tipo: 'MONTO_FIJO', valorDescuento: 5 }) }; },
+        mostrarModalMensaje() {}
+    });
+    vm.runInContext(fs.readFileSync(path.join(recursos, 'static/js/cart.js'), 'utf8'), context);
+    eventos.forEach(fn => fn());
+    assert.equal(memoria.get('cupon_precargado_caleta'), 'CAL5-ABCDEFGH');
+    input = { value: '', addEventListener() {} };
+    eventos.forEach(fn => fn());
+    assert.equal(input.value, 'CAL5-ABCDEFGH');
+    assert.equal(llamadas, 0);
+    assert.ok(memoria.has('cupon_precargado_caleta'));
+    memoria.set('carrito_caleta', JSON.stringify([{ precio: 25, cantidad: 1 }]));
+    await context.aplicarCupon();
+    assert.equal(llamadas, 1);
+    assert.equal(memoria.has('cupon_precargado_caleta'), false);
+    assert.equal(JSON.parse(memoria.get('cupon_caleta')).codigo, 'CAL5-ABCDEFGH');
+});
+test('retiro exige el mismo pago online simulado', async () => {
     const e = entorno();
     e.memoria.set('pedido_envio_caleta', JSON.stringify({ tipoEntrega: 'retiro' }));
     await e.comprar();
     assert.equal(e.requests[0].datos.tipoEntrega, 'RETIRO');
-    assert.equal(e.requests[0].datos.metodoPago, 'PAGO_EN_TIENDA');
+    assert.equal(e.requests[0].datos.metodoPago, 'ONLINE_SIMULADO');
     assert.equal(e.requests[0].datos.direccionEntrega, null);
 });
 test('error de red reutiliza la misma clave al reintentar', async () => {

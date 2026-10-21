@@ -36,7 +36,7 @@ class ReporteIntegrationTests {
     @Test void todosLosBloquesRespetanFechasEstadosYUltimoDiaCompleto() {
         Producto pizza = producto("Mismo nombre");
         Producto otraPizza = producto("Mismo nombre");
-        pedido("2024-06-10T00:00:00", "ENTREGADO", 45, "YAPE", pizza);
+        pedido("2024-06-10T00:00:00", "REALIZADO", 45, "ONLINE_SIMULADO", pizza);
         pedido("2024-06-11T23:59:59", "ENTREGADO", 55, "EFECTIVO", otraPizza);
         pedido("2024-06-11T12:00:00", "PENDIENTE", 999, "TARJETA", pizza);
         pedido("2024-06-11T12:00:00", "CANCELADO", 888, "TARJETA", pizza);
@@ -47,6 +47,8 @@ class ReporteIntegrationTests {
         assertEquals(2, reporte.resumen().entregados());
         assertEquals(1, reporte.resumen().cancelados());
         assertEquals(100, reporte.resumen().ventas());
+        assertEquals(100, pedidos.ventasEntre(LocalDate.of(2024, 6, 10).atStartOfDay(), LocalDate.of(2024, 6, 12).atStartOfDay()));
+        assertTrue(reporte.pagos().stream().anyMatch(p -> p.metodo().equals("ONLINE_SIMULADO")));
         assertEquals(50, reporte.resumen().ticketPromedio());
         assertEquals(100.0, reporte.variacionVentas());
         assertEquals(List.of(45.0, 55.0), reporte.tendencia().stream().map(ReporteService.Punto::ventas).toList());

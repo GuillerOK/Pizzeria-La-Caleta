@@ -111,10 +111,10 @@ El trabajador normal de boletas está habilitado. Guarda el HTML junto con el pe
 
 | Entrega | Modalidad guardada | Envío | Estado inicial |
 | --- | --- | --- | --- |
-| Delivery | `CONTRA_ENTREGA` — Pago contra entrega | S/ 5,00 | `PENDIENTE` |
-| Retiro | `PAGO_EN_TIENDA` — Pago al retirar en tienda | S/ 0,00 | `PENDIENTE` |
+| Delivery | `ONLINE_SIMULADO` — Pago online sin cobro real | S/ 5,00 | `REALIZADO` |
+| Retiro | `ONLINE_SIMULADO` — Pago online sin cobro real | S/ 0,00 | `REALIZADO` |
 
-El backend rechaza modalidades incompatibles y pagos de pasarelas no implementadas. Por compatibilidad, si un cliente antiguo manda `EFECTIVO`, se normaliza a la modalidad correspondiente a la entrega. La boleta muestra que el pago está pendiente y la dirección o retiro. Registrar el pedido no lo marca como cobrado.
+El backend solo acepta `ONLINE_SIMULADO`. Confirmar el pago desde la web valida importes, stock y cupón, y registra la venta como `REALIZADO`. El recojo queda confirmado después de este paso. Una compra fallida revierte los cambios y conserva el cupón. Las ventas `REALIZADO` y las históricas `ENTREGADO` se contabilizan en dashboard y reportes; pendientes y canceladas quedan excluidas. Los pedidos pendientes antiguos no se convierten automáticamente en ventas pagadas.
 
 ## Verificación realizada
 

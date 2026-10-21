@@ -116,7 +116,15 @@ public class CuponService {
             case "PIZZA_GRATIS" -> "PIZZA";
             default -> "CALETA";
         };
-        String codigoGenerado = (prefijo + "-" + UUID.randomUUID()).toUpperCase();
+        String codigoGenerado;
+        // Ocho caracteres legibles; conserva prefijos y códigos históricos sin cambios.
+        var random = new java.security.SecureRandom();
+        String alfabeto = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+        do {
+            var sufijo = new StringBuilder(8);
+            for (int i = 0; i < 8; i++) sufijo.append(alfabeto.charAt(random.nextInt(alfabeto.length())));
+            codigoGenerado = prefijo + "-" + sufijo;
+        } while (cuponRepository.findByCodigoIgnoreCase(codigoGenerado).isPresent());
 
         Cupon cupon = new Cupon(
                 codigoGenerado,

@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
         el('sinVentas').hidden = resumen.pedidos === 0 || resumen.entregados > 0;
         el('agrupacion').textContent = { dia: 'Agrupado por día', semana: 'Agrupado por semana (lunes)', mes: 'Agrupado por mes' }[data.agrupacion];
         tabla('tablaTendencia', data.tendencia.map(p => [fecha(p.fecha), soles(p.ventas)]), 2, 'Sin ventas.');
-        tabla('tablaProductos', data.productos.map(p => [p.nombre, numero(p.unidades), soles(p.importe)]), 3, 'Sin productos vendidos en pedidos entregados.');
-        tabla('tablaPagos', data.pagos.map(p => [p.metodo.replaceAll('_', ' '), numero(p.pedidos), soles(p.importe)]), 3, 'Sin métodos de pago en pedidos entregados.');
+        tabla('tablaProductos', data.productos.map(p => [p.nombre, numero(p.unidades), soles(p.importe)]), 3, 'Sin productos vendidos en ventas concretadas.');
+        tabla('tablaPagos', data.pagos.map(p => [p.metodo.replaceAll('_', ' '), numero(p.pedidos), soles(p.importe)]), 3, 'Sin métodos de pago en ventas concretadas.');
         graficos.forEach(grafico => grafico.destroy());
         graficos = [];
         el('chartTendencia').hidden = el('chartPagos').hidden = typeof Chart === 'undefined';

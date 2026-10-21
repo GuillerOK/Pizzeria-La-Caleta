@@ -45,7 +45,7 @@ class PedidoServiceTests {
     CheckoutRequest solicitud(int... cantidades) {
         return new CheckoutRequest("cliente@example.com", java.util.Arrays.stream(cantidades)
                 .mapToObj(c -> new CheckoutRequest.Item(7, c)).toList(),
-                "EFECTIVO", "DELIVERY", "Av. Lima 123", "a1234567-1234-1234-1234-123456789abc");
+                "ONLINE_SIMULADO", "DELIVERY", "Av. Lima 123", "a1234567-1234-1234-1234-123456789abc");
     }
 
     @Test void sumaDuplicadosYCalculaPreciosDesdeLaBaseDeDatos() {
@@ -53,7 +53,8 @@ class PedidoServiceTests {
         assertEquals(2, pizza.getStock());
         assertEquals(1.25, harina.getStockActual());
         assertEquals(80.30, resultado.getTotal());
-        assertEquals("CONTRA_ENTREGA", resultado.getMetodoPago());
+        assertEquals("ONLINE_SIMULADO", resultado.getMetodoPago());
+        assertEquals("REALIZADO", resultado.getEstado());
         assertEquals(1, resultado.getDetalles().size());
         assertEquals(3, resultado.getDetalles().get(0).getCantidad());
         assertSame(resultado, resultado.getDetalles().get(0).getPedido());
@@ -77,7 +78,7 @@ class PedidoServiceTests {
 
     @Test void noPermiteCambiarElDestinatarioDeLaSesion() {
         var solicitud = new CheckoutRequest("otro@example.com", List.of(new CheckoutRequest.Item(7, 1)),
-                "EFECTIVO", "DELIVERY", "Av. Lima 123", "a1234567-1234-1234-1234-123456789abc");
+                "ONLINE_SIMULADO", "DELIVERY", "Av. Lima 123", "a1234567-1234-1234-1234-123456789abc");
         assertThrows(ResponseStatusException.class, () -> service.procesarCompra(solicitud, 1));
         verifyNoInteractions(productos, pedidos, email);
     }
@@ -103,10 +104,11 @@ class PedidoServiceTests {
 
     @Test void retiroNoCobraDelivery() {
         var original = solicitud(1);
-        var retiro = new CheckoutRequest(original.email(), original.items(), "EFECTIVO", "RETIRO", null, original.claveCompra());
+        var retiro = new CheckoutRequest(original.email(), original.items(), "ONLINE_SIMULADO", "RETIRO", null, original.claveCompra());
         var pedido = service.procesarCompra(retiro, 1);
         assertEquals(25.10, pedido.getTotal());
-        assertEquals("PAGO_EN_TIENDA", pedido.getMetodoPago());
+        assertEquals("ONLINE_SIMULADO", pedido.getMetodoPago());
+        assertEquals("REALIZADO", pedido.getEstado());
     }
 
     @Test void demoRechazaPagosDePasarelasNoImplementadas() {
@@ -125,8 +127,15 @@ class PedidoServiceTests {
 
     @Test void reintentoDevuelveMismoPedidoSinDescontarOtraVez() {
         Pedido previo = new Pedido(); previo.setId(123);
+        previo.setEstado("REALIZADO");
         when(pedidos.findByUsuarioIdAndClaveCompra(1, solicitud(1).claveCompra())).thenReturn(Optional.of(previo));
         assertSame(previo, service.procesarCompra(solicitud(1), 1));
+        verifyNoInteractions(productos, recetas, insumos, boletas);
+    }
+
+    @Test void reintentoDePedidoPendienteNoSeAnunciaComoPagoExitoso() {
+        when(pedidos.findByUsuarioIdAndClaveCompra(1, solicitud(1).claveCompra())).thenReturn(Optional.of(new Pedido()));
+        assertThrows(ResponseStatusException.class, () -> service.procesarCompra(solicitud(1), 1));
         verifyNoInteractions(productos, recetas, insumos, boletas);
     }
 
@@ -154,6 +163,9 @@ class PedidoServiceTests {
         String html = (String) mensaje.getContent();
         assertTrue(html.contains("&lt;script&gt;"));
         assertTrue(html.contains("55.20"));
+        assertTrue(html.contains("Pago online simulado confirmado"));
+        assertTrue(html.contains("REALIZADO"));
+        assertFalse(html.contains("Pago pendiente"));
         assertEquals("cliente@example.com", mensaje.getAllRecipients()[0].toString());
         verify(sender).send(mensaje);
     }

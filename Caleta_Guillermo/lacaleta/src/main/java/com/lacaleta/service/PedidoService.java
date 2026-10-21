@@ -55,19 +55,21 @@ public class PedidoService {
             throw new ResponseStatusException(BAD_REQUEST, "Falta una clave de compra válida.");
         }
         var existente = pedidos.findByUsuarioIdAndClaveCompra(usuarioId, solicitud.claveCompra());
-        if (existente.isPresent()) return existente.get();
+        if (existente.isPresent()) {
+            Pedido confirmado = existente.get();
+            if (!"REALIZADO".equals(confirmado.getEstado()) && !"ENTREGADO".equals(confirmado.getEstado())) {
+                throw new ResponseStatusException(CONFLICT, "Este intento corresponde a un pedido sin pago confirmado. Revisa tu historial.");
+            }
+            return confirmado;
+        }
         String metodo = solicitud.metodoPago();
-        if (metodo == null || !java.util.Set.of("EFECTIVO", "CONTRA_ENTREGA", "PAGO_EN_TIENDA").contains(metodo)) {
-            throw new ResponseStatusException(BAD_REQUEST, "Método de pago inválido.");
+        if (!"ONLINE_SIMULADO".equals(metodo)) {
+            throw new ResponseStatusException(BAD_REQUEST, "Completa el pago online simulado para confirmar la compra.");
         }
         if (!"DELIVERY".equals(solicitud.tipoEntrega()) && !"RETIRO".equals(solicitud.tipoEntrega())) {
             throw new ResponseStatusException(BAD_REQUEST, "Selecciona delivery o retiro.");
         }
         boolean delivery = "DELIVERY".equals(solicitud.tipoEntrega());
-        if ((delivery && "PAGO_EN_TIENDA".equals(metodo)) || (!delivery && "CONTRA_ENTREGA".equals(metodo))) {
-            throw new ResponseStatusException(BAD_REQUEST, "El pago debe corresponder al tipo de entrega.");
-        }
-        metodo = delivery ? "CONTRA_ENTREGA" : "PAGO_EN_TIENDA";
         if (delivery && (solicitud.direccionEntrega() == null || solicitud.direccionEntrega().isBlank()
                 || solicitud.direccionEntrega().length() > 255)) {
             throw new ResponseStatusException(BAD_REQUEST, "Ingresa una dirección de entrega válida.");
@@ -198,6 +200,9 @@ public class PedidoService {
         pedido.setDescuentoCupon(descuentoCupon.doubleValue());
         BigDecimal totalFinal = subtotal.add(envio).subtract(descuentoCupon).max(BigDecimal.ZERO);
         pedido.setTotal(totalFinal.setScale(2, RoundingMode.HALF_UP).doubleValue());
+        // El servidor aprueba el pago simulado tras validar importes, cupón y existencias.
+        // La confirmación, el consumo del cupón y el stock se confirman juntos o se revierten.
+        pedido.setEstado("REALIZADO");
         pedidos.saveAndFlush(pedido); // Incluye detalles por CascadeType.ALL y stock por dirty checking.
 
         // Acredita solo el incremento de consumo: nunca reconstruye el saldo ni resta canjes otra vez.

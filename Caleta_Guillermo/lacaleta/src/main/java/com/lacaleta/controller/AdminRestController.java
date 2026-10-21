@@ -34,9 +34,10 @@ public class AdminRestController {
             semanas.add(pedidos.ventasEntre(fin.minusWeeks(1).atStartOfDay(), fin.atStartOfDay()));
         }
         respuesta.put("graficoIngresosSemanales", semanas);
-        long[] pagos = new long[3];
+        long[] pagos = new long[4];
         for (Object[] fila : pedidos.contarPorMetodoPago()) {
             String metodo = String.valueOf(fila[0]).toUpperCase(Locale.ROOT);
+            if ("ONLINE_SIMULADO".equals(metodo)) { pagos[3] += ((Number) fila[1]).longValue(); continue; }
             int indice = metodo.contains("YAPE") || metodo.contains("PLIN") ? 0
                     : metodo.contains("EFECTIVO") || metodo.equals("CONTRA_ENTREGA") || metodo.equals("PAGO_EN_TIENDA") ? 1
                     : metodo.contains("TARJETA") || metodo.contains("VISA") ? 2 : -1;

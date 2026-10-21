@@ -87,7 +87,7 @@ public class ReporteService {
         for (Object[] fila : pedidos.resumenReporte(periodo.desde().atStartOfDay(), periodo.hasta().plusDays(1).atStartOfDay())) {
             long cantidad = ((Number) fila[1]).longValue();
             total += cantidad;
-            if ("ENTREGADO".equals(fila[0])) {
+            if ("ENTREGADO".equals(fila[0]) || "REALIZADO".equals(fila[0])) {
                 entregados += cantidad;
                 ventas += ((Number) fila[2]).doubleValue();
             }

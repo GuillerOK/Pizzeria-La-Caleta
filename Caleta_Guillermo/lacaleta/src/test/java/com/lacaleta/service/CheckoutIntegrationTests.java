@@ -58,10 +58,11 @@ class CheckoutIntegrationTests {
     }
     CheckoutRequest solicitud(int cantidad) {
         return new CheckoutRequest(usuario.getEmail(), List.of(new CheckoutRequest.Item(pizza.getId(), cantidad)),
-                "EFECTIVO", "DELIVERY", "Av. Lima 123", UUID.randomUUID().toString());
+                "ONLINE_SIMULADO", "DELIVERY", "Av. Lima 123", UUID.randomUUID().toString());
     }
     @Test void confirmaPedidoStockYBoletaEnLaMismaTransaccion() {
         Pedido pedido = checkout.procesarCompra(solicitud(2), usuario.getId());
+        assertEquals("REALIZADO", pedidos.findById(pedido.getId()).orElseThrow().getEstado());
         assertEquals(55.0, pedido.getTotal());
         assertEquals(8, productos.findById(pizza.getId()).orElseThrow().getStock());
         assertEquals(1.5, insumos.findById(harina.getId()).orElseThrow().getStockActual());
@@ -97,6 +98,36 @@ class CheckoutIntegrationTests {
     CheckoutRequest conCupon(Cupon cupon) {
         var s = solicitud(1);
         return new CheckoutRequest(s.email(), s.items(), s.metodoPago(), s.tipoEntrega(), s.direccionEntrega(), s.claveCompra(), cupon.getCodigo());
+    }
+    @Test void carritoVacioNoConsumeCuponYCodigoNuevoEsCorto() {
+        var cupon = canjes.canjearCupon(usuario, "DSCTO_5", 0);
+        assertTrue(cupon.getCodigo().matches("CAL5-[A-HJ-NP-Z2-9]{8}"));
+        var s = solicitud(1);
+        var vacio = new CheckoutRequest(s.email(), List.of(), s.metodoPago(), s.tipoEntrega(),
+                s.direccionEntrega(), s.claveCompra(), cupon.getCodigo());
+        assertThrows(org.springframework.web.server.ResponseStatusException.class,
+                () -> checkout.procesarCompra(vacio, usuario.getId()));
+        assertEquals("ACTIVO", cupones.findById(cupon.getId()).orElseThrow().getEstado());
+        assertEquals(0, pedidos.count());
+    }
+    @Test void cuponLargoHistoricoSigueFuncionandoSinCambiarSuCodigo() {
+        String codigo = "CAL5-" + UUID.randomUUID();
+        var cupon = cupones.saveAndFlush(new Cupon(codigo, "Histórico", "Descuento", "MONTO_FIJO", 5.0, 20, usuario, null));
+        var pedido = checkout.procesarCompra(conCupon(cupon), usuario.getId());
+        assertEquals(25.0, pedido.getTotal());
+        assertEquals(codigo, cupones.findById(cupon.getId()).orElseThrow().getCodigo());
+        assertEquals("REALIZADO", pedido.getEstado());
+    }
+    @Test void retiroRechazaTodosLosMetodosPresencialesSinConsumirCupon() {
+        var cupon = canjes.canjearCupon(usuario, "DSCTO_5", 0);
+        for (String metodo : List.of("EFECTIVO", "CONTRA_ENTREGA", "PAGO_EN_TIENDA")) {
+            var s = solicitud(1);
+            var retiro = new CheckoutRequest(s.email(), s.items(), metodo, "RETIRO", null, s.claveCompra(), cupon.getCodigo());
+            assertThrows(org.springframework.web.server.ResponseStatusException.class,
+                    () -> checkout.procesarCompra(retiro, usuario.getId()));
+        }
+        assertEquals("ACTIVO", cupones.findById(cupon.getId()).orElseThrow().getEstado());
+        assertEquals(0, pedidos.count());
     }
     @Test void refrescarPerfilNoModificaSaldoNiDescuentaCanjesDeNuevo() {
         assertNotNull(canjes.canjearCupon(usuario, "DSCTO_5", 0));
@@ -200,7 +231,7 @@ class CheckoutIntegrationTests {
             });
             var dos = executor.submit(() -> {
                 inicio.await();
-                var request = new CheckoutRequest("otro@example.com", solicitud(1).items(), "EFECTIVO", "RETIRO", null, UUID.randomUUID().toString());
+                var request = new CheckoutRequest("otro@example.com", solicitud(1).items(), "ONLINE_SIMULADO", "RETIRO", null, UUID.randomUUID().toString());
                 try { checkout.procesarCompra(request, otroId); return true; }
                 catch (org.springframework.web.server.ResponseStatusException error) { return false; }
             });

@@ -51,17 +51,17 @@
         </section>
         <p id="estadoReporte" role="status" aria-live="polite" class="reporte-estado">Cargando reporte…</p>
         <section id="resultadoReporte" hidden aria-busy="false">
-            <div class="reporte-periodo"><h2 id="tituloPeriodo">Resumen del período</h2><span class="reporte-chip">Pedidos entregados</span></div>
+            <div class="reporte-periodo"><h2 id="tituloPeriodo">Resumen del período</h2><span class="reporte-chip">Ventas concretadas</span></div>
             <p id="comparacionPeriodo" class="reporte-muted"></p>
             <div class="reporte-kpis">
                 <article class="caleta-panel"><p>Ventas del período</p><strong id="kpiVentas">—</strong><small id="variacionVentas"></small></article>
-                <article class="caleta-panel"><p>Pedidos entregados</p><strong id="kpiEntregados">—</strong><small id="totalPedidos"></small></article>
-                <article class="caleta-panel"><p>Ticket promedio</p><strong id="kpiTicket">—</strong><small>Ventas ÷ pedidos entregados</small></article>
+                <article class="caleta-panel"><p>Ventas concretadas</p><strong id="kpiEntregados">—</strong><small id="totalPedidos"></small></article>
+                <article class="caleta-panel"><p>Ticket promedio</p><strong id="kpiTicket">—</strong><small>Ventas ÷ ventas concretadas</small></article>
                 <article class="caleta-panel"><p>Pedidos cancelados</p><strong id="kpiCancelados">—</strong><small id="tasaCancelacion"></small></article>
             </div>
-            <p class="reporte-criterio"><i class="bi bi-info-circle"></i> Ventas calculadas con el total de pedidos en estado ENTREGADO, según su fecha de creación. Incluyen los cargos y descuentos del pedido; no acreditan cobro confirmado ni utilidad. Los pendientes y cancelados no se suman a ventas.</p>
+            <p class="reporte-criterio"><i class="bi bi-info-circle"></i> Ventas calculadas con el total de pedidos en estado REALIZADO o ENTREGADO, según su fecha de creación. Incluyen los cargos y descuentos del pedido; los pagos online son simulados, sin cobros reales. Los pendientes y cancelados no se suman a ventas.</p>
             <p id="sinDatos" class="reporte-vacio" hidden>No hay pedidos en este período. Prueba con otras fechas.</p>
-            <p id="sinVentas" class="reporte-vacio" hidden>Hay pedidos, pero ninguno está entregado. Las ventas del período son S/ 0.00.</p>
+            <p id="sinVentas" class="reporte-vacio" hidden>Hay pedidos, pero ninguno está realizado o entregado. Las ventas del período son S/ 0.00.</p>
             <section id="ventas" class="caleta-panel">
                 <div class="reporte-panel-header"><h2>Evolución de ventas</h2><span id="agrupacion" class="reporte-muted"></span></div>
                 <div class="reporte-chart"><canvas id="chartTendencia" role="img" aria-label="Evolución del importe de ventas por fecha"></canvas></div>
@@ -73,7 +73,7 @@
                     <div class="reporte-table-wrap"><table class="table align-middle"><thead><tr><th>Producto</th><th>Unidades</th><th>Importe</th></tr></thead><tbody id="tablaProductos"></tbody></table></div>
                 </section>
                 <section id="pagos" class="caleta-panel">
-                    <h2>Métodos de pago</h2><p class="reporte-muted">Método registrado en pedidos entregados.</p>
+                    <h2>Métodos de pago</h2><p class="reporte-muted">Método registrado en ventas concretadas.</p>
                     <div class="reporte-chart reporte-chart-pagos"><canvas id="chartPagos" role="img" aria-label="Importe de ventas por método de pago"></canvas></div>
                     <div class="reporte-table-wrap"><table class="table align-middle"><thead><tr><th>Método</th><th>Pedidos</th><th>Importe</th></tr></thead><tbody id="tablaPagos"></tbody></table></div>
                 </section>

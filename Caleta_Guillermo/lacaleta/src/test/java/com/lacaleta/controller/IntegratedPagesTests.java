@@ -80,6 +80,21 @@ class IntegratedPagesTests {
         mvc.perform(get("/perfil").session(session)).andExpect(status().isOk())
                 .andExpect(model().attribute("totalPedidos", 0L));
     }
+    @Test
+    void carritoRenderizaModalCompartidoConCuponActivoYLargo() throws Exception {
+        var cupon = new Cupon("CAL5-12345678-1234-1234-1234-123456789abc", "Mi descuento", "Cinco soles", "MONTO_FIJO", 5.0, 20, cliente, LocalDateTime.now().plusDays(1));
+        when(cupones.listarPorUsuario(cliente)).thenReturn(List.of(cupon));
+        mvc.perform(get("/carrito").session(session)).andExpect(status().isOk())
+                .andExpect(content().string(containsString("id=\"modalMisCupones\"")))
+                .andExpect(content().string(containsString("Ver mis cupones")))
+                .andExpect(content().string(containsString(cupon.getCodigo())))
+                .andExpect(content().string(containsString("data-codigo=")));
+    }
+    @Test
+    void carritoSinCuponesMuestraMensajeVacio() throws Exception {
+        mvc.perform(get("/carrito").session(session)).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Aún no tienes cupones canjeados")));
+    }
 
     @Test
     void adminRenderizaFormulariosDeInsumosYClientes() throws Exception {

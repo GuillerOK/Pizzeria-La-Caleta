@@ -62,7 +62,7 @@ function cargarResumenPago() {
         if (filaDescuento) {
             filaDescuento.classList.remove('d-none');
             if (valorDescuentoDOM) valorDescuentoDOM.innerText = cupon.tipo === 'REGALO' ? `${cupon.titulo} (CUPÓN REGALO) — S/ 0.00` : `- S/ ${descuento.toFixed(2)}`;
-            if (labelDescuento) labelDescuento.innerHTML = `<i class="fa-solid fa-tag me-1"></i>${cupon.titulo || 'Cupón'}`;
+            if (labelDescuento) labelDescuento.innerHTML = `<i class="fa-solid fa-tag me-1"></i>${escaparHtml(cupon.titulo || 'Cupón')}`;
         }
     } else {
         if (filaDescuento) filaDescuento.classList.add('d-none');
@@ -84,7 +84,7 @@ function cargarDatosEnvioConfirmados() {
     
     if (datosEnvio) {
         const metodo = document.getElementById('textoMetodoPago');
-        if (metodo) metodo.textContent = datosEnvio.tipoEntrega === 'delivery' ? 'Pago contra entrega' : 'Pago al retirar en tienda';
+        if (metodo) metodo.textContent = 'Pago online simulado';
         if (datosEnvio.nombre) document.getElementById('pago-contacto-nombre').innerText = datosEnvio.nombre;
         if (datosEnvio.correo) document.getElementById('pago-contacto-correo').innerText = datosEnvio.correo;
         if (datosEnvio.telefono) document.getElementById('pago-contacto-telefono').innerText = datosEnvio.telefono;
@@ -98,7 +98,7 @@ function cargarDatosEnvioConfirmados() {
             document.getElementById('pago-titulo-metodo').innerText = "Punto de Retiro Seleccionado:";
             document.getElementById('pago-destino-principal').innerText = datosEnvio.sede || "Sede Miraflores";
             document.getElementById('pago-destino-detalle').innerText = datosEnvio.direccionSede || "Av. José Larco 850, Miraflores";
-            document.getElementById('pago-destino-tiempo').innerText = "Listo en: 20 - 30 min";
+            document.getElementById('pago-destino-tiempo').innerText = "Recojo habilitado tras pagar. Preparación: 20 - 30 min";
         }
     }
 }
@@ -109,7 +109,7 @@ async function procesarPagoFinal(e) {
     if (btn.disabled) return;
     const texto = btn.textContent;
     btn.disabled = true;
-    btn.textContent = 'Registrando pedido...';
+    btn.textContent = 'Procesando pago simulado...';
     try {
         const carrito = obtenerCarrito();
         const envio = JSON.parse(localStorage.getItem('pedido_envio_caleta') || '{}');
@@ -124,7 +124,7 @@ async function procesarPagoFinal(e) {
             items: carrito.map(i => ({ productoId: i.productoId, cantidad: i.cantidad })),
             tipoEntrega: envio.tipoEntrega === 'delivery' ? 'DELIVERY' : 'RETIRO',
             direccionEntrega: envio.direccion || null,
-            metodoPago: envio.tipoEntrega === 'delivery' ? 'CONTRA_ENTREGA' : 'PAGO_EN_TIENDA',
+            metodoPago: 'ONLINE_SIMULADO',
             codigoCupon: cupon ? cupon.codigo : null
         };
         // Mantener la clave al reintentar tras perder una respuesta del servidor.
@@ -144,9 +144,10 @@ async function procesarPagoFinal(e) {
         localStorage.removeItem('carrito_caleta');
         localStorage.removeItem('pedido_envio_caleta');
         localStorage.removeItem('cupon_caleta');
+        localStorage.removeItem('cupon_precargado_caleta');
         sessionStorage.removeItem('checkout_intento');
-        mostrarModalMensaje('Pedido registrado', 'Pedido #' + resultado.pedidoId +
-            '. Tu boleta fue enviada al correo. ' + (datos.tipoEntrega === 'DELIVERY' ? 'Paga al recibir tu pedido.' : 'Paga al retirar tu pedido en tienda.'),
+        mostrarModalMensaje('Pago simulado exitoso', 'Pedido #' + resultado.pedidoId +
+            '. Tu boleta fue enviada al correo. ' + (datos.tipoEntrega === 'DELIVERY' ? 'Venta REALIZADA. Prepararemos tu envío.' : 'Venta REALIZADA. Tu recojo en tienda está confirmado.'),
             () => { window.location.href = '/perfil?tab=pedidos'; });
     } catch (error) {
         mostrarModalMensaje('Error de compra', error instanceof TypeError

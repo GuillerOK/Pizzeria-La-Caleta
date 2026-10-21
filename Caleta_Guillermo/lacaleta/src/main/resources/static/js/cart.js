@@ -316,6 +316,23 @@ function actualizarVistasCarrito() {
     if (totalDOM) totalDOM.innerText = `S/ ${totalFinal.toFixed(2)}`;
 }
 
+function usarCuponEnCarrito(codigo) {
+    localStorage.setItem('cupon_precargado_caleta', codigo);
+    document.getElementById('inputCupon').value = codigo;
+    const modal = document.getElementById('modalMisCupones');
+    if (modal && window.bootstrap) bootstrap.Modal.getInstance(modal)?.hide();
+    aplicarCupon();
+}
+
+async function copiarCodigoCupon(boton) {
+    try {
+        await navigator.clipboard.writeText(boton.dataset.codigo);
+        boton.textContent = 'Copiado';
+    } catch (_) {
+        mostrarModalMensaje('Copiar cupón', 'Selecciona el código para copiarlo manualmente.');
+    }
+}
+
 async function aplicarCupon() {
     const input = document.getElementById('inputCupon');
     const mensajeError = document.getElementById('cuponMensajeError');
@@ -371,6 +388,7 @@ async function aplicarCupon() {
             valorDescuento: data.valorDescuento
         }));
 
+        localStorage.removeItem('cupon_precargado_caleta');
         input.value = '';
         actualizarVistasCarrito();
         mostrarModalMensaje('¡Cupón aplicado!', data.mensaje || 'Se ha aplicado el descuento a tu pedido.');
@@ -390,6 +408,7 @@ async function aplicarCupon() {
 }
 
 function removerCupon() {
+    localStorage.removeItem('cupon_precargado_caleta');
     localStorage.removeItem('cupon_caleta');
     const mensajeError = document.getElementById('cuponMensajeError');
     if (mensajeError) mensajeError.classList.add('d-none');
@@ -421,8 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const precargado = localStorage.getItem('cupon_precargado_caleta');
     if (precargado) {
-        localStorage.removeItem('cupon_precargado_caleta');
-        if (inputCupon && !localStorage.getItem('cupon_caleta')) {
+        if (inputCupon) {
             inputCupon.value = precargado;
             aplicarCupon();
         }
